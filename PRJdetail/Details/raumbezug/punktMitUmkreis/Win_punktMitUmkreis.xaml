@@ -1,0 +1,141 @@
+﻿<Window x:Class="Win_punktMitUmkreis"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigmaDetail" 
+    Title="Raumbezug: Punkt mit Umkreis" Height="471" Width="1123" WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanResizeWithGrip">
+    <Window.Resources>
+        <!--<src:myGlobalz x:Key="myGlobalz"/>-->
+        <XmlDataProvider x:Key="XMLSourceComboBoxRBfunktion" />
+    </Window.Resources>
+    <DockPanel>
+        <Grid   DockPanel.Dock="Top" Height="400">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="155*" />
+                <ColumnDefinition Width="177*" />
+                <ColumnDefinition Width="108*" />
+                <ColumnDefinition Width="36*" />
+                <ColumnDefinition Width="156*"/>
+                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="111*" />
+                <ColumnDefinition Width="111*" />
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="81*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="28" />
+                <RowDefinition Height="28" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="31" />
+                <RowDefinition Height="31" />
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="50*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="1" Text="Rechtswert UTM [m]:" Padding="5" Margin="0,0,20,0"></TextBlock>
+            <TextBlock Grid.Row="2" Text="Hochwert UTM [m]:" Padding="5" Margin="0,0,20,0"></TextBlock>
+            <TextBlock Grid.Row="3" Text="Radius [m]:" Padding="5" Margin="0,0,20,0"></TextBlock>
+            <TextBlock Grid.Row="5" Text="Funktion:" Padding="5" Margin="0,0,20,0"></TextBlock>
+            <TextBlock Grid.Row="6" Text="Freitext:" Padding="5" Margin="0,0,20,0"></TextBlock>
+            <CheckBox Grid.Row="7"  Grid.Column="1" Content="Etikett darstellen" Click="chkMitEtikett_Click"
+                      Padding="10,0,0,0" Margin="10,10,0,0" x:Name="chkMitEtikett" IsEnabled="False"></CheckBox>
+
+            <CheckBox Grid.Row="8"  Grid.Column="1" IsChecked="True" x:Name="chkMapenabled" Margin="0,5,5,5"  
+                      HorizontalAlignment="Left" Width="227" ToolTip="In der Karte darstellen oder unterdrücken"
+                           Click="chkMapenabled_Click">immer in der Karte darstellen</CheckBox>
+
+
+            <TextBox Grid.Row="1"   Padding="5" Text="{Binding  aktPMU.punkt.X , 
+                UpdateSourceTrigger='PropertyChanged'}" Name="tbx" Grid.Column="1" />
+            
+            <TextBox Grid.Row="2"   Padding="5" Name="tby" Height="28" VerticalAlignment="Top"
+                  Text="{Binding  aktPMU.punkt.Y , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.Column="1" />
+            <TextBox Grid.Row="3"   Padding="5" Name="tbradius" 
+                  Text="{Binding  aktPMU.Radius , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.Column="1" />
+            <TextBox Grid.Row="5"   Padding="5" Name="tbBeschreibung" 
+                  Text="{Binding  aktPMU.Name , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.Column="1" HorizontalAlignment="Left" Width="247" Grid.ColumnSpan="2" />
+            <TextBox Grid.Row="6"   Padding="5" Name="tbFreitext"  TextChanged="tbFreitext_TextChanged"
+                  Text="{Binding  aktPMU.Freitext, 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="2" Grid.Column="1" />
+
+            <ComboBox Grid.Row="5"  Grid.Column="2"  x:Name="cmbFunktionsvorschlaege"   MaxDropDownHeight="800"
+                      DataContext="{Binding Source={StaticResource XMLSourceComboBoxRBfunktion}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbFunktionsvorschlaege_SelectionChanged" Margin="75,0,0,0" RenderTransformOrigin="2.394,0.562"
+                      />
+
+            <Button Grid.Row="10" Content="Löschen"   x:Name="btnLoeschen" Click="btnLoeschen_Click" Style="{StaticResource lessButton}" Margin="0,37"   />
+            <Button Grid.Row="10" Content="Speichern"   x:Name="btnSpeichern" Click="btnSpeichern_Click"   Grid.Column="1" Margin="0,35,0,34" />
+            <Button Grid.Column="2" Grid.Row="10" Content="Abbruch" x:Name="btnAbbruch" IsCancel="True" Style="{StaticResource lessButton}"
+                    Click="btnAbbruch_Click" Margin="0,37"   />
+
+            <Button Grid.Column="2" Grid.Row="3" Content="Windrose" Name="btnWindrose" IsCancel="True" Click="btnWindrose_Click" IsEnabled="False" />
+            <StackPanel Grid.Row="7" Grid.Column="4" Grid.RowSpan="3" Margin="0,00,0,0"  Background="AliceBlue" Grid.ColumnSpan="1" >
+                <StackPanel  Orientation="Horizontal"  >
+                    <Button Name="btnPufferbilden" Click="btnPufferbilden_Click"    IsEnabled="true" 
+                        Style="{StaticResource lessButton}" ToolTip="Erzeugt ein Pufferobjekt mit definiertem Radius" Width="58"
+                        Height="28"
+                        Margin="0,10,0,0" VerticalAlignment="Top">
+                        <StackPanel Orientation="Horizontal" >
+
+                            <TextBlock >Puffern</TextBlock>
+                        </StackPanel >
+                    </Button>
+                    <TextBox x:Name="tbpufferinmeter" Width="30" Text="1,5" Height="27" Margin="0,10,0,0" />
+                    <TextBlock Text="[m]" Padding="5" Height="27" Margin="0,10,0,0" />
+                </StackPanel>
+                <Image  x:Name="myPDFdruck" Source="/paradigmaDetail;component/Details/icons/kreispuffer.png"  
+                                Width="36"  Margin="0" Height="40"></Image>
+            </StackPanel>
+            <!--<Border Grid.Column="6" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="11" BorderThickness="5" BorderBrush="LightGreen"/>-->
+            <!--<TextBlock x:Name="tbgisanalyse" Grid.Row="0" Grid.Column="6" Text="GIS - Analyse:" Padding="5" FontWeight="Black"/>
+
+            <CheckBox Grid.Column="7" Grid.Row="0" IsChecked="True" x:Name="chkGisanalyse" Margin="10,5,0,5"  
+                      HorizontalAlignment="Left" 
+                      ToolTip="gisanalyse ein/ausschalten" >ein</CheckBox>
+            <Button Grid.Column="8" Grid.Row="0" Content="alle ausführen" x:Name="btnAlleGisanalysen" Click="btnAlleGisanalysen_Click"
+                    Margin="0,6,0,27" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="tbbplangueltig" Grid.Row="1" Grid.Column="6" Text="BPlan ?" Padding="5" />
+            <Button x:Name="btnbplanaufruf" Grid.Row="1" Grid.Column="7" Content="zum Bplan" IsEnabled="False" 
+                    Click="btnbplanaufruf_Click" Margin="0,0,0,0" Grid.RowSpan="1" Height="Auto"/>
+            <TextBlock x:Name="tbKehrgueltig" Grid.Row="2" Grid.Column="6" Text="Kehrbezirk ?" Padding="5"  />
+            <Button x:Name="btnKehraufruf" Grid.Row="2" Grid.Column="7" Content="zum Feger" IsEnabled="False" Click="btnKehraufruf_Click"
+                      Grid.RowSpan="1"/>
+            <TextBlock x:Name="tbEigentgueltig" Grid.Row="3" Grid.Column="6" Text="Eigentümer ?" Padding="5" />
+            <Button x:Name="btnEigentaufruf" Grid.Row="3" Grid.Column="7" Content="zum Eigentümer" IsEnabled="False" 
+                    Click="btnEigentaufruf_Click"   Grid.RowSpan="1"/>
+            <TextBlock x:Name="tbWSGgueltig" Grid.Row="4" Grid.Column="6" Text="WSG ?" Padding="5" Foreground="Gray" />
+            <Button x:Name="btnWSGaufruf" Grid.Row="4" Grid.Column="7" Content="zum WSG" IsEnabled="False" Margin="0,6,0,26" Grid.RowSpan="2"
+                    Click="btnWSGaufruf_Click"/>
+            <ComboBox  Grid.Row="4" Grid.Column="7"   x:Name="cmbWSGauswahl"   
+					ItemsSource="{Binding}" 
+					DisplayMemberPath="etikett"  SelectedValuePath="verordnung" SelectionChanged="cmbWSGauswahl_SelectionChanged"
+								   />
+            <TextBlock x:Name="tbNSGgueltig" Grid.Row="5" Grid.Column="6" Text="NSG ?" Padding="5"   />
+            <Button x:Name="btnNSGaufruf" Grid.Row="5" Grid.Column="7" Content="Verordnung" IsEnabled="False" Margin="0,7,0,26" Grid.RowSpan="2" 
+                    Click="btnNSGaufruf_Click"/>
+            <ComboBox  Grid.Row="5" Grid.Column="7"   x:Name="cmbNSGauswahl"   
+					ItemsSource="{Binding}" 
+					DisplayMemberPath="etikett"  SelectedValuePath="verordnung" SelectionChanged="cmbNSGauswahl_SelectionChanged"
+								   />
+            <TextBlock x:Name="tbALTLASTgueltig" Grid.Row="6" Grid.Column="6" Text="Altlast ?" Padding="5" Foreground="Gray" />
+            <Button x:Name="btnALTLASTaufruf" Grid.Row="6" Grid.Column="7" Content="zur Altlast" IsEnabled="False"  Grid.RowSpan="1"/>
+            <TextBlock x:Name="tbUESGgueltig" Grid.Row="7" Grid.Column="6" Text="Überschw. ?" ToolTip="Überschwemmungsgebiet" Padding="5" Foreground="Gray" />
+            <Button x:Name="btnUESGaufruf" Grid.Row="7" Grid.Column="7" Content="Verordnung" IsEnabled="False"   Grid.RowSpan="1" Click="btnUESGaufruf_Click"/>
+
+            <TextBox x:Name="tbInfo" Grid.Row="1" Grid.RowSpan="10" Grid.Column="8" Text=" " Padding="0" Margin="5" TextWrapping="Wrap" 
+                     AcceptsReturn="True" Grid.ColumnSpan="3" />-->
+        </Grid>
+        <!--<TextBlock x:Name="tbNachricht" Height="20"/>-->
+    </DockPanel>
+</Window>

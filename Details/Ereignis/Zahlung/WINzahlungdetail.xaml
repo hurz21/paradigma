@@ -1,0 +1,167 @@
+﻿<Window x:Class="WINzahlungdetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:paradigma"  
+        
+        Title="Zahlungsdetails - Modus: "
+        Height="523" Width="690" 
+        WindowStartupLocation="CenterScreen"
+          Background="{StaticResource TabControlBackgroundBrush}" 
+        Name="Window1"
+        >
+    <Window.Resources>
+        <src:myGlobalz x:Key="myGlobalz"/>
+        <src:MyFormatter x:Key="myformattjf" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130*" />
+            <ColumnDefinition Width="113*" />
+            <ColumnDefinition Width="27*" />
+            <ColumnDefinition Width="90*" />
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="23.75" />
+            <ColumnDefinition Width="168*" />
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Aktenzeichen:" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Betrag (Euro):" Padding="5"/>
+
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Typ:" Padding="5"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Richtung:" Padding="5"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Festgesetzt am:" Padding="5"/>
+        <TextBlock Grid.Row="7" Grid.Column="3" Text="Angeordnet am:" Padding="5"/>
+        <TextBlock Grid.Row="8" Grid.Column="0" Text="Eingang/Ausgang am:" Padding="5"/>
+        <TextBlock Grid.Row="9" Text="Zahler/Empfänger:" Padding="5" Name="tblZahler"/>
+        <TextBlock Grid.Row="10" Text="Beschreibung:" Padding="5"/>
+        <TextBlock Grid.Row="11" Text="Notiz:" Padding="5"/>
+        <TextBlock Grid.Row="14" Grid.Column="0" Text="Anordnung veranlasst:" Padding="5"/>
+        <TextBlock Grid.Row="15" Grid.Column="0" Text="Anordnung erledigt:" Padding="5"/>
+        <TextBlock Grid.Row="16" Text="Haushaltsstelle:" Padding="5"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="7" Orientation="Horizontal" >
+            <TextBlock Text="SachgebietsNr.:" Padding="5"   />
+
+            <TextBlock Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                   Padding="5"   />
+            <TextBlock   Text="VorgangsNr:" Padding="5"/>
+            <TextBlock  Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.VorgangsID, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                            Padding="5"  />
+            <TextBlock Text="Bearbeiter:" Padding="5"/>
+            <TextBlock  Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktVorgang.Stammdaten.Bearbeiter.Initiale,  
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                   Padding="5"   />
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktVorgang.Stammdaten.az.gesamt, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                   Padding="5" Grid.ColumnSpan="6" Margin="115,0,23,0" />
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,1,0" Width="112" Grid.Column="1">
+            <TextBox   Width="100" HorizontalContentAlignment="Right"  
+                       Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.Betrag, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                       ToolTip="Bitte mit Punkten (.) als Dezimaltrennzeichen eingeben !!!"
+                       Name="tbBetrag"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="€" Padding="5,3,1,1"/>
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="5" Grid.Column="1" x:Name="tbTyp" Padding="5" 
+                      Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.Typ, 
+                            UpdateSourceTrigger='PropertyChanged'}"  />
+        <!--<TextBlock Grid.Row="6" Grid.Column="1" Name="tbRichtung" Padding="5" 
+                      Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.Richtung, 
+                            UpdateSourceTrigger='PropertyChanged'}"   />-->
+
+        <StackPanel   Grid.Row="6" Grid.Column="1"  Height="53"  Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,25" Grid.RowSpan="3" >
+            <RadioButton  VerticalAlignment="Top" GroupName="GRPRichtung" x:Name="richtungein" Margin="5,5,5,5" Content="Eingang"   Click="richtung"/>
+            <RadioButton  VerticalAlignment="Top" GroupName="GRPRichtung" x:Name="richtungaus" Margin="5,5,5,5" Content="Ausgang" Click="richtung"/>
+        </StackPanel>
+        <TextBox Grid.Row="7" Grid.Column="1" Name="tbVerschickt" IsEnabled="False"
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.VerschicktAm,   StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}',
+                            UpdateSourceTrigger='PropertyChanged'}"   />
+        <TextBox Grid.Row="7" Grid.Column="4" Name="tbAngeordnetAm" IsEnabled="False"
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.AngeordnetAm,   StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}',
+                            UpdateSourceTrigger='PropertyChanged'}"   />
+        <TextBox Grid.Row="8" Grid.Column="1" Name="tbEingangAm" IsEnabled="False"
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.EingangAm,     StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}',
+                            UpdateSourceTrigger='PropertyChanged'}"  />
+        <TextBox Grid.Row="9" Name="tbZahler" 
+                      Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.Zahler, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="6" Grid.Column="1" />
+        <TextBox Grid.Row="10" Grid.Column="1" Name="tbBeschreibung" IsEnabled="False"
+                      Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktEreignis.Beschreibung, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="6" />
+        <TextBox Grid.Row="11" Grid.Column="1" x:Name="tbNotiz" AcceptsReturn="True" AcceptsTab="True" TextWrapping="WrapWithOverflow"
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktEreignis.Notiz, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="4"  Grid.RowSpan="3"  />
+        <CheckBox Grid.Row="14" Grid.Column="1" IsChecked="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.istAnordnungbestellt, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="4" Margin="6,0,0,0" />
+        <CheckBox Grid.Row="15" IsChecked="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.istAngeordnet, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="4" Grid.Column="1" Margin="6,0,0,0" />
+        <TextBox Grid.Row="16" Grid.Column="1" Text="{Binding Source={StaticResource myGlobalz}, 
+                            Path=sitzung.aktZahlung.HausHaltsstelle, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="4"    />
+
+        <ComboBox  Grid.Row="16" Grid.Column="5" Name="cmbHHST"  />
+        <ComboBox  Grid.Row="5" Grid.Column="2" Name="cmbTyp"  />
+        <ComboBox  Grid.Row="9" Grid.Column="7" x:Name="cmbBeteiligte" ItemsSource="{Binding}" 
+                   DisplayMemberPath="ABSTRACT"  SelectedValuePath="ABSTRACT" Margin="0,0,6,0"   />
+
+        <DatePicker Grid.Row="7" Grid.Column="2" x:Name="dpVerschickt" Padding="-5"   />
+        <DatePicker Grid.Row="7" Grid.Column="5" x:Name="dpAngeordnet" Padding="-5" HorizontalAlignment="Left" Width="24" SelectedDateChanged="dpAngeordnet_SelectedDateChanged" />
+        <DatePicker Grid.Row="8" Grid.Column="2"    x:Name="dpEingang"   Padding="-5"  />
+
+        <Button  Grid.Row="14" Grid.Column="6" Name="btnAnnahmeanordnung" Content="Annahmeanordnung" Click="btnAnnahmeanordnung_Click"
+                 ToolTip="Schickt Email ans Vorzimmer zwecks Erstellung einer Annahmeanordnung" Height="25" Margin="2,1,1,0" Width="194.831" Grid.ColumnSpan="2" />
+        <Button  Grid.Row="15" Grid.Column="6" Name="btnExcel" Content="Excel"  Click="btnExcel_Click"
+                 ToolTip="Ausgabe aller Zahlungen nach Excel" Height="25" Margin="2,1,1,0" Width="194.831" Grid.ColumnSpan="2" />
+
+        <Button  Grid.Row="17" Grid.Column="0" Name="btnLoeschen" Content="Löschen"   Click="btnLoeschen_Click" Margin="0,0,0,22" Grid.RowSpan="2"/>
+        <Button  Grid.Row="17" Name="btnSpeichern" Content="Speichern" Click="btnZahlungSpeichernClick" Grid.ColumnSpan="4" Height="25" Margin="32,0,5,0" Width="293.233" Grid.Column="1" />
+        <Button  Grid.Row="17" Grid.Column="6" Name="btnAbbruch" Content="Abbruch" IsCancel="True" Click="abbruch" Grid.ColumnSpan="2" Margin="0,0,0,22" Grid.RowSpan="2"/>
+
+    </Grid>
+</Window>

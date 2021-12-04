@@ -1,0 +1,181 @@
+﻿<Window x:Class="VorgangUebersicht"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigma"  
+    Title="Natureg: Projektübersicht" Height="341" Width="966" WindowStartupLocation="CenterScreen"
+         Background="{StaticResource backg3}"
+        >
+    <Window.Resources>
+        <src:MyFormatter x:Key="myformattjf" />
+        <src:myGlobalz   x:Key="myGlobalz"/>
+        <XmlDataProvider x:Key="XMLSourceComboBoxGemKRZ" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxEreignisse"    />
+        <XmlDataProvider x:Key="XMLSourceComboBoxGISHintergrund"    />
+        <!--<XmlDataProvider x:Key="XMLSourceComboBoxBeteiligte"    />-->
+
+        <Style x:Key="rowheaderDokuswithID" TargetType="{x:Type DataGridRowHeader}"  >
+            <Setter Property="Content" Value="{Binding DOKUMENTID}" />
+            <Setter Property="Width" Value="40" />
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+      
+        <Style x:Key="dgRowStyle" TargetType="DataGridRow">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Background" Value="White" />
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="LightGray" />
+                </Trigger>
+                <Trigger Property="IsSelected"  Value="True">
+                    <Setter Property="Background" Value="LightGoldenrodYellow" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+   
+
+        <Style x:Key="dgCellStyleWF_checkbox" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="white" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ERLEDIGT}" Value="1">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <CheckBox IsChecked="True"  IsEnabled="False"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ERLEDIGT}" Value="0">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <CheckBox IsChecked="false" IsEnabled="False"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dgCellStyleRBTyp" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="white" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TYP}" Value="1">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Adresse"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="2">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Flst"/>
+
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="5">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Foto"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="7">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Punkt"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="3">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Polygon"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="dgRowStyleRB" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding STATUS}" Value="1">
+                    <Setter Property="Foreground" Value="blue" />
+                    <Setter Property="ToolTip" Value="Dieser Eintrag ist eine Verlinkung mit einem Verwandten Vorgang" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dgRowStyleVerlauf" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RICHTUNG}" Value="Eingang">
+                    <Setter Property="Foreground" Value="blue" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RICHTUNG}" Value="Ausgang">
+                    <Setter Property="Foreground" Value="green" />
+                </DataTrigger>
+
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dgRowStyleDokument" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                         
+                <DataTrigger Binding="{Binding revisionssicher}" Value="1">
+                    <Setter Property="Background" Value="pink" />
+                </DataTrigger>
+
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <DockPanel  >
+        <DockPanel  >
+            <StackPanel DockPanel.Dock="Top"  Height="50" Margin="5">
+                <StackPanel Orientation="Horizontal" >
+                    <Button Content="Hinzufügen" Height="23" x:Name="btnHinzufuegenNR" Width="75" Click="btnHinzufuegenNR_Click_1" Visibility="Visible"/>
+                     
+                    <StackPanel  Orientation="Vertical" VerticalAlignment="Top"/>
+                  
+                </StackPanel>
+            </StackPanel>
+            <!--ItemsSource="{Binding ''}"-->
+            <DataGrid  x:Name="dgNatureg"        ItemsSource="{Binding ''}"                                         
+                                              RowStyle="{StaticResource dgRowStyle}"                                              
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                                            >
+                <DataGrid.Columns>
+                    <!--<DataGridTextColumn Header="id"  Binding="{Binding ID}" />-->
+                    <DataGridTextColumn Header="Typ"   Binding="{Binding TYP}"     />
+                    <DataGridTextColumn Header="VerfahrensNr"  Binding="{Binding NUMMER}" />
+                    <DataGridTextColumn Header="MassnahmenNr"      Binding="{Binding MASSNAHMENNR}"     />                   
+                    <DataGridTextColumn Header="Beschreibung"   Binding="{Binding BESCHREIBUNG}" />  
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </DockPanel>
+</Window>

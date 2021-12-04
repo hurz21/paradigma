@@ -1,0 +1,138 @@
+﻿<Window x:Class="winDokuFilter" 
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            
+            xmlns:src="clr-namespace:paradigmaDetail" 
+            xmlns:mfrm="clr-namespace:paradigmaDetail" 
+            Title="Paradigma - Suchen nach Vorgängen" Height="900" Width="1832" Name="Window1" 
+            WindowStartupLocation="CenterScreen" WindowState="Maximized"
+            Background="{StaticResource backg2}" ResizeMode="CanResizeWithGrip" 
+        >
+    <Window.Resources>
+        <mfrm:MyFormatter x:Key="myformattjf" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemeinden" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxGemKRZ" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemarkungen" />
+        <XmlDataProvider x:Key="XMLSourceDateiTypen" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxEreignisArt" />
+
+
+
+        <Style x:Key="dgRowStyleLOK" TargetType="DataGridRow" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding LETZTEBEARBEITUNG}" Value="01.01.0001">
+                    <!--Value="1900-01-01 01:01:01">-->
+                    <Setter Property="Foreground" Value="Green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   ERLEDIGT}" Value="1">
+                    <Setter Property="Background" Value="LightGreen" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   WVFAELLIG}" Value="1">
+                    <Setter Property="FontWeight" Value="Black" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   HATRAUMBEZUG}" Value="0">
+                    <Setter Property="Foreground" Value="FireBrick" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel >
+        <StackPanel  DockPanel.Dock="Top"  Background="{StaticResource backg3}"  x:Name="stckp1">
+            <!--<Button Height="120" Visibility="Hidden">dasfsdfsf</Button>-->
+            <DockPanel >
+                <TextBlock Height="40" Visibility="Visible" Background="{StaticResource backg1}" FontSize="24" FontFamily="Arial"
+                           Margin="10" Padding="10" Width="500" HorizontalAlignment="Left">Bestand - Dokumentfilter</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <StackPanel>
+                        <Button Content="Neu" Width="100" HorizontalAlignment="Right" Click="NeuerVorgang_Click"/>
+                        <Button Content="zu VorgangsNr:" Width="100" HorizontalAlignment="Right" Click="ZuvorgangsNr_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+            <StackPanel   Background="{StaticResource backg3}" Orientation="Vertical"   >
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Stammdaten" Width="100" HorizontalAlignment="Left" Margin="5"  
+                            Style="{StaticResource lessButton}" x:Name="btnStammdatenFiltern" Click="btnStammdatenFiltern_Click" />
+                    <Button Content="Beteiligten" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" x:Name="btnBeteiligteFiltern" Click="btnBeteiligteFiltern_Click"/>
+                    <Button Content="Ereignisse" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnEreignisfilter" Click="btnEreignisfilter_Click" />
+                    <Button Content="Flurstücke" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnfstSuche" Click="btnfstSuche_Click" />
+                    <Button Content="Adressen" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnadrSuche" Click="btnadrSuche_Click"/>
+                    <Button Content="Dokumente" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" IsEnabled="False"/>
+                    <Button Content="Projekte" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnProjektsuche" Click="btnProjektsuche_Click"/>
+                    <Button Content="Wiedervorlagen" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnWiedervorlage" Click="btnWiedervorlage_Click"/>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Header="Filter" Background="{StaticResource backg3}">
+                                <StackPanel Margin="5">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5" Text="Typ: "/>
+                                        <ComboBox   Name="cmbDateitypen" Grid.Column="2"  Width="50"             Grid.Row="1"  
+                                          DataContext="{Binding Source={StaticResource XMLSourceDateiTypen}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbDateitypen_SelectionChanged"
+                                />
+
+                                        <TextBlock  Margin="5" Text="Schlagworte: "/>
+                                        <TextBox Width="200" x:Name="tbDokfilter"></TextBox>
+                                        <Button x:Name="btnDokListeRefresh" Click="btnDokListeRefresh_Click" 
+                                                Content="Liste auffrischen"   IsDefault="True"/>
+
+                                        <Button x:Name="btnClearDokumente" Click="btnClearDokumente_Click" Content=" C " Margin="15,5,5,5" Width="40" ToolTip="Auswahl zurückstellen"  Style="{StaticResource lessButton}"/>
+
+
+                                        <GroupBox Margin="5,5,5,5">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Suchen in: " Margin="5,0,0,0"/>
+                                                <CheckBox Content="Dateiname" x:Name="chkInDateiName" Margin="5,0,0,0" IsChecked="True"/>
+                                                <CheckBox Content="Beschreibung" x:Name="chkInBeschreibung" Margin="5,0,0,0" IsChecked="True"/>
+                                                <CheckBox Content="Urpfad" x:Name="chkInUrpfad" Margin="5,0,0,0"/>
+                                            </StackPanel>
+                                        </GroupBox>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Padding="5" Text="Treffer: "/>
+                                            <TextBlock Padding="5" x:Name="tbDokumenteTreffer"/>
+                                        </StackPanel>
+                                        <CheckBox x:Name="chkZUmVorgangspringen" Content="Bei Klick zum Vorgang statt zum Dokument" IsChecked="False" Margin="5,0,0,0" Padding="5" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <DataGrid Name="dgDokumente" ItemsSource="{Binding}"  Background="{StaticResource backg1}"
+                             RowStyle="{StaticResource dgRowStyleLOK}"   MaxHeight="580"
+                             ColumnHeaderStyle="{StaticResource dgHeaderStyle}"   SelectionChanged="dgDokumente_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <!--<DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding id}" />-->
+                                    <DataGridTextColumn Header="Vg" Width="SizeToCells" Binding="{Binding VORGANGSID }"  ToolTipService.ToolTip="Vorgang" />
+                                    <DataGridTextColumn Header="Dok" Width="SizeToCells" Binding="{Binding DOKUMENTID }"  ToolTipService.ToolTip="Dokument"/>
+                                    <DataGridTextColumn Header="TYP" Width="SizeToCells" Binding="{Binding TYP}" />
+
+                                    <DataGridTextColumn Header="Datei" Width="SizeToCells" Binding="{Binding FILEDATUM,   Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                                    <DataGridTextColumn Header="Checkin" Width="SizeToCells" Binding="{Binding CHECKINDATUM,   Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+
+                                    <DataGridTextColumn Header="Datei" Width="SizeToCells" Binding="{Binding DATEINAMEEXT}"  ToolTipService.ToolTip="Dateiname"/>
+                                    <DataGridTextColumn Header="Beschreibung" Width="SizeToCells" Binding="{Binding BESCHREIBUNG}"  ToolTipService.ToolTip="Beschreibung / Schlagworte"/>
+                                    <DataGridTextColumn Header="UrPfad" Width="SizeToCells" Binding="{Binding ORIGINALFULLNAME}"  ToolTipService.ToolTip="Ursprünglicher Pfad"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+               
+                 
+            </StackPanel>
+        </StackPanel>
+
+
+    </DockPanel>
+</Window>
+

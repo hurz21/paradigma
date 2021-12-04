@@ -1,0 +1,398 @@
+﻿<Window
+	x:Class="OptionsDialog"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+	Title="Options"
+	ResizeMode="NoResize"
+	WindowStartupLocation="CenterOwner"
+	Icon="Icons/tx.ico"
+	Loaded="OptionsDialog_Loaded"
+	SizeToContent="WidthAndHeight">
+	<StackPanel>
+		<TabControl
+			Margin="4,4,4,0"
+			Width="450"
+			Height="385"
+			Name="m_tabOptions"
+			SnapsToDevicePixels="True">
+			
+			<!-- “HTML” tab -->
+
+			<TabItem
+				Header="HTML"
+				Name="m_tabPageHTML">
+				<GroupBox
+					Header="HTML stylesheet save options"
+					Name="m_grpCSS">
+					<StackPanel>
+						<StackPanel.Resources>
+							<Style
+								TargetType="{x:Type RadioButton}">
+								<Setter
+									Property="Margin"
+									Value="6,10,10,0" />
+								<Setter
+									Property="HorizontalAlignment"
+									Value="Left" />
+								<Setter
+									Property="VerticalAlignment"
+									Value="Top" />
+							</Style>
+						</StackPanel.Resources>
+						<RadioButton
+							Name="m_optNoStylesheet"
+							GroupName="group00"
+							Checked="OptNoStylesheet_Checked">
+							_No stylesheet
+						</RadioButton>
+						<RadioButton
+							Name="m_optInlineStylesheet"
+							GroupName="group00"
+							Checked="OptInlineStylesheet_Checked">
+							_Inline Stylesheet
+						</RadioButton>
+						<RadioButton
+							Name="m_optSaveStylesheetInSeperateFile"
+							GroupName="group00"
+							Checked="OptSaveStylesheetInSeperateFile_Checked">
+							_Save stylesheet in separate file
+						</RadioButton>
+						<RadioButton
+							Name="m_optSaveButDoNotOverwriteExistingFile"
+							GroupName="group00"
+							Checked="OptSaveButDoNotOverwriteExistingFile_Checked">
+							Sa_ve but do not overwrite existing file
+						</RadioButton>
+						<Label
+							Target="{Binding ElementName=m_txtStylesheetFile}"
+							Name="m_lblStylesheetFile"
+							Margin="0,10,0,0">Stylesheet file:</Label>
+						<TextBox
+							Name="m_txtStylesheetFile"
+							Margin="6,0,6,0" />
+					</StackPanel>
+				</GroupBox>
+			</TabItem>
+
+			<!-- “PDF Security” Tab -->
+
+			<TabItem
+				Header="PDF Security"
+				Name="m_tabPagePDFSecurity">
+				<DockPanel
+					SnapsToDevicePixels="True">
+					<GroupBox
+						Name="m_grpPDFDigSig"
+						DockPanel.Dock="Top"
+						Header="Digital Signature">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+								<ColumnDefinition
+									Width="*" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition
+									Height="*" />
+								<RowDefinition
+									Height="*" />
+							</Grid.RowDefinitions>
+							<Label
+								Target="{Binding ElementName=m_txtCertFile}"
+								Name="m_lblCertFile"
+								Grid.Row="0"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center">
+								_Certificate File (*.pfx):
+							</Label>
+							<TextBox
+								Name="m_txtCertFile"
+								Grid.Row="0"
+								Grid.Column="3"
+								Grid.ColumnSpan="4"
+								Height="21"
+								Width="180"
+								HorizontalAlignment="Left" />
+							<Button
+								Grid.Row="0"
+								Grid.Column="7"
+								Grid.ColumnSpan="2"
+								Name="m_btnBrowseCertFile"
+								HorizontalAlignment="Center"
+								Click="BtnBrowseCertFile_Click">
+								Browse…
+							</Button>
+							<Label
+								Target="{Binding ElementName=m_txtCertPwd}"
+								Name="m_lblCertPwd"
+								Grid.Row="1"
+								Grid.Column="0"
+								Grid.ColumnSpan="3"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center">
+								_Certificate Password:
+							</Label>
+							<PasswordBox
+								Name="m_txtCertPwd"
+								Grid.Row="1"
+								Grid.Column="3"
+								Grid.ColumnSpan="4"
+								Height="21"
+								Width="180"
+								HorizontalAlignment="Left" />
+						</Grid>
+					</GroupBox>
+					<GroupBox
+						Name="m_grpPDFDocPwd"
+						DockPanel.Dock="Top"
+						Header="PDF Document Password">
+						<StackPanel
+							Margin="0,4,4,4">
+							<CheckBox
+								Margin="0,0,0,4"
+								Name="m_chkUserPassword"
+								Checked="ChkUserPassword_Checked"
+								Unchecked="ChkUserPassword_Unchecked">
+								_Require a password to open the document
+							</CheckBox>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition
+										Width="*" />
+									<ColumnDefinition
+										Width="*" />
+									<ColumnDefinition
+										Width="*" />
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition
+										Height="*" />
+								</Grid.RowDefinitions>
+								<Label
+									Target="{Binding ElementName=m_txtUserPassword}"
+									Name="m_lblDocumentPassword"
+									Grid.Column="0"
+									HorizontalContentAlignment="Right"
+									VerticalAlignment="Center">
+									_Document Password:
+								</Label>
+								<PasswordBox
+									Height="21"
+									Width="180"
+									Grid.Column="1"
+									Grid.ColumnSpan="2"
+									HorizontalAlignment="Left"
+									Name="m_txtUserPassword" />
+							</Grid>
+						</StackPanel>
+					</GroupBox>
+					<GroupBox
+						Name="m_grpPDFPermissions"
+						DockPanel.Dock="Top"
+						Header="Permissions">
+						<StackPanel
+							SnapsToDevicePixels="True"
+							Margin="0,4,4,4">
+							<CheckBox
+								Name="m_chkMasterPassword"
+								Margin="0,0,0,4"
+								Checked="ChkMasterPassword_Checked"
+								Unchecked="ChkMasterPassword_Unchecked">
+								_Require Password for restricting printing and editing of the document
+							</CheckBox>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition
+										Height="*" />
+									<RowDefinition
+										Height="*" />
+									<RowDefinition
+										Height="*" />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition
+										Width="*" />
+									<ColumnDefinition
+										Width="*" />
+									<ColumnDefinition
+										Width="*" />
+								</Grid.ColumnDefinitions>
+								<Label
+									Target="{Binding ElementName=m_txtMasterPassword}"
+									Name="m_lblMasterPwd"
+									Grid.Row="0"
+									Grid.Column="0"
+									HorizontalContentAlignment="Right"
+									VerticalAlignment="Center">
+									_Permissions Password:
+								</Label>
+								<PasswordBox
+									Name="m_txtMasterPassword"
+									Grid.Row="0"
+									Grid.Column="1"
+									Grid.ColumnSpan="2"
+									Height="21"
+									Margin="0,4"
+									Width="180"
+									HorizontalAlignment="Left" />
+								<Label
+									Target="{Binding ElementName=m_cbPrinting}"
+									Name="m_lblAllowPrint"
+									Grid.Row="1"
+									Grid.Column="0"
+									HorizontalContentAlignment="Right"
+									VerticalAlignment="Center">
+									Pri_nting Allowed:
+								</Label>
+								<ComboBox
+									Name="m_cbPrinting"
+									Grid.Row="1"
+									Grid.Column="1"
+									Grid.ColumnSpan="2"
+									Height="21"
+									Margin="0,4">
+									<ComboBoxItem>None</ComboBoxItem>
+									<ComboBoxItem>Low Resolution</ComboBoxItem>
+									<ComboBoxItem>High Resolution</ComboBoxItem>
+								</ComboBox>
+								<Label
+									Target="{Binding ElementName=m_cbChangesAllowed}"
+									Name="m_lblAllowChng"
+									Grid.Row="2"
+									Grid.Column="0"
+									HorizontalContentAlignment="Right"
+									VerticalAlignment="Center">
+									Changes _Allowed:
+								</Label>
+								<ComboBox
+									Name="m_cbChangesAllowed"
+									Grid.Row="2"
+									Grid.Column="1"
+									Grid.ColumnSpan="2"
+									Height="21"
+									Margin="0,4">
+									<ComboBoxItem>None</ComboBoxItem>
+									<ComboBoxItem>Inserting, deleting and rotating pages</ComboBoxItem>
+									<ComboBoxItem>Filling in form fields and signing</ComboBoxItem>
+									<ComboBoxItem>Commenting, filling in form fields and signing</ComboBoxItem>
+									<ComboBoxItem>Any except extracting pages</ComboBoxItem>
+								</ComboBox>
+							</Grid>
+							<CheckBox
+								Name="m_chkAllowExtractContents"
+								Margin="26,8,0,0">
+								_Enable copying of text, images and other content
+							</CheckBox>
+							<CheckBox
+								Name="m_chkAllowContentAccessibility"
+								Margin="26,8,0,0">
+								Enable text access for screen reader devices for the _visually impaired.
+							</CheckBox>
+						</StackPanel>
+					</GroupBox>
+				</DockPanel>
+			</TabItem>
+
+			<!-- “PDF Import” Tab -->
+
+			<TabItem
+				Header="PDF Import"
+				Name="m_tabPagePDFImport">
+				<GroupBox
+					Name="m_grpPDFImport"
+					Header="PDF Import Options">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+								Width="2*"/>
+							<ColumnDefinition 
+								Width="3*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<Label
+							Target="{Binding ElementName=m_cbPDFImportMode}"
+							Grid.Column="0"
+							Name="m_lblPDFImportMode"
+							Content="Import mode:"
+							HorizontalContentAlignment="Right"/>
+						<ComboBox
+							Grid.Column="1"
+							Name="m_cbPDFImportMode"
+							VerticalAlignment="Top"
+							HorizontalAlignment="Left"
+							Width="180"
+							Margin="0,4">
+							<ComboBoxItem>Plain text mode</ComboBoxItem>
+							<ComboBoxItem>Paragraph recognition mode</ComboBoxItem>
+							<ComboBoxItem>Text frame import mode</ComboBoxItem>
+						</ComboBox>
+					</Grid>
+				</GroupBox>
+			</TabItem>
+
+			<!-- “PDF Export” Tab -->
+
+			<TabItem
+				Header="PDF Export"
+				Name="m_tabPagePDFExport">
+				<GroupBox
+					Header="PDF Export Options"
+					Name="m_grpPDFExport">
+					<CheckBox
+						Name="m_chkPDFEmbeddableFontsOnly"
+						Margin="0,4"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Top"
+						Checked="ChkPDFEmbeddableFontsOnly_Checked"
+						Unchecked="ChkPDFEmbeddableFontsOnly_Unchecked">
+						_Enable PDF/A
+					</CheckBox>
+				</GroupBox>
+			</TabItem>
+
+		</TabControl>
+		<DockPanel>
+			<Button
+				Height="24"
+				Margin="4"
+				IsCancel="True"
+				Name="m_btnCancel"
+				DockPanel.Dock="Right"
+				HorizontalAlignment="Right"
+				Width="75">
+				_Cancel
+			</Button>
+			<Button
+				Height="24"
+				Margin="4"
+				IsDefault="True"
+				DockPanel.Dock="Right"
+				Name="m_btnOK"
+				Width="75"
+				HorizontalAlignment="Right"
+				Click="BtnOK_Click">
+				_OK
+			</Button>
+		</DockPanel>
+	</StackPanel>
+</Window>

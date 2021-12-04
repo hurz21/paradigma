@@ -1,0 +1,38 @@
+﻿<Window x:Class="WINAdmin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Paradigma - Administrator" Height="459" Width="543" Name="Window1" WindowStartupLocation="CenterScreen"  Background="{StaticResource TabControlBackgroundBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="37*" />
+            <RowDefinition Height="37*" />
+            <RowDefinition Height="68*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="98*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="93*" />
+            <ColumnDefinition Width="185*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="7" Grid.Column="1" Content="alle" x:Name="btnBearbeiterauswahl" Click="btnBearbeiterauswahl_Click_1"  
+                                                Style="{StaticResource lessButton}" Width="122" Height="22" />
+        
+        
+        <TextBlock Grid.Row="8" Padding="5" Margin="0,4,0,12">User:</TextBlock>
+        <!--<ComboBox Grid.Row="8"  Grid.Column="1"  Name="cmbgemarkung" ItemsSource="{Binding}" 
+                                       DisplayMemberPath="NACHNAME"  SelectedValuePath="USERNAME" SelectionChanged="cmbgemarkung_SelectionChanged" Margin="0,4,0,12"></ComboBox>-->
+        <Button Grid.Row="2"  Grid.Column="0"  x:Name="btnWVAdmin" Click="btnWVAdmin_Click"  Height="30"  
+                Width="153.1">Alle Wiedervorlagen</Button>
+        <Button Grid.Row="3"  Grid.Column="0"  x:Name="btnWVakutAdmin" Click="btnWVakutAdmin_Click"  Height="30"  FontSize="11"
+                Width="153.1">Alle fälligen Wiedervorlagen</Button>
+        <Button Grid.Row="5"  Grid.Column="0"  x:Name="btnPulldowns" Click="btnPulldowns_Click"  Height="30"   Width="153.1"  >Pulldowns editieren</Button>
+        <Button Grid.Row="6"  Grid.Column="0"  x:Name="btnStatistik" Click="btnStatistik_Click"  Height="30"   Width="153.1" >Controllingliste</Button>
+        <Button Grid.Row="7"  Grid.Column="0"  x:Name="btnBearbeiterListe" Click="btnBearbeiterListe_Click"  Height="30"   Width="153.1" >Bearbeiter</Button>
+
+    </Grid>
+</Window>

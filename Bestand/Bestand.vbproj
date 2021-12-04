@@ -1,0 +1,1076 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27D9B01B-CCB8-4BE2-972D-3391ED03D656}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>paradigma</RootNamespace>
+    <AssemblyName>paradigma</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <ApplicationIcon>Resources\flame1.ico</ApplicationIcon>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>A8D4DD1AF3466CFACB1C22F70EE6171EEF5FD262</ManifestCertificateThumbprint>
+    <ManifestKeyFile>vorgangsbearbeitung_2_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>false</SignManifests>
+    <ExpressionBlendVersion>3.0.1938.0</ExpressionBlendVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>O:\UMWELT-PARADIGMA\div\deploy\bestand\</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>434</ApplicationRevision>
+    <ApplicationVersion>3.2.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>true</IncrementalBuild>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42314,42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>..\deadcode.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>false</IncrementalBuild>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42314,42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <NoWarn>42314,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <NoWarn>42314,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Devart.Data, Version=5.0.792.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DBprovider\devartOracle\Devart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.Oracle, Version=7.9.333.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DBprovider\devartOracle\Devart.Data.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="LIBeml">
+      <HintPath>..\LIBeml\bin\Debug\LIBeml.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DBprovider\mysql653\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="RTFEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\RTFEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Application.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="ARCHIV\WINdokumentMetaEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ARCHIV\winVCF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Adressen\winAdressBestand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Beteiligte\winBestandBeteiligte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Dokumente\winDokuFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Flurstucke\winFlurstueckFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Natureg\NaturegFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Projekte\winfilterProjekte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Bankverbindung\WinBankverb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Minimap\wininfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\PDFDruck\winPDFDruck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Ereignis\winWebLink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Export\WinExport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Stamm\neueversion\winAZdefineNEU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winAdmin\UserManager\WinBearbeiterauswahl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Stammdaten\winBestandStammdaten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Ereignisfilter\winEreignisfilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bestand\Wv\WinWvFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Beteiligte\winBeteiligteDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\natureg\NaturegDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\winDetailAdressSuche.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\WinDetailSucheFST.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Minimap\winDruck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\natureg\VorgangUebersicht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winAdmin\UserManager\winUserDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winAdmin\UserManager\winUserList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Verwandte\verwandteDokumente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Verwandte\WinLInken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Themen\WinThemen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Verwandte\winVErwandte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\MAIL\winOutlookEmailUebernehmen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Projekt\WinProjekt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Projekt\winProjektListe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\raumbezug\flurstueck\WinCsvliste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\raumbezug\Polygon\Win_Polygon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\raumbezug\punktMitUmkreis\Win_punktMitUmkreis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="roundButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Stamm\alteversion\WINvorgangNeu2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Stamm\win_sgtree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Vorlagen\winOtherVorlagensteuerung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Vorlagen\WinVorlagenListe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Vorlagen\WinWordVorlageSteuerung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winAdmin\WINAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ARCHIV\WINBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\dokuEinchecken\winDokumenteEinchecken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1\HISTORIE\Kookieliste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1\Window1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\MAIL\winEmail_sofort.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ARCHIV\winFotoEinzel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\fotoGugger\winFotoGucker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Beteiligte\winPersonAuswahl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\raumbezug\Adresse\winRB_Adresse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\WinDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Ereignis\winEreignis_Detail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\raumbezug\flurstueck\winRB_Flurstueck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Ereignis\Wiedervorlage\winWiedervorlageListe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Ereignis\Wiedervorlage\winWiedervorlageDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\WINwebrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Stamm\alteversion\Win_Azaenderneinzeln.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Stamm\Win_Stamm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Details\Ereignis\Zahlung\WINzahlungenListe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Stamm\winZugriff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Details\Ereignis\Zahlung\WINzahlungdetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ARCHIV\checkout.vb" />
+    <Compile Include="ARCHIV\DokArcMysql.vb" />
+    <Compile Include="ARCHIV\DokArcOracle.vb" />
+    <Compile Include="ARCHIV\FileArchivTools.vb" />
+    <Compile Include="ARCHIV\PrintProcessClass.vb" />
+    <Compile Include="ARCHIV\winVCF.xaml.vb">
+      <DependentUpon>winVCF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ARCHIV\winvcfTools.vb" />
+    <Compile Include="Bestand\Natureg\NaturegFilter.xaml.vb">
+      <DependentUpon>NaturegFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="clsStartBestand.vb" />
+    <Compile Include="Details\3d\mod3dtools.vb" />
+    <Compile Include="Details\Bankverbindung\BvORACLE.vb" />
+    <Compile Include="Details\Bankverbindung\bvTools.vb" />
+    <Compile Include="Details\Bankverbindung\WinBankverb.xaml.vb">
+      <DependentUpon>WinBankverb.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\detail_dokuauswahl.vb" />
+    <Compile Include="Details\MAIL\fotosverkleinern.vb" />
+    <Compile Include="Details\Minimap\wininfo.xaml.vb">
+      <DependentUpon>wininfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Stamm\neueversion\winAZdefineNEU.xaml.vb">
+      <DependentUpon>winAZdefineNEU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\zwert\modZwert.vb" />
+    <Compile Include="GlobalSuppressions.vb" />
+    <Compile Include="Details\dokumentdrucken.vb" />
+    <Compile Include="Details\Kosten\clsKosten.vb" />
+    <Compile Include="Details\Kosten\kostenORACLE.vb" />
+    <Compile Include="Details\Kosten\kostenTool.vb" />
+    <Compile Include="Details\PDFDruck\PDFDruckTool.vb" />
+    <Compile Include="Details\PDFDruck\winPDFDruck.xaml.vb">
+      <DependentUpon>winPDFDruck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\winWebLink.xaml.vb">
+      <DependentUpon>winWebLink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Export\expBeteiligte.vb" />
+    <Compile Include="Details\Export\expDokumente.vb" />
+    <Compile Include="Details\Export\exportTool.vb" />
+    <Compile Include="Details\Export\expVerlauf.vb" />
+    <Compile Include="Details\Export\WinExport.xaml.vb">
+      <DependentUpon>WinExport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="glob\meinClipboard.vb" />
+    <Compile Include="Details\MAIL\AnhangsdateiAuswahl.vb" />
+    <Compile Include="Details\raumbezug\foto\fotoTool.vb" />
+    <Compile Include="Details\raumbezug\Linie\clsParaLinie.vb" />
+    <Compile Include="glob\modNachricht.vb" />
+    <Compile Include="myGlobalz_simple.vb" />
+    <Compile Include="mygloblaz_db.vb" />
+    <Compile Include="verschiedenes\clsPresDokumente.vb" />
+    <Compile Include="verschiedenes\clsPresRaumbezuege.vb" />
+    <Compile Include="winAdmin\UserManager\WinBearbeiterauswahl.xaml.vb">
+      <DependentUpon>WinBearbeiterauswahl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\DolumentImArchivKopieren.vb" />
+    <Compile Include="Details\natureg\NaturegDetail.xaml.vb">
+      <DependentUpon>NaturegDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\natureg\naturegOracle.vb" />
+    <Compile Include="Details\Ereignis\EreignisRTFhelp.vb" />
+    <Compile Include="Details\MAIL\clsEMLemail.vb" />
+    <Compile Include="Details\MAIL\mailTools.vb" />
+    <Compile Include="Details\natureg\clsNatureg.vb" />
+    <Compile Include="Details\natureg\naturegTools.vb" />
+    <Compile Include="Details\natureg\VorgangUebersicht.xaml.vb">
+      <DependentUpon>VorgangUebersicht.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\raumbezug\Adresse\hausnrOBJ.vb" />
+    <Compile Include="Details\raumbezug\Adresse\modAdress.vb" />
+    <Compile Include="Details\raumbezug\strassenUiObj.vb" />
+    <Compile Include="winAdmin\UserManager\bearbeiterORACLE.vb" />
+    <Compile Include="winAdmin\UserManager\BearbeiterTools.vb" />
+    <Compile Include="Bestand\Adressen\winAdressBestand.xaml.vb">
+      <DependentUpon>winAdressBestand.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bestand\bestandTools.vb" />
+    <Compile Include="Bestand\Beteiligte\winBestandBeteiligte.xaml.vb">
+      <DependentUpon>winBestandBeteiligte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bestand\Dokumente\winDokuFilter.xaml.vb">
+      <DependentUpon>winDokuFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bestand\Flurstucke\winFlurstueckFilter.xaml.vb">
+      <DependentUpon>winFlurstueckFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bestand\Dokumente\SQL_Dokumente.vb" />
+    <Compile Include="Bestand\Ereignisfilter\SQL_Ereignis.vb" />
+    <Compile Include="Bestand\Projekte\winfilterProjekte.xaml.vb">
+      <DependentUpon>winfilterProjekte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bestand\Stammdaten\winBestandStammdaten.xaml.vb">
+      <DependentUpon>winBestandStammdaten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bestand\Ereignisfilter\winEreignisfilter.xaml.vb">
+      <DependentUpon>winEreignisfilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bestand\Wv\WinWvFilter.xaml.vb">
+      <DependentUpon>WinWvFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Beteiligte\clsADtools.vb" />
+    <Compile Include="Details\Beteiligte\clsBeteiligteBUSI.vb" />
+    <Compile Include="Details\Beteiligte\clsBeteiligteDBCRUD_ORACLE.vb" />
+    <Compile Include="Details\clsAbleitungskreis.vb" />
+    <Compile Include="Details\jfHilfe.vb" />
+    <Compile Include="Details\kopierenVonRaumbezuegen_alleDB.vb" />
+    <Compile Include="Details\NachZielKopieren.vb" />
+    <Compile Include="Details\paintTools.vb" />
+    <Compile Include="Details\projektMitVorgangVerbinden.vb" />
+    <Compile Include="Details\winDetailAdressSuche.xaml.vb">
+      <DependentUpon>winDetailAdressSuche.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\WinDetailSucheFST.xaml.vb">
+      <DependentUpon>WinDetailSucheFST.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\fotoGugger\guggaTools.vb" />
+    <Compile Include="Details\Minimap\drucktools.vb" />
+    <Compile Include="Details\Minimap\winDruck.xaml.vb">
+      <DependentUpon>winDruck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module1.vb" />
+    <Compile Include="Details\raumbezug\clsWindrose.vb" />
+    <Compile Include="Details\Stamm\test.vb" />
+    <Compile Include="winAdmin\UserManager\BearbeiterCRUD.vb" />
+    <Compile Include="winAdmin\UserManager\userTools.vb" />
+    <Compile Include="winAdmin\UserManager\winUserDetail.xaml.vb">
+      <DependentUpon>winUserDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="winAdmin\UserManager\winUserList.xaml.vb">
+      <DependentUpon>winUserList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="verschiedenes\GMtemplates.vb" />
+    <Compile Include="verschiedenes\modKoordTrans.vb" />
+    <Compile Include="Details\Verwandte\verwandteDokumente.xaml.vb">
+      <DependentUpon>verwandteDokumente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Verwandte\WinLInken.xaml.vb">
+      <DependentUpon>WinLInken.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Themen\WinThemen.xaml.vb">
+      <DependentUpon>WinThemen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Verwandte\winVErwandte.xaml.vb">
+      <DependentUpon>winVErwandte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\dokuEinchecken\clsWindokueincheckenTOOL.vb" />
+    <Compile Include="Details\Ereignis\clsEreignisTools.vb" />
+    <Compile Include="Details\Ereignis\clsEreignisDB_Oracle.vb" />
+    <Compile Include="glob\glob3.vb" />
+    <Compile Include="DB_Mysql.vb" />
+    <Compile Include="Details\MAIL\winOutlookEmailUebernehmen.xaml.vb">
+      <DependentUpon>winOutlookEmailUebernehmen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Minimap\clsLayerListItem.vb" />
+    <Compile Include="Details\Minimap\clsMinimapLayer.vb" />
+    <Compile Include="Details\Minimap\DB_Minimap_ORACLE.vb" />
+    <Compile Include="Details\Minimap\miniMapControl.vb" />
+    <Compile Include="Details\Minimap\textInBitmap.vb" />
+    <Compile Include="Projekt\clsProjektCRUD_Oracle.vb" />
+    <Compile Include="Projekt\loeschen.vb" />
+    <Compile Include="Projekt\NSprojekt.vb" />
+    <Compile Include="Projekt\WinProjekt.xaml.vb">
+      <DependentUpon>WinProjekt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Projekt\winProjektListe.xaml.vb">
+      <DependentUpon>winProjektListe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\raumbezug\Adresse\adressToolsUI.vb" />
+    <Compile Include="Details\raumbezug\clsGooglecoordPrep.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\Eigentuemer_Tools.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\FST_tools.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\FST_DBTool_mysql.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\FST_serialShape_mysql.vb" />
+    <Compile Include="Details\raumbezug\DBraumbezug_Oracle.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\FST_DBTool_Oracle.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\FST_serialShape_Oracle.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\RTF.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\WinCsvliste.xaml.vb">
+      <DependentUpon>WinCsvliste.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\raumbezug\Polygon\clsParapolygon.vb" />
+    <Compile Include="Details\raumbezug\Polygon\PolygonTools.vb" />
+    <Compile Include="Details\raumbezug\Polygon\Win_Polygon.xaml.vb">
+      <DependentUpon>Win_Polygon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\raumbezug\punktMitUmkreis\clsUmkreisDB_Mysql.vb" />
+    <Compile Include="Details\raumbezug\punktMitUmkreis\clsUmkreisDB_Oracle.vb" />
+    <Compile Include="Details\raumbezug\RBtools.vb" />
+    <Compile Include="Details\Stamm\StammToolsNs.vb" />
+    <Compile Include="Details\clsVorgangLocking.vb" />
+    <Compile Include="Details\detailsTools.vb" />
+    <Compile Include="Details\MAIL\clsOutlookEmail.vb" />
+    <Compile Include="Details\raumbezug\Adresse\AdressTools.vb" />
+    <Compile Include="Details\raumbezug\punktMitUmkreis\ParaUmkreisTools.vb" />
+    <Compile Include="Details\raumbezug\punktMitUmkreis\Win_punktMitUmkreis.xaml.vb">
+      <DependentUpon>Win_punktMitUmkreis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\RTF\clsBerichte.vb" />
+    <Compile Include="verschiedenes\clsINIXMLParadigma.vb" />
+    <Compile Include="Details\RTF\clsRichtextbox.vb" />
+    <Compile Include="Details\Minimap\clsMiniMapTools.vb" />
+    <Compile Include="Details\raumbezug\iRaumbezug.vb" />
+    <Compile Include="Details\Verwandte\clsVerwandte_oracle.vb" />
+    <Compile Include="Details\Verwandte\VerwandteTools.vb" />
+    <Compile Include="Vorgang\clsVorgangDB_Oracle.vb" />
+    <Compile Include="Vorgang\LocalParameterFiles.vb" />
+    <Compile Include="Bestand\Beteiligte\SQL_Beteiligte.vb" />
+    <Compile Include="Bestand\Stammdaten\SQL_Stamm.vb" />
+    <Compile Include="Details\Stamm\VSTTools.vb" />
+    <Compile Include="Details\Stamm\win_sgtree.xaml.vb">
+      <DependentUpon>win_sgtree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Vorlagen\clsGEMKRZXML.vb" />
+    <Compile Include="Details\Vorlagen\clsVorlagenTools.vb" />
+    <Compile Include="Details\Vorlagen\winOtherVorlagensteuerung.xaml.vb">
+      <DependentUpon>winOtherVorlagensteuerung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Vorlagen\WinVorlagenListe.xaml.vb">
+      <DependentUpon>WinVorlagenListe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Vorlagen\WinWordVorlageSteuerung.xaml.vb">
+      <DependentUpon>WinWordVorlageSteuerung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\dokuEinchecken\winDokumenteEinchecken.xaml.vb">
+      <DependentUpon>winDokumenteEinchecken.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\Wiedervorlage\clsWiedervorlageDB_CRUD_Oracle.vb" />
+    <Compile Include="Window1\clsStartup.vb" />
+    <Compile Include="Window1\clsStartupBatch.vb" />
+    <Compile Include="Window1\HISTORIE\Kookieliste.xaml.vb">
+      <DependentUpon>Kookieliste.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window1\modStart.vb" />
+    <Compile Include="Window1\Window1.xaml.vb">
+      <DependentUpon>Window1.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Devart" />
+    <Import Include="Devart.Common" />
+    <Import Include="Devart.Data" />
+    <Import Include="Devart.Data.Oracle" />
+    <Import Include="LIBActiveDirectory" />
+    <Import Include="LIBActiveDirectory.JFactiveDirectory" />
+    <Import Include="LIBActiveDirectory.My" />
+    <Import Include="LIBActiveDirectory.My.Resources" />
+    <Import Include="LIBArchiv" />
+    <Import Include="LIBcoordumrechnung" />
+    <Import Include="LIBcsvAusgabe" />
+    <Import Include="LibDB" />
+    <Import Include="LibDB.LIBDB" />
+    <Import Include="LibDBMysql" />
+    <Import Include="LIBeml" />
+    <Import Include="LIBgemeinsames" />
+    <Import Include="LibGISmapgenerator" />
+    <Import Include="LIBgoogle" />
+    <Import Include="LIBmapScaling" />
+    <Import Include="LIBMensch" />
+    <Import Include="LIBmyMapWindowGis" />
+    <Import Include="LIBmysql" />
+    <Import Include="LIBmysql.My" />
+    <Import Include="LIBOutlook2" />
+    <Import Include="LIBraumbezug" />
+    <Import Include="LIBstammdatenCRUD" />
+    <Import Include="LIBwebgiscontrol" />
+    <Import Include="LIBwordvorlage" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualBasic.Logging" />
+    <Import Include="paradigma.My" />
+    <Import Include="paradigma.My.Resources" />
+    <Import Include="paradigma.XamlGeneratedNamespace" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Linq.Expressions" />
+    <Import Include="System.Xml" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+    <Import Include="System.Xml.Schema" />
+    <Import Include="System.Xml.Serialization" />
+    <Import Include="System.Xml.Serialization.Advanced" />
+    <Import Include="System.Xml.Serialization.Configuration" />
+    <Import Include="System.Xml.XPath" />
+    <Import Include="System.Xml.Xsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ARCHIV\DokArc.vb" />
+    <Compile Include="ARCHIV\WINdokumentMetaEdit.xaml.vb">
+      <DependentUpon>WINdokumentMetaEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Beteiligte\clsBeteiligteDBCRUD_MYSQL.vb" />
+    <Compile Include="ARCHIV\DokArcTools.vb" />
+    <Compile Include="Details\Ereignis\clsEreignis.vb" />
+    <Compile Include="verschiedenes\Sitzung.vb" />
+    <Compile Include="Details\raumbezug\punktMitUmkreis\ParaPunkt.vb" />
+    <Compile Include="RECHTE\clsParadigmaRechte.vb" />
+    <Compile Include="verschiedenes\clsGISfunctions.vb" />
+    <Compile Include="Details\Ereignis\clsEreignisDB_Mysql.vb" />
+    <Compile Include="Details\raumbezug\foto\clsParaFoto.vb" />
+    <Compile Include="Details\RTF\clsAktennotiz.vb" />
+    <Compile Include="Details\MAIL\clsMailsenden.vb" />
+    <Compile Include="verschiedenes\clsMedium.vb" />
+    <Compile Include="ARCHIV\clsVorlagedokumente.vb" />
+    <Compile Include="RECHTE\clsZugriffsinfo.vb" />
+    <Compile Include="Details\raumbezug\DBraumbezug_Mysql.vb" />
+    <Compile Include="verschiedenes\ExifWorksQuick.vb" />
+    <Compile Include="verschiedenes\report2excelTabMod.vb" />
+    <Compile Include="Details\Verwandte\clsVerwandte_mysql.vb" />
+    <Compile Include="Vorgang\clsBaumbilden.vb" />
+    <Compile Include="Vorgang\clsVorgangCTRL.vb" />
+    <Compile Include="Vorgang\clsVorgangDB_Mysql.vb" />
+    <Compile Include="Details\Stamm\alteversion\WINvorgangNeu2.xaml.vb">
+      <DependentUpon>WINvorgangNeu2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\raumbezug\Adresse\clsAdress.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\clsFlurstueck.vb" />
+    <Compile Include="Details\raumbezug\clsGemarkungsParams.vb" />
+    <Compile Include="Details\MAIL\SendEmailTexte.vb" />
+    <Compile Include="initP.vb" />
+    <Compile Include="DB_Oracle.vb" />
+    <Compile Include="glob\glob2.vb" />
+    <Compile Include="myGlobalz.vb">
+      <CustomToolNamespace>vorgangsbearbeitung</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Details\raumbezug\Adresse\adressTyp.vb" />
+    <Compile Include="Details\raumbezug\Adresse\ParaAdresse.vb" />
+    <Compile Include="Details\raumbezug\flurstueck\ParaFlurstueck.vb" />
+    <Compile Include="Details\raumbezug\ParaLine.vb" />
+    <Compile Include="Vorgang\Vorgang.vb" />
+    <Compile Include="Details\Ereignis\Wiedervorlage\clsWVTOOLS.vb" />
+    <Compile Include="Details\Ereignis\Wiedervorlage\clsWiedervorlage.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWpfExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.WPF.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="verschiedenes\myformatter.vb" />
+    <Compile Include="Details\Beteiligte\winBeteiligteDetail.xaml.vb">
+      <DependentUpon>winBeteiligteDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\MAIL\winEmail_sofort.xaml.vb">
+      <DependentUpon>winEmail_sofort.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ARCHIV\winFotoEinzel.xaml.vb">
+      <DependentUpon>winFotoEinzel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\fotoGugger\winFotoGucker.xaml.vb">
+      <DependentUpon>winFotoGucker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\Wiedervorlage\clsWiedervorlageDB_CRUD_MYSQL.vb" />
+    <Compile Include="Details\Ereignis\Wiedervorlage\IWiedervorlageCRUD.vb" />
+    <Compile Include="winAdmin\WINAdmin.xaml.vb">
+      <DependentUpon>WINAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ARCHIV\WINBox.xaml.vb">
+      <DependentUpon>WINBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Beteiligte\winPersonAuswahl.xaml.vb">
+      <DependentUpon>winPersonAuswahl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\raumbezug\Adresse\winRB_Adresse.xaml.vb">
+      <DependentUpon>winRB_Adresse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\WinDetail.xaml.vb">
+      <DependentUpon>WinDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\winEreignis_Detail.xaml.vb">
+      <DependentUpon>winEreignis_Detail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\raumbezug\flurstueck\winRB_Flurstueck.xaml.vb">
+      <DependentUpon>winRB_Flurstueck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\Wiedervorlage\winWiedervorlageListe.xaml.vb">
+      <DependentUpon>winWiedervorlageListe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\Wiedervorlage\winWiedervorlageDetail.xaml.vb">
+      <DependentUpon>winWiedervorlageDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\WINwebrowser.xaml.vb">
+      <DependentUpon>WINwebrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Stamm\alteversion\Win_Azaenderneinzeln.xaml.vb">
+      <DependentUpon>Win_Azaenderneinzeln.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window1\Win1Tools.vb" />
+    <Compile Include="Details\Stamm\Win_Stamm.xaml.vb">
+      <DependentUpon>Win_Stamm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\Zahlung\clsZahlungTools.vb" />
+    <Compile Include="Details\Ereignis\Zahlung\clsZAHLUNGDB_Oracle.vb" />
+    <Compile Include="Details\Ereignis\Zahlung\WINzahlungenListe.xaml.vb">
+      <DependentUpon>WINzahlungenListe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Stamm\winZugriff.xaml.vb">
+      <DependentUpon>winZugriff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\Ereignis\Zahlung\clsZahlung.vb" />
+    <Compile Include="Details\Ereignis\Zahlung\clsZAHLUNGDB_Mysql.vb" />
+    <Compile Include="Details\Ereignis\Zahlung\WINzahlungdetail.xaml.vb">
+      <DependentUpon>WINzahlungdetail.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="jfdeadcode.ruleset" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <AppDesigner Include="My Project\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Outlook.png" />
+    <Resource Include="ToDo.txt" />
+    <Resource Include="Icons\suche.png" />
+    <Resource Include="Icons\print.png" />
+    <Resource Include="Details\ICONS\avi.JPG" />
+    <Resource Include="Details\ICONS\doc.JPG" />
+    <Resource Include="Details\ICONS\jpg.JPG" />
+    <Resource Include="Details\ICONS\mpg.JPG" />
+    <Resource Include="Details\ICONS\eps.JPG" />
+    <Resource Include="Details\ICONS\pdf.JPG" />
+    <Resource Include="Details\ICONS\png.JPG" />
+    <Resource Include="Details\ICONS\ppt.JPG" />
+    <Resource Include="Details\ICONS\rar.JPG" />
+    <Resource Include="Details\ICONS\txt.JPG" />
+    <Resource Include="Details\ICONS\xls.JPG" />
+    <Resource Include="Details\ICONS\zip.JPG" />
+    <Resource Include="Details\ICONS\outlook.jpg" />
+    <Resource Include="Details\ICONS\foto.jpg" />
+    <Resource Include="Details\ICONS\vcf.JPG" />
+    <Resource Include="Details\ICONS\microfon.JPG" />
+    <Resource Include="Details\ICONS\rtf.JPG" />
+    <Resource Include="ARCHIV\Doku.txt" />
+    <Content Include="bin\Debug\ColorPicker.dll" />
+    <Content Include="bin\Debug\ColorPicker.pdb" />
+    <Content Include="bin\Debug\RTFEditor.dll" />
+    <Content Include="bin\Debug\RTFEditor.pdb" />
+    <Resource Include="Resources\Kreis_000.ico" />
+    <Resource Include="Icons\links.png" />
+    <Content Include="bin\Release\ColorPicker.dll" />
+    <Content Include="bin\Release\ColorPicker.pdb" />
+    <Content Include="bin\Release\RTFEditor.pdb" />
+    <Content Include="bin\x86\Debug\ColorPicker.dll" />
+    <Content Include="bin\x86\Debug\ColorPicker.pdb" />
+    <Content Include="bin\x86\Debug\RTFEditor.dll" />
+    <Content Include="bin\x86\Debug\RTFEditor.pdb" />
+    <Content Include="dll\ColorPicker.dll" />
+    <Content Include="dll\ColorPicker.pdb" />
+    <Content Include="dll\RTFEditor.dll" />
+    <Content Include="dll\RTFEditor.pdb" />
+    <Resource Include="Icons\ie.JPG" />
+    <Resource Include="Icons\googlemaps.png" />
+    <Resource Include="Details\MAIL\mail.xml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Icons\refreshblue.png" />
+    <Resource Include="Resources\hyperlinkblue.png" />
+    <Resource Include="Icons\oben.png" />
+    <Resource Include="Icons\rechts.png" />
+    <Resource Include="Icons\MSExcel.png" />
+    <Resource Include="Icons\MSWord.png" />
+    <Resource Include="Icons\refrsh.png" />
+    <Content Include="Resources\flame1.ico" />
+    <Resource Include="Resources\gisLayers.png" />
+    <Resource Include="Icons\unten.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bearbeiter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CLstart\CLstart.vbproj">
+      <Project>{d60a0e1e-51ad-4737-9f7e-372eec24fffb}</Project>
+      <Name>CLstart</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JFvCard\JFvCard.vbproj">
+      <Project>{C12F0559-6776-46DC-A897-1ABDA3DA9924}</Project>
+      <Name>JFvCard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBActiveDirectory\LIBActiveDirectory.vbproj">
+      <Project>{B213B315-5DF6-4FE1-9BC9-966C4B02A022}</Project>
+      <Name>LIBActiveDirectory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBArchiv\LIBArchiv.vbproj">
+      <Project>{E2E7D0C6-8CCD-47D4-8CEF-61FA7BD81790}</Project>
+      <Name>LIBArchiv</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBcsvAusgabe\LIBcsvAusgabe.vbproj">
+      <Project>{7e8704c0-47f0-451a-b87f-a18fb537e44b}</Project>
+      <Name>LIBcsvAusgabe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibDBMysql\LibDB.vbproj">
+      <Project>{6e871108-e407-49e9-89f6-cc9931f867ac}</Project>
+      <Name>LibDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBgemeinsames\LIBgemeinsames.vbproj">
+      <Project>{E8C77D09-2FB7-44FE-A105-AA0CFEB99652}</Project>
+      <Name>LIBgemeinsames</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibGISmapgenerator\LibGISmapgenerator.vbproj">
+      <Project>{885367EC-9E45-4807-8617-6DC7CF44B7CF}</Project>
+      <Name>LibGISmapgenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBgoogle\LIBgoogle.vbproj">
+      <Project>{39C0A27D-836F-464A-B453-A1B720D1BC9D}</Project>
+      <Name>LIBgoogle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBmailmensch\LIBmailmensch.vbproj">
+      <Project>{4075DD52-5F74-4FC8-B1C3-141AF9740A14}</Project>
+      <Name>LIBmailmensch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBmapScaling\LIBmapScaling.vbproj">
+      <Project>{D9B4DC27-DD2E-48BC-9D97-3C3DB7916237}</Project>
+      <Name>LIBmapScaling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBMensch\LIBMensch.vbproj">
+      <Project>{B4753909-D205-4C87-B120-C909374B73E2}</Project>
+      <Name>LIBMensch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBmysql\LIBmysql.vbproj">
+      <Project>{B1F7586C-24D9-425E-B913-82EEF50E55AE}</Project>
+      <Name>LIBmysql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBoracle\LIBoracle.vbproj">
+      <Project>{FE8BE724-9F0E-40F8-BCD6-B4346857A0F1}</Project>
+      <Name>LIBoracle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBOutlook2\LIBOutlook2.vbproj">
+      <Project>{E8005B93-EF76-4AE6-9AE7-3E2BFC1626AE}</Project>
+      <Name>LIBOutlook2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBraumbezug\LIBraumbezug.vbproj">
+      <Project>{613D3833-E334-4287-8CDC-8EBA3F2D8AEE}</Project>
+      <Name>LIBraumbezug</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBstammdatenCRUD\LIBstammdatenCRUD.vbproj">
+      <Project>{B426C72A-8D26-4914-926C-29CA9149F0C3}</Project>
+      <Name>LIBstammdatenCRUD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBwebgiscontrol\LIBwebgiscontrol.vbproj">
+      <Project>{80D09324-A8BE-44DE-A333-967A41664C87}</Project>
+      <Name>LIBwebgiscontrol</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LIBwordvorlage\LIBwordvorlage.vbproj">
+      <Project>{F1B9393C-7051-4DCB-92D1-38A7F932A1B3}</Project>
+      <Name>LIBwordvorlage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

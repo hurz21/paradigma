@@ -1,0 +1,135 @@
+﻿<Window x:Class="winStandortDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     
+        xmlns:mfrm="clr-namespace:Feuerwehr" 
+    Title="winStandortDetail" Height="900" Width="854" WindowStartupLocation="CenterScreen" Background="AliceBlue">
+    <Window.Resources>
+        
+
+        <Style x:Key="dgRowStyleLOK" TargetType="DataGridRow" BasedOn="{StaticResource dgRowStyle}">
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding prioText}" Value="mittel">
+                    <Setter Property="Background" Value="yellow" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding prioText}" Value="hoch">
+                    <Setter Property="Background" Value="red" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding prioText}" Value="niedrig">
+                    <Setter Property="Background" Value="white" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   erledigt}" Value="1">
+                    <Setter Property="Background" Value="lightgreen" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <Grid  DockPanel.Dock="Top" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="43" />
+                <RowDefinition Height="17" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="114*" />
+                <ColumnDefinition Width="160*" />
+                <ColumnDefinition Width="114*" />
+                <ColumnDefinition Width="160*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Padding="5" Grid.Row="0" Grid.Column="0">Titel:</TextBlock>
+            <TextBox Padding="5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="tbTitel" 
+                      Text="{Binding Path=Titel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     />
+
+            <TextBlock Padding="5" Grid.Row="1" Grid.Column="0">Bemerkung:</TextBlock>
+            <TextBox Padding="5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
+                     x:Name="tbBemerkung" 
+                      Text="{Binding Path=Hinweis1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     />
+
+            <TextBlock Padding="5" Grid.Row="2" Grid.Column="0">Hinweis:</TextBlock>
+            <TextBox Padding="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"  
+                         x:Name="tbHinweis" 
+                      Text="{Binding Path=Hinweis2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Padding="5" Grid.Row="3" Grid.Column="0">Rechts:</TextBlock>
+            <TextBox Padding="5" Grid.Row="3" Grid.Column="1"      x:Name="tbRechts" 
+                      Text="{Binding Path=X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     />
+            <TextBlock Padding="5" Grid.Row="3" Grid.Column="2">Hoch:</TextBlock>
+            <TextBox Padding="5" Grid.Row="3" Grid.Column="3"    x:Name="tbHoch" 
+                      Text="{Binding Path=Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     />
+
+
+            <TextBlock Padding="5" Grid.Row="5" Grid.Column="0">Gemeinde:</TextBlock>
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Height="30" VerticalAlignment="Top">
+            <TextBox Padding="5"  
+                     x:Name="tbGemeinde" Width="437" 
+                      Text="{Binding Path=Gemeindename, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox  Name="cmbGemeinde"  ItemsSource="{Binding}"    Width="20"
+                   DisplayMemberPath="NAME"  SelectedValuePath="KZ"   SelectionChanged="cmbGemeinde_SelectionChanged"/>
+
+</StackPanel>
+            
+            
+            <!--<ComboBox  Grid.Row="5" Grid.Column="3" Name="cmbGemeinde"  ItemsSource="{Binding}"    Width="20"
+                   DisplayMemberPath="Ort"  SelectedValuePath="Ort"   SelectionChanged="cmbGemeinde_SelectionChanged"/>-->
+            
+            
+            <TextBlock Padding="5" Grid.Row="6" Grid.Column="0">Straße:</TextBlock>
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3"  Height="30" VerticalAlignment="Top">
+                <TextBox Padding="5"
+                     x:Name="tbStrasse"  Width="437" 
+                      Text="{Binding Path=Strassenname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     />
+                <ComboBox  Name="cmbStrasse"  ItemsSource="{Binding}"    Width="120"
+                   DisplayMemberPath="sname"  SelectedValuePath="strcode"   SelectionChanged="cmbStrasse_SelectionChanged"/>
+            </StackPanel>
+
+            <TextBlock Padding="5" Grid.Row="7" Grid.Column="0">Hausnr:</TextBlock>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"  Height="30" VerticalAlignment="Top">
+                <TextBox Padding="5"   x:Name="tbHausnr"  Width="147" 
+                      Text="{Binding Path=HausnrKombi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     />
+                <ComboBox  Name="cmbHausnr"  ItemsSource="{Binding}"    Width="20"
+                   DisplayMemberPath="kombi"  SelectedValuePath="ID"   SelectionChanged="cmbHausnr_SelectionChanged"/>
+            </StackPanel>
+
+            <GroupBox Header="Dokumente:"  Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2"  >
+                <StackPanel    Orientation="Horizontal"  >
+                    <Button Grid.Column="0" Grid.Row="9" Content="+" Width="50" ToolTip="Hinzufügen von Dokumenten" Name="btndokumentHinzu" Click="dokuhinzu"/>
+                    <Separator Width="5"/>
+                    <RadioButton  x:Name="RBanschauen"   Margin="5"   IsChecked="True">Anschauen</RadioButton>
+                    <Separator Width="5"/>
+                    <RadioButton   x:Name="RBloeschen"  Margin="5"   >Löschen</RadioButton>
+                </StackPanel>
+            </GroupBox>
+            <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2">
+                <Button x:Name="Loeschen" Click="btnStandortloeschen" >Löschen</Button>
+                <Button x:Name="Speichern" Click="btnStandortspeichern"  >Speichern</Button>
+                <Button x:Name="Abbruch" Click="btnStandortAbbruch" IsCancel="True">Abbruch</Button>
+            </StackPanel>
+        </Grid>
+        <DataGrid Name="dgDokumente" ItemsSource="{Binding}" 
+              RowStyle="{StaticResource dgRowStyleLOK}"   
+               ColumnHeaderStyle="{StaticResource dgHeaderStyle}" Grid.ColumnSpan="2"  Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="nr" Width="SizeToCells" Binding="{Binding laufnr}" />-->
+                <DataGridTextColumn Header="Datei" Width="300" Binding="{Binding Dateiname }" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

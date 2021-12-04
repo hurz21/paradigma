@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+    <ini>
+     <INTERNET
+          
+    >     <!--bla-->
+      </INTERNET>
+          <INTRANET
+          mailserver="10.34.102.254"
+            userid ="@kreis-offenbach.de"
+           userpw = ""
+    >     <!--bla-->
+      </INTRANET>
+    </ini> 

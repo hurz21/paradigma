@@ -1,0 +1,29 @@
+﻿sql developer
+
+datenbank entladen
+
+*ddl entladen (standard)
+(DDL-Optionen
+	Schema anzeigen
+	Speicher
+	Terminator
+	Lesbarer Ausdruck
+	BYTE-Schlüsselwort einbeziehen
+	FORCE zu Views hinzufügen
+  )
+nicht Daten entladen
+C:\Users\Feinen_j\export.sql
+cp1251
+weiter
+---------------------------
+Typen:
+tabellen
+ansichtnen
+trigger
+sequences
+weiter
+---------------------------
+genau die obejkte der obigen typen rüberkopieren
+weiter
+---------------------------
+fertig stellen

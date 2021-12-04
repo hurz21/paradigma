@@ -1,0 +1,127 @@
+﻿<Window x:Class="WinIllegaleDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    Title="WinIllegaleDetail" Height="600" Width="700" WindowStartupLocation="CenterScreen"
+        Background="{StaticResource backg3}" 
+        >
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="14"/>
+                <RowDefinition Height="26*"/>
+                <RowDefinition Height="27*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="166*"/>
+                <ColumnDefinition Width="117*"/>
+                <ColumnDefinition Width="26*"/>
+                <ColumnDefinition Width="106*"/>
+                <ColumnDefinition Width="27*"/>
+                <ColumnDefinition Width="41*"/>
+                <ColumnDefinition Width="109*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Status:" Padding="5" Margin="0,2.6,0.4,25.4" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Gebiet:" Padding="5" Margin="0,1.6,0.4,26.4" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Anhörung:" Padding="5" Margin="0" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Vereinb. vom (Datum, Art):" Padding="5" Margin="0,8.6,0.4,18.8" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="Räumung  bis:" Padding="5" Margin="0,8.2,0.4,17.6" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="9" Grid.Column="0" Text="Verfügung vom:" Padding="5" Margin="0,29.8,0.4,27.4" Grid.RowSpan="3"/>
+            <TextBlock Grid.Row="11" Grid.Column="0" Text="Fall erledigt:" Padding="5" Margin="0,0,0.4,0.4"/>
+            <TextBlock Grid.Row="11" Grid.Column="0" Text="Vermerk:" Padding="5" Margin="0,30,0.4,29.2" Grid.RowSpan="3"/>
+            <Button Grid.Row="16" Grid.Column="0" Content="GisEbene generieren:" x:Name="btnGISebene" Click="btnGISebene_Click"
+                    IsEnabled="True"  Margin="5" Height="Auto" Grid.RowSpan="1"
+                    ToolTip="Sollte immer dann gedrückt werden, wenn die Raumbezüge oder Status geändert wurden."/>
+            <Button Grid.Row="16"  Grid.Column="1" Content="Speichern:" x:Name="btnSpeichern" Click="btnSpeichern_Click"
+                    IsEnabled="False" Padding="5" Margin="5" Height="Auto" Grid.ColumnSpan="1"/>
+            <Button Grid.Row="16" Grid.Column="3" Content="Abbruch" x:Name="btnAbbruch" Click="btnAbbrung_Click"
+                    Style="{StaticResource lessButton}" IsCancel="True" Padding="5" Grid.ColumnSpan="1" Margin="5"
+                    Height="Auto"/>
+            <Button Grid.Row="16" Grid.Column="6" Content="Löschen" x:Name="btnLoeschen" Click="btnLoeschen_Click"  Foreground="Red"
+                    Style="{StaticResource lessButton}" IsCancel="True" Padding="5" Grid.ColumnSpan="1" Margin="5"
+                    Height="Auto"/>
+
+            <TextBox Grid.Row="11" Grid.ColumnSpan="7" Grid.RowSpan="4" x:Name="tbVermerk" TextWrapping="Wrap" AcceptsReturn="True" Margin="194,30,-0.4,0.6" />
+            <!--Text="{Binding vermerk}"-->
+            <ComboBox x:Name="cbStatus" Grid.Row="2" Grid.Column="4"  MaxDropDownHeight="800" 
+                      SelectionChanged="cbStatus_SelectionChanged" Margin="0" Grid.RowSpan="1" Grid.ColumnSpan="1" >
+                <ComboBoxItem  ></ComboBoxItem>
+                <ComboBoxItem  >planmäßig</ComboBoxItem>
+                <ComboBoxItem >laufend</ComboBoxItem>
+                <ComboBoxItem >erledigt</ComboBoxItem>
+                <ComboBoxItem  >recherche</ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="cbGebiet" Grid.Row="3"  MaxDropDownHeight="800" Grid.Column="4" Padding="5" 
+                      SelectionChanged="cbGebiet_SelectionChanged" Margin="0" Grid.ColumnSpan="1" Grid.RowSpan="1" >
+                <ComboBoxItem  ></ComboBoxItem>
+                <ComboBoxItem  >Außenbereich</ComboBoxItem>
+                <ComboBoxItem  >LSG Kreis Offenbach</ComboBoxItem>
+                <ComboBoxItem >LSG Hess. Mainauen</ComboBoxItem>
+                <ComboBoxItem >LSG Zellerbruch</ComboBoxItem>
+                <ComboBoxItem >NSG</ComboBoxItem>
+            </ComboBox>
+            <TextBox Grid.Row="2"   x:Name="tbStatus" IsEnabled="False" Grid.ColumnSpan="5" Margin="194,2.6,31.6,29.4" Grid.RowSpan="2"/>
+            <TextBox Grid.Row="2"   x:Name="tbGebiet" IsEnabled="False" Grid.ColumnSpan="5" Margin="194,29.6,31.6,29.4" Grid.RowSpan="3"/>
+
+            <TextBox Grid.Row="6" Grid.Column="3"   x:Name="tbRaeumung" IsEnabled="False" Margin="0.4,1.6,31.6,29.8" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <DatePicker Grid.Row="6" x:Name="dpRaeumung"  SelectedDateChanged="dpRaeumung_SelectedDateChanged" Margin="194,2.6,0.2,29.8" Grid.ColumnSpan="2" Grid.RowSpan="2"  />
+            <Button Grid.Row="6" Grid.Column="2" Name="btnVereinbNUll" Click="btnVereinbNUll_Click" Content=" C " Grid.ColumnSpan="1" Height="Auto" />
+
+
+
+            <ComboBox x:Name="cbRaeumungsTyp" Grid.Row="6" Grid.Column="4"   
+                      SelectionChanged="cbRaeumungsTyp_SelectionChanged" MaxDropDownHeight="800"
+                      Margin="0">
+                <ComboBoxItem >-</ComboBoxItem>
+                <ComboBoxItem >freiwillig</ComboBoxItem>
+                <ComboBoxItem >Abräumvertrag</ComboBoxItem>
+                <ComboBoxItem >Vfgg./Rechtsstreit</ComboBoxItem>
+            </ComboBox>
+
+
+            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="dpAnhoerung"  SelectedDateChanged="dpAnhoerung_SelectedDateChanged" Margin="0"    />
+            <Button Grid.Row="5" Grid.Column="2" Name="btnAnhoerungNUll" Click="btnAnhoerungNUll_Click" Content=" C " Grid.ColumnSpan="1" Height="Auto" />
+
+
+            <Button  Grid.Row="5" Grid.Column="5" x:Name="btnEreignisAnhoerung" Click="btnEreignisAnhoerung_Click" 
+                     Content="-> Ereignis" IsEnabled="False" Grid.ColumnSpan="2" Margin="5"
+                     Height="Auto" ToolTip="Ein Ereignis aus der Anhörung erzeugen" Grid.RowSpan="1"/>
+            <DatePicker Grid.Row="8" x:Name="dpRaeumungBis" SelectedDateChanged="dpRaeumungBis_SelectedDateChanged" Margin="194,1.2,0.2,26.6" Grid.ColumnSpan="2" Grid.RowSpan="2"  />
+            <Button Grid.Row="8" Grid.Column="2" Name="btnRaeumungNUll" Click="btnRaeumungNUll_Click" Content=" C " Grid.ColumnSpan="1" Height="Auto" />
+
+
+            <Button  Grid.Row="6" Grid.Column="5" x:Name="btnEreignisRaeumung" Click="btnEreignisRaeumung_Click" Content="-> Ereignis" IsEnabled="False" Grid.ColumnSpan="2" Margin="5" Height="Auto" ToolTip="Ein Ereignis aus der Räumung erzeugen" Grid.RowSpan="1"/>
+            <DatePicker Grid.Row="9" x:Name="dpVerfuegungVom" SelectedDateChanged="dpVerfuegungVom_SelectedDateChanged" Margin="194,29.8,0.2,27.4" Grid.RowSpan="3" Grid.ColumnSpan="2"   />
+            <Button Grid.Row="10" Grid.Column="2" Name="btnVerfuegNUll" Click="btnVerfuegNUll_Click" Content=" C " Grid.ColumnSpan="1" Height="Auto" />
+
+            <Button  Grid.Row="10" Grid.Column="5" x:Name="btnEreignisVerfuegung" Click="btnEreignisVerfuegung_Click" 
+                     Content="-> Ereignis" IsEnabled="False" Grid.ColumnSpan="2"
+                     Margin="5" Height="Auto"  ToolTip="Ein Ereignis aus der Verfügung erzeugen"
+                     Grid.RowSpan="1"/>
+            <DatePicker Grid.Row="11" x:Name="dpFallErledigt"  SelectedDateChanged="dpFallErledigt_SelectedDateChanged" Margin="194,0,0.2,0.4" Grid.ColumnSpan="2" />
+            <Button Grid.Row="11" Grid.Column="1" Name="btnErledigtNUll" Click="btnErledigtNUll_Click" Content=" C " Grid.ColumnSpan="3" Height="Auto" Margin="136.6,0,123.6,0.4"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="5" x:Name="tbQuelle" Padding="5" Grid.ColumnSpan="2" Margin="0.4,0,-0.4,28.4" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="0" Grid.Column="6" x:Name="tbTS" Padding="5" Margin="0.4,0,-0.4,28.4" Grid.RowSpan="2"/>
+            <TextBlock Grid.Row="16" Grid.Column="0"  Padding="5" Margin="0,40.4,-0.4,32.2" Grid.ColumnSpan="7"  Grid.RowSpan="2" Foreground="Red"
+                       TextWrapping="Wrap"
+                       Text="Falls die Zugehörígkeit des Vorgangs zum SG 3307 geändert werden soll: Bitte unbedingt erst den Caterpillar löschen >>"/>
+        </Grid>
+    </DockPanel>
+
+</Window>

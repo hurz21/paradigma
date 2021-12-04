@@ -1,0 +1,178 @@
+﻿<Window x:Class="Window_Flurstuecksauswahl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigma"  
+    Title="Raumbezug: Flurstück" Height="480" Width="776"  WindowStartupLocation="CenterScreen"
+        >
+    <Window.Resources>
+        <src:myGlobalz x:Key="myGlobalz" />
+        <!--<src:MyFormatter x:Key="myformattjf"  />-->
+        <XmlDataProvider x:Key="XMLSourceComboBoxRBfunktion" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemarkungen" />
+    </Window.Resources>
+    <StackPanel Background="{StaticResource TabControlBackgroundBrush}">
+        <StackPanel Orientation="Horizontal" Margin="10,110,0,0" Height="336">
+            <StackPanel Margin="10" Width="456" Height="320">
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90" >Gemarkung:</Label>
+                    <TextBox Width="186" Name="tbGemarkung" IsEnabled="False"
+                                       Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.gemarkungstext , 
+                                        UpdateSourceTrigger='PropertyChanged'}"                                      
+                                     />
+                    <ComboBox Name="cmbgemarkung" 
+                                       DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemarkungen}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbgemarkung_SelectionChanged"
+                                      Width="20"
+                                      >
+                        <!--<ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Key}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>-->
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Flur:</Label>
+                    <TextBox Width="186" Name="tbflur" IsEnabled="False"
+                                       Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.flur , 
+                                        UpdateSourceTrigger='PropertyChanged'}" 
+                                     />
+                    <ComboBox Name="cmbFlur" ItemsSource="{Binding}" 
+                                      DisplayMemberPath="flur"  SelectedValuePath="flur"
+                                      Width="20"
+                                      ></ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Zähler:</Label>
+                    <TextBox Width="186" Name="tbZaehler" IsEnabled="False" 
+                                Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.zaehler , 
+                                        UpdateSourceTrigger='PropertyChanged'}" 
+                                     />
+                    <ComboBox Name="cmbZaehler" ItemsSource="{Binding}" 
+                                      DisplayMemberPath="zaehler"  SelectedValuePath="zaehler" 
+                                      Width="20"
+                                      ></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Nenner:</Label>
+                    <TextBox Width="186"  Name="tbNenner" IsEnabled="False" 
+                                        Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.nenner , 
+                                        UpdateSourceTrigger='PropertyChanged'}" 
+                                     
+                                     
+                                     />
+                    <ComboBox Name="cmbNenner" ItemsSource="{Binding}" 
+                                      DisplayMemberPath="nenner"  SelectedValuePath="nenner"
+                                      Width="20"
+                                      ></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">FS:</Label>
+                    <TextBox Width="186" IsEnabled="True"  IsReadOnly="True" Name="lblFS" 
+                                        Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.FS , 
+                                        UpdateSourceTrigger='PropertyChanged'}" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Koordinaten:</Label>
+                    <TextBox Name="tbCoords" Width="186" IsEnabled="False" 
+                                      Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.coordsAbstract , 
+                                        UpdateSourceTrigger='PropertyChanged'}"
+                                        />
+                    <Label Width="90">Fläche (qm):</Label>
+                    <TextBox Name="tbarea" Width="92" IsEnabled="True" 
+                                      Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.flaecheqm , 
+                                        UpdateSourceTrigger='PropertyChanged'}"
+                                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90" ToolTip="Funktion oder Charakteristik dieses Flurstücks. In der Karte entspreicht dies dem Etikett der Fläche.">Funktion:</Label>
+                    <TextBox    Name="tbKurz"  Width="186"
+                                  Text="{Binding Source={StaticResource myGlobalz}, 
+                                Path=sitzung.aktFST.name , 
+                                UpdateSourceTrigger='PropertyChanged'}"   />
+                    <ComboBox Grid.Row="6"  Grid.Column="2"  x:Name="cmbFunktionsvorschlaege"  
+                      DataContext="{Binding Source={StaticResource XMLSourceComboBoxRBfunktion}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbFunktionsvorschlaege_SelectionChanged"
+                      />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90" ToolTip="Beliebieger Text">Freitext:</Label>
+                    <TextBox    Name="tbFreitext"  Width="365"
+                                  Text="{Binding Source={StaticResource myGlobalz}, 
+                                Path=sitzung.aktFST.Freitext , 
+                                UpdateSourceTrigger='PropertyChanged'}"   />
+
+                
+                </StackPanel>
+                <StackPanel>
+                <CheckBox  IsChecked="True" x:Name="chkMapenabled" Margin="0,5,5,5"  
+                      HorizontalAlignment="Left" Width="227" ToolTip="In der Karte darstellen oder unterdrücken"
+                           Click="chkMapenabled_Click">immer in der Karte darstellen</CheckBox>
+                </StackPanel>
+                <StackPanel    Orientation="Horizontal" Margin="5,15,5,5" >
+                    <Button     Name="btnLoeschenEreignis"   IsEnabled="False"   Width="60" ToolTip="Ereignisse lassen sich nicht löschen!"
+                                         Style="{StaticResource lessButton}"
+                                        >Löschen</Button>
+                    <Separator Width="10"></Separator>
+                    <Button Height="23"  Width="120"  Name="btnSpeichernFlurstueck" >Speichern</Button>
+                    <Separator Width="10"></Separator>
+                    <Button     Name="btnAbbruch"    IsCancel="True"  Width="60"  Style="{StaticResource lessButton}">Abbruch</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"></StackPanel>
+                <!--<Button Height="23" Name="btnSpeichernFlurstueck" Width="75" Margin="10">speichern</Button>-->
+            </StackPanel>
+            <StackPanel Margin="10">
+                <CheckBox Grid.Column="3" Grid.Row="2" Margin="6.25,6.25,20,0" Padding="4,4,4,4" 
+                  Name="CheckBox1">Freie Texteingabe</CheckBox>
+
+                <Label Grid.Column="3" Grid.Row="5" Margin="0,12.189,20,0" Grid.RowSpan="3" >
+                    <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="Hyperlink_RequestNavigate" >
+                        <TextBlock Text="Zeige Lokalität im GIS" />
+                    </Hyperlink>
+                </Label>
+                <!--<Label Grid.Column="3" Grid.Row="6" Margin="0,0,20,0" Height="26" VerticalAlignment="Bottom" Visibility="Collapsed">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="Hyperlink_RequestNavigateEigentumer" >
+                                <TextBlock Text="Eigentümer feststellen (ALB)" />
+                            </Hyperlink>
+                        </Label>-->
+
+                <GroupBox Header="Eigentümer ermitteln">
+                 <StackPanel>
+                     <Button Name="btnEigentuemerALKIS" Click="btnEigentuemerALKIS_Click"  IsEnabled="False">Word-Datei erzeugen</Button>
+                    <CheckBox   x:Name="chkInsArchiv" Click="chkInsArchiv_Click"
+                                  Content="ins Archiv übernehmen"                  Margin="5,0,0,0"         />
+                    <CheckBox   x:Name="chkEreignisMap" Click="chkEreignisMap_Click_1"
+                                  Content="Ereignis anlegen"                         Margin="5,0,0,0"      /></StackPanel>
+                </GroupBox>
+
+
+                <Button Name="btnFSTausCSVliste" Click="btnFSTausCSVliste_Click"  IsEnabled="true"  Style="{StaticResource lessButton}"
+                        >Flurstücke aus CSV-Liste erstellen</Button>
+                <Button x:Name="btnWardawas" Content="War da was?" Click="btnWardawas_Click" Style="{StaticResource greenButton}" ToolTip="War da schon mal ein Vorgang ?"/>
+            </StackPanel>
+        </StackPanel>
+
+    </StackPanel>
+</Window>

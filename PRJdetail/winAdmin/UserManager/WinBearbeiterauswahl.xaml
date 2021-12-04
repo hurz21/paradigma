@@ -1,0 +1,75 @@
+﻿<Window x:Class="WinBearbeiterauswahl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Auswahl des Bearbeiters/in" Height="800" Width="500" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+            <Style x:Key="dgRowStyleLOK" TargetType="DataGridRow" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Bemerkung}" Value="Untere Wasserbehörde">
+                    <!--Value="1900-01-01 01:01:01">-->
+                    <Setter Property="Background" Value="LightBlue" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Bemerkung}" Value="Untere Wasser- und Bodenschutzbehörde">
+                    <!--Value="1900-01-01 01:01:01">-->
+                    <Setter Property="Background" Value="LightBlue" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   Bemerkung}" Value="Untere Naturschutzbehörde">
+                    <Setter Property="Background" Value="LightGreen" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   Bemerkung}" Value="Immissionsschutz">
+                    <Setter Property="Background" Value="LightCoral" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   Bemerkung}" Value="Schornsteinfegerwesen">
+                    <Setter Property="Background" Value="LightCoral" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   Bemerkung}" Value="Graphische Datenverarbeitung">
+                    <Setter Property="Background" Value="Goldenrod" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel  >
+        <StackPanel >
+            <!--RowStyle="{StaticResource dgRowStyleLOK}"-->
+            <DataGrid x:Name="dgStamm" ItemsSource="{Binding}"   Background="{StaticResource backg1}" Visibility="Visible"  
+                                      MaxHeight="480" FontSize="12" MouseEnter="dgStamm_MouseEnter"
+                                              RowStyle="{StaticResource dgRowStyleLOK}"   
+                                              SelectionChanged="dgStamm_SelectionChanged">
+                <DataGrid.Columns >
+                    <!--<DataGridTextColumn  Width="SizeToCells" Binding="{Binding BEARBEITERID}" />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding USERNAME}"  />-->
+                    <!--<DataGridTextColumn  Width="SizeToCells"  Binding="{Binding NAMENSZUSATZ}"    />-->
+                    <DataGridCheckBoxColumn     Binding="{Binding istausgewaehlt}"  Visibility="Collapsed" x:Name="auswahlspalteDokus"/>
+
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding Name}"   />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding Vorname}"    />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding Bemerkung}"   />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding Initiale}"   />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding Kuerzel2Stellig}"   />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding Kontakt.elektr.Telefon1}"   />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding Kontakt.elektr.Email}"   />
+                    <DataGridTextColumn  Width="SizeToCells"  Binding="{Binding username}" Header="vor"  />
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImageFilePath}" Width="5" Height="5" ToolTip="{Binding ImageFilePath}"  />
+                                <!--<Image Source="file:///C:\Users\Feinen_j\Pictures\ploesser_j.jpg" Width="50" Height="50" ToolTip="{Binding ImageFilePath}"  />-->
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <Button Click="btnAlleClick" Name="btnAlle" Content=" alle AnwenderInnen" Margin="11" Width="199"/>
+                <CheckBox x:Name="chkaktiv" Click="chkaktiv_Click_1"  IsChecked="True" Margin="11,16,15,5">nur aktive</CheckBox>
+                <Button Click="btnAbbruch" IsCancel="True" Content=" Abbruch " 
+                        Margin="10,11,11,11" ToolTip="auch ESC-Taste"/>
+                <Button Click="btnMehrfachauswahlFertigClick" Name="btnMehrfachauswahlFertig" IsCancel="True"
+                        Content=" Mehrfachauswahl Fertig "
+                        Margin="10,11,11,11" ToolTip="Mehrfachauswahl fertig"/>
+            </StackPanel>
+                  </StackPanel>
+    </DockPanel>
+</Window>

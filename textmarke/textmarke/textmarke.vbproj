@@ -1,0 +1,503 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4FE3CC7D-BB46-425B-8703-72888F45DC97}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>textmarke</RootNamespace>
+    <AssemblyName>textmarke</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>true</IncrementalBuild>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>textmarke.xml</DocumentationFile>
+    <NoWarn>42314</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>false</IncrementalBuild>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>textmarke.xml</DocumentationFile>
+    <NoWarn>42314</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\DBprovider\NPpostgis\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\..\DBprovider\NPpostgis\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Application.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Beteiligte\clsADtools.vb" />
+    <Compile Include="Beteiligte\clsBeteiligteBUSI.vb" />
+    <Compile Include="Beteiligte\clsBeteiligteDBCRUD_MYSQL.vb" />
+    <Compile Include="Beteiligte\clsBeteiligteDBCRUD_ORACLE.vb" />
+    <Compile Include="Beteiligte\winBeteiligteDetail.xaml.vb">
+      <DependentUpon>winBeteiligteDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Beteiligte\winPersonAuswahl.xaml.vb">
+      <DependentUpon>winPersonAuswahl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="checkout.vb" />
+    <Compile Include="clsKosten.vb" />
+    <Compile Include="clsLayerListItem.vb" />
+    <Compile Include="clsMedium.vb" />
+    <Compile Include="clsStammCRUD_Oracle.vb" />
+    <Compile Include="clsStammTools.vb" />
+    <Compile Include="clsVorlagedokumente.vb" />
+    <Compile Include="clsWiedervorlage.vb" />
+    <Compile Include="clsZahlung.vb" />
+    <Compile Include="detailsTools.vb" />
+    <Compile Include="DokArc.vb" />
+    <Compile Include="DokArcMysql.vb" />
+    <Compile Include="DokArcOracle.vb" />
+    <Compile Include="DokArcTools.vb" />
+    <Compile Include="dokuEinchecken\clsWindokueincheckenTOOL.vb" />
+    <Compile Include="dokuEinchecken\winDokumenteEinchecken.xaml.vb">
+      <DependentUpon>winDokumenteEinchecken.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ereignis\clsEreignis.vb" />
+    <Compile Include="Ereignis\clsEreignisTools.vb" />
+    <Compile Include="ExifWorksQuick.vb" />
+    <Compile Include="FileArchivTools.vb" />
+    <Compile Include="glob\glob2.vb" />
+    <Compile Include="illegale\clsIllegaleHuette.vb" />
+    <Compile Include="illegale\clsIllegbau.vb" />
+    <Compile Include="illegale\clsIllegbauTools.vb" />
+    <Compile Include="illegale\Estatus.vb" />
+    <Compile Include="illegale\modIllegaleHuette.vb" />
+    <Compile Include="illegale\WinIllegaleDetail.xaml.vb">
+      <DependentUpon>WinIllegaleDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="initP.vb" />
+    <Compile Include="IWiedervorlageCRUD.vb" />
+    <Compile Include="LIBMYSQL\clsDBspecMYSQL.vb" />
+    <Compile Include="LIBORACLE\clsDBspecOracle.vb" />
+    <Compile Include="LIBORACLE\clsOracleInsert.vb" />
+    <Compile Include="LIBORACLE\DB_Oracle.vb" />
+    <Compile Include="LIBSQLS\clsSqlsIns.vb" />
+    <Compile Include="MAIL\clsMailsenden.vb" />
+    <Compile Include="myGlobalz.vb">
+      <CustomToolNamespace>vorgangsbearbeitung</CustomToolNamespace>
+    </Compile>
+    <Compile Include="myGlobalz_simple.vb" />
+    <Compile Include="mygloblaz_db.vb" />
+    <Compile Include="PrintProcessClass.vb" />
+    <Compile Include="raumbezug\Adresse\AdressTools.vb" />
+    <Compile Include="raumbezug\Adresse\adressToolsUI.vb" />
+    <Compile Include="raumbezug\Adresse\adressTyp.vb" />
+    <Compile Include="raumbezug\Adresse\clsAdress.vb" />
+    <Compile Include="raumbezug\Adresse\gisresult.vb" />
+    <Compile Include="raumbezug\Adresse\hausnrOBJ.vb" />
+    <Compile Include="raumbezug\Adresse\modAdress.vb" />
+    <Compile Include="raumbezug\Adresse\ParaAdresse.vb" />
+    <Compile Include="raumbezug\Adresse\winRB_Adresse.xaml.vb">
+      <DependentUpon>winRB_Adresse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="raumbezug\clsGemarkungsParams.vb" />
+    <Compile Include="raumbezug\clsGISDossierPrep.vb" />
+    <Compile Include="raumbezug\clsGooglecoordPrep.vb" />
+    <Compile Include="raumbezug\clsWindrose.vb" />
+    <Compile Include="raumbezug\DBraumbezug_Mysql.vb" />
+    <Compile Include="raumbezug\DBraumbezug_Oracle.vb" />
+    <Compile Include="raumbezug\flurstueck\clsFlurstueck.vb" />
+    <Compile Include="raumbezug\flurstueck\Eigentuemer_Tools.vb" />
+    <Compile Include="raumbezug\flurstueck\FST_DBTool_mysql.vb" />
+    <Compile Include="raumbezug\flurstueck\FST_DBTool_Oracle.vb" />
+    <Compile Include="raumbezug\flurstueck\FST_serialShape_mysql.vb" />
+    <Compile Include="raumbezug\flurstueck\FST_serialShape_Oracle.vb" />
+    <Compile Include="raumbezug\flurstueck\FST_tools.vb" />
+    <Compile Include="raumbezug\flurstueck\ParaFlurstueck.vb" />
+    <Compile Include="raumbezug\flurstueck\RTF.vb" />
+    <Compile Include="raumbezug\flurstueck\WinCsvliste.xaml.vb">
+      <DependentUpon>WinCsvliste.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="raumbezug\flurstueck\winRB_Flurstueck.xaml.vb">
+      <DependentUpon>winRB_Flurstueck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="raumbezug\foto\clsParaFoto.vb" />
+    <Compile Include="raumbezug\foto\fotoTool.vb" />
+    <Compile Include="raumbezug\iRaumbezug.vb" />
+    <Compile Include="raumbezug\Linie\clsParaLinie.vb" />
+    <Compile Include="raumbezug\modPostgis.vb" />
+    <Compile Include="raumbezug\Polygon\clsParapolygon.vb" />
+    <Compile Include="raumbezug\Polygon\PolygonTools.vb" />
+    <Compile Include="raumbezug\Polygon\Win_Polygon.xaml.vb">
+      <DependentUpon>Win_Polygon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="raumbezug\punktMitUmkreis\clsUmkreisDB_Mysql.vb" />
+    <Compile Include="raumbezug\punktMitUmkreis\clsUmkreisDB_Oracle.vb" />
+    <Compile Include="raumbezug\punktMitUmkreis\ParaPunkt.vb" />
+    <Compile Include="raumbezug\punktMitUmkreis\ParaUmkreisTools.vb" />
+    <Compile Include="raumbezug\punktMitUmkreis\Win_punktMitUmkreis.xaml.vb">
+      <DependentUpon>Win_punktMitUmkreis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="raumbezug\RBtools.vb" />
+    <Compile Include="raumbezug\strassenUiObj.vb" />
+    <Compile Include="SendEmailTexte.vb" />
+    <Compile Include="Sitzung.vb" />
+    <Compile Include="StammToolsNs.vb" />
+    <Compile Include="test.vb" />
+    <Compile Include="Vorgang.vb" />
+    <Compile Include="Vorgang\clsBaumbilden.vb" />
+    <Compile Include="Vorlagen\clsGEMKRZXML.vb" />
+    <Compile Include="Vorlagen\clsVorlagenTools.vb" />
+    <Compile Include="Vorlagen\winOtherVorlagensteuerung.xaml.vb">
+      <DependentUpon>winOtherVorlagensteuerung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vorlagen\winStatisch.xaml.vb">
+      <DependentUpon>winStatisch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vorlagen\WinVorlagenListe.xaml.vb">
+      <DependentUpon>WinVorlagenListe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vorlagen\WinWordVorlageSteuerung.xaml.vb">
+      <DependentUpon>WinWordVorlageSteuerung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VSTTools.vb" />
+    <Compile Include="WINwebrowser.xaml.vb">
+      <DependentUpon>WINwebrowser.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Beteiligte\winBeteiligteDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Beteiligte\winPersonAuswahl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="dokuEinchecken\winDokumenteEinchecken.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="illegale\WinIllegaleDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\wpfdummy\clsGEOPoint.vb">
+      <Link>linx\clsGEOPoint.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\ActionLog.vb">
+      <Link>linx\CLstart\ActionLog.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\aescrypt\AesCrypt.vb">
+      <Link>linx\CLstart\AesCrypt.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\classen.vb">
+      <Link>linx\CLstart\classen.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\clsDBspecMSSQL.vb">
+      <Link>linx\CLstart\clsDBspecMSSQL.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\clsINIDatei.vb">
+      <Link>linx\CLstart\clsINIDatei.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\clsINIXML.vb">
+      <Link>linx\CLstart\clsINIXML.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\clsMsgboxText.vb">
+      <Link>linx\CLstart\clsMsgboxText.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\clsProjektAllgemein.vb">
+      <Link>linx\CLstart\clsProjektAllgemein.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\DMStools.vb">
+      <Link>linx\CLstart\DMStools.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\HistoryKookie.vb">
+      <Link>linx\CLstart\HistoryKookie.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\mapnetworkdrive.vb">
+      <Link>linx\CLstart\mapnetworkdrive.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\meineHttpNet.vb">
+      <Link>linx\CLstart\meineHttpNet.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\myc.vb">
+      <Link>linx\CLstart\myc.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\mycSimple.vb">
+      <Link>linx\CLstart\mycSimple.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\VIDuebergabe.vb">
+      <Link>linx\CLstart\VIDuebergabe.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\clstart2\ZeigeraufXMLinitdatei.vb">
+      <Link>linx\CLstart\ZeigeraufXMLinitdatei.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libarchiv\clsFotoDokument.vb">
+      <Link>linx\LIBarchiv\clsFotoDokument.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libarchiv\Dokument.vb">
+      <Link>linx\LIBarchiv\Dokument.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libarchiv\DokumentenTyp.vb">
+      <Link>linx\LIBarchiv\DokumentenTyp.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libdb\clsDatenbankZugriff.vb">
+      <Link>linx\LIBDB\clsDatenbankZugriff.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libdb\clsDBtools.vb">
+      <Link>linx\LIBDB\clsDBtools.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libdb\IDB_grundfunktionen.vb">
+      <Link>linx\LIBDB\IDB_grundfunktionen.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libgemeinsames\clsBiom.vb">
+      <Link>linx\LIBgemeinsames\clsBiom.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libgemeinsames\clsString.vb">
+      <Link>linx\LIBgemeinsames\clsString.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libgemeinsames\md5.vb">
+      <Link>linx\LIBgemeinsames\md5.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmapgenerator\clsAufrufgenerator.vb">
+      <Link>linx\LIBmapgenerator\clsAufrufgenerator.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmapgenerator\tools.vb">
+      <Link>linx\LIBmapgenerator\tools.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\clsBankverbindung.vb">
+      <Link>linx\LIBmensch\clsBankverbindung.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\clsBankverbindungSEPA.vb">
+      <Link>linx\LIBmensch\clsBankverbindungSEPA.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\clsBearbeiter.vb">
+      <Link>linx\LIBmensch\clsBearbeiter.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\Kontaktdaten.vb">
+      <Link>linx\LIBmensch\Kontaktdaten.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\Person.vb">
+      <Link>linx\LIBmensch\Person.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\w_adresse.vb">
+      <Link>linx\LIBmensch\w_adresse.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\w_fonfax.vb">
+      <Link>linx\LIBmensch\w_fonfax.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libmensch\w_organisation.vb">
+      <Link>linx\LIBmensch\w_organisation.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libpostgisnpg\clsCRUDpostgres.vb">
+      <Link>linx\LIBpostgisNPG\clsCRUDpostgres.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libpostgisnpg\clsDBspecPostgres.vb">
+      <Link>linx\LIBpostgisNPG\clsDBspecPostgres.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libpostgisnpg\clsInsert.vb">
+      <Link>linx\LIBpostgisNPG\clsInsert.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libpostgisnpg\nondbtools.vb">
+      <Link>linx\LIBpostgisNPG\nondbtools.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\AktenStandort.vb">
+      <Link>linx\LIBstammdatenCRUD\AktenStandort.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\AktenzeichenSachgebiet.vb">
+      <Link>linx\LIBstammdatenCRUD\AktenzeichenSachgebiet.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\clsAktenzeichen.vb">
+      <Link>linx\LIBstammdatenCRUD\clsAktenzeichen.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\clsStammCRUD_Mysql.vb">
+      <Link>linx\LIBstammdatenCRUD\clsStammCRUD_Mysql.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\clsStammdatenTool.vb">
+      <Link>linx\LIBstammdatenCRUD\clsStammdatenTool.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\LetzteBearbeitung.vb">
+      <Link>linx\LIBstammdatenCRUD\LetzteBearbeitung.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\Stamm.vb">
+      <Link>linx\LIBstammdatenCRUD\Stamm.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libstammdatencrud\Status.vb">
+      <Link>linx\LIBstammdatenCRUD\Status.vb</Link>
+    </Compile>
+    <Compile Include="..\..\wpfdummy\libwordvorlage\WordReplaceTextmarken.vb">
+      <Link>linx\LIBwordvorlage\WordReplaceTextmarken.vb</Link>
+    </Compile>
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="clsPresDokumente.vb" />
+    <Compile Include="linx\LIBmapgenerator\clsCanvas.vb" />
+    <Compile Include="linx\LIBmapgenerator\clsMapCrendentials.vb" />
+    <Compile Include="linx\LIBmapgenerator\clsMapSpec.vb" />
+    <Compile Include="linx\LIBmapgenerator\clsRange.vb" />
+    <Compile Include="linx\LIBmapgenerator\clsWebgisControlNeu.vb" />
+    <Compile Include="linx\LIBmapgenerator\myPoint.vb" />
+    <Compile Include="linx\LIBmapgenerator\RaumbezugsTyp.vb" />
+    <Compile Include="linx\LIBwordvorlage\wordInterop.vb" />
+    <Compile Include="linx\Module1.vb" />
+    <Compile Include="MainWindow.xaml.vb">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="raumbezug\Adresse\winRB_Adresse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="raumbezug\flurstueck\WinCsvliste.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="raumbezug\flurstueck\winRB_Flurstueck.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="raumbezug\Polygon\Win_Polygon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="raumbezug\punktMitUmkreis\Win_punktMitUmkreis.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="roundButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vorlagen\winOtherVorlagensteuerung.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vorlagen\winStatisch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vorlagen\WinVorlagenListe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vorlagen\WinWordVorlageSteuerung.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WINwebrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System.Threading.Tasks" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+    <Import Include="textmarke" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="modNachricht.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWpfExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.WPF.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="linx\LIBmailmensch\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

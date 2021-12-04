@@ -1,0 +1,26 @@
+﻿
+
+Filesystem
+-------------
+ Beim neuanlegen einen Vorganges wird der ARCDIR des vorgangs festgelegt (vorgangsdir)
+           das ARCDIR wird in den Stammdaten gespeichert.
+		   Das ARCDIR wird addiert aus 
+ Sobald ein Dokument gespeichert wird, wird das ARCDIR aus den Stammdaten verwendet um einen neuen Pfad zu bilden
+       dieser Dokumentpfad wird in der TAB Dokument (um das numdir ergänzt) gespeichert als RELATIVPFAD
+ Zum laden der dokus wird einfach addiert:  rootdir (myglobalz)
+                                          + relativpfad(aus dokumentetab) 
+										  + dateiname (aus dokumentetab)
+
+
+ -------------------------
+ Dokumente können auf folgenden Wegen in den Vorgang gelangen:
+ 1. Drag & Drop= Menu: Doku einchecken *
+ 2. über die Emails **
+ 3. Aktennotiz  **
+ 4. notiz als RTF**
+ 5. als kopie der Dokumente eines anderen Vorganges **
+ 6. über vorlage **
+ 7. über Email-Schreiben **
+ 8. Eigentümerabfrage **
+
+ 

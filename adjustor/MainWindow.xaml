@@ -1,0 +1,161 @@
+﻿<Window x:Class="MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Paradigma: Einstellung der Auswahlmenüs" Height="525" Width="754.734" Left="0">
+    <DockPanel Background="Honeydew" >
+        <StackPanel Orientation="Horizontal"   DockPanel.Dock="Top" >
+            <StackPanel Margin="20" Width="270">
+
+                <GroupBox Header="Ereignis">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart1" Click="btnstart1_Click" Content="Titelauswahl" Height="30" Width="200"  Margin="8,0,0,0"/>
+                            <Button Click="showImage1" MouseEnter="showImage1" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart15" Click="btnstart15_Click" Content="Ereignisauswahl" Height="30" Width="200"  Margin="8,0,0,0"/>
+                            <Button Click="showImage15" MouseEnter="showImage15" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Stammdaten">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart2" Click="btnstart2_Click" Content="RaumNr" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage2" MouseEnter="showImage2" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart3" Click="btnstart3_Click" Content="Paragraph (§)" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage3" MouseEnter="showImage3" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Stammdaten und Bestand">
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="btnstart4" Click="btnstart4_Click" Content="Gemeindekürzel" Height="30"  Width="200"    Margin="8,0,0,0 "/>
+                        <Button Click="showImage4" MouseEnter="showImage4" Content="  ?  " Margin="8,0,0,0"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Beteiligte: Details">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart5" Click="btnstart5_Click" Content="Beteiligte-Rollen" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage5" MouseEnter="showImage5" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart8" Click="btnstart8_Click" Content="Funktion" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage8" MouseEnter="showImage8" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Dokument">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart6" Click="btnstart6_Click" Content="Schlagworte" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage6" MouseEnter="showImage6" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnstart10" Click="btnstart10_Click" Content="Vorlage-Schlagworte" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage10" MouseEnter="showImage10" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Stakeholder">
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="btnstart7" Click="btnstart7_Click" Content="Rollen" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                        <Button Click="showImage7" MouseEnter="showImage7" Content="  ?  " Margin="8,0,0,0"/>
+                    </StackPanel>
+                </GroupBox>
+
+
+
+            </StackPanel >
+            <StackPanel Margin="10" >
+                <GroupBox Header="Detail-Hauptformular">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart9" Click="btnstart9_Click" Content="GIS-Hintergrundauswahl" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage9" MouseEnter="showImage9" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Visibility="Collapsed" Tag="das ding gibts gar nicht mehr">
+                            <Button x:Name="btnstart14" Click="btnstart14_Click" Content="Ereignistypen" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage14" MouseEnter="showImage14" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Bestand">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart12" Click="btnstart12_Click" Content="Dokumentsuche-Dateitypen" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage12" MouseEnter="showImage12" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Raumbezug -Adresse, Flurstück...">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart13" Click="btnstart13_Click" Content="Funktion des Raumbezugs" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage13" MouseEnter="showImage13" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart16" Click="btnstart16_Click" Content="Gemarkungen - Auswahl" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage16" MouseEnter="showImage16" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart17" Click="btnstart17_Click" Content="Gemeinden - Auswahl" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage17" MouseEnter="showImage17" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+
+
+                <GroupBox Header="Vorlagen">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart11" Click="btnstart11_Click" Content="Ereignistypen" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage11" MouseEnter="showImage11" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart20" Click="btnstart20_Click" Content="DateiVornamen" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <!--<Button Click="showImage11" MouseEnter="showImage11" Content="  ?  " Margin="8,0,0,0"/>-->
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Sachgebiete">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart18" Click="btnstart18_Click" Content="Sachgebiete" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <Button Click="showImage18" MouseEnter="showImage18" Content="  ?  " Margin="8,0,0,0"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Zahlung">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:Name="btnstart19" Click="btnstart19_Click" Content="Typ" Height="30"  Width="200"    Margin="8,0,0,0"/>
+                            <!--<Button Click="showImage19" MouseEnter="showImage19" Content="  ?  " Margin="8,0,0,0" Visibility="Collapsed"/>-->
+                        </StackPanel>
+
+                    </StackPanel>
+                </GroupBox> 
+
+            </StackPanel>
+            <StackPanel Margin="5">
+
+                <Button x:Name="btnBackup" Click="btnBackup_Click" Content="Backup" Height="40" Margin="10"/>
+                <Button Name="btnVerzeichnis" Click="btnVerzeichnis_Click" Content="Verzeichnis öffnen" Margin="10"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

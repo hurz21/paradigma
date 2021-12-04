@@ -1,0 +1,30 @@
+﻿<Window x:Class="Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Paradigma Kartenmodul" Height="554" Width="540" WindowStartupLocation="CenterScreen">
+    <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" CanVerticallyScroll="True">
+        <StackPanel Background="AntiqueWhite" >
+            <!--<StackPanel Orientation="Horizontal">
+            <TextBox Name="tb1"   ></TextBox>
+            </StackPanel>-->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Padding="5">Vorgangsid:</TextBlock>
+                <TextBox Padding="5,0,0,0"  Width="66"  x:Name="tbvorgangsid" />
+                <TextBlock x:Name="showlogfile" Padding="5" Margin="200,0,0,0" MouseDown="showlogfile_MouseDown">Log</TextBlock>
+            </StackPanel>
+
+            <TextBox x:Name="tbSGNummer"    />
+            <CheckBox x:Name="chkMitverwandten" IsChecked="true" Content="Verwandte Vorgänge in Karte aufnehmen" />
+            <CheckBox x:Name="chkMitFotos" IsChecked="true" IsEnabled="False" Content="Fotos in Karte aufnehmen" />
+            <CheckBox x:Name="chkMitAdressen" IsChecked="true" IsEnabled="False" Content="Adressen in Karte aufnehmen" />
+            <CheckBox x:Name="chkMitFLST" IsChecked="true" IsEnabled="False" Content="Flurstücke in Karte aufnehmen" />
+            <CheckBox x:Name="chkMitEtikett" IsChecked="true" IsEnabled="True" Content="Etikett darstellen" />
+            <Separator Height="150"/>
+        </StackPanel>
+        <StackPanel>
+            <Button x:Name="btnStart" Click="btnStart_Click" IsDefault="True" Height="40" >Start</Button>
+            <Button x:Name="btnEnd" Click="btnEnd_Click">Beenden</Button>
+            <TextBox x:Name="tbResult" TextWrapping="Wrap" AcceptsReturn="True"  AcceptsTab="True" />
+        </StackPanel>
+    </StackPanel>
+</Window>

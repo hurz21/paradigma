@@ -1,0 +1,88 @@
+﻿<Window x:Class="winKfa2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigma"
+        mc:Ignorable="d"      Background="{StaticResource backg3}" 
+       WindowStartupLocation="CenterScreen"
+        Title="Onlineformulare-Eingang"  Height="470" Width="1081.333">
+    <Window.Resources>
+        <!--<mfrm:MyFormatter x:Key="myformattjf" />-->
+        <Style x:Key="dgRowStyleHistory" TargetType="DataGridRow">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="#CCCC00" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="dgHeaderStyleHistory" TargetType="DataGridColumnHeader">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding Column.(ToolTipService.ToolTip), RelativeSource={RelativeSource Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <!--<TextBlock Margin="5" >Auswahl</TextBlock>-->
+            <Button Name="btnAuswahlselect" Click="btnAuswahlselect_Click" 
+                    Width="200" HorizontalAlignment="Left" Margin="10" IsEnabled="False">Auswahl übernehmen</Button>
+        </StackPanel>
+
+
+        <DataGrid x:Name="dgKFASuebersicht" ItemsSource="{Binding}"  
+                    Visibility="Visible"  Margin="5" Width="500"
+                    MaxHeight="580" 
+                    VirtualizingStackPanel.IsVirtualizing="True" EnableRowVirtualization="True" 
+                    EnableColumnVirtualization="True"
+                    CanUserAddRows="False"  
+                    SelectionMode="Single" 
+                    SelectionUnit="FullRow" 
+                            MouseRightButtonDown="dgKFASuebersicht_MouseRightButtonDown"
+                    SelectionChanged="dgKFASuebersicht_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Typ" Width="SizeToCells" Binding="{Binding kfa_typ_klartext}" />
+                <DataGridTextColumn  Header="Vorgang" Width="SizeToCells" Binding="{Binding transId}" />
+                <DataGridTextColumn Header="Eingang" Width="SizeToCells" Binding="{Binding dateidatum,  StringFormat=\{0:dd.MM.yyyy\}}" />
+
+                <DataGridTextColumn Header="AS_name" MaxWidth="350" Binding="{Binding AS_person.Name}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="AS_vorname" MaxWidth="350" Binding="{Binding AS_person.Vorname}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Titel" MaxWidth="400" Binding="{Binding Titel}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox Name="tbPaare" AcceptsReturn="True" AcceptsTab="True" 
+                 TextWrapping="Wrap" Width="500" Height="390"
+                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+        </TextBox>
+    </DockPanel>
+</Window>

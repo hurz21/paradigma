@@ -1,0 +1,258 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 	
+	xmlns:mmm="clr-namespace:Stakeholder" 
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    x:Class="winBeteiligteDetail" 
+	Title="Beteiligte: Details" Height="637" Width="833" WindowStartupLocation="CenterScreen" x:Name="Window1"
+		 mc:Ignorable="d"
+		>
+	<Window.Resources>
+      
+		<XmlDataProvider x:Key="XMLSourceComboBoxbeteiligteRollen" />
+		<XmlDataProvider x:Key="XMLSourceComboBoxbeteiligteFunktion" />
+		<XmlDataProvider x:Key="XMLSourceComboBoxgemeinden" />
+		
+	</Window.Resources>
+	
+	<Window.Background>
+		<StaticResource ResourceKey="backg1"/>
+	</Window.Background>
+	<DockPanel x:Name="dockp">
+        <StackPanel>
+           
+            <Grid DockPanel.Dock="Top" x:Name="grdMainKontakt" Background="{StaticResource backg1}"   Height="390.503" Width="793">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="122" />
+				<ColumnDefinition Width="220" />
+				<ColumnDefinition Width="22"/>
+				<ColumnDefinition Width="32" />
+				<ColumnDefinition Width="101" />
+				<ColumnDefinition Width="240" />
+				<ColumnDefinition Width="21" />
+				<ColumnDefinition Width="35*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="21" />
+				<RowDefinition Height="0*" />
+				<RowDefinition Height="0*" />
+				<RowDefinition Height="33*" />
+				<RowDefinition Height="34*" />
+				<RowDefinition Height="30" />
+			</Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"  Grid.Column="0" x:Name="Label1" Padding="5,0,0,0"  > <Run Text="Rolle im Vorgang:" /></TextBlock>
+			<TextBlock Grid.Row="1"  x:Name="Label2" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"><Run Text="Name:"/></TextBlock>
+			<TextBlock Grid.Row="2"  x:Name="Label3" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"  Grid.RowSpan="2"><Run Text="Vorname:"/></TextBlock>
+			<TextBlock Grid.Row="4"   x:Name="Label4" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"   d:LayoutOverrides="GridBox"><Run Text="Titel / Anrede:"/></TextBlock>
+			<TextBlock Grid.Row="5"   x:Name="lblB" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"   d:LayoutOverrides="GridBox"><Run Text="Bemerkung:"/></TextBlock>
+			<TextBlock Grid.Row="16" Grid.Column="4"  x:Name="lblQ" HorizontalAlignment="Left"  Padding="5,0,0,0"  >Quelle:</TextBlock>
+
+			<TextBlock Grid.Row="8"   x:Name="Label77" Grid.Column="0" Padding="5,0,0,0"  Grid.RowSpan="1"  ><Run Text="PLZ/Ort:"/></TextBlock>
+			<TextBlock Grid.Row="9"   x:Name="Label78" Grid.Column="0" Padding="5,0,0,0"   ><Run Text="Straße:"/></TextBlock>
+			<TextBlock Grid.Row="10"   x:Name="Label79" Grid.Column="0" Padding="5,0,0,0"   ><Run Text="Hausnr:"/></TextBlock>
+			<TextBlock Grid.Row="11"   x:Name="Label833" Padding="5,0,0,0"     ><Run Text="Postfach:"/></TextBlock>
+			<TextBlock Grid.Row="12"   x:Name="Label836" Padding="5,0,0,0"     ><Run Text="Postfach-Postleitzahl:"/></TextBlock>
+            <TextBlock Grid.Row="13"   x:Name="Label812" Padding="5,0,0,0"     ><Run Text="Bezirk:"/></TextBlock>
+            <!--<TextBlock Grid.Row="16"   x:Name="Labelraum" Padding="5,0,0,0"     ><Run Text="Raum:"/></TextBlock>-->
+                <StackPanel Grid.Row="8"   Grid.Column="1"  Orientation="Horizontal" Grid.ColumnSpan="2"   >
+                    <TextBox   x:Name="tbPLZ" Width="80" KeyboardNavigation.TabIndex="6"
+					Text="{Binding Kontakt.Anschrift.PLZ, UpdateSourceTrigger=PropertyChanged}"  />
+                    <TextBox    x:Name="tbgemeinde" Width="140"  KeyboardNavigation.TabIndex="7"
+					Text="{Binding Kontakt.Anschrift.Gemeindename, UpdateSourceTrigger=PropertyChanged}"  />
+				<ComboBox      x:Name="cmbGemeinde"  Width="20"
+								DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemeinden}, XPath=/Variablen/Variable}"
+																ItemsSource="{Binding}" 
+																DisplayMemberPath="@Name" 
+																SelectedValuePath="@ID"
+																SelectedValue="{Binding Path=ID}" 
+															  SelectionChanged="cmbGemeinde_SelectionChanged" 				 
+				/>
+			</StackPanel>
+
+			<StackPanel Grid.Row="9"  Grid.Column="1"  Orientation="Horizontal" Grid.ColumnSpan="2"  >
+                    <TextBox   x:Name="tbstrasse" Width="220" KeyboardNavigation.TabIndex="7"
+					Text="{Binding Kontakt.Anschrift.Strasse, UpdateSourceTrigger=PropertyChanged}"  
+					/>
+				<ComboBox   x:Name="cmbStrasse" Width="120" 
+					ItemsSource="{Binding}" 
+					DisplayMemberPath="sname"  SelectedValuePath="strcode" SelectionChanged="cmbStrasse_SelectionChanged"
+								   />
+			</StackPanel>
+			<StackPanel  Grid.Row="10" Grid.Column="1"  Orientation="Horizontal" Grid.ColumnSpan="2"  >
+                    <TextBox  Width="220"  x:Name="tbHausnr"  KeyboardNavigation.TabIndex="8"
+					Text="{Binding Kontakt.Anschrift.Hausnr, UpdateSourceTrigger=PropertyChanged}"  />
+				<ComboBox    x:Name="cmbHausnr" Width="120" 
+					ItemsSource="{Binding}" 
+					DisplayMemberPath="hausnrkombi"  SelectedValuePath="id" />
+
+			</StackPanel>
+                <TextBox Grid.Row="11"   Grid.Column="1" x:Name="tbPostfach"  KeyboardNavigation.TabIndex="9"
+				Text="{Binding Kontakt.Anschrift.Postfach, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2"  />
+                <TextBox Grid.Row="12"   Grid.Column="1" x:Name="tbPostfachPLZ"  KeyboardNavigation.TabIndex="10"
+				Text="{Binding Kontakt.Anschrift.PostfachPLZ, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2"  />
+                <TextBox Grid.Row="13"   Grid.Column="1" x:Name="tbBezirk"  KeyboardNavigation.TabIndex="11"
+				Text="{Binding Bezirk, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2" />
+                <!--<TextBox Grid.Row="16"   Grid.Column="1" x:Name="tbraum"  KeyboardNavigation.TabIndex="11"
+				Text="{Binding Raum, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2" />-->
+                <TextBlock   Grid.Row="14" Grid.Column="0"  Height="26" ><Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+					RequestNavigate="Anschrift_generieren" ><InlineUIContainer>
+						<TextBlock Text="Anschrift generieren" Padding="5,0,0,0" ToolTip="Kopiert die Anschrift in die Zwischenanlage"/>
+					</InlineUIContainer></Hyperlink></TextBlock>
+			<TextBlock Grid.Row="16"  Grid.Column="5" x:Name="lblQuelle"    
+				Text="{Binding Quelle, UpdateSourceTrigger=PropertyChanged}"  
+				  d:LayoutOverrides="GridBox" />
+			<StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3"  Visibility="Visible">
+                    <TextBox  x:Name="tbRolle"   Width="220" HorizontalAlignment="Right" KeyboardNavigation.TabIndex="0"
+					Text="{Binding Rolle, UpdateSourceTrigger=PropertyChanged}"    />
+				<ComboBox   x:Name="ComboBoxBeteiligte" HorizontalAlignment="Right" Width="20" Visibility="Collapsed" 
+							 DataContext="{Binding Source={StaticResource XMLSourceComboBoxbeteiligteRollen}, XPath=/Variablen/Variable}"
+																ItemsSource="{Binding}" 
+																DisplayMemberPath="@Name" 
+																SelectedValuePath="@ID"
+																SelectedValue="{Binding Path=ID}" 
+															  SelectionChanged="ComboBoxrolle_SelectionChanged" 
+							/>
+			</StackPanel>
+
+
+			<StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="2"   d:LayoutOverrides="GridBox"   >
+                    <TextBox   x:Name="tbNamenszusatz" KeyboardNavigation.TabIndex="3"
+					Text="{Binding Namenszusatz, UpdateSourceTrigger=PropertyChanged}" 
+					Width="90"  />
+				<ComboBox   x:Name="cmbNamenszusatz" HorizontalAlignment="Left" Width="20" />
+				<Separator Width="40"/>
+                    <TextBox  x:Name="tbAnrede" Width="70" KeyboardNavigation.TabIndex="4"
+					Text="{Binding Anrede, UpdateSourceTrigger=PropertyChanged}"   />
+
+				<ComboBox  x:Name="cmbAnrede" HorizontalAlignment="Right" Width="20" />
+			</StackPanel>
+
+			<TextBox Grid.Column="1" Grid.Row="5"   x:Name="tbBemerkung" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
+                     KeyboardNavigation.TabIndex="5"
+				Text="{Binding Bemerkung, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+
+
+
+
+
+
+
+                <TextBox Grid.Column="1" Grid.Row="1"   x:Name="tbName" KeyboardNavigation.TabIndex="1"
+				Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"    />
+                <TextBox Grid.Column="1" Grid.Row="2"   x:Name="tbVname" KeyboardNavigation.TabIndex="2"
+				Text="{Binding Vorname, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"      />
+
+
+			<TextBlock Grid.Row="0"  Grid.Column="4"  x:Name="Label66"   ><Run Text="Gesell. Funktion:"/></TextBlock>
+
+                <TextBox Grid.Row="0"  Grid.Column="5"  x:Name="tbFunktion"  KeyboardNavigation.TabIndex="12"
+					Text="{Binding Kontakt.GesellFunktion, UpdateSourceTrigger=PropertyChanged}" />
+		 
+
+			<TextBlock Grid.Row="1"   x:Name="Label72" Grid.Column="4"      ><Run Text="Organisation:"/></TextBlock>
+			<TextBlock Grid.Row="2"   x:Name="Label73" Grid.Column="4"      ><Run Text=" - Zusatz:"/></TextBlock>
+			<TextBlock Grid.Row="3"   x:Name="Label74" Grid.Column="3" Grid.ColumnSpan="2" Margin="31,0,1,0"><Run Text=" - Type1:"/></TextBlock>
+			<TextBlock Grid.Row="4"   x:Name="Label75" Grid.Column="4"          ><Run Text=" - Type2:"/></TextBlock>
+			<TextBlock Grid.Row="5"   x:Name="Label61" Grid.Column="4"        ><Run Text=" - Eigentümer:"/></TextBlock>
+
+                <TextBox Grid.Row="1" Grid.Column="5"   x:Name="tbOrg"   KeyboardNavigation.TabIndex="13"
+					Text="{Binding Kontakt.Org.Name, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+				<!--<ComboBox Width="20"   x:Name="cmbOrg" IsEnabled="False"/>-->
+		 
+			<!--<Button   Grid.Row="1" Grid.Column="6"   x:Name="btnOrg"   Content="OrgListe" Visibility="Collapsed" Margin="17,0,0,9" Grid.RowSpan="2" />-->
+                <TextBox Grid.Column="5" Grid.Row="2"   x:Name="tbOrgzusatz"  KeyboardNavigation.TabIndex="14"
+				Text="{Binding Kontakt.Org.Zusatz, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+                <TextBox Grid.Column="5" Grid.Row="3"   x:Name="tbTyp1"  KeyboardNavigation.TabIndex="15"
+				Text="{Binding Kontakt.Org.Typ1, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+                <TextBox Grid.Column="5" Grid.Row="4"   x:Name="tbTyp2"  KeyboardNavigation.TabIndex="16"
+				Text="{Binding Kontakt.Org.Typ2, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+                <TextBox Grid.Column="5" Grid.Row="5"   x:Name="tbEigentuemer"  KeyboardNavigation.TabIndex="17"
+				Text="{Binding Kontakt.Org.Eigentuemer, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+
+			<TextBlock Grid.Row="6"    x:Name="Label5" Grid.Column="4"    d:LayoutOverrides="GridBox"   ><Run Text="Email:"/></TextBlock>
+			<TextBlock Grid.Row="7"   x:Name="Labeel8" Grid.Column="4"       ><Run Text="Telefon Nr.1:"/></TextBlock>
+			<TextBlock Grid.Row="9"   x:Name="Labeel9" Grid.Column="4"   ><Run Text="Mobil:"/></TextBlock>
+			<TextBlock Grid.Row="10"   x:Name="Labele7" Grid.Column="4"     ><Run Text="Fax Nr.1:"/></TextBlock>
+			<TextBlock Grid.Row="12"  x:Name="Label71" Grid.Column="4"     ><Run Text="HomePage:"/></TextBlock>
+			<TextBlock Grid.Row="13"  x:Name="Lab7kk1" Grid.Column="4"       ><Run Text="Kassenkonto:"/></TextBlock>
+
+                <TextBox Grid.Row="6"  Grid.Column="5"  x:Name="tbEmail"  KeyboardNavigation.TabIndex="18"
+				Text="{Binding Kontakt.elektr.Email, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+                <TextBox  Grid.Row="7" Grid.Column="5"   x:Name="tbTelefon"   KeyboardNavigation.TabIndex="19"
+					Text="{Binding Kontakt.elektr.Telefon1, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+			<TextBlock  Grid.Row="8" Grid.Column="4"    HorizontalAlignment="Left"><Run Text="Telefon Nr.2:"/></TextBlock>
+
+
+
+                <TextBox  Grid.Row="8" Grid.Column="5"    x:Name="tbTelefon2"  KeyboardNavigation.TabIndex="20"
+						  Text="{Binding Kontakt.elektr.Telefon2, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+
+                <TextBox Grid.Row="9"  Grid.Column="5"  x:Name="tbMobil"  KeyboardNavigation.TabIndex="21"
+				Text="{Binding Kontakt.elektr.MobilFon, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+
+                <TextBox  Grid.Row="10"   Grid.Column="5"  x:Name="tbFax"  KeyboardNavigation.TabIndex="22"
+					Text="{Binding Kontakt.elektr.Fax1, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+				<TextBlock  Grid.Row="11"   Grid.Column="4"  ><Run Text="Fax Nr.2:"/></TextBlock>
+                <TextBox   Grid.Row="11"   Grid.Column="5" x:Name="tbFax2"  KeyboardNavigation.TabIndex="23"
+					Text="{Binding Kontakt.elektr.Fax2, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+
+
+                <TextBox Grid.Row="12"   Grid.Column="5" x:Name="tbHomepage"  KeyboardNavigation.TabIndex="24"
+				Text="{Binding Kontakt.elektr.Homepage, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+
+                <TextBox Grid.Row="13"   Grid.Column="5" x:Name="tbKassenkonto"  KeyboardNavigation.TabIndex="25"
+				Text="{Binding Kassenkonto, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+
+		 
+ 
+
+
+
+			<StackPanel  Grid.Row="18"  Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="4"   VerticalAlignment="Bottom" Height="35.643"  Grid.RowSpan="2" >
+				<Button     x:Name="btnLoeschenPerson"  IsEnabled="False"   Width="60" Content="Löschen" />
+				<Separator Width="10"/>
+				<Button Grid.Column="1" Grid.Row="8"   Width="120"  x:Name="btnSpeichernPerson"      Content="Speichern" 
+                        Click="btnSpeichernPerson_Click"
+                         KeyboardNavigation.TabIndex="26"/>
+				<Separator Width="10"/>
+				<Button     x:Name="btnAbbruch"    IsCancel="True"  Width="72" Content="Abbruch" Margin="0,2.821" Click="btnAbbruch_Click"
+                             KeyboardNavigation.TabIndex="27"/>
+			</StackPanel>
+			<ComboBox x:Name="cmbFunktion" Width="20" DataContext="{Binding Source={StaticResource XMLSourceComboBoxbeteiligteFunktion}, XPath=/Variablen/Variable}" ItemsSource="{Binding}" DisplayMemberPath="@Name" SelectedValuePath="@ID" SelectedValue="{Binding Path=ID}" SelectionChanged="ComboBoxBeteiligte_SelectionChanged" Grid.Column="6" Margin="1,0,0,0" />
+		</Grid>
+        </StackPanel>
+        <!--<StackPanel x:Name="spCursor" DockPanel.Dock="Bottom" Height="69" Grid.ColumnSpan="4" Background="{StaticResource backg1}" Visibility="Collapsed">
+			<StackPanel  Orientation="Horizontal" Visibility="visible" Margin="20">
+				<Button x:Name="btnRueckwaerts" Width="76" Height="30" Click="rueckwaerts" Background="Gray" Content="Rückwärts"/>
+				<TextBlock  x:Name="tbcursor" Width="50" FontSize="21.333"/>
+				<TextBlock   Width="50" FontSize="21.333"><Run Text="von ("/></TextBlock>
+				<TextBlock x:Name="tbKontakteAnzahl" Width="50" FontSize="21.333"/>
+				<TextBlock   Width="50" FontSize="21.333"><Run Text=")"/></TextBlock>
+				<Button x:Name="btnVorwaerts" Width="70" Height="30" Click="vorwaerts" Background="Gray" Content="Vorwärts"/>
+				<Separator Width="50"/>
+				<Button x:Name="btnBlaetternabbruch" Width="100" Height="30"   Click="Blaetternabbruch" Content="Abbruch"/>
+				<Button x:Name="btnBlaetternspeichern" Width="248" Height="30" Click="Blaetternspeichern" Content="Person übernehmen"/>
+			</StackPanel>
+		</StackPanel>-->
+	</DockPanel>
+</Window>

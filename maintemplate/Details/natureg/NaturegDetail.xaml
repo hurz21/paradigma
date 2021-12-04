@@ -1,0 +1,74 @@
+﻿<Window x:Class="NaturegDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigma" 
+         Background="{StaticResource backg3}"
+    Title="Natureg: EinzelProjekt Editor" Height="351" Width="894" WindowStartupLocation="CenterScreen" FontSize="12">
+    <Window.Resources>
+        <!--<src:MyFormatter x:Key="myformattjf" />-->
+        <!--<src:myGlobalz   x:Key="myGlobalz"/>-->
+    </Window.Resources>
+    <Grid x:Name="grd1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="97"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="92*"/>
+            <ColumnDefinition Width="131*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Typ:" Grid.Row="0" Grid.Column="0" Padding="5"></TextBlock>
+        <TextBlock Text="Verfahrensnummer:" Grid.Row="1" Grid.Column="0" Padding="5"></TextBlock>
+        <TextBlock Text="MaßnahmenNr:" Grid.Row="2" Grid.Column="0" Padding="5"></TextBlock>
+        <TextBlock Text="Titel:" Grid.Row="3" Grid.Column="0" Padding="5" Grid.RowSpan="2"></TextBlock>
+        <TextBlock Text="Notiz:" Grid.Row="4" Grid.Column="0" Padding="5"></TextBlock>
+
+        <TextBox   Grid.Row="0" Grid.Column="1" Padding="5" IsReadOnly="True" x:Name="txtTyp"
+                    Text="{Binding typ,  UpdateSourceTrigger=PropertyChanged}"   
+                  ></TextBox>
+       
+        <TextBox   Grid.Row="1" Grid.Column="1" Padding="5"   x:Name="txtnummer"
+                    Text="{Binding nummer,  UpdateSourceTrigger=PropertyChanged}"   
+                  ></TextBox>
+        <TextBox   Grid.Row="2" Grid.Column="1" Padding="5"   x:Name="tbMassnahmenNr"
+                    Text="{Binding MassnahmenNr,  UpdateSourceTrigger=PropertyChanged}"   
+                  ></TextBox>
+        <TextBox   Grid.Row="3" Grid.Column="1" Padding="5"   Grid.ColumnSpan="2" x:Name="txtTitel"
+                    Text="{Binding beschreibung,  UpdateSourceTrigger=PropertyChanged}"   
+                  ></TextBox>
+        <TextBox   Grid.Row="4" Grid.Column="1" Padding="5"  Grid.ColumnSpan="2" x:Name="txtNotiz"
+                    Text="{Binding notiz,  UpdateSourceTrigger=PropertyChanged}"   
+                  ></TextBox>
+        <Button x:Name="btnloeschen" Click="btnloeschen_Click_1" Content="Löschen"
+                 Grid.Row="7" Grid.Column="0"  />
+        <Button x:Name="btnspeichern" Click="btnspeichern_Click_1" Content="Speichern"
+                 Grid.Row="7" Grid.Column="1"  />
+        <Button x:Name="btnabbruch" Click="btnabbruch_Click_1" Content="Abbruch"
+                 Grid.Row="7" Grid.Column="2"  />
+        <ComboBox x:Name="cmbTyp" Grid.Row="0" Grid.Column="2" >
+            <ComboBoxItem >Ökokonto</ComboBoxItem>
+            <ComboBoxItem >Kompensation</ComboBoxItem>
+            <ComboBoxItem >Förderfläche</ComboBoxItem>
+        </ComboBox>
+ 
+        <TextBlock   Grid.Row="5" Grid.Column="1" Padding="5"   
+                    Text="Letzte Änderung:"   
+                  />
+        <TextBlock   Grid.Row="6" Grid.Column="1" Padding="5"   
+                    Text="Quelle:"   
+                  />
+        <TextBlock   Grid.Row="5" Grid.Column="2" Padding="5"   
+                    Text="{Binding timestamp,  UpdateSourceTrigger=PropertyChanged}"   
+                  />
+        <TextBlock   Grid.Row="6" Grid.Column="2" Padding="5"   
+                    Text="{Binding Quelle,  UpdateSourceTrigger=PropertyChanged}"   
+                  />
+    </Grid>
+</Window>

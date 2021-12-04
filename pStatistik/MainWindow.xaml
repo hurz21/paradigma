@@ -1,0 +1,12 @@
+﻿<Window x:Class="MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mfrm="clr-namespace:pStatistik"
+    Title="Statistik" Height="350" Width="525">
+ 
+    <Grid>
+        <Button Content="Prozessparameter" Height="23" HorizontalAlignment="Right" Margin="0,61,189,0" Name="btnStart" VerticalAlignment="Top" Width="133" Click="Start_Click"/>
+        <CheckBox Content="Anonym" Height="16" HorizontalAlignment="Left" Margin="41,65,0,0" Name="btnAnonym"  VerticalAlignment="Top" DataContext="{Binding}" />
+        <Button Content="Sachgebietsweise" Height="23" HorizontalAlignment="Right" Margin="0,90,189,0" Name="btnSachgebiet" VerticalAlignment="Top" Width="133" Click="start_sachgebiet" />
+    </Grid>
+</Window>

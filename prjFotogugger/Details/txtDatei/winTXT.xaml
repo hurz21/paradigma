@@ -1,0 +1,39 @@
+﻿<Window x:Class="winTXT"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail"
+        mc:Ignorable="d" Background="Gray" WindowStartupLocation="CenterScreen"
+        Title="Textnotiz bearbeiten" Height="800" Width="1100">
+    <DockPanel Margin="0,0,0,5" Name="dckp">
+  
+        <StackPanel DockPanel.Dock="Top">
+            
+            <TextBox x:Name="tbDateiInhalt" TextWrapping="Wrap"  AcceptsReturn="True"  Height="710"
+                             AcceptsTab="True"  
+                             ScrollViewer.CanContentScroll="True" 
+                             VerticalScrollBarVisibility="Visible"/>
+
+
+           
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Name="txtclear" Click="txtclear_Click" Content="alles Löschen" Width="100"   Margin="5" Style="{StaticResource lessButton}"/>
+            <Button Name="txturzustand" Click="txturzustand_Click" Content="zurücksetzen" Width="100"   Margin="5" Style="{StaticResource lessButton}"/>
+            <Button Name="txtAbbruch" Click="txtAbbruch_Click" Content="Abbruch" Width="100" IsCancel="True" Margin="5" Style="{StaticResource lessButton}"/>
+            <Button Name="txtbigger" Click="txtbigger_Click" Content="Schriftgröße +" Width="115"   Margin="5" Style="{StaticResource lessButton}"/>
+            <Button Name="txtsmaller" Click="txtsmaller_Click" Content="Schriftgröße -" Width="115"   Margin="5" Style="{StaticResource lessButton}"/>
+         
+            <Button Name="txtSpeichern" Click="txtSpeichern_Click" Content="Speichern" Width="100" Margin="5"/>
+            <CheckBox  Name="cbEreignisAnlegen"  Foreground="White" IsChecked="True" Margin="15" FontSize="9">
+                <StackPanel>
+                <TextBlock>Mit Ereignis anlegen</TextBlock>
+                <TextBlock>Titel des Ereignisses:</TextBlock></StackPanel>
+            </CheckBox>
+            <TextBox Name="tbEreignisTitel" Foreground="Black" Background="White" 
+                       IsEnabled="True" Margin="5" Padding="5" Width="200" Height="30">TextNotiz</TextBox>
+        </StackPanel>
+
+    </DockPanel>
+</Window>

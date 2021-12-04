@@ -1,0 +1,39 @@
+﻿<Window x:Class="winTree"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="winTree" Height="632" Width="727">
+    <DockPanel  >
+
+        <StackPanel   DockPanel.Dock="Top">
+            <TextBlock Text="ID   = Ist der unsichtbare Programmintern-verwendete Wert einer Option. Er darf NIEMALS verändert werden "/>
+            <TextBlock Text="Name = Ist der für den Anwender sichtbare Teil einer Option. Im Idealfall ist beides gleich. Er darf verändert werden." />
+            <StackPanel Orientation="Horizontal" Margin="10" Height="38" Width="738">
+                <Button Content="Hinzufügen"  Command="{Binding AddCommand}"
+                Height="30"  HorizontalAlignment="Left"  Name="Button1"  Width="116" />
+                <Button Content="Speichern"  Command="{Binding SaveCommand}"
+                Height="30" HorizontalAlignment="Left" Name="SaveButton"   Width="116" />
+                <Button Content="Entfernen"  Command="{Binding RemoveCommand}"
+                Height="30" HorizontalAlignment="Left"  Name="RemoveButton"  Width="116"  Foreground="LightPink"  />
+                <Button Content="Abbruch"  Click="AbbruchButton_Click" IsCancel="True"
+                Height="30" HorizontalAlignment="Left"  Name="AbbruchButton" VerticalAlignment="Top" Width="116" />
+                <Button Content="notepad"  Click="EditorButton_Click"  
+                Height="30" HorizontalAlignment="Left"  Name="EditorButton" VerticalAlignment="Top" Width="116" />
+                <Button Content="pspad"  Click="pspadButton_Click"  
+                Height="30" HorizontalAlignment="Left"  Name="pspadButton" VerticalAlignment="Top" Width="116" />
+            </StackPanel >
+
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <TreeView  ItemsSource="{Binding Path=Header}"  
+                    Height="400"
+                  >
+
+                </TreeView>
+            </ScrollViewer>
+
+
+        </StackPanel >
+
+
+
+    </DockPanel>
+</Window>

@@ -1,0 +1,99 @@
+﻿<Window x:Class="WinWvFilter" 
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            
+            xmlns:src="clr-namespace:paradigma" 
+            xmlns:mfrm="clr-namespace:paradigma" 
+            Title="Paradigma - Suchen nach Vorgängen" Height="900" Width="1832" Name="Window1" 
+            WindowStartupLocation="CenterScreen" WindowState="Normal"
+            Background="{StaticResource backg2}" ResizeMode="CanResizeWithGrip" 
+        >
+    <Window.Resources>
+        <mfrm:MyFormatter x:Key="myformattjf" />
+        <Style x:Key="dgRowStyleWV" TargetType="DataGridRow" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding LetzteBearbeitung}" Value="01.01.0001">
+                    <Setter Property="Foreground" Value="green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding faelligSymbol}" Value="1">
+                    <Setter Property="Foreground" Value="#FFD00000" />
+                    <Setter Property="ToolTip" Value="Diese Wiedervorlage ist fällig !!!" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding faelligSymbol}" Value="2">
+                    <Setter Property="Foreground" Value="green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Erledigt}" Value="1">
+                    <Setter Property="Foreground" Value="green" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <DockPanel >
+        <StackPanel  DockPanel.Dock="Top"  Background="{StaticResource backg3}"  x:Name="stckp1">
+            <!--<Button Height="120" Visibility="Hidden">dasfsdfsf</Button>-->
+            <DockPanel >
+                <TextBlock Height="40" Visibility="Visible" Background="{StaticResource backg1}" FontSize="24" FontFamily="Arial"
+                           Margin="10" Padding="10" Width="500" HorizontalAlignment="Left">Bestand - Wiedervorlagen</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <CheckBox x:Name="ckbNichtNerven" Click="ckbNichtNerven_Click" Margin="5" Content="beim Hochfahren immer nerven"/>
+                    <StackPanel>
+                        <Button Content="Neu" Width="100" HorizontalAlignment="Right" Click="NeuerVorgang_Click"/>
+                        <Button Content="zu VorgangsNr:" Width="100" HorizontalAlignment="Right" Click="ZuvorgangsNr_Click"/>
+
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Stammdaten" Width="100" HorizontalAlignment="Left" Margin="5"  
+                            Style="{StaticResource lessButton}" x:Name="btnStammdatenFiltern" Click="btnStammdatenFiltern_Click" />
+                <Button Content="Beteiligten" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" x:Name="btnBeteiligteFiltern" Click="btnBeteiligteFiltern_Click"/>
+                <Button Content="Ereignisse" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnEreignisfilter" Click="btnEreignisfilter_Click" />
+                <Button Content="Flurstücke" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnfstSuche" Click="btnfstSuche_Click" />
+                <Button Content="Adressen" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnadrSuche" Click="btnadrSuche_Click"/>
+                <Button Content="Dokumente" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnDokusuche" Click="btnDokusuche_Click"/>
+                <Button Content="Projekte" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnProjektsuche" Click="btnProjektsuche_Click"/>
+                <Button Content="Wiedervorlagen" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel     Background="{StaticResource backg3}" Orientation="Vertical"   >
+                <StackPanel DockPanel.Dock="Top" Name="mnuMenu" Orientation="Horizontal" VerticalAlignment="Top">
+                    <Button   IsDefault="True"   Height="23"  Width="23" x:Name="EreignisExcel" Margin="5" Click="WVExcel_Click" Padding="-5" Style="{StaticResource lessButton}">
+                        <Image  x:Name="imgEreignisExcel" Source="/paradigma;component/icons/MSExcel.png" Height="23" Width="23"  ></Image>
+                    </Button>
+                    <Separator Width="30"/>
+                </StackPanel>
+
+                <DataGrid Name="dgWVliste" ItemsSource="{Binding}"   
+               ColumnHeaderStyle="{StaticResource dgHeaderStyle}" 
+                RowStyle="{StaticResource dgRowStyleWV}"    
+            >
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding id}" />-->
+                        <DataGridTextColumn Header="VorgangsID" Width="Auto" Binding="{Binding VORGANGSID }" />
+                        <DataGridTextColumn Header="Az" Width="Auto" Binding="{Binding az2 }" />
+                        <DataGridTextColumn Header="FälligAm" Width="SizeToCells"  Binding="{Binding DATUM,Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                        <DataGridTextColumn Header="Titel" Width="SizeToCells" Binding="{Binding BESCHREIBUNG}" />
+                        <DataGridTextColumn Header="Warten auf" Width="SizeToCells" Binding="{Binding WARTENAUF}" />
+
+                        <DataGridTextColumn Header="Erledigtam" Width="SizeToCells" Binding="{Binding ERLEDIGTAM,Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                        <DataGridTextColumn Header="Erledigt" Width="SizeToCells" Binding="{Binding ERLEDIGT }" />
+                        <DataGridTextColumn Header="Bemerkung" Width="SizeToCells" Binding="{Binding BEMERKUNG}" />
+                        <DataGridTextColumn Header="Bearbeiter" Width="100" Binding="{Binding BEARBEITER }" />
+                        <DataGridTextColumn Header="ToDo" Width="100" Binding="{Binding TODO }" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+
+
+    </DockPanel>
+</Window>
+

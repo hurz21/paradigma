@@ -1,0 +1,93 @@
+﻿<Window x:Class="WinBankverb"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Bankverbindungen zum Beteiligten" Height="600" Width="1256.716" WindowStartupLocation="CenterScreen"
+           Background="{StaticResource backg3}"
+        >
+    <DockPanel x:Name="dockMainBV">
+        <StackPanel Margin="45,5,0,0">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel >
+                    <StackPanel Width="300" Orientation="Vertical">
+                        <TextBlock Text="Name der Bank:"/>
+                        <TextBox x:Name="tbName" Text="{Binding BankName,  UpdateSourceTrigger=PropertyChanged}" Margin="0,0,-82,0"   />
+                    </StackPanel>
+                    <StackPanel Width="200" Orientation="Vertical">
+                        <TextBlock Text="IBAN:"/>
+                        <TextBox x:Name="tbIBAN"  Text="{Binding IBAN,  UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Width="200" Orientation="Vertical">
+                        <TextBlock Text="BIC:"/>
+                        <TextBox x:Name="tbBIC"  Text="{Binding BIC,  UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel >
+                    <StackPanel Width="200" Orientation="Vertical">
+                        <TextBlock Text="Beschreibung:" />
+                        <TextBox x:Name="tbTitel"  Text="{Binding Titel,  UpdateSourceTrigger=PropertyChanged}"
+                                 TextWrapping="Wrap" Height="60"/>
+                    </StackPanel>
+            
+                    <StackPanel Width="200" Orientation="Vertical">
+                        <CheckBox x:Name="chkistVorlage" Content="als Vorlage markieren" Visibility="Hidden" />
+                       
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="tbQuelle" IsReadOnly="True" IsEnabled="False" Margin="0,0,0,0"  Text="{Binding Quelle,  UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox x:Name="tbTS" IsReadOnly="True" IsEnabled="False" Margin="0,0,0,0"  Text="{Binding tss,  UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+        
+                </StackPanel>
+                <Border Margin="25,5,5,5" BorderThickness="3" BorderBrush="Beige">
+                    <StackPanel >
+                        <Button x:Name="btnSpeichern" Click="btnSpeichern_Click" Content="Speichern zur Person"></Button>
+                        <Button x:Name="btnSpeichernVorlage" Click="btnSpeichernVorlage_Click" Content="Speichern als Vorlage"></Button>
+                        <Button x:Name="btnLoeschen" Click="btnLoeschen_Click" Content="Löschen"></Button>
+                        <Button x:Name="btnAbbruch" Click="btnAbbruch_Click" Content="Abbruch"></Button>
+                        <Button x:Name="btnNEU" Click="btnNEU_Click" Content="NEU"></Button>
+                    </StackPanel>
+                </Border>
+                <StackPanel>
+                    <TextBox x:Name="tbAbstract" TextWrapping="Wrap" AcceptsReturn="True"/>
+                </StackPanel>
+            </StackPanel>
+            <TabControl>
+                <TabItem Header="Bankverbindungen der Person">  
+                    <StackPanel x:Name="stackAnhang">
+                        <DataGrid x:Name="dgBVPerson" Height="304"  ItemsSource="{Binding}"     
+                           AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="QUELLE" Width="Auto"  Binding="{Binding QUELLE}"  />
+                                <DataGridCheckBoxColumn Header="vorlage" Width="Auto"  Binding="{Binding VORLAGE1}"  />
+                                <DataGridTextColumn Header="Name" Width="Auto"  Binding="{Binding BANKNAME}"  />
+                                <DataGridTextColumn Header="IBAN" Width="Auto"  Binding="{Binding IBAN}"  />
+                                <DataGridTextColumn Header="BIC" Width="Auto"  Binding="{Binding BIC}"  />
+                                <DataGridTextColumn Header="Beschreibung" Width="Auto"  Binding="{Binding TITEL}"  />
+                                <DataGridTextColumn Header="Timestamp" Width="Auto"  Binding="{Binding TS}"  />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Vorlagen">
+                    <StackPanel x:Name="stackVorlagen">
+                        <DataGrid x:Name="dgVorlagen" Height="304"  ItemsSource="{Binding}"     
+                           AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Quelle" Width="Auto"  Binding="{Binding QUELLE}"  />
+                                <DataGridCheckBoxColumn Header="Vorlage" Width="Auto"  Binding="{Binding VORLAGE1}"  />
+                                <DataGridTextColumn Header="Name" Width="Auto"  Binding="{Binding BANKNAME}"  />
+                                <DataGridTextColumn Header="IBAN" Width="Auto"  Binding="{Binding IBAN}"  />
+                                <DataGridTextColumn Header="BIC" Width="Auto"  Binding="{Binding BIC}"  />
+                                <DataGridTextColumn Header="Beschreibung" Width="Auto"  Binding="{Binding TITEL}"  />                             
+                                <DataGridTextColumn Header="Timestamp" Width="Auto"  Binding="{Binding TS}"  />
+                          
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+            
+        </StackPanel>
+    </DockPanel>
+</Window>

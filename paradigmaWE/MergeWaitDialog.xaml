@@ -1,0 +1,46 @@
+﻿<Window
+	x:Class="MergeWaitDialog"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Please Wait"
+	Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+	Icon="Icons/tx.ico"
+	ShowInTaskbar="False"
+	ResizeMode="NoResize"
+	WindowStartupLocation="CenterOwner"
+	SizeToContent="WidthAndHeight"
+	Closing="Window_Closing"
+	x:ClassModifier="Friend"
+	Loaded="Window_Loaded">
+	<Grid
+		Margin="10,5,10,15">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition
+				Width="*" />
+			<ColumnDefinition
+				Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition
+				Height="*" />
+			<RowDefinition
+				Height="*" />
+		</Grid.RowDefinitions>
+		<Label
+			Name="_lblMerging"
+			VerticalAlignment="Top"
+			HorizontalAlignment="Left"
+			Margin="0,0,0,3">
+			Merging…
+		</Label>
+		<ProgressBar
+			IsIndeterminate="True"
+			Name="_progBar"
+			HorizontalAlignment="Left"
+			Height="23"
+			Grid.Row="1"
+			Grid.ColumnSpan="2"
+			VerticalAlignment="Top"
+			Width="230" />
+	</Grid>
+</Window>

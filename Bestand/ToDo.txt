@@ -1,0 +1,68 @@
+﻿Gunilla
+- maifunktion : anhang wird bei DOKUMENT MAILEN nicht dem ereignis zugeordnet!
+- stakeholder templates
+Meine IDEEN
+- Paradigma Karte überarbeiten
+Ulli
+- schmittnerabfrage
+
+Micha 
+bei cc wird der fals adressat eingetragen
+
+
+paradigma paint taste mit übernahme in das archiv
+Paradigma: alle Vorlagen nach bestimmter textmarke durchsuchen: ext. applikation
+webservice für strukturierte eigentümer erstellen und einbinden
+Paradigma: dokumente durchsuchen
+paradigma: $$ suchbar machen
+paradigma: probaug und paradigma-fremdfälle im minimap als ellipsen anzeigen
+paradigma: neu anlegen: titel aus Bestand übernehmen
+paradigma: CCMail-Problem titel wird auf cc gesetzt
+dbrechte prüfen
+paradigma: problem mit raumbezug prüfen
+paradigma: dokumentauswahl mehrfach in eigenem fenster
+paradigma archive system abtrennen
+paradigms detailprozess abtrennen
+Paradigma: dokumente metadaten hinzufügen: istGutachten, iststellungnahme
+Paradigma: emailanhänge drag und drop testen
+Paradigma Openoffice testen
+Paradigma: Mehrfachauswahl Dokumente/Fotos
+Paradigma gruppen funktionen wie zum beispiel aktuelle fälle der gruppe
+Programm für mp3 sammlung
+paradigma exif in eigene tab objekte legen
+paradigma issettingok hinzuguegen
+‎zb pruefung au f existenz von o:‎
+Paradigma dokusuche dateityp einstellen
+Paradigma obsolete raum bezüge löschen
+Paradigma: fehler beim löschen von Fotos als Raumbezug: FotorBs lassen sichnicht bulk löschen
+
+
+Von: Weyers, Gunilla 
+Gesendet: Donnerstag, 20. Februar 2014 15:48
+An: Feinen, Jörg
+Betreff: Stakeholder
+Hallo Jörg,
+könntest du es bitte so einrichten, dass im folgenden Fenster die Tabs von Feld zu Feld springen. Im Moment springt der Cursor von Rolle 
+im Vorgang zu Titel, dann in Bemerkungen nur noch innerhalb des Feldes. Ist für Mehrfacheinträge entspannender für die Handgelenke.
+Wäre es vielleicht sogar möglich, einen Beteiligten zu kopieren, weil alle anderen Daten – bis auf den Namen und die Telefonnummer – stimmen?? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+﻿<Window x:Class="Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:mfrm="clr-namespace:paradigma" 
+        Title="Paradigma" WindowStartupLocation="Manual" Left="1"  Top="100" Name="Window1"     
+        ResizeMode="CanResizeWithGrip"  WindowState="Normal"   
+        Width="117.209"  Background="{StaticResource backg3}"   Height="486.582"  >
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo/>
+    </Window.TaskbarItemInfo>
+    <Window.Resources>
+       
+        <Style x:Key="mousemoveRowStyle" TargetType="DataGridRow" >
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="Background" Value="LightGreen" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False" >
+                    <Setter Property="Background" Value="LightGray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources>
+
+    <DockPanel    Background="{StaticResource backg3}" x:Name="dockP"  VerticalAlignment="Top"
+                      Height="450" Margin="0,0,0,-2"   >
+        <!--<TextBlock Text="Paradigma - Hauptmenü" FontSize="20" VerticalAlignment="Top"  Margin="0,80,0,0" FontFamily="Arial"  
+                   DockPanel.Dock="Left" Background="{StaticResource backg1}" >
+                <TextBlock.LayoutTransform>
+                    <RotateTransform Angle="-90"/>
+                </TextBlock.LayoutTransform>
+            </TextBlock>-->
+
+        <Menu DockPanel.Dock="Top" Height="49"   Background="{StaticResource backg3}" Foreground="AliceBlue" >
+            <MenuItem Header="(c) Dr. Feinen 2009" Foreground="Silver" ></MenuItem>
+            <MenuItem Header="Info"  >
+                <MenuItem Header="About" Name="showCopyrite" Click="showCopyrite_Click">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Copyright Information
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+                <MenuItem Header="Fehlerprotokoll" Name="showLogFile" Click="showLogFile_Click">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Lassen Sie sich das Fehlerprotokoll anzeigen
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+                <MenuItem Header="Version" Name="showversion" Click="zeigeVersion" >
+
+                    <MenuItem.ToolTip>
+                        <TextBlock x:Name="tbVersion"/>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+                <MenuItem Header="Konfigurieren" Name="Konfigurieren" Click="Konfigurieren_Click">
+                    <MenuItem.ToolTip>
+                        <ToolTip>
+                            Die Konfiguration wird aktualisiert
+                        </ToolTip>
+                    </MenuItem.ToolTip>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <StackPanel  Width="101"   x:Name="stckPanle"     >
+            <StackPanel Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <!--<Button x:Name="klein" Click="klein_Click" Margin="5,0,0,0" FontSize="8" Style="{StaticResource lessButton}">klein</Button>-->
+                    <TextBlock   x:Name="tbTextparadigma">Paradigma</TextBlock>
+                    <!--<Button x:Name="gross" Click="gross_Click" FontSize="8"  Style="{StaticResource lessButton}">groß</Button>-->
+                </StackPanel>
+                <TextBlock HorizontalAlignment="Center" Name="aktBearbeiter"  >--------</TextBlock>
+            </StackPanel>
+
+            <!--<Separator Height="4" Width="5"></Separator>-->
+
+            <!--<Separator Height="4" Width="5"></Separator>-->
+            <Button  Width="100" Height="44"   Name="btntest22" VerticalAlignment="Bottom"   Click="btnNeuerVorgang_Click"
+                    
+                         
+                    ToolTip=" neuer aktenplan" Visibility="Visible">
+                <StackPanel>
+                    <TextBlock TextAlignment="Center">Neu</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button  Width="100" 
+                    Height="44" 
+                    VerticalAlignment="Bottom" 
+                    x:Name="btnmeineinArbeit" 
+                    IsDefault="True" 
+                    Click="btnBestand_Click">Bestand</Button>
+            <Button  Width="100" Visibility="Collapsed"  Height="29"  Margin="0" VerticalAlignment="Top" Name="btnAdmin" Click="btnAdmin_Click">Admin</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button  Width="100"      Height="44" VerticalAlignment="Bottom"  x:Name="btnZurNr" Click="btnZurNr_Click" MouseEnter="btnZurNr_MouseEnter"
+                             ToolTip="Mit der  Vorgangsnummer gelanden Sie hier direkt zum gewünschten Vorgang!">
+                    <StackPanel >
+                        <TextBlock >zu Vorgang:</TextBlock>
+                        <TextBox  x:Name="tbzuVorgang" FontSize="11" Margin="0,0,0,0" MouseEnter="tbzuVorgang_MouseEnter"></TextBox>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="tblastvorgangsid"   VerticalAlignment="Center" Width="44" Height="18" Padding="0" 
+                           Visibility="Collapsed" Background="Gray"  Click="tblastvorgangsid_Click"  
+                        ToolTip="Direkt zum zuletzt benutzten Vorgang">
+                    <Button.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </Button.LayoutTransform>
+                </Button>
+            </StackPanel>
+
+            <Button  Width="100"     Height="44" VerticalAlignment="Bottom" FontSize="10"   Name="btnWiedervorlage" Click="btnWiedervorlage_Click"
+                            ToolTip="Liste aller Wiedervorlagen">Wiedervorlage</Button>
+            <Button  Width="100" Height="29" Name="btnProjekte" VerticalAlignment="Bottom"  Margin="0"  Visibility="Visible" Click="btnProjekte_Click">Projekte</Button>
+            <Button  Width="100" Height="29" Name="btnZahlungen" VerticalAlignment="Bottom"  Margin="0"  Visibility="Visible" Click="btnZahlungen_Click">Zahlungen</Button>
+            <Button  Width="100" Height="29" Name="btnKarte" VerticalAlignment="Bottom"  Margin="0" Click="btnKarte_Click"
+                    ToolTip="Die Paradigmavorgänge werden in Grün dargestellt. ProbaugVorgänge in braun-orange mit einem 'P'">
+                Karte</Button>
+            <Button Width="100" Height="29" Name="btnEigentuemer" Margin="0"  VerticalAlignment="Bottom" Click="btnEigentuemer_Click" Visibility="Visible" ToolTip="Abfrage von Eigentümern zu Flurstücken">Eigentümer</Button>
+            <Button Content="Handbuch" Width="100"  Margin="0"  Height="29" Click="Handbuch_Click" />
+            <Button Content="B-Plan Online" FontSize="10" Width="100"  Margin="0"  Height="29" Click="btnBplaeneClick" />
+            <Button Content="Vorlagen" FontSize="10" Width="100"  Margin="0"  Height="29" Click="btnVorlagenClick" />
+          
+
+            <Button  Width="100" Height="29" Name="btnStake" Click="stake"  Visibility="Collapsed" 
+                    ToolTip="Verwaltung der wichtigsten Personengruppen - als Vorlage beim Hinzufügen von Beteiligten">
+                Stakeholder</Button>
+            <!--<Button  Width="100" Height="44" Name="btnALBreport" VerticalAlignment="Bottom" Click="btnALBreport_Click"  Visibility="Hidden" 
+                    ToolTip=" ">
+                     </Button>-->
+            <!--<Button  Width="100" Height="44"  Name="btnNeuewrVorgang" Click="btnNeuewrVorgang_Click" Visibility="Collapsed">
+                    <StackPanel Visibility="Collapsed">
+                        <TextBlock TextAlignment="Center">Neu</TextBlock>
+                        <TextBlock TextAlignment="Center" Foreground="#00CCCC">(alter Aktenplan)</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button  Width="100" Height="24" Name="btntest222" VerticalAlignment="Bottom"   Click="btntest222_Click"
+                    ToolTip=" edit" Visibility="Collapsed">
+                    edit</Button>-->
+        </StackPanel>
+
+
+    </DockPanel>
+
+</Window>

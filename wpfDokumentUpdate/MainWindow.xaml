@@ -1,0 +1,32 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpfDokumentUpdate"
+        mc:Ignorable="d" WindowState="Normal"
+        Title="Pumuckel" Height="150" Width="631.944">
+    <DockPanel>
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal">
+                  <TextBlock Margin="5,10,0,0" Padding="5"> von Vorgang:</TextBlock>
+                <TextBlock Margin="1,10,0,0" Padding="5" FontSize="12" Name="tbvid" FontWeight="Bold">798798</TextBlock>
+                <TextBlock Margin="1,10,0,0" Padding="5" FontSize="12"   >, Dateiname:</TextBlock>
+                <TextBlock Margin="1,10,0,0" Padding="5" FontSize="14" Name="tbfilename" FontWeight="Normal">798798</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="btnWorddateischliessen" Click="btnWorddateischliessen_Click" Content="Datei schliessen und sichern" Height="30" Margin="10"/>
+                <Button Name="btnWorddateinichtsichern" Click="btnWorddateinichtsichern_Click" Content="Datei nicht sichern" Foreground="red" Height="30" Margin="10" Visibility="Collapsed"/>
+                <Button Name="btnSicherungsverzeichnis" Click="btnSicherungsverzeichnis_Click" Content="Sicherungen anzeigen" Margin="10"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Name="tbInfo" />
+        </StackPanel>
+
+    </DockPanel>
+</Window>

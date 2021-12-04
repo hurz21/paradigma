@@ -1,0 +1,95 @@
+﻿<Window x:Class="winToConject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail" Loaded="Window_Loaded"
+        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" Background="{StaticResource backg3}"
+        Title="Nach Conject übernehmen" Height="450" Width="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+
+            <StackPanel Orientation="Horizontal"  Margin="5">
+                <TextBlock Width="200">Alter Dateiname:</TextBlock>
+                <TextBlock Width="400" Name="tbAltername"  Margin="5" Background="White">Alter Dateiname:</TextBlock>
+            </StackPanel>
+   
+            <StackPanel Orientation="Horizontal"   Margin="5">
+                <TextBlock Width="200">Ändern:</TextBlock>
+                <ComboBox Name="cmbConjectDokumentTyp"  Margin="5" SelectionChanged="cmbConjectDokumentTyp_SelectionChanged" >
+                    <ComboBoxItem IsSelected="True" Tag="1">Stellungnahme</ComboBoxItem>
+                    <ComboBoxItem   Tag="2">Nachforderung</ComboBoxItem>
+                    <ComboBoxItem   Tag="3">Anlagen</ComboBoxItem>
+                    <ComboBoxItem   Tag="4">Hinweis</ComboBoxItem>
+                </ComboBox>
+                <ComboBox Name="cmbConjectDokumentAbteilung"  Margin="5" SelectionChanged="cmbConjectDokumentAbteilung_SelectionChanged" >
+                    <ComboBoxItem Tag="UNB">UNB</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True"  Tag="Immissionsschutz">Immissionsschutz</ComboBoxItem>
+                    <ComboBoxItem   Tag="UWBB">UWBB</ComboBoxItem>
+                    <ComboBoxItem   Tag="Vorzimmer">Vorzimmer</ComboBoxItem>
+                    <ComboBoxItem   Tag="_">_</ComboBoxItem>
+                </ComboBox>
+                <CheckBox x:Name="cbOriginalNameVerwenden" Click="cbOriginalNameVerwenden_Click"
+                          Margin="0,8,0,0"
+                          ToolTip="Bitte verwenden Sie diese Option nur dann, wenn die Datei bereits im albschliessendem / PDF-Format vorliegt!"
+                          >Originalname verwenden</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="5">
+                <TextBlock Width="200">Neuer Dateiname:</TextBlock>
+                <TextBlock Width="400" Name="tbNeuername" Margin="5"  Background="White">neuer Dateiname:</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="5" >
+                <TextBlock Width="200"> </TextBlock>
+                <Button Name="btnOk" Click="btnOk_Click" Content="Ok" Margin="5" Width="100"/>
+                <Button Name="btnAbbruch" Click="btnAbbruch_Click" Content="Abbruch" Margin="5"  
+                        Style="{StaticResource lessButton}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical"  Margin="5">
+                <TextBlock FontSize="14"   Margin="5">Was passiert wenn ich auf 'OK' klicke:</TextBlock>
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0">
+                        1. Es wird eine neue Datei als PDF erzeugt 
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0"> 
+                        2. Die PDF wird so benannt wie unter 'Neuer Dateiname' 
+                    </TextBlock>
+
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0"> 
+                        3. Sie wired auf die Festplatte unter C:\desktop\paradigma\vorgangnr\ kopiert
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0"> 
+                        4. Das Verzeichnis wird im Explorer geöffnet 
+                    </TextBlock>
+
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0"> 
+                        5. Das Verzeichnis wird in die Zwischenablage kopiert
+                    </TextBlock>
+               
+                </StackPanel>
+                <TextBlock FontSize="14"   Margin="5">Was muss ich dann tun?</TextBlock>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0">
+                        1. Öffnen Sie die ELBA-Conject Übersicht. Falls noch nicht geschehen: 
+                    </TextBlock>
+                        <Button Name="btnZuConject" Click="BtnZuConject_Click"   Margin="25,0,0,0" FontSize="10"
+                                VerticalAlignment="Center"   Width="170"  Height="20"    Style="{StaticResource lessButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center">Übersicht öffnen</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0"> 
+                        2. Wählen Sie dort im Explorer das Upload - Verzeichnis aus 
+                    </TextBlock>
+
+                    <TextBlock TextWrapping="Wrap"  Margin="25,0,0,0"> 
+                        3. Kopieren Sie die Datei aus dem geöffneten Verzeichnis ins ELBA. Z.B. per Drag´n Drop. 
+                    </TextBlock>
+              
+
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

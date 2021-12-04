@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+LIBmyMapWindowGis
+</name>
+</assembly>
+<members>
+<member name="P:LIBmyMapWindowGis.My.Resources.Resources.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:LIBmyMapWindowGis.My.Resources.Resources.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="T:LIBmyMapWindowGis.My.Resources.Resources">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member><member name="M:LIBmyMapWindowGis.MyMapWinGisTools.getSerialFromShape(System.String,System.String,System.String@)">
+	<summary>
+ liefert serialString für eine shape
+ </summary>
+	<param name="Shapefile"></param>
+	<param name="SearchKey">spaltennummer im shapefile , 0-basiert</param>
+	<param name="searchValue">string</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:LIBmyMapWindowGis.MyMapWinGisTools">
+	<summary>
+ Mapwingis-funktionen
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

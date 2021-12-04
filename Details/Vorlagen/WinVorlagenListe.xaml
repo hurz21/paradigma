@@ -1,0 +1,87 @@
+﻿<Window x:Class="WinVorlagenListe"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Formular: Vorlagenliste" Height="670" Width="1242" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" x:Name="Tab_Vorlagen"    >
+            <GroupBox Header=" "   x:Name="grpvor"   FontWeight="Normal"  >
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" >
+                        <!--<TextBlock Margin="10" Text="Textmarken Info:"   ></TextBlock>-->
+                        <Button Margin="10"    Width="170" Name="tbTestmarkenliste"  Content="Alle Textmarken in .xls" Click="tbTestmarkenliste_Click" Style="{StaticResource lessButton}"></Button>
+                        <CheckBox x:Name="ckbEditVorlagenDatei" IsChecked="False" Content="Vorlage ändern" Padding="10,00,10,10" Margin="10"  Width="140"
+                                  ToolTip="Mit Haken: Die Datei wird nur zum  Ändern aufgerufen. Ohne Haken: Die Datei wird als Vorlage für die Textmarken ausgewählt."/>
+                        <Button x:Name="btnRatgeber" Click="btnRatgeber_Click" Width="100" Content="Tipps ?" Style="{StaticResource lessButton}" />
+                        <Button x:Name="btnExplorer" Click="btnExplorer_Click" Width="190" Content="Sachgebietsverzeichnis öffnen" 
+                                Margin="15,0,0,0" Style="{StaticResource lessButton}" 
+                                ToolTip="öffnet das Verzeichnis auf O:, z.B. um neue Vorlagen hinein zu kopieren"/>
+
+                        <!--<Button x:Name="btnSGexplorer" Click="btnSGexplorer_Click" Content="Sachgebiet wechseln"   
+                                ToolTip="Wählen Sie hier das gewünschte Sachgebiet"
+                                   Margin="15,0,0,0" Height="57"   />-->
+
+                        <Button  Width="200"      Height="71" VerticalAlignment="Bottom"  x:Name="btnSGexplorer" Click="btnSGexplorer_Click" 
+                                 ToolTip="Wählen Sie hier das gewünschte Sachgebiet"
+                                  Margin="15,0,0,0" >
+                            <StackPanel >
+                                <TextBlock >Sachgebiet wechseln</TextBlock>
+                                <TextBox  x:Name="tbzuSG" FontSize="11" Margin="0,5,0,0"  ></TextBox>
+                            </StackPanel>
+                        </Button>
+                        
+                        
+                        <TextBlock Margin="10" Text="sg"    x:Name="tbsgNR" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="5,5,5,5" Orientation="Horizontal">
+                        <TextBlock Text="Als Vorlagen dienen: *.doc,*.docx,*.xlsx,*.pdf - Dateien. Nicht *.xls. Nur in *.doc und *.docx können Textmarken verwendet werden!"/>
+
+
+                    </StackPanel>
+                    <TextBlock Text=" Permanentvorlagen: Dateien die hier Sachgebietsbezogen gepflegt werden! Erlaubte Typen sind Excel, Word, Access, PDF" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <TabControl  MinHeight="525" MinWidth="700">
+            <TabItem Header="Sachgebietsbezogen" x:Name="tiSachgebiet">
+                <DataGrid  x:Name="dgVorlagen"   ItemsSource="{Binding ''}"    
+                                                 RowStyle="{StaticResource dgRowStyle}"   
+                                                 ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                   FontWeight="Normal">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="Datei" Width="Auto"  Binding="{Binding Name, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Geändert" Width="30*"  Binding="{Binding LastAccessTime, Mode=OneWay}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Allgemein" x:Name="tiAllgemein">
+                <DataGrid  x:Name="dgVorlagenAllgemein"   ItemsSource="{Binding ''}"    
+                                              RowStyle="{StaticResource dgRowStyle}"   
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                   FontWeight="Normal">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="Datei" Width="Auto"  Binding="{Binding Name, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Geändert" Width="30*"  Binding="{Binding LastAccessTime, Mode=OneWay}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Permanent" x:Name="tiPermanent" Margin="-5,0,5,0">
+                <DataGrid  x:Name="dgVorlagenPermanant"   ItemsSource="{Binding ''}"    
+                                              RowStyle="{StaticResource dgRowStyle}"   
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                   FontWeight="Normal">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="Datei" Width="Auto"  Binding="{Binding Name, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Geändert" Width="30*"  Binding="{Binding LastAccessTime, Mode=OneWay}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+
+    </DockPanel>
+</Window>

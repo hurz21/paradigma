@@ -1,0 +1,1373 @@
+﻿<Window
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="Window_Detail" 
+            xmlns:src="clr-namespace:paradigma"  
+            Title="Paradigma - Die Vorgangsbearbeitung. (c) Dr. Feinen 2009"   ResizeMode="CanResizeWithGrip" 
+            WindowState="Maximized"
+            Height="900" Width="1745" AllowsTransparency="False" WindowStyle="ThreeDBorderWindow"
+            x:Name="Window1"  Background="{StaticResource backg3}"  WindowStartupLocation="CenterScreen" 
+            Margin="4"  AllowDrop="True"  >
+    <Window.Resources>
+        <src:MyFormatter x:Key="myformattjf" />
+        <src:myGlobalz   x:Key="myGlobalz"/>
+        <XmlDataProvider x:Key="XMLSourceComboBoxGemKRZ" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxEreignisse"    />
+        <XmlDataProvider x:Key="XMLSourceComboBoxGISHintergrund"    />
+        <XmlDataProvider x:Key="XMLSourceComboBoxParagraf" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxRaumNr" />
+        <!--<XmlDataProvider x:Key="XMLSourceComboBoxBeteiligte"    />-->
+
+        <Style x:Key="rowheaderDokuswithID" TargetType="{x:Type DataGridRowHeader}"  >
+            <Setter Property="Content" Value="{Binding DOKUMENTID}" />
+            <Setter Property="Width" Value="40" />
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <Style x:Key="dgRowStyle" TargetType="DataGridRow"  BasedOn="{StaticResource dgRowStyle}">
+
+            <Setter Property="Background" Value="White" />
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="LightGray" />
+                </Trigger>
+                <Trigger Property="IsSelected"  Value="True">
+                    <Setter Property="Background" Value="LightGoldenrodYellow" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dgCellStyleRBLINK" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="white" />
+            <Setter Property="ContentTemplate" >
+                <Setter.Value>
+                    <DataTemplate>
+                        <Button Click="gislink_click" Width="30" Content="{Binding ID}"/>
+                        <!--<Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+
+
+
+        <Style x:Key="dgCellStyleWF_checkbox" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="white" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ERLEDIGT}" Value="1">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <CheckBox IsChecked="True"  IsEnabled="False"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ERLEDIGT}" Value="0">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <CheckBox IsChecked="false" IsEnabled="False"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dgCellStyleRBTyp" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="white" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TYP}" Value="1">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Adresse"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="2">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Flst"/>
+
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="5">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Foto"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="7">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Punkt"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="3">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Polygon"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="4">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Strecke"/>
+                                <!-- <Ellipse Margin="2" Width="10"  Height="10" Fill="SlateGray"/>-->
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="dgRowStyleRB" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding STATUS}" Value="1">
+                    <Setter Property="Foreground" Value="blue" />
+                    <Setter Property="ToolTip" Value="Dieser Eintrag ist eine Verlinkung mit einem Verwandten Vorgang" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dgRowStyleVerlauf" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+
+                <DataTrigger Binding="{Binding Richtung}" Value="Eingang">
+                    <Setter Property="Foreground" Value="blue" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Richtung}" Value="Ausgang">
+                    <Setter Property="Foreground" Value="green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding EreignisDokTyp}" Value="1">
+                    <!--<Setter Property="Foreground" Value="Gray" />-->
+                    <Setter Property="FontSize" Value="10" />
+
+                </DataTrigger>
+                <DataTrigger Binding="{Binding EreignisDokTyp}" Value="0">
+                    <!--<Setter Property="Foreground" Value="Gray" />-->
+
+                    <Setter Property="FontWeight" Value="Black" />
+                </DataTrigger>
+
+
+                <DataTrigger Binding="{Binding revisionssicher}" Value="1">
+                    <Setter Property="Background" Value="pink" />
+                </DataTrigger>
+
+            </Style.Triggers>
+            <!--<Setter Property="ToolTip">
+                <Setter.Value>
+                    <TextBlock Text="{Binding DATEINAMEEXT}"   />
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+
+        <Style x:Key="dgRowStyleDokument" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <!--<Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green" />
+                </Trigger>-->
+                <DataTrigger Binding="{Binding revisionssicher}" Value="True">
+                    <Setter Property="Background" Value="Pink" />
+                </DataTrigger>
+
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <!--<TabControl>
+        <TabItem IsSelected="True">-->
+    <DockPanel>
+
+        <DockPanel x:Name="kopp" DockPanel.Dock="Top"   Background="{StaticResource backg1}"  Height="304">
+            <GroupBox DockPanel.Dock="Left" x:Name="grpStammdatenUebersicht" Width="680"  Height="306"  
+                      Header="Stammdaten"    Background="{StaticResource backgdunkel}" >
+                <Grid Width="690" 
+                    x:Name="grdKopf" 
+                    VerticalAlignment="Top" 
+                    Panel.ZIndex="90" 
+                 
+                    HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="23" />
+                        <RowDefinition Height="40" />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="56" />
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="70.5"/>
+                        <ColumnDefinition Width="123" />
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="39*" />
+                        <ColumnDefinition Width="182*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="27*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="6" x:Name="chkdarfnichtvernichtetwerden"  Margin="5"  
+                              HorizontalContentAlignment="Left"  ToolTip="der Vorgang muss mehr als 10 Jahre bewahrt werden" 
+                                 Checked="chkdarfnichtvernichtetwerden_Checked"
+                              Content="> 10 Jahre "  >
+
+                    </CheckBox>
+                    <StackPanel Grid.Column="7" Grid.RowSpan="3"   Grid.ColumnSpan="7" Margin="0,0,0,19">
+                        <CheckBox x:Name="ckbGutachtenvorhanden"  
+                                
+                                 >
+                            <Label Content="Es gibt Gutachten zu dem Vorgang"  />
+                        </CheckBox>
+                        <CheckBox x:Name="ckbGutachtenInDokumente"    Checked="ckbGutachtenInDokumente_Checked">
+
+                            <Label Content="Das /die Gutachten liegen unter dem Reiter 'Dokumente' vor"  />
+                        </CheckBox>
+                    </StackPanel>
+
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" x:Name="Label16" Padding="5" Text="VorgangsNr:" HorizontalAlignment="Left" Width="85"
+                               Grid.ColumnSpan="3"  />
+                    <TextBlock Grid.Column="3" x:Name="lblVorgangsID" Width="50"  Padding="5" MouseDown="lblVorgangsID_MouseDown"
+                               ToolTip="Durch Klicken auf die Vorgangsnummer können Sie den 'Erledigt'-Status ändern."
+                               Text="{Binding sitzung.aktVorgangsID, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+                               IsEnabled="True"
+                               HorizontalAlignment="Left" Grid.ColumnSpan="2"   Grid.RowSpan="1" />
+
+
+                    <TextBlock Grid.Row="3" Padding="5" x:Name="Label1" Text="Az.:" HorizontalAlignment="Left" Width="71" Grid.ColumnSpan="2" />
+                    <TextBox Padding="0" Grid.Row="3"   x:Name="lblAZ"   IsReadOnly="True"    Background="Silver"
+                         Text="{Binding sitzung.aktVorgang.Stammdaten.az.gesamt, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="10" 
+                               DataContext="{Binding Source={StaticResource myGlobalz}}" 
+                         ToolTip="" Grid.Column="2" Height="23" VerticalAlignment="Top" />
+                    <TextBlock Grid.Row="1" Padding="5" x:Name="Label13" Text="Sachgebiet:" HorizontalAlignment="Left" Width="85" Grid.ColumnSpan="3" />
+                    <TextBlock Grid.Row="1" Padding="5" x:Name="Label14" 
+                       Text="{Binding sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+                               Grid.ColumnSpan="5" Grid.Column="2" />
+
+
+                    <TextBlock Grid.Row="4" Padding="5" ToolTip="Ändern unter 'Stammdaten'" Text="Titel:" Grid.ColumnSpan="2" />
+                    <TextBlock Grid.Row="5" Padding="5" ToolTip="Ändern unter 'Stammdaten'" Text="Schlagworte:" Grid.ColumnSpan="2" />
+                    <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Weitere:"  Grid.Column="5" Margin="3,0,0,0"
+                               MouseMove="tbWeitereBearbeiter_Mousemove" />
+                    <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Bearbeiter:"  Grid.Column="0" Grid.ColumnSpan="2" />
+                    <TextBox   Padding="0" Grid.Row="4"   x:Name="tbBeschreibung2"   TextWrapping="NoWrap"  IsReadOnly="True"   Background="Silver"
+                              MouseDoubleClick="tbBeschreibung2_MouseDown" SelectionChanged="tbBeschreibung2_SelectionChanged"
+                     Text="{Binding sitzung.aktVorgang.Stammdaten.Beschreibung, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+                                 Grid.ColumnSpan="10"
+                    ToolTip="Anklicken um zu ändern"
+                    Grid.Column="2" />
+
+                    <Button x:Name="btnConfirmBeschreibung2" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="4" Grid.Column="12" Grid.ColumnSpan="1" Click="btnConfirmBeschreibung2_Click" Height="Auto" Margin="0,0,0,0" />
+
+                    <TextBox   Padding="0" Grid.Row="5"   x:Name="tbBemerkung"   TextWrapping="WrapWithOverflow" IsReadOnly="True" Background="Silver"
+                     Text="{Binding sitzung.aktVorgang.Stammdaten.Bemerkung, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+                                SelectionChanged="tbBemerkung_SelectionChanged"
+                               Grid.ColumnSpan="10"   MouseDoubleClick="tbBemerkung_MouseDown" ToolTip="Doppelklick um zu ändern" 
+                                                 Grid.Column="2" 
+                               />
+                    <Button x:Name="btnConfirmBemerkung" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="5" Grid.Column="12" Grid.ColumnSpan="1" Click="btnConfirmBemerkung_Click" Height="Auto" Margin="0,0,0,0" />
+
+                    <TextBlock   Padding="5" Grid.Row="2"    Text="Projekt:" ToolTip="Projektzugehörigkeit" x:Name="btnProjekt2" 
+                                 Margin="0,0,0,0" Grid.ColumnSpan="2"  
+                           />
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="10" Padding="5"  x:Name="tbProjektAbstract"  Grid.Column="2" />
+                    <TextBlock Grid.Row="6" Padding="5"   Text="Standort:" ToolTip="Standort der Papierakte" Grid.ColumnSpan="2"/>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="7" Grid.ColumnSpan="3">
+                        <TextBlock   Padding="5"  Text="§:" ToolTip="Relevanter $"  HorizontalAlignment="Left" />
+                        <TextBlock   Padding="5"     x:Name="tbParagraph"  HorizontalAlignment="Left"
+                     Text="{Binding sitzung.aktVorgang.Stammdaten.Paragraf,
+                        Source={StaticResource myGlobalz}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                
+                             ToolTip=""/>
+
+                        <ComboBox   x:Name="cmbParagraf" ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
+                                        DataContext="{Binding Source={StaticResource XMLSourceComboBoxParagraf}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbParagraf_SelectionChanged"  />
+                    </StackPanel>
+
+
+
+                    <TextBlock Grid.Row="7" Padding="5"   Text="Externes Az:" Grid.ColumnSpan="2" />
+                    <TextBlock Grid.Row="8" Padding="5"   Text="Altes Az:" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
+                    <TextBlock Grid.Row="9" Padding="5"  Text="Gem.Kürzel:" Grid.ColumnSpan="2"
+                           ToolTip="" />
+                    <TextBlock   Padding="5" Grid.Row="6"   x:Name="tbStandort"  
+                     Text="{Binding sitzung.aktVorgang.Stammdaten.Standort.RaumNr, 
+                        Source={StaticResource myGlobalz}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                
+                             ToolTip="" Grid.Column="2" Grid.ColumnSpan="3" />
+                    <ComboBox   x:Name="cmbRaumNr"   Grid.Row="6"  Grid.Column="4" Grid.ColumnSpan="2" ToolTip="Der Raum in dem die Akte steht." Width="25"
+                                        DataContext="{Binding Source={StaticResource XMLSourceComboBoxRaumNr}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbRaumNr_SelectionChanged"
+                                      />
+
+
+                    <TextBox     Grid.Row="7"   x:Name="tbProbaugAZ"  IsReadOnly="True" Background="Silver"
+                                 MouseDoubleClick="tbProbaugAZ_MouseDown"  ToolTip="Doppelklick um zu ändern"  
+                                 SelectionChanged="tbProbaugAZ_SelectionChanged" 
+                     Text="{Binding sitzung.aktVorgang.Stammdaten.Probaugaz, Source={StaticResource myGlobalz}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                
+                                 Grid.Column="2" Grid.ColumnSpan="5" />
+                    <Button x:Name="btnConfirmtbProbaugAZ" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="7" Grid.Column="8" Grid.ColumnSpan="1" Click="btnConfirmtbProbaugAZ_Click" Height="Auto" Margin="0,0,0,0" />
+
+
+
+                    <TextBox Grid.Row="8"   x:Name="tbAltAz"         IsReadOnly="True" Background="Silver"
+                             Text="{Binding sitzung.aktVorgang.Stammdaten.AltAz, Mode=TwoWay,  Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"   
+                             Grid.Column="2" Grid.ColumnSpan="5"  MouseDoubleClick="tbAltAz_MouseDown"  ToolTip="Doppelklick um zu ändern"  
+                             SelectionChanged="tbAltAz_SelectionChanged" />
+                    <Button x:Name="btnConfirmtbAltAz" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="1" Click="btnConfirmtbAltAz_Click" Height="Auto"  />
+
+                    <StackPanel Orientation="Horizontal"  Grid.Row="9"  Grid.Column="2" Grid.ColumnSpan="3">
+                        <ComboBox  x:Name="cmbGemKRZ"      ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
+                               MouseMove="cmbGemKRZ_MouseMove"
+                                        DataContext="{Binding Source={StaticResource XMLSourceComboBoxGemKRZ}, XPath=/GEMKRZen/GEMKRZ}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbGemKRZ_SelectionChanged"  
+                                      />
+                        <TextBlock    x:Name="tbGEMKRZ"      Padding="5"   MouseEnter="tbGEMKRZ_MouseEnter" 
+                             ToolTip="" 
+                             Text="{Binding sitzung.aktVorgang.Stammdaten.GemKRZ, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"   
+                    Margin="0,0,0,0" />
+                    </StackPanel>
+                    <TextBlock Grid.Row="9" Grid.Column="5" Padding="5"  Text="InterneNr:" 
+                           ToolTip="Access-Bezug herstellen" Margin="3,0,0,0" />
+
+                    <TextBox Grid.Row="9"  Grid.Column="6" x:Name="tbInternenr"      IsReadOnly="True" Background="Silver"
+                             ToolTip="Access-Bezug (Natureg...)"  TextWrapping="WrapWithOverflow"
+                             Text="{Binding sitzung.aktVorgang.Stammdaten.InterneNr, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"   
+                        Grid.ColumnSpan="2" 
+                              MouseDoubleClick="tbtbInternenr_MouseDown"  SelectionChanged="tbtbInternenr_SelectionChanged" />
+                    <Button x:Name="btnConfirmtbInternenr" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="9" Grid.Column="8"   Click="btnConfirmtbInternenr_Click" Height="Auto" Margin="0,0,0,0" />
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="10"  Grid.ColumnSpan="1" >
+                        <TextBlock 
+                        x:Name="tbWeitereBearbeiter"   Padding="5"  IsEnabled="False" ToolTip="" 
+                        MouseMove="tbWeitereBearbeiter_Mousemove" MinWidth="90" MouseEnter="tbWeitereBearbeiter_Mousemove"
+                        Text="{Binding sitzung.aktVorgang.Stammdaten.WeitereBearbeiter, Source={StaticResource myGlobalz},Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        />
+
+                        <Button    x:Name="btnWeitereBearbeiterListen"   Content="..." Style="{StaticResource lessButton}" Width="20" Height="18" HorizontalAlignment="Left"
+                                    Click="btnWeitereBearbeiterListen_Click" />
+                    </StackPanel>
+
+                    <Button Grid.Row="11"  x:Name="btnSTammChange" Content="Stammdaten ändern" Click="btnSTammChange_Click"  
+                            Grid.Column="3" Grid.ColumnSpan="4" Margin="0,5" Height="Auto" />
+                    <!--<Button Grid.Row="9"  x:Name="btnNatureg" Content="Natureg" Click="btnNatureg_Click_1"                           
+                            Grid.Column="8" Grid.ColumnSpan="1"  Width="90"  Style="{StaticResource lessButton}" Height="22"
+                            Margin="91,1,40,0" />-->
+                    <ComboBox x:Name="cmbSachgebietsFormulare" SelectionChanged="cmbSachgebietsFormulare_SelectionChanged"  Grid.Row="9" 
+                              Grid.Column="10" Grid.ColumnSpan="2" Margin="26,0,85,0" >
+
+                        <ComboBoxItem IsSelected="True">SachgebietsDB</ComboBoxItem>
+                        <ComboBoxItem  >Natureg</ComboBoxItem>
+
+                    </ComboBox>
+                    <TextBlock
+                        Grid.Row="10"   Padding="5"                         x:Name="tbBearbeiter"  ToolTip="" 
+                        Text="{Binding sitzung.aktVorgang.Stammdaten.Bearbeiter.Initiale, Source={StaticResource myGlobalz},Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Grid.Column="2" Grid.ColumnSpan="3" Margin="0,0,4,0" />
+                </Grid>
+            </GroupBox>
+
+            <StackPanel x:Name="stackp1">
+                <StackPanel Orientation="Horizontal">
+                    <Button Height="100" Margin="5" Width="30" x:Name="btnAkteziehen" Click="btnAkteziehen_Click">
+                        <TextBlock Text="Akte ziehen">
+                            <TextBlock.LayoutTransform>
+                                <RotateTransform Angle="-90"/>
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </Button>
+                    <GroupBox Header="Werkzeuge" Height="147" x:Name="grpWerkzeuge" HorizontalAlignment="Right"       >
+                        <StackPanel Orientation="Horizontal">
+                            <GroupBox Header="+ Ereignis hinzufügen" Width="135"  >
+                                <StackPanel Width="180" Height="120" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Height="100" Margin="5" x:Name="btnStandardereignis" Click="btnStandardereignis_Click"  FontSize="10">Standard</Button>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                                        <Button Height="30" Margin="2" x:Name="btnWiedervorlage" Click="btnWiedervorlage_Click" FontSize="9">Wiedervorlage</Button>
+                                        <Button Height="30" Margin="2" x:Name="btnOutlookemailuebernehmen" Click="btnOutlookemailuebernehmen_Click" FontSize="9">Outlookemail</Button>
+                                        <Button Height="30" Margin="2" x:Name="btnZahlung" Click="btnZahlung_Click" FontSize="9" >Zahlung</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="+ Dokumente hinzufügen">
+                                <StackPanel Width="210" Height="120" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Height="100" Margin="5" x:Name="btnStandardDokuHinzufuegen" Click="btnStandardDokuHinzufuegen_Click">Standard</Button>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                        <Button Height="30" Margin="2" x:Name="btnemailschreiben" Click="btnemailschreiben_Click">Email schreiben</Button>
+                                        <Button Height="30" Margin="2" x:Name="btnAktennotiz" Click="btnAktennotiz_Click">Aktennotiz</Button>
+                                        <Button Height="30" Margin="2" x:Name="btnNachVorlage" Click="btnNachVorlage_Click">nach Vorlage</Button>
+                                    </StackPanel>
+                                    <Button Height="100" Margin="5" Width="40" x:Name="btnDokumenteZwischenablage" 
+                                        Click="btnDokumenteZwischenablage_Click"
+                                        ToolTip="für Grafiken / Screenshots / Snips. NEU: Auch für Texte!">
+                                        <TextBlock Text="+ Zwischenablage " FontSize="11">
+                                            <TextBlock.LayoutTransform>
+                                                <RotateTransform Angle="-90"/>
+                                            </TextBlock.LayoutTransform>
+                                        </TextBlock>
+                                    </Button>
+
+                                    <!--<Button Height="100" Margin="5" Width="35" x:Name="btnallgVorlage" Click="btnallgVorlage_Click">
+                                    <TextBlock Text="allg. Vorlage ">
+                                        <TextBlock.LayoutTransform>
+                                            <RotateTransform Angle="-90"/>
+                                        </TextBlock.LayoutTransform>
+                                    </TextBlock>
+                                </Button>-->
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="+ Raumbezug hinzufügen">
+                                <StackPanel Width="170" Height="120" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Height="100" Margin="5" x:Name="btnPolygon" Click="btnPolygon_Click">Polygon</Button>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                        <Button Height="30" Margin="2" x:Name="btnAdresse" Click="btnAdresse_Click">Adresse</Button>
+                                        <Button Height="30" Margin="2" x:Name="btnFlurstueck" Click="btnFlurstueck_Click">Flurstück</Button>
+                                        <Button Height="30" Margin="2" x:Name="btnPunktmitumkreis" Click="btnPunktmitumkreis_Click">Punkt mit Umkreis</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Verschiedenes">
+                                <StackPanel   Height="120" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button Height="100" Margin="5" Width="50" x:Name="btnbeteiligteHinzudirekt" Click="btnbeteiligteHinzudirekt_Click">
+                                        <TextBlock Text="+ Beteiligte ">
+                                            <TextBlock.LayoutTransform>
+                                                <RotateTransform Angle="-90"/>
+                                            </TextBlock.LayoutTransform>
+                                        </TextBlock>
+                                    </Button>
+                                    <Button Height="100" Margin="5" Width="50" x:Name="btnVerlinkung" Click="btnVerlinkung_Click">
+                                        <TextBlock Text="+ Vorgänge  ">
+                                            <TextBlock.LayoutTransform>
+                                                <RotateTransform Angle="-90"/>
+                                            </TextBlock.LayoutTransform>
+                                        </TextBlock>
+                                    </Button>
+                                    <Button Height="100" Margin="5" Width="50" Click="btnExportClick" ToolTip="Export zu mobilem Gerät (Tablet, Phablet)">
+                                        <TextBlock Text="+ Export  ">
+                                            <TextBlock.LayoutTransform>
+                                                <RotateTransform Angle="-90"/>
+                                            </TextBlock.LayoutTransform>
+                                        </TextBlock>
+                                    </Button>
+
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                                        <Button  x:Name="btnTextbausteine" Content="Textbausteine" Click="btnTextbausteine_Click"  Width="100" Height="23"
+                                             Visibility="Visible"  />
+                                        <Button Click="btnProtokoll" Content="testprot"    Height="23" x:Name="btnProtokkkoll"/>
+                                        <Button  x:Name="kurzdossier" Content="Dossier" Click="kurzdossier_Click"  Width="100"  Height="23"  
+                                             ToolTip="Die hiermit erzeugte WORD-Datei ist nur temporär: Sie wird NICHT ins Archiv aufgenommen." />
+                                        <Button  x:Name="btnAllgemeinLoeschen" Content="Vorgang Löschen"
+                                    ToolTip="Vorgang wird gelöscht!!" IsEnabled="False" Click="btnAllgemeinLoeschen_Click" Height="23"  Width="100"   />
+                                        <!--<Button Height="30" Margin="2"  Width="100" x:Name="btnFotoguggerdirekt" Click="btnFotoguggerdirekt_Click">Fotogugger</Button>-->
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <StackPanel    Margin="0,15" >
+                                <TextBlock Text="Vorgang verlassen" Foreground="White" FontSize="10" HorizontalAlignment="Center"/>
+                                <Button   Margin="5"  Width="90" Height="20" x:Name="btnNeu" Click="btnBestand_Click"   >
+                                    <TextBlock Text="Bestandsliste " ToolTip="Hauptmenü in den Vordergrund">
+                                    </TextBlock>
+                                </Button>
+                                <Button   Margin="5"  Width="90" Height="20" x:Name="btnzuVorgang" Click="btnzuVorgang_Click"   >
+                                    <TextBlock Text="Zu Vorgang: " ToolTip="Zu anderem Vorgang">
+                                    </TextBlock>
+                                </Button>
+                                <Button   Margin="5"  Width="90" Height="20" x:Name="btnNeuerVorgang" Click="btnNeuerVorgang_Click"   >
+                                    <TextBlock Text="Neu " ToolTip="Neuen Vorgang anlegen">
+                                    </TextBlock>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+          
+                <StackPanel Orientation="Horizontal">
+                    <GroupBox Header="Zahlungen" Margin="5,0,0,0" FontSize="10" Height="154"  Padding="0,5,0,0" IsEnabled="True"
+                              x:Name="grpBoxKosten">
+
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="74" />
+                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="70" />
+
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Column="0" Content="Interne Leistungsverrechnung" Grid.ColumnSpan="3"
+                                     Click="chkboxInterneZahlungNEU" x:Name="chkboxInterneZahlung" Margin="0,0,0,14" Grid.RowSpan="2"/>
+                            <CheckBox Grid.Column="0" Grid.Row="1" Content="Verwaltungsgebühr"
+                                          x:Name="chkboxverwaltungsgebuehr" Click="chkboxverwaltungsgebuehr_Click_1" Margin="0,1,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="1" Content="bezahlt"
+                                            x:Name="verwaltungsgebuehrBezahlt" Click="verwaltungsgebuehrBezahlt_Click_1" Margin="0,1,0,13" Grid.RowSpan="2"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="2" Content="Verwarnungsgeld"
+                                            x:Name="VERWARNUNGSGELD" Click="VERWARNUNGSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="2" Content="bezahlt"
+                                            x:Name="VerwarnungsgeldBezahlt" Click="VerwarnungsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="3" Content="Bußgeld"
+                                            x:Name="BUSSGELD" Click="BUSSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="3" Content="bezahlt"
+                                            x:Name="BUSSGELDBezahlt" Click="BUSSGELDBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
+
+
+                            <CheckBox Grid.Column="0" Grid.Row="4" Content="Zwangsgeld"
+                                            x:Name="Zwangsgeld" Click="Zwangsgeld_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="4" Content="bezahlt"
+                                            x:Name="ZwangsgeldBezahlt" Click="ZwangsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,00"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="5" Content="Ersatzgeld"
+                                            x:Name="ersatzgeld" Click="ersatzgeld_Click_1" Margin="0,2,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="1"  Grid.Row="5" Content="be-"
+                                            x:Name="ersatzgeldBezahlt" Click="ersatzgeldBezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="1"/>
+
+                            <CheckBox Grid.Column="2"  Grid.Row="5" Content="ausgezahlt"
+                                            x:Name="ersatzgeldausgezahlt" Click="ersatzgeldausgezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="2"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="6" Content="Sicherheitsleistung"
+                                            x:Name="sicherheit" Click="sicherheit_Click_1" Grid.RowSpan="2" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="6" Content="hinterlegt"
+                                            x:Name="sicherheitBezahlt" Click="sicherheitBezahlt_Click_1" Grid.RowSpan="2" Margin="0,3,0,11"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="7" Content="Beihilfe/Zuschuss"
+                                            x:Name="beihilfe" Click="beihilfe_Click_1" Margin="0,3,0,0" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="7" Content="gezahlt"
+                                            x:Name="beihilfeBezahlt" Click="beihilfeBezahlt_Click_1" Margin="0,3,0,00"/>
+
+
+
+
+
+                        </Grid>
+
+
+
+                    </GroupBox>
+                    <GroupBox Header="Minimap Werkzeugleiste" MaxWidth="811" x:Name="grpMinimapSteuerung" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="140">
+
+                        <!--<Button Grid.Column="3" Grid.Row="2" x:Name="globalfit" Click="globalfit_Click" >Kreisansicht</Button>-->
+
+
+                        <StackPanel   Orientation="Horizontal" >
+                            <StackPanel Orientation="Vertical" Height="90" Margin="0"    >
+                                <TextBlock Text="Hintergrund wechseln" Padding="5" ToolTip="Hier können Sie den Hintergrund wechseln" Height="30"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="tbHGRUND" Text="Stadtplan" Padding="5,7,5,0" Width="95"   Background="White" Margin="5,5,0,0"/>
+                                    <ComboBox x:Name="cmbGISHintergrund" Height="30" Width="19" Margin="0,5,0,0" BorderBrush="Black"
+                                     ToolTip="Hier können Sie die Hintergrundkarte wechseln!"
+                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxGISHintergrund}, XPath=/Variablen/Variable}" IsSynchronizedWithCurrentItem="True" 
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}"                                                                 
+                                                                SelectionChanged="cmbGISHintergrund_SelectionChanged" 
+                                  />
+                                </StackPanel>
+                                <TextBlock x:Name="tbAktiveEbene" Text="Aktive Ebene" Padding="5" ToolTip="Aktive Ebene" Height="30"/>
+                            </StackPanel>
+                            <GroupBox Header="Navigation">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" Height="90" Margin="0"    >
+                                        <Button x:Name="Themen" Click="btnThemenauswahl" ToolTip="Vordergrund bestimmen"  Width="90">Themen</Button>
+                                        <Button x:Name="fstsuche" Click="btnFstsuche" ToolTip="Suchen nach Flurstücken"  Width="90">Flurstück</Button>
+                                        <Button x:Name="adresssuche" Click="btnAdrSuche" ToolTip="Suchen nach Adressen"  Width="90">Adresse</Button>
+                                    </StackPanel>
+                                    <WrapPanel Width="90" Margin="2">
+                                        <Button Grid.Column="3" Grid.Row="2" x:Name="globalfit" Click="globalfit_Click" Width="29" ToolTip="Kreisansicht">[o]</Button>
+                                        <Button Grid.Column="3" Grid.Row="2" x:Name="btnzoomin" Click="zoomin_Click" Width="29" ToolTip="Reinzoomen">+</Button>
+                                        <Button Grid.Column="3" Grid.Row="2" x:Name="btnzoomout" Click="zoomout_Click" Width="29" ToolTip="Rauszoomen">-</Button>
+                                        <Button Grid.Column="3" Grid.Row="3" x:Name="rbfit" Click="rbfit_Click" Width="29" ToolTip="Auschnitt wird an die Raumbezüge angepasst">R</Button>
+                                        <ToggleButton Grid.Column="3" Grid.Row="3" x:Name="btnAusschnitt" Click="btnAuschnitt_Click" Width="29" 
+                                              ToolTip="Auschnitt frei wählen">A</ToggleButton>
+                                        <Button Grid.Column="3" Grid.Row="3" x:Name="btnLinks" Click="Links_Click" Width="29" ToolTip="Auschnitt verschieben"  >
+                                            <Image  x:Name="pfeillinks" Source="/paradigma;component/icons/links.png" Height="15" Width="10" Stretch="Fill" >
+                                            </Image>
+                                        </Button>
+
+                                        <Button Grid.Column="3" Grid.Row="3" x:Name="btnOben" Click="Oben_Click" Width="29" ToolTip="Auschnitt verschieben"  >
+                                            <Image  x:Name="pfeiloben" Source="/paradigma;component/icons/oben.png" Height="15" Width="10" Stretch="Fill" >
+                                            </Image>
+                                        </Button>
+                                        <Button Grid.Column="3" Grid.Row="3" x:Name="btnUnten" Click="Unten_Click" Width="29" ToolTip="Auschnitt verschieben"  >
+                                            <Image  x:Name="pfeilunten" Source="/paradigma;component/icons/unten.png" Height="15" Width="10" Stretch="Fill" >
+                                            </Image>
+                                        </Button>
+                                        <Button  x:Name="btnRechts" Click="Rechts_Click" Width="29" ToolTip="Auschnitt verschieben"  >
+                                            <Image  x:Name="pfeilrechts" Source="/paradigma;component/icons/rechts.png" Height="15" Width="10" Stretch="Fill" >
+                                            </Image>
+                                        </Button>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <StackPanel Orientation="Vertical" Height="90" Margin="0"   >
+                                <StackPanel Orientation="Horizontal">
+                                    <Button  x:Name="btnrefreshminimap" Click="refreshminimap" Width="29"   ToolTip="Minimap aktualisieren" >
+                                        <Image  x:Name="myimagerefresh" Source="/paradigma;component/icons/refreshblue.png"  ></Image>
+                                    </Button>
+                                    <Button  x:Name="btnGoogleImBrowser" Click="btnGoogleMaps" Width="29"   ToolTip="In GoogleMaps anzeigen" >
+                                        <Image  x:Name="myimageGoogleImBrowser" Source="/paradigma;component/icons/googlemaps.png"  ></Image>
+                                    </Button>
+                                    <Button  x:Name="btnZWERT" Click="btnZWERT_Click" Width="29"   ToolTip="Höhe ermitteln (dauert länger)" >
+                                        Z
+                                    </Button>
+                                </StackPanel>
+                                <Button  x:Name="btnMapDrucken" Click="printmap" Width="89"   ToolTip="Karte drucken" >
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Image  x:Name="myimagerdruck" Source="/paradigma;component/icons/print.png"  Width="14"   ></Image>
+                                        <TextBlock >Plotauftrag</TextBlock>
+                                    </StackPanel >
+                                </Button>
+                                <Button x:Name="btnPdfTest" Click="pdfTestClick" ToolTip=" "  Width="89"    >
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Image  x:Name="myPDFdruck" Source="/paradigma;component/Details/icons/pdf.jpg"  Width="14"  Margin="2"></Image>
+                                        <TextBlock >PDF</TextBlock>
+                                    </StackPanel >
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="90" Margin="0"   >
+                                <Button x:Name="fsteigentuemer" Click="btnEigentuemer" ToolTip="Suchen nach Eigentümer"  Width="90">Eigentümer</Button>
+                                <Button    x:Name="btngislayer"   Click="btnZumGis" ToolTip="Ausschnitt im WebGIS darstellen"
+                                            >
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Padding="5,5,5,5"  >WebGiS</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="fstPaint" Click="fstPaint_Click" ToolTip="Karte mit Paint bearbeiten"  Width="90">-> Paint</Button>
+
+                            </StackPanel>
+                            <GroupBox Header="Koordinate">
+                                <StackPanel>
+                                    <Button x:Name="btnGetCoordinates" Click="btnGetCoordinates_Click">messen [m]</Button>
+                                    <TextBox x:Name="tbMinimapCoordinate"  Width="75" 
+                                   ToolTip="Sie können diese Koordinate verwenden um einen neuen 'Punkt mit Umkreis' als Raumbezug zu definieren."/>
+                                    <Button x:Name="btnGetCoordinates4Kreis" Click="btnGetCoordinates4Kreis_Click">Kreis [m]</Button>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Fläche [qm]">
+                                <StackPanel>
+                                    <Button x:Name="btnGetFlaeche" Click="btnGetFlaeche_Click">messen</Button>
+                                    <Button x:Name="btnGetFlaecheEnde" Click="btnGetFlaecheEnde_Click" IsEnabled="False">Stop</Button>
+                                    <TextBox x:Name="tbMinimapFlaeche"  Width="65" 
+                                   ToolTip=""/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Strecke [m]">
+                                <StackPanel>
+                                    <Button x:Name="btnGetLinie" Click="btnGetLinie_Click">messen</Button>
+                                    <Button x:Name="btnGetLinieEnde" Click="btnGetLinieEnde_Click" IsEnabled="False">Stop</Button>
+                                    <TextBox x:Name="tbMinimapLinie"  Width="65" 
+                                   ToolTip=""/>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+
+                    </GroupBox>
+                </StackPanel>
+            </StackPanel>
+
+        </DockPanel>
+        <TextBox  DockPanel.Dock="Bottom"  x:Name="tbNachricht"  MaxHeight="25"
+                 Text="{Binding sitzung.nachrichtenText, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"  
+                 TextWrapping="Wrap" />
+
+        <StackPanel Panel.ZIndex="10"  Orientation="Horizontal" x:Name="stckUnten"   HorizontalAlignment="Left"  Background="{StaticResource backg3}"  
+                    Width="1920">
+            <TabControl   x:Name="TabControl1"    Panel.ZIndex="10"      HorizontalAlignment="Left"
+                          Background="{StaticResource backg3}" Width="783"   >
+                <TabItem Header="Verlauf" x:Name="tabheaderVerlauf" >
+                    <DockPanel  x:Name="StackPanelVerlauf"  >
+                        <StackPanel  DockPanel.Dock="Top" >
+                            <StackPanel  Orientation="Horizontal" VerticalAlignment="Top"  Height="50"  >
+                                <StackPanel Orientation="Vertical" Visibility="Visible"  >
+                                    <TextBlock Margin="0" Text="Hinzufügen"/>
+                                    <ComboBox   Height="23" x:Name="cmbVerlaufAuswahl" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                            Width="30" 
+                                            ToolTip="Hiermit können Sie dem Vorgang Ereignisse hinzufügen!"
+                                        SelectedIndex="1"
+                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxEreignisse}, XPath=/Variablen/Variable}" IsSynchronizedWithCurrentItem="True" 
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                                SelectionChanged="cmbVerlaufAuswahl_SelectionChanged" 
+                                        />
+                                </StackPanel>
+                                <Button    Height="23"  Width="23" x:Name="EreignisExcel" Margin="5" Click="EreignisExcel_Click" Padding="-5"
+                                         ToolTip="Ausgabe der Verlaufsliste als Exceltabelle">
+                                    <Image  x:Name="imgEreignisExcel" Source="/paradigma;component/icons/MSExcel.png" Height="23" Width="23"  ></Image>
+                                </Button>
+
+                                <Button      Margin="5" HorizontalAlignment="Right" Height="23"  x:Name="Button3"  
+                                       ToolTip="Aktualisieren sie hiermit die Verlaufsliste." Click="Button3_Click">
+                                    <Image  x:Name="myimage3" Source="/paradigma;component/icons/refreshblue.png"  >
+                                    </Image>
+                                </Button>
+
+                                <!--<Button HorizontalAlignment="Right" Margin="5" Height="22.864" x:Name="EreignisExcel"
+                                    Width="74.308" ToolTip="Ausgabe der Liste nach Excel" Content="Excel"/>-->
+
+                                <GroupBox Header="Verwandte"    x:Name="grpBVwVErlauf">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                        <ComboBox      x:Name="cmbVerlaufVerwandte" Width="202" VerticalAlignment="Top" Margin="10,0,15,0"
+                                                     ItemsSource="{Binding}"    DisplayMemberPath="TITEL"  SelectedValuePath="FREMDVORGANGSID" 
+                                                   SelectionChanged="cmbVerlaufverwandte_SelectionChanged"/>
+                                        <Button Height="23"  x:Name="resetVerlaufListe" Click="resetVerlaufliste_Click" Content=" X " Foreground="red" VerticalAlignment="Top" ToolTip="Nur eigene Dokumente anzeigen"/>
+                                    </StackPanel>
+                                </GroupBox>
+                                <!--<Label    Grid.Row="5" Grid.Column="3"   Height="26"  >
+                                <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                                         RequestNavigate="standardworkflow_verlauf_anzeigen" >
+                                    <InlineUIContainer>
+                                        <TextBlock Text="Standardworkflow" />
+                                    </InlineUIContainer>
+                                </Hyperlink>
+                            </Label>-->
+                                <StackPanel Orientation="Vertical" >
+                                    <TextBlock   Margin="0" Padding="0,0" Height="19" x:Name="Label82" Width="120.036" Foreground="Blue" Text="blau: Eingänge"/>
+                                    <TextBlock   Margin="0"  Padding="0,0" Height="19" x:Name="Label83" Width="120.036" Foreground="Green" Text="grün: Ausgänge"/>
+                                </StackPanel>
+                                <!--<Label Grid.Row="5" Grid.Column="3"   Height="26"    >
+                                    <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                                         RequestNavigate="standardworkflow_verlauf_anzeigen" >
+                                        <InlineUIContainer>
+                                            <TextBlock Text="Standardworkflow" />
+                                        </InlineUIContainer>
+                                    </Hyperlink>
+                                </Label>-->
+                                <ComboBox x:Name="cmbVerlaufFunktionen" SelectionChanged="cmbVerlaufFunktionen_SelectionChanged"   Width="60" Height="30" Padding="5">
+                                    <ComboBoxItem IsSelected="True">Tools</ComboBoxItem>
+                                    <ComboBoxItem >ALLE Ereignisse löschen</ComboBoxItem>
+                                </ComboBox>
+                                <Button    Click="verlaufHilfe_Click"  Style="{StaticResource hilfButton}"/>
+                                <CheckBox x:Name="chkExpandereignis" Content="mit Dokumenten" IsChecked="False"
+                                          Checked="ckeckExpander" Unchecked="ckeckExpander"  VerticalAlignment="Center"
+                                          Margin="5" FontSize="10"  />
+                            </StackPanel>
+                        </StackPanel>
+                        <DataGrid  x:Name="dgEreignisse"   ItemsSource="{Binding}"                                           
+                                              RowStyle="{StaticResource dgRowStyleVerlauf}"       
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"  
+                                   AutoGenerateColumns="False" SelectionChanged="dgEreignisse_SelectionChanged"
+                                  >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Datum" Width="80" Binding="{Binding Datum, Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy HH:mm'}" />
+                                <DataGridTextColumn Header="Art" Width="Auto"  Binding="{Binding Art}"  />
+                                <!--<DataGridTextColumn Header="Titel" Width="30*"  Binding="{Binding Beschreibung}" />-->
+                                <DataGridTextColumn Header="Beschreibung" MaxWidth="550"  Binding="{Binding Beschreibung}" >
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="TextWrapping" Value="Wrap"/>
+                                            <Setter Property="ToolTip" Value="{Binding dokBeschreibung}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </TabItem>
+
+                <TabItem x:Name="tabheaderBeteiligte" Header="Beteiligte" >
+                    <DockPanel  >
+                        <StackPanel DockPanel.Dock="Top"  Height="50" Margin="5">
+                            <StackPanel Orientation="Horizontal" >
+                                <Button Content="Hinzufügen" Height="23" x:Name="btnHinzufuegenBeteiligte" Width="75" Click="btnHinzufuegenBeteiligte_Click" Visibility="Visible"/>
+                                <!--<StackPanel Orientation="Vertical"   >
+                                <TextBlock Margin="0" Text="Hinzufügen"/>
+                                <ComboBox   Height="23"  ToolTip="Hiermit können Sie dem Vorgang beteiligte Personen hinzufügen!"
+                                            x:Name="ComboBoxBeteiligte" HorizontalAlignment="Left"  
+                                            VerticalAlignment="Top" Width="120"  SelectedIndex="1"              IsSynchronizedWithCurrentItem="True"                             
+                                DataContext="{Binding Source={StaticResource XMLSourceComboBoxBeteiligte}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@ID" 
+                                                                SelectedValuePath="@Name"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                                SelectionChanged="ComboBoxBeteiligte_SelectionChanged_1"
+                                        />
+                            </StackPanel>-->
+                                <Button    Height="23"  Width="23" x:Name="BeteiligteExcel" Margin="5" Click="BeteiligteExcel_Click" Padding="-5"
+                                         ToolTip="Ausgabe der Beteiligtenliste als Exceltabelle">
+                                    <Image   Source="/paradigma;component/icons/MSExcel.png" Height="23" Width="23"  ></Image>
+                                </Button>
+
+                                <Button    Height="23" x:Name="btnBeteiligteRefresh" Margin="5" Click="btnBeteiligteRefresh_Click"
+                                        ToolTip="Aktualisieren sie hiermit die Liste der Beteiligten.">
+                                    <Image  x:Name="myimage2" Source="/paradigma;component/icons/refreshblue.png"  ></Image>
+                                </Button>
+                                <GroupBox    Header="Beteiligte aus verwandten Vorgängen" x:Name="grpBVwBeteiligte">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                        <ComboBox      x:Name="cmbBeteiligteVerwandte" ItemsSource="{Binding}" Width="200" VerticalAlignment="Top" Margin="5,0,15,0"
+                                                        DisplayMemberPath="TITEL"  SelectedValuePath="FREMDVORGANGSID" 
+                                                   SelectionChanged="cmbBeteiligteverwandte_SelectionChanged"/>
+                                        <!--<Button Height="23"  x:Name="resetBeteiligteListe" Click="resetBeteiligteliste_Click" Content=" X " Foreground="red" VerticalAlignment="Top" ToolTip="Nur eigene Beteiligte anzeigen"/>-->
+                                        <Button Height="23"  x:Name="copybeteiligteListe" Click="copyBeteiligteListe_Click" 
+                                           Width="30" Content="+" Foreground="LawnGreen" 
+                                            VerticalAlignment="Top" ToolTip="Kopieren der Beteiligten">
+                                        </Button>
+                                    </StackPanel>
+                                </GroupBox>
+                                <StackPanel  Orientation="Vertical" VerticalAlignment="Top">
+                                    <TextBlock   Margin="5">Eigene Beteiligte</TextBlock>
+                                    <TextBlock   Foreground="Blue" Margin="5"> Verlinkte Beteiligte</TextBlock>
+                                </StackPanel>
+                                <!--<Label Grid.Row="5" Grid.Column="3"   Height="26"    >
+                                    <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                                         RequestNavigate="standardworkflow_beteiligte_anzeigen" >
+                                        <InlineUIContainer>
+                                            <TextBlock Text="Standardworkflow" />
+                                        </InlineUIContainer>
+                                    </Hyperlink>
+                                </Label>-->
+
+                                <ComboBox x:Name="cmbBeteiligteFunktionen" SelectionChanged="cmbBeteiligteFunktionen_SelectionChanged"  
+                                          Width="60" Height="30" Padding="5">
+                                    <ComboBoxItem>-</ComboBoxItem>
+                                    <ComboBoxItem >ALLE Beteiligten löschen</ComboBoxItem>
+                                    <ComboBoxItem >ALLE Beteiligten kopieren</ComboBoxItem>
+                                </ComboBox>
+                                <Button    Click="BeteiligteHilfe_Click"  Style="{StaticResource hilfButton}"/>
+                                <Button    Click="Verteiler_Click"   Content="Verteiler" ToolTip="Verteiler erzeugen und in die Zwischenablage kopieren"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <DataGrid  x:Name="dgBeteiligte"   ItemsSource="{Binding ''}"                                                 
+                                              RowStyle="{StaticResource dgRowStyleRB}"                                              
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                                            >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="s"  Binding="{Binding STATUS}" />
+                                <DataGridTextColumn Header="Rolle"   Binding="{Binding ROLLE}"     />
+                                <DataGridTextColumn Header="Qu"      Binding="{Binding QUELLE}"     />
+                                <DataGridTextColumn Header="Anrede"  Binding="{Binding ANREDE}" />
+                                <DataGridTextColumn Header="Titel"   Binding="{Binding NAMENSZUSATZ}" />
+                                <DataGridTextColumn Header="Vorn."   Binding="{Binding VORNAME}" />
+                                <DataGridTextColumn Header="Name"    Binding="{Binding NACHNAME}" />
+                                <DataGridTextColumn Header="Ort"     Binding="{Binding GEMEINDENAME}" />
+                                <DataGridTextColumn Header="Straße"  Binding="{Binding STRASSE}" />
+                                <DataGridTextColumn Header="Email"   Binding="{Binding FFEMAIL}" />
+                                <DataGridTextColumn Header="Telefon" Binding="{Binding FFTELEFON1}" />
+                                <DataGridTextColumn Header="Org"     Binding="{Binding ORGNAME}" />
+                                <DataGridTextColumn Header="Orgzusatz"  Binding="{Binding ORGZUSATZ}" />
+                                <DataGridTextColumn Header="Mobil"  Binding="{Binding FFMOBILFON}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Raumbezug " x:Name="tabheaderRaumbezug">
+                    <DockPanel >
+                        <StackPanel DockPanel.Dock="Top" Height="50" Margin="5" >
+                            <StackPanel Orientation="Horizontal" >
+                                <ComboBox  Visibility="Visible"
+                                ToolTip="Fügen Sie hiermit Raumbezüge hinzu"
+                                Height="23" 
+                                Margin="15" 
+                                x:Name="ComboBoxRaumbezug" 
+                                SelectionChanged="ComboBoxRaumbezug_SelectionChanged" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" 
+                                Width="120"/>
+                                <Button    Height="23"  Width="23" x:Name="RaumbezugExcel" Margin="5" Click="RaumbezugExcel_click" Padding="-5"
+                                       ToolTip="Ausgabe der Raumbezugsliste als Exceltabelle">
+
+                                    <Image   Source="/paradigma;component/icons/MSExcel.png" Height="23" Width="23" Name="Image2"></Image>
+                                </Button>
+                                <Button   Height="23" x:Name="btnRaumbezugRefresh" Click="refreshRaumbezugsListe"  Margin="5"
+                                     Foreground="LightGreen"  ToolTip="Aktualisieren sie hiermit die Dokumentenliste.">
+                                    <Image  x:Name="myimage" Source="/paradigma;component/icons/refreshblue.png"  ></Image>
+                                </Button>
+                                <GroupBox    Header="Verwandte Raumbezüge"   x:Name="grpBVwRaumbezug">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                        <ComboBox      x:Name="cmbRBVerwandte" ItemsSource="{Binding}" Width="89" VerticalAlignment="Top" 
+                                                        DisplayMemberPath="TITEL"  SelectedValuePath="FREMDVORGANGSID" 
+                                                   SelectionChanged="cmbRBverwandte_SelectionChanged"/>
+                                        <Button Height="23"  x:Name="resetRBListe" Click="resetRBliste_Click" Content=" X " Foreground="red" VerticalAlignment="Top" ToolTip="Nur eigene Raumbezüge anzeigen"/>
+                                        <Button Height="23"  x:Name="copyRBListe" Click="copyRBListe_Click" Content="+"
+                                           Width="30" Foreground="LawnGreen" 
+                                            VerticalAlignment="Top" ToolTip="Dauerhaftes Verlinken der verwandten Raumbezüge">
+                                        </Button>
+                                    </StackPanel>
+
+                                </GroupBox>
+                                <StackPanel  Orientation="Vertical" VerticalAlignment="Top">
+                                    <TextBlock    Margin="5">Eigene Raumbezüge</TextBlock>
+                                    <TextBlock    Foreground="Blue" Margin="5">Verlinkte Raumbezüge</TextBlock>
+                                </StackPanel>
+                                <ComboBox x:Name="cmbRaumbezugsFunktionen" SelectionChanged="cmbRaumbezugsFunktionen_SelectionChanged"   Width="60" Height="30" Padding="5">
+                                    <ComboBoxItem IsSelected="True">Tools</ComboBoxItem>
+                                    <ComboBoxItem >ALLE Raumbezüge löschen</ComboBoxItem>
+                                    <ComboBoxItem >Flurstücksraumbezüge aus CSV-Liste erstellen</ComboBoxItem>
+                                    <ComboBoxItem >Eigentümerliste erstellen (Excel-csv)</ComboBoxItem>
+                                </ComboBox>
+                                <!--<CheckBox x:Name="chkRaumbezuegeObsolet" Content=" keine Raumbezüge erforderlich" ToolTip="Es sind in diesem Falle keine Raumbezüüge erforderlich" Padding="0"
+                                          Margin="10,15,10,10"  />-->
+
+                                <CheckBox Grid.Column="3" x:Name="chkRaumbezuegeObsolet"    Margin="5,15,5,0"  
+                                          ToolTip="Es sind in diesem Falle keine Raumbezüüge erforderlich" Padding="0"
+                                                  HorizontalContentAlignment="Left" FlowDirection="LeftToRight"
+                                          Click="chkRaumbezuegeObsolet_Click">
+                                    <TextBlock TextWrapping="Wrap" Width="90" Height="40" Margin="3,0,0,0"> keine RB erforderlich</TextBlock>
+
+                                </CheckBox>
+                                <Button Click="rbHilfe_Click"  Style="{StaticResource hilfButton}"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                        <DataGrid  x:Name="dgRaumbezug"   ItemsSource="{Binding ''}"   
+                                              RowStyle="{StaticResource dgRowStyleRB}"  
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"                                    
+                                              >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Art" Width="Auto"  Binding="{Binding TYP}"  CellStyle="{StaticResource dgCellStyleRBTyp}"  />
+                                <DataGridTextColumn Header="Funktion " Width="Auto"   Binding="{Binding TITEL}" />
+                                <DataGridCheckBoxColumn Header="Karte"    Binding="{Binding ISMAPENABLED}" ToolTipService.ToolTip="In der Karte darstellen oder unterdrücken"/>
+                                <DataGridCheckBoxColumn Header="Verw"    Binding="{Binding STATUS}" ToolTipService.ToolTip="1=verwandt"/>
+
+                                <DataGridTextColumn Header="Beschreibung" Width="Auto"   Binding="{Binding ABSTRACT}" />
+
+                                <!--<DataGridTextColumn Header="darst." Width="Auto"   Binding="{Binding ISMAPENABLED}" ToolTipService.ToolTip="_ =Koordinate wird nicht dargestellt" />-->
+                                <DataGridTextColumn Header="qm" Width="Auto"   Binding="{Binding FLAECHEQM}" />
+                                <DataGridTextColumn Header="m" Width="Auto"   Binding="{Binding LAENGEM}" />
+                                <DataGridTextColumn Header="Freitext" Width="Auto"   Binding="{Binding FREITEXT}" />
+                                <DataGridTextColumn Header="" Width="Auto"   Binding="{Binding DOKUMENTID}" />
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </TabItem>
+
+
+
+                <TabItem x:Name="tabheaderDokumente"  Header="Dokumente" Visibility="Visible">
+                    <DockPanel >
+                        <StackPanel  x:Name="Tab_dokumente"   DockPanel.Dock="Top" >
+                            <StackPanel Orientation="Horizontal"  >
+                                <StackPanel Margin="5,0,0,0" >
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                        <Button   Height="23" HorizontalAlignment="Center" Width="75" x:Name="btnDokumentehinzu2" Content="Hinzufügen" 
+                                              ToolTip="Hiermit können Sie dem Vorgang beliebige Dokumente hinzufügen! Alternativ können Sie auch Drag'n Drop anwenden: ziehen Sie die Dateien einfach aus dem Windowsexplorer in dieses Fenster hinein."
+                                                                                            />
+                                        <Button    Height="23"  Width="23" x:Name="DokumenteExcel" Margin="5" Click="DokumenteExcel_click" Padding="-5"
+                                               ToolTip="Geben Sie hiermit die Dokumentliste als Exceltabelle aus.">
+                                            <Image   Source="/paradigma;component/icons/MSExcel.png" Height="23" Width="23" Name="Image1" />
+                                        </Button>
+                                        <Button   Height="23" x:Name="btnDokumenteRefresh2"  Margin="5" Click="btnDokumenteRefresh2_Click_1"
+                                              ToolTip="Aktualisieren sie hiermit die Dokumentenliste.">
+                                            <Image  x:Name="myimage4" Source="/paradigma;component/icons/refreshblue.png"  />
+                                        </Button>
+                                        <Button    Height="33" x:Name="btnAllcheckout"  Click="btnAllcheckout_Click" Width="75"   FontSize="8"                                                 
+                                               ToolTip="Kopiert alle Dokumente des Vorgangs in ein lokales Verzeichnis auf Ihrer Festplatte.  Anschließend wird dieses Verzeichnis mit dem normalen Explorer geöffnet.">
+                                            <TextBlock Width="50" TextWrapping="Wrap" > Alles zum PC kopieren</TextBlock>
+                                        </Button>
+
+                                        <Button    Height="22"  x:Name="btnExplorer" Width="62"  Content="Explorer" 
+                                               ToolTip="Zeigt das Verzeichnis in dem sich die Dokumente des Vorgangs befinden." />
+                                        <GroupBox Header="Verwandte"   x:Name="grpBVwDokumente">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                                <ComboBox        x:Name="cmbDokuverwandte" ItemsSource="{Binding}" Width="69" VerticalAlignment="Top"
+                                                        DisplayMemberPath="TITEL"  SelectedValuePath="FREMDVORGANGSID" SelectionChanged="cmbDokuverwandte_SelectionChanged"/>
+
+                                                <Button     Height="23"  x:Name="resetDokuliste" Click="resetDokuliste_Click" Content=" X " Foreground="red" VerticalAlignment="Top" ToolTip="Nur eigene Dokumente anzeigen"  />
+                                                <Button Height="23"  x:Name="copydokListe" Click="copydokListe_Click" Content="+"
+                                           Width="30" Foreground="LawnGreen" 
+                                            VerticalAlignment="Top" ToolTip="kopieren der verwandten Dokumente" RenderTransformOrigin="0.5,0.5">
+                                                    <Button.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform/>
+                                                            <SkewTransform/>
+                                                            <RotateTransform Angle="0.403"/>
+                                                            <TranslateTransform/>
+                                                        </TransformGroup>
+                                                    </Button.RenderTransform>
+                                                </Button>
+                                            </StackPanel>
+                                        </GroupBox>
+
+                                        <ComboBox x:Name="cmbDokumenteFunktionen" SelectionChanged="cmbDokumenteFunktionen_SelectionChanged" Width="50" Height="30">
+                                            <ComboBoxItem>-</ComboBoxItem>
+                                            <ComboBoxItem >ALLE Dokumente und Fotos löschen</ComboBoxItem>
+                                            <ComboBoxItem >ALLE Dokumente und Fotos zu anderem Vorgang kopieren</ComboBoxItem>
+                                            <ComboBoxItem >ALLE Dokumente und Fotos revisionssicher speichern</ComboBoxItem>
+                                        </ComboBox>
+                                        <Button   Click="dokumentHilfe_Click"  Style="{StaticResource hilfButton}"   />
+                                        <!--<TextBlock Background="Pink" Text="revisionssicher" 
+                                           ToolTip="heisst: unveränderbar. Dies läßt sich über die Metadaten einstellen" 
+                                                   Padding="1" Margin="4" Height="21"/>-->
+                                        <GroupBox Header="Mehrfachauswahl" FontSize="8">
+                                            <StackPanel Orientation="Horizontal">
+                                                <CheckBox IsChecked="False" x:Name="mitMehrfachauswahl" Checked="dokuauswahlein" IsEnabled="True"
+                                                  Unchecked="dokuauswahlaus" 
+                                                  Padding="0,0,0,0" FontSize="8" Content="aktivieren" Height="16"/>
+                                                <StackPanel Orientation="Horizontal" x:Name="stckmehrfachtools" Visibility="Visible" Margin="10,0,0,0">
+                                                    <CheckBox Margin="0,0,0,0" Height="16"  x:Name="chkAllesMarkieren" Click="chkAllesMarkieren_Click" Content="  "  ToolTip="Alles markieren / entmarkieren"  />
+                                                    <Button x:Name="btnMehrfachLoeschen" Click="btnMehrfachLoeschen_Click" Content=" X "  ToolTip="Auswahl löschen" Foreground="Red" Width="30"/>
+                                                    <Button x:Name="btnMehrfachKopieren" Click="btnMehrfachKopieren_Click" Content=" K " ToolTip="Auswahl zu anderem Vorgang kopieren" Width="30" Visibility="Collapsed"/>
+                                                    <Button x:Name="btnMehrfachRevisionssichern" Click="btnMehrfachRevisionssichern_Click" Foreground="Black" Background="Pink" Content=" R " Width="30" ToolTip="Auswahl revisionssicher machen"/>
+                                                    <Button x:Name="btnMehrfachMailen" Click="btnMehrfachFotosMailen_Click" Content=" M " ToolTip="Auswahl per Email verschicken" Width="30"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </GroupBox>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <DataGrid  x:Name="dgVorgangDokumente"   ItemsSource="{Binding ''}"   
+                                  CanUserAddRows="False" 
+                                  SelectionMode="Single" 
+                                  SelectionUnit="FullRow" 
+                                  RowStyle="{StaticResource dgRowStyleDokument}"                                              
+                                  ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                                  SelectionChanged="dgVorgangDokumente_SelectionChanged_1"  FontWeight="Normal" 
+                                      >
+
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header=""    Binding="{Binding ausgewaehlt}"  Visibility="Collapsed" x:Name="auswahlspalteDokus"/>
+
+                                <DataGridTemplateColumn Header="Typ" ToolTipService.ToolTip="Art des Dokumentes">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image x:Name="IMG" Source="icons\doc.jpg" Width="25" Height="20" />
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="eml">
+                                                    <Setter Property="Source" Value="icons\outlook.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Email-Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="msg">
+                                                    <Setter Property="Source" Value="icons\outlook.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Email-Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="zip">
+                                                    <Setter Property="Source" Value="icons\zip.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Gepacktes Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="xls">
+                                                    <Setter Property="Source" Value="icons\xls.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Excel-Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="csv">
+                                                    <Setter Property="Source" Value="icons\xls.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Excel-Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="xlsx">
+                                                    <Setter Property="Source" Value="icons\xls.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Excel-Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="pdf">
+                                                    <Setter Property="Source" Value="icons\pdf.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="PDF-Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="PDF">
+                                                    <Setter Property="Source" Value="icons\pdf.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="PDF-Dokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="doc">
+                                                    <Setter Property="Source" Value="icons\doc.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Textverarbeitungsdokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="docx">
+                                                    <Setter Property="Source" Value="icons\doc.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Word-Textverarbeitungsdokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="odt">
+                                                    <Setter Property="Source" Value="icons\doc.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="ODT-Textverarbeitungsdokument"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="ppt">
+                                                    <Setter Property="Source" Value="icons\ppt.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="PowerPoint"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="vcf">
+                                                    <Setter Property="Source" Value="icons\vcf.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Visitenkarte"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="gif">
+                                                    <Setter Property="Source" Value="icons\foto.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Foto / Grafik"  />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=Typ}" Value="png">
+                                                    <Setter Property="Source" Value="icons\foto.jpg" TargetName="IMG"/>
+                                                    <Setter Property="ToolTip" Value="Foto / Grafik"  />
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn Header="Qu" Width="30"  Binding="{Binding Initiale}" ToolTipService.ToolTip="Quelle"/>
+                                <DataGridTextColumn Header="Name" Width="300"  Binding="{Binding DateinameMitExtension}" />
+
+                                <!--<DataGridTextColumn Header="Datum" Width="66" Binding="{Binding CHECKINDATUM, Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />-->
+                                <DataGridTextColumn Header="geändert" Width="SizeToCells" Binding="{Binding Filedatum, Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy HH:mm'}" ToolTipService.ToolTip="Ist das Datum der letzten Änderung" />
+
+                                <DataGridTextColumn Header="Schlagworte" MaxWidth="500" Binding="{Binding Beschreibung}" >
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="TextWrapping" Value="NoWrap"/>
+                                            <Setter Property="ToolTip" Value="{Binding Beschreibung}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+
+                                <DataGridTextColumn Header="Checkin" Width="SizeToCells" Binding="{Binding Checkindatum, Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                                <!--<DataGridTextColumn Header="rev" Width="20" Binding="{Binding revisionssicher}" />-->
+                                <DataGridTextColumn Header="Ereignisnummer" Width="60"  Binding="{Binding EreignisID}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </TabItem>
+
+                <TabItem x:Name="tabheaderFotos"  Header="Fotos" Visibility="Visible">
+                    <DockPanel >
+                        <StackPanel  x:Name="Tab_Fotos"   DockPanel.Dock="Top" >
+                            <StackPanel Orientation="Horizontal"  >
+                                <StackPanel Margin="5,0,0,0" >
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                        <Button   Height="23" HorizontalAlignment="Center" Width="75" x:Name="btnFotoshinzu2" Content="Hinzufügen" 
+                                              ToolTip="Hiermit können Sie dem Vorgang beliebige Dokumente hinzufügen! Alternativ können Sie auch Drag'n Drop anwenden: ziehen Sie die Dateien einfach aus dem Windowsexplorer in dieses Fenster hinein."
+                                                                                            />
+
+                                        <Button   Height="23" x:Name="btnFotosRefresh2"  Margin="5" 
+                                              ToolTip="Aktualisieren sie hiermit die Dokumentenliste.">
+                                            <Image  x:Name="myimage4fotso" Source="/paradigma;component/icons/refreshblue.png"  />
+                                        </Button>
+
+
+
+
+
+                                    </StackPanel>
+                                </StackPanel>
+                                <Button Content="Fotogugger" Height="30" x:Name="btnfotogugger2"  Click="btnfotogugger2_Click" Width="100" />
+                                <Button Height="30" Name="btnfotobuch" Click="btnfotobuch_Click" Width="100" Margin="15,0,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image  x:Name="fotodruck" Source="/paradigma;component/icons/MSWord.png" Height="23" Width="25"></Image>
+                                        <TextBlock Text="Fotodruck" Padding="5"   ToolTip="Die hiermit erzeugte WORD-Datei ist nur temporär: Sie wird NICHT ins Archiv aufgenommen."/>
+                                    </StackPanel>
+                                </Button>
+                                <Button    Click="fotosHilfe_Click"  Style="{StaticResource hilfButton}"/>
+                                <TextBlock Background="Pink" Text="revisionssicher" 
+                                           ToolTip="heisst: unveränderbar. Dies läßt sich über die Metadaten einstellen" Padding="5" Margin="5"/>
+                                <GroupBox Header="Mehrfachauswahl" FontSize="8">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox IsChecked="False" x:Name="mitMehrfachauswahlFotos" Checked="fotoauswahlein" IsEnabled="True"
+                                                  Unchecked="fotoauswahlaus" 
+                                                  Padding="0,0,0,0" FontSize="8" Content="aktivieren" Height="16"/>
+                                        <StackPanel Orientation="Horizontal" x:Name="stckmehrfachfotos" Visibility="Visible" Margin="10,0,0,0">
+                                            <CheckBox Margin="0,0,0,0" Height="16"  x:Name="chkAllesMarkierenFotos" Click="chkAllesFotosMarkieren_Click" Content="  "  ToolTip="Alles markieren / entmarkieren"  />
+                                            <Button x:Name="btnMehrfachFotosLoeschen" Click="btnMehrfachFotosLoeschen_Click" Content=" X "  ToolTip="Auswahl löschen" Foreground="Red" Width="30"/>
+                                            <Button x:Name="btnMehrfachFotosKopieren" Click="btnMehrfachFotosKopieren_Click" Content=" K " ToolTip="Auswahl zu anderem Vorgang kopieren" Width="30" Visibility="Collapsed"/>
+                                            <Button x:Name="btnMehrfachFotosRevisionssichern" Click="btnMehrfachFotosRevisionssichern_Click" Foreground="Black" Background="Pink" Content=" R " Width="30" ToolTip="Auswahl revisionssicher machen"/>
+                                            <Button x:Name="btnMehrfachFotosMailen" Click="btnMehrfachFotosMailen_Click" Content=" M " ToolTip="Auswahl per Email verschicken" Width="30"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <DataGrid  x:Name="dgVorgangFotos"   ItemsSource="{Binding ''}"   
+                                  CanUserAddRows="False" 
+                                  SelectionMode="Single" 
+                                  SelectionUnit="FullRow" 
+                                  RowStyle="{StaticResource dgRowStyleDokument}"                                              
+                                  ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                                  SelectionChanged="dgVorgangFotos_SelectionChanged_1"  FontWeight="Normal" 
+                                      >
+
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header=""    Binding="{Binding ausgewaehlt}"  Visibility="Collapsed" x:Name="auswahlspalteFotos"/>
+                                <DataGridTextColumn Header="Qu" Width="30"  Binding="{Binding Initiale}" ToolTipService.ToolTip="Quelle"/>
+                                <DataGridTextColumn Header="Name" Width="300"  Binding="{Binding DateinameMitExtension}" />
+                                <DataGridTextColumn Header="Checkin" Width="SizeToCells" Binding="{Binding Checkindatum, Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+
+
+                                <DataGridTextColumn Header="Datum" Width="66" Binding="{Binding CHECKINDATUM, Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                                <DataGridTextColumn Header="Schlagworte" MaxWidth="500" Binding="{Binding Beschreibung}" >
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="TextWrapping" Value="NoWrap"/>
+                                            <Setter Property="ToolTip" Value="{Binding Beschreibung}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </TabItem>
+
+
+                <TabItem Header="Verwandte Vorgänge" x:Name="tabheaderVerwandte" >
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" x:Name="Tab_Verwandte"    >
+
+                            <StackPanel Margin="5" Orientation="Horizontal">
+                                <Button  FontWeight="Normal"  Content="Hinzufügen" Width="100" Click="Verwandte_hinzufuegen" HorizontalAlignment="Left" Visibility="Visible"/>
+                                <Button   FontWeight="Normal"  Click="Verwandte_refresh" HorizontalAlignment="Left" Margin="5">
+                                    <Image  x:Name="myimage5" Source="/paradigma;component/icons/refreshblue.png" Width="58" />
+                                </Button>
+                                <Button    Click="verwandteHilfe_Click"  Style="{StaticResource hilfButton}"/>
+                                <!--<TextBlock x:Name="txtTitel"></TextBlock>-->
+                            </StackPanel>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Dieser Vorgang nutzt folgende Vorgänge als Datenquelle:"/>
+
+                            <DataGrid  x:Name="dgVerwandte"   ItemsSource="{Binding ''}"      FontWeight="Normal" 
+                                              RowStyle="{StaticResource dgRowStyle}"   
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}" SelectionChanged="dgVerwandte_SelectionChanged" Height="186">
+                                <DataGrid.Columns>
+                                    <!--<DataGridTextColumn Header="VorgangsNrClient" MinWidth="30"  Binding="{Binding VORGANGSID }" />-->
+                                    <DataGridTextColumn Header="VorgangsNrServer" MinWidth="30"  Binding="{Binding FREMDVORGANGSID }" />
+                                    <DataGridTextColumn Header="Titel"  MinWidth="400"  Binding="{Binding TITEL, Mode=OneWay}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <TextBlock Text="Dieser Vorgang dient folgenden Vorgängen als Datenquelle:"/>
+                            <DataGrid  x:Name="dgVerwandteServer"   ItemsSource="{Binding ''}"      FontWeight="Normal" 
+                                              RowStyle="{StaticResource dgRowStyle}"   
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}" SelectionChanged="dgVerwandteServer_SelectionChanged" Height="186">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="VorgangsNrClient" MinWidth="30"  Binding="{Binding VORGANGSID }" />
+                                    <!--<DataGridTextColumn Header="VorgangsNrServer" MinWidth="30"  Binding="{Binding FREMDVORGANGSID }" />-->
+                                    <!--<DataGridTextColumn Header="Titel"  MinWidth="400"  Binding="{Binding TITEL, Mode=OneWay}" />-->
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </DockPanel>
+                </TabItem>
+
+                <TabItem Header="Projekt" x:Name="tabheaderProjekt" >
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" x:Name="Tab_Projekt"    >
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Height="60">
+                                <Button Height="30" Grid.Row="2" Margin="15"   Content="an Projekt koppeln/entkoppeln"  Width="250" ToolTip="Projekttyp und Infos" x:Name="btnProjekt3"  
+                            Click="btnProjekt_Click"/>
+                                <TextBlock Text="Folgende Vorgänge gehören zum gleichen Projekt (Klick um zu Vorgang zu wechseln):" 
+                                       Foreground="Green" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Width="235" 
+                                       Margin="0,9,9,0"/>
+                                <Button x:Name="createPeojekt" Click="createPojekt_Click" Content="Neues Projekt"/>
+                                <Button   Click="projektHilfe_Click"  Style="{StaticResource hilfButton}"   />
+                            </StackPanel>
+
+                            <DataGrid  x:Name="dgProjekt"   ItemsSource="{Binding ''}"      FontWeight="Normal" 
+                                              RowStyle="{StaticResource dgRowStyle}"   
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}" SelectionChanged="dgProjekt_SelectionChanged" Height="186">
+                                <DataGrid.Columns>
+                                    <!--<DataGridTextColumn Header="VorgangsNrClient" MinWidth="30"  Binding="{Binding VORGANGSID }" />-->
+                                    <DataGridTextColumn Header="V" MinWidth="30"  Binding="{Binding VORGANGSID }" />
+                                    <DataGridTextColumn Header="B" MinWidth="30"  Binding="{Binding BEARBEITER }" />
+                                    <DataGridTextColumn Header="W" MinWidth="30"  Binding="{Binding WEITEREBEARB }"  />
+                                    <DataGridTextColumn Header="W" MinWidth="30"  Binding="{Binding BEZEICHNUNGKURZ }"/>
+                                    <DataGridTextColumn Header="Beschreibung"  MinWidth="400"  Binding="{Binding BESCHREIBUNG, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="AZ" MinWidth="30"  Binding="{Binding AZ2 }" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Schlagworte" x:Name="tabheaderSchlagworte" ToolTip="Schlagworte und formlose Bemerkungen" >
+                    <DockPanel>
+                        <TextBox   x:Name="tbBemerkungReiter" AcceptsReturn="True" AcceptsTab="True" 
+                                   AutoWordSelection="True"
+                                  Text="{Binding Bemerkung, UpdateSourceTrigger=PropertyChanged}" 
+                                 TextWrapping="Wrap" TextChanged="tbBemerkung_TextChanged"  />
+                    </DockPanel>
+                </TabItem>
+
+            </TabControl>
+
+            <Border  BorderBrush="Black"   BorderThickness="1" HorizontalAlignment="Right" Background="White" x:Name="canvasborder"  >
+
+                <Canvas  x:Name="myCanvas"    Background="White" >
+                    <!--<Image  
+                        x:Name="imgKarte" Canvas.Left="0"  Width="311" Height="204"   Panel.ZIndex="1" Visibility="Visible" 
+                            Stretch="Uniform" ></Image>-->
+                    <!--<ProgressBar Canvas.Left="95" Canvas.Top="1" Height="10" Name="ProgressBar1" Width="100" Panel.ZIndex="100000"   Visibility="Collapsed"/>-->
+                </Canvas>
+            </Border>
+
+        </StackPanel >
+
+
+    </DockPanel>
+    <!--</TabItem>
+        <TabItem>
+            <Border  BorderBrush="Black"   BorderThickness="1" HorizontalAlignment="Right" Background="White" x:Name="canvasborder2"  >
+                <Canvas  x:Name="myCanvas2"    Background="White" >
+                           </Canvas>
+            </Border>
+        </TabItem>
+    </TabControl>-->
+</Window>

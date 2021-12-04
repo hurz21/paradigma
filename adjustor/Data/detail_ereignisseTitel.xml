@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>         
+<Variablen>   
+       <Variable Name=" " ID=" "        />                                    
+       <Variable Name="Anhörung/Beteiligung durch BA" ID="Anhörung/Beteiligung durch BA"     Order="1"   />          
+       <Variable Name="Beteiligung Träger öffentlicher Belange" ID="Beteiligung Träger öffentlicher Belange"   Order="2"  />  
+       <Variable Name="Antrag auf Genehmigung" ID="Antrag auf Genehmigung"  Order="3" />      
+       <Variable Name="Anforderung Stellungnahme durch Stadt" ID="Anforderung Stellungnahme durch Stadt" Order="4"  />           
+       <Variable Name="Anforderung Altlastenauskunft" ID="Anforderung Altlastenauskunft"  Order="5" />    
+    </Variablen>   
+     
+     
+     
+     
+     
+     
+     

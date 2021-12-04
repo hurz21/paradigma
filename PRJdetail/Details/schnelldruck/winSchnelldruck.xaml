@@ -1,0 +1,33 @@
+﻿<Window x:Class="winSchnelldruck"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"  Background="{StaticResource backg3}" 
+        Title="Mehrfachdruck" Height="550" Width="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Height="120" Margin="5">
+            <TextBlock Margin="5">Eine möglichst lange Pause zwischen den Druckaufträgen 
+                ermöglicht dem Drucker die Einhaltung der Reihenfolge.</TextBlock>
+            <TextBlock Margin="5">Nach Möglichkeit schliessen Sie offene Dokumente.</TextBlock>
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Width="250" HorizontalAlignment="Left" Margin="5">
+                Pause zwischen den Druckaufträgen (Sek.):
+                </TextBlock>
+                <TextBox Name="tbSekunden" Width="50">30</TextBox>
+                <CheckBox x:Name="cbMitMsg" IsChecked="True" Margin="115,0,0,0">.msg-Dateien auch drucken</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <!--<TextBlock Name="tbanzahl"> </TextBlock>--> 
+                <Button Name="btnDruck" Content="Drucken" Width="100" HorizontalAlignment="Left"
+                    Click="btnDruck_Click" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+        <TextBox Name="tbinfo" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True"
+                 Height="300" Margin="5"
+                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"> 
+        </TextBox>
+    </DockPanel>
+</Window>

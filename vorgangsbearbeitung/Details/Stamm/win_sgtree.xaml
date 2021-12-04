@@ -1,0 +1,49 @@
+﻿<Window x:Class="win_sgtree"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Neuer Sachgebietsbaum" Height="644" Width="867" WindowStartupLocation="CenterScreen">
+    <DockPanel LastChildFill="False">
+        <TabControl   Name="TabControl1"   Margin="10"  MinWidth="400">
+            <TabItem Header="Baum" Name="TabItem1" >
+                <TreeView Name="TreeView1"    VerticalAlignment="Top"    Background="{StaticResource backg1}" >
+                    <TreeView.ItemContainerStyle>
+
+                        <!--Expand each TreeViewItem in the first level and 
+          set its foreground to Green.-->
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="IsExpanded" Value="True"/>
+                            <Setter Property="Foreground" Value="Green"/>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                </TreeView>
+            </TabItem>
+            <TabItem Header="Suchen" x:Name="SucheNachSachgebieten"  >
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Stichwort:" VerticalAlignment="Top" ></Label>
+                        <TextBox   Name="tbSuchwort" Width="292.5" VerticalAlignment="Top" />
+                        <Button HorizontalAlignment="Right" Margin="5,0,0,0" Name="btnSuche"  Click="btnSuche_Click" VerticalAlignment="Top" Width="75">suche</Button>
+                    </StackPanel>
+                    <ListBox Name="trefferliste"  >
+
+                    </ListBox>
+
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">          
+            <TextBlock   Text="Ihre Auswahl:"/>
+        <Border>    <TextBox x:Name="tbsgNr" Width="125" FontSize="28"  IsEnabled="False"/></Border>
+            <TextBlock x:Name="tbsgtext" Width="250" Height="28" />
+            <TextBlock x:Name="tbsgnrAlt" Width="250" Height="28" Foreground="DarkGray" />
+            <Separator Height="50"/>
+            
+            <Button x:Name="btnWeiter" Content="Weiter" Height="57" Click="btnWeiter_Click"></Button>
+            <Button Name="btnAbbruch" Content="Abbruch" IsCancel="True" Click="btnAbbruch_Click" Style="{StaticResource lessButton}"></Button>            
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="10" >
+            <Button Content="Alles ausklappen" Height="23" Name="btnAllesAusklappen" Width="115" Click="btnAllesAusklappen_Click" Style="{StaticResource lessButton}"/>
+            <Button Content="Alles einklappen" Height="23" Name="btnAllesEinklappen" Width="115" Click="btnAllesEinklappen_Click" Style="{StaticResource lessButton}"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+    <ini>
+     <StandortDBREC  
+          mysqlserver="L:"
+          dbtyp="mdb"
+           dbismysql="0"
+          schema="L:\fkatbig\sicherheit\brandschutz\plaene.mdb"
+           Tabelle="adresse"
+          username=""
+          password=""
+          PDFOutputPath="d:\cache\alb"
+          DPI="150"
+          weight="3"
+    >     <!--alb erzeugung-->
+      </StandortDBREC>
+       <haloDBREC  
+          mysqlserver="access"
+          dbtyp="mdb"
+           dbismysql="0"
+          schema="L:\fkatbig\sicherheit\brandschutz\plaene.mdb"
+           Tabelle="adresse"
+          username=""
+          password=""
+          PDFOutputPath="d:\cache\alb"
+          DPI="150"
+          weight="3"
+    >     <!--alb erzeugung-->
+      </haloDBREC>
+       <Div  
+          pdfStammroot="\fkatbig\sicherheit\brandschutz\"
+          ServerHTTPdomainIntranet="http://w2gis02.kreis-of.local"
+           
+    >     <!--alb erzeugung-->
+      </Div>
+    </ini> 

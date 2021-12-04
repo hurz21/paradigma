@@ -1,0 +1,44 @@
+﻿<Window x:Class="WINAdmin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Paradigma - Administrator" Height="459" Width="543" Name="Window1" WindowStartupLocation="CenterScreen"  Background="{StaticResource TabControlBackgroundBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="38*" />
+            <RowDefinition Height="38*" />
+            <RowDefinition Height="53*" />
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="101*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="93*" />
+            <ColumnDefinition Width="185*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="1" Grid.Column="0" Content="Dämon-Modus:" x:Name="btnBearbeiterauswahl" Click="btnBearbeiterauswahl_Click_1"  
+                                                Style="{StaticResource lessButton}"  Visibility="Collapsed"   />
+
+
+        <TextBlock Grid.Row="9" Padding="5" Margin="0,4,0,12">User:</TextBlock>
+        <!--<ComboBox Grid.Row="8"  Grid.Column="1"  Name="cmbgemarkung" ItemsSource="{Binding}" 
+                                       DisplayMemberPath="NACHNAME"  SelectedValuePath="USERNAME" SelectionChanged="cmbgemarkung_SelectionChanged" Margin="0,4,0,12"></ComboBox>-->
+        <Button Grid.Row="2"  Grid.Column="0"  x:Name="btnWVAdmin" Click="btnWVAdmin_Click"  Height="30"  
+                Width="153.1" Margin="13,0">Alle Wiedervorlagen</Button>
+        <Button Grid.Row="3"  Grid.Column="0"  x:Name="btnWVakutAdmin" Click="btnWVakutAdmin_Click"  Height="30"  FontSize="11"
+                Width="153.1" Margin="13,0">Alle fälligen Wiedervorlagen</Button>
+
+        <Button Grid.Row="4"  Grid.Column="0"  x:Name="btnNamenSuchModus" Click="btnNamenSuchModun_Click" 
+                Height="30"  FontSize="11"
+                Width="153.1" Margin="13,0">Suchmodus für Namen einstellen</Button>
+        
+        <Button Grid.Row="5"  Grid.Column="0"  x:Name="btnPulldowns" Click="btnPulldowns_Click"  Height="30"   Width="153.1" Margin="13,4"  >Pulldowns editieren</Button>
+        <Button Grid.Row="6"  Grid.Column="0"  x:Name="btnStatistik" Click="btnStatistik_Click"  Height="30"   Width="153.1" Margin="13,20,13,2.592" >Controllingliste</Button>
+        <Button Grid.Row="8"  Grid.Column="0"  x:Name="btnBearbeiterListe" Click="btnBearbeiterListe_Click"  Height="30"   Width="153.1" Margin="13,16" >Bearbeiter bearbeiten</Button>
+
+    </Grid>
+</Window>

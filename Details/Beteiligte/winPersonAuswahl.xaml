@@ -1,0 +1,113 @@
+﻿<Window x:Class="Window_Person"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigma"           
+    ResizeMode="CanResizeWithGrip"  
+    WindowState="Maximized"       
+    Title="Ist Person schon vorhanden ?" Height="800"  Width="900"  WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <src:myGlobalz x:Key="myGlobalz"/>
+        <src:MyFormatter x:Key="myformattjf" />
+    </Window.Resources>
+    <DockPanel Background="{StaticResource TabControlBackgroundBrush}">
+
+        <StackPanel DockPanel.Dock="top" x:Name="stckMain">
+            <StackPanel Orientation="Vertical" Height="99" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal">
+                    <Label ToolTip="Damit wird in Vor und Nachnamen gesucht" Width="99">Name eingeben:</Label>
+                    <TextBox x:Name="tbFilter" MinWidth="200" TabIndex="0"></TextBox>
+                    <Button Name="btnClearFilter">clear</Button>
+                    <Button Name="btnStarteSuche"  IsDefault="True" Width="120">suchen</Button>
+                    <Separator  Width="100"></Separator>
+                    <Label>Suchen in:</Label>
+                    <ComboBox   Name="cmbPersonalDB"   />
+                 
+                </StackPanel>
+                <StackPanel    Orientation="Horizontal">
+                    <Label Width="99" ToolTip="Gemeindename bitte VOLLSTÄNDIG eingeben">Gemeinde:</Label>
+                    <TextBox x:Name="tbFilterOrt" Width="190" MinWidth="200" ></TextBox>
+                    <StackPanel   Name="pbarSuche" Orientation="Horizontal" Visibility="Collapsed">
+                        <Label >Bitte warten ...</Label>
+                    <ProgressBar Width="200"  Height="10" IsIndeterminate="True" ></ProgressBar>
+                    </StackPanel>
+                </StackPanel  >
+                <StackPanel   Name="lbltrefferinfo"  Visibility="Collapsed"  Orientation="Horizontal">
+                    <Label >Anzahl Treffer: </Label>
+                    <Label Name="lblTreffer" Foreground="Green"/>
+                </StackPanel  >
+            </StackPanel>
+
+       
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Width="400"   >
+            <!--<Label>Falls die Person noch nicht im Bestand existiert:</Label>
+            <Button Name="btnNeuePersonanlegen" Click="btnNeuePersonanlegen_Click">Neue Person erfassen</Button>
+            <Separator Width="20"></Separator>-->
+            <Button Name="btnAbbruch" IsCancel="True" HorizontalAlignment="Right" Width="400"> Abbruch</Button>
+        </StackPanel>
+        <DataGrid  Name="dgPersonenvorschlaege"   ItemsSource="{Binding }"   
+                                              Background="LightGray" AlternationCount="2"
+                                              AutoGenerateColumns="False" 
+                                              RowStyle="{StaticResource dgRowStyle}" 
+                                              SelectionMode="Single" 
+                                              SelectionUnit="FullRow" 
+                                              GridLinesVisibility="All"
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"                                       
+                                              VerticalScrollBarVisibility="Auto" 
+                                              HorizontalScrollBarVisibility="Visible"  
+                                                   >
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Eingang" Width="SizeToCells" Binding="{Binding EINGANG,   Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />-->
+                <!--<DataGridTextColumn Header="id" Width="SizeToCells" Binding="{Binding PERSONENID}" />-->
+                <!--<DataGridTextColumn Header="F(x)" Width="SizeToCells" Binding="{Binding GESELLFUNKTION}" />-->
+                <DataGridTextColumn Header="Rolle" Width="SizeToCells" Binding="{Binding ROLLE}" />
+                <DataGridTextColumn Header="Bezirk" Width="SizeToCells" Binding="{Binding BEZIRK}" />
+
+                <DataGridTextColumn Header="Nachname" Width="SizeToCells" Binding="{Binding NACHNAME}" />
+                <DataGridTextColumn Header="Vorname" Width="SizeToCells" Binding="{Binding  VORNAME}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding NAMENSZUSATZ}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding FDKURZ}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding ANREDE}" />
+                
+
+                <DataGridTextColumn Header="Plz" Width="SizeToCells" Binding="{Binding PLZ}" />
+                <DataGridTextColumn Header="Stadt" Width="SizeToCells" Binding="{Binding GEMEINDENAME}" />
+                <DataGridTextColumn Header="Pf" Width="SizeToCells" Binding="{Binding POSTFACH}" />
+                <DataGridTextColumn Header="Straße" Width="SizeToCells" Binding="{Binding STRASSE}" />
+                <DataGridTextColumn Header="Nr" Width="SizeToCells" Binding="{Binding HAUSNR}" />
+                <!--<DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding ANSCHRIFTBEMERKUNG}" />-->
+
+                <DataGridTextColumn Header="BEMERKUNG" Width="SizeToCells" Binding="{Binding BEMERKUNG}" />
+                <DataGridTextColumn Header="Org" Width="Auto" Binding="{Binding ORGNAME}" />
+                <DataGridTextColumn Header="OrgZusatz" Width="SizeToCells" Binding="{Binding ORGZUSATZ}" />
+                <DataGridTextColumn Header="Orgtyp1" Width="SizeToCells" Binding="{Binding ORGTYP1}" />
+                <DataGridTextColumn Header="Orgtyp2" Width="SizeToCells" Binding="{Binding ORGTYP2}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding ORGEIGENTUEMER}" />
+                <!--<DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding ORGBEMERKUNG}" />-->
+
+                <DataGridTextColumn Header="Qu." Width="SizeToCells" Binding="{Binding QUELLE}" />
+
+                <DataGridTextColumn Header="Tel1" Width="SizeToCells" Binding="{Binding FFTELEFON1}" />
+                <DataGridTextColumn Header="Tel2" Width="SizeToCells" Binding="{Binding FFTELEFON2}" />
+                <DataGridTextColumn Header="Fax1" Width="SizeToCells" Binding="{Binding FFFAX1}" />
+                <DataGridTextColumn Header="Fax2" Width="SizeToCells" Binding="{Binding FFFAX2}" />
+                <DataGridTextColumn Header="Mob" Width="SizeToCells" Binding="{Binding FFMOBILFON}" />
+                <DataGridTextColumn Header="Email" Width="SizeToCells" Binding="{Binding FFEMAIL}" />
+                <DataGridTextColumn Header="URL" Width="SizeToCells" Binding="{Binding FFHOMEPAGE}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding FFBEMERKUNG}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding BVNAME}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding BLZ}" />
+                <DataGridTextColumn Header="Kto" Width="SizeToCells" Binding="{Binding KONTONR}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding BVTITEL}" />
+
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding KASSENKONTO}" />
+                <DataGridTextColumn Header="" Width="SizeToCells" Binding="{Binding POSTFACHPLZ}" />
+
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+ 
+    </DockPanel>
+
+</Window>

@@ -1,0 +1,8 @@
+﻿<Window x:Class="winImageShow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="winImageShow" Height="576" Width="801" Left="1000">
+    <DockPanel x:Name="dockp">
+        <Button Click="abbrruch"  Width="1" Height="1" IsCancel="True" Content=" . "/>
+    </DockPanel>
+</Window>

@@ -1,0 +1,114 @@
+﻿<Window x:Class="Window_WiedervorlageDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:src="clr-namespace:paradigmaDetail" 
+    xmlns:mfrm="clr-namespace:paradigmaDetail"
+    xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
+     
+    Title="WiedervorlageDetail" Height="550" Width="465" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!--<mfrm:MyFormatter x:Key="myformattjf" />-->
+        <!--<src:myGlobalz   x:Key="myGlobalz"/>-->
+    </Window.Resources>
+    <Grid    >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="93*" />
+            <ColumnDefinition Width="264*" />
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition Width="61*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="157*" />
+            <RowDefinition Height="98*" />
+            <RowDefinition Height="25 " />
+            <RowDefinition Height="24*" />
+            <RowDefinition Height="62*"/>
+            <RowDefinition Height="38*" />
+            <RowDefinition Height="38*" />
+        </Grid.RowDefinitions>
+        <Label   Grid.Row="0"   Name="lblfaelligam">Fällig am:</Label>
+        <StackPanel  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" >
+            <!--<TextBox Name="tbWiedervorlage"  
+                  IsEnabled="False"  />-->
+            <xctk:DateTimePicker  Name="DatePickerWiederVorlage"   
+					Format="Custom"  
+                     FormatString="dd/MM/yyyy HH:mm"
+                     TimeFormat="Custom"
+                     TimeFormatString="HH:mm"
+                                      ValueChanged="DatePickerWiederVorlage_SelectedDateChanged"  HorizontalAlignment="Left"/>
+
+
+            <ComboBox   Name="cmbWiedervorlageAuswahl" SelectionChanged="CmbWiedervorlageAuswahl_SelectionChanged"    />
+        </StackPanel>
+        <!--<DatePicker Grid.Column="3" Grid.Row="0" Height="28" 
+                    Name="DatePickerWiederVorlage"  Width="31.438"
+                   SelectedDateChanged="DatePickerWiederVorlage_SelectedDateChanged" 
+                    Margin="15,12,15,13" />-->
+     
+        <Label    Grid.Row="1"   Name="lblWartenaufBeteiligten" VerticalAlignment="Top" >Warten auf:</Label>
+        <TextBox Grid.Column="1" Grid.Row="1"   Name="tbWartenaufBeteiligten"  VerticalAlignment="Top" 
+                    Text="{Binding  
+                               Path=aktWiedervorlage.WartenAuf, 
+                               UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"
+                 />
+        <!--<ComboBox  Grid.Column="3" Grid.Row="1"  Name="cmbBeteiligterAuswahl"     />-->
+        <ComboBox   Name="cmbBeteiligterAuswahl" Grid.Column="3" ItemsSource="{Binding}" VerticalAlignment="Top" 
+                   DisplayMemberPath="Name"  SelectedValuePath="Name" Grid.Row="1"
+                    SelectionChanged="CmbBeteiligterAuswahl_SelectionChanged"/>
+
+        <TextBox    Grid.Row="2"  IsEnabled="False" TextWrapping="Wrap" Name="lblAufgabe">Meine Aufgabe danach:</TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2"   Name="tbTodo"   AcceptsReturn="True" SpellCheck.IsEnabled="True"
+                  Text="{Binding   
+                               Path=aktWiedervorlage.ToDo, 
+                               UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.ColumnSpan="2" />
+        <Label    Grid.Row="3"   Name="lblBemerkung">Bemerkung:</Label>
+        <TextBox Grid.Column="1" Grid.Row="3" TextWrapping="Wrap"   AcceptsReturn="True" SpellCheck.IsEnabled="True"
+                   Name="tbBemerkung" 
+                    Text="{Binding   
+                               Path=aktWiedervorlage.Bemerkung, 
+                               UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"
+                 />
+        <Button x:Name="btnLoeschen" Grid.Row="7" Grid.Column="0" Content="Löschen" Margin="5,6" Style="{StaticResource lessButton}" 
+                Click="btnLoeschen_Click"
+                Visibility="Collapsed"/>
+        <Button Grid.Column="1" Grid.Row="7"  IsDefault="True"
+                IsEnabled="{Binding  
+                               Path=aktWiedervorlage.anychange, 
+                               UpdateSourceTrigger=PropertyChanged}"                
+                Name="btnSpeichern" Margin="5,5,5,3" Grid.ColumnSpan="2" Click="btnSpeichern_Click">Speichern</Button>
+        <Button Grid.Column="3" Grid.Row="7"  IsCancel="True"  x:Name="btnAbbruch" Content="Abbruch"  Style="{StaticResource lessButton}" Margin="0,6"/>
+       
+        
+        <Label   Grid.Column="0"  Grid.Row="4"   Name="lblErledigt" VerticalAlignment="Top" >Erledigt:</Label>
+        <ComboBox Grid.Column="1"  Grid.Row="4"   Name="cmbStatus"  VerticalAlignment="Top"    SelectionChanged="cmbStatus_SelectionChanged"
+                    SelectedItem="{Binding  
+            Path=aktWiedervorlage.Erledigt}" Grid.ColumnSpan="2"/>
+
+        <Label   Grid.Column="0"  Grid.Row="5"   Name="lblDelegat" VerticalAlignment="Top" Grid.RowSpan="2" >Delegieren an:</Label>
+        <TextBlock x:Name="tbWVBearbeiter" Grid.Column="1" Grid.Row="5"  Padding="5" 
+                   Text="{Binding 
+                               Path=aktWiedervorlage.Bearbeiter, 
+                               UpdateSourceTrigger=PropertyChanged}" />
+        <!--<ComboBox Grid.Column="2"  Grid.Row="5"  
+                  Visibility="Collapsed"
+                  Name="cmbDelegat"  VerticalAlignment="Top" SelectionChanged="cmbDelegat_SelectionChanged"
+                           />-->
+        <Button  Grid.Column="2"  Grid.Row="5"     Name="btnWeitereBearbeiterListen"   Content="..." 
+                                    Click="btnWeitereBearbeiterListen_Click" VerticalAlignment="Top" Height="25" />
+
+        <TextBlock Grid.Column="3" Grid.Row="6" TextWrapping="Wrap" Visibility="Collapsed"
+                   Name="tbID" 
+                    Text="{Binding  
+                               Path=aktWiedervorlage.WiedervorlageID, 
+                               UpdateSourceTrigger=PropertyChanged}" Margin="0,26.65,0,0" />
+        <Button Grid.Row="6" Grid.Column="3" x:Name="btnNachOutlookUebernehmen" Click="btnNachOutlookUebernehmen_Click" Style="{StaticResource lessButton}"
+					ToolTip="Hier können Sie die Wiedervorlage nach Outlook als Termin übernehmen." Margin="12,0.65,6,36">
+            <Image  x:Name="ereignisOutlook" Source="/paradigmaDetail;component/icons/Outlook.png"
+						Height="23" Width="25">
+            </Image>
+        </Button>
+    </Grid>
+</Window>

@@ -1,0 +1,70 @@
+﻿<Window x:Class="winVCF"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    	xmlns:mmm="clr-namespace:paradigmaDetail" 
+    Title="Elektronische Visitenkarte" Height="546" Width="1040" WindowStartupLocation="CenterScreen"   Background="{StaticResource backg3}">
+    <Grid x:Name="grdMain" Height="492" Width="988">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="187*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*" />
+            <ColumnDefinition Width="218*" />
+            <ColumnDefinition Width="89*" />
+            <ColumnDefinition Width="206*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Padding="5">Name:</TextBlock>
+        <TextBlock Grid.Row="2" Padding="5">Vorname:</TextBlock>
+        <TextBlock Grid.Row="3" Padding="5">Mittelname:</TextBlock>
+        <TextBlock Grid.Row="4" Padding="5">Titel:</TextBlock>
+        <TextBlock Grid.Row="5" Padding="5">Organisation:</TextBlock>
+      
+        <TextBlock Grid.Row="6" Padding="5">Notiz:</TextBlock>
+        <TextBlock Grid.Row="8" Padding="5">Anrede</TextBlock>
+        <TextBlock Grid.Row="9" Padding="5">Formatiert</TextBlock>
+
+        <TextBlock Grid.Row="1" Grid.Column="2" Padding="5">Email:</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Padding="5">Tel.:</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2" Padding="5">Fax:</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2" Padding="5">Mobil:</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2" Padding="5"></TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="2" Padding="5">Strasse:</TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="2" Padding="5">Postleitzahl:</TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="2" Padding="5">Stadt/Gemeinde:</TextBlock>
+<TextBlock Grid.Row="9" Grid.Column="2" Padding="5">URL:</TextBlock>
+
+
+        <TextBox   x:Name="tbname"   Grid.Row="1" Grid.Column="1" />
+        <TextBox   x:Name="tbVname"   Grid.Row="2" Grid.Column="1" />
+        <TextBox   x:Name="tbMname"   Grid.Row="3" Grid.Column="1" />
+        <TextBox   x:Name="tbTitel"   Grid.Row="4" Grid.Column="1" />
+        <TextBox   x:Name="tbOrg"   Grid.Row="5" Grid.Column="1" />
+        <TextBox   x:Name="tbNotiz"   Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" TextWrapping="Wrap" AcceptsTab="True" AcceptsReturn="True" />
+        <TextBox   x:Name="tbAnrede"   Grid.Row="8" Grid.Column="1"  />
+        <TextBox   x:Name="tbformattedName"   Grid.Row="9" Grid.Column="1"  />
+
+        <TextBox   x:Name="tbEmail"   Grid.Row="1" Grid.Column="3" />
+        <TextBox   x:Name="tbTel1"   Grid.Row="2" Grid.Column="3" />
+        <TextBox   x:Name="tbFax1"   Grid.Row="3" Grid.Column="3" />
+        <TextBox   x:Name="tbMobil1"   Grid.Row="4" Grid.Column="3" />
+        <TextBox   x:Name="tbStrasse"   Grid.Row="6" Grid.Column="3" />
+        <TextBox   x:Name="tbPLZ"   Grid.Row="7" Grid.Column="3" />
+        <TextBox   x:Name="tbstadt"   Grid.Row="8" Grid.Column="3" />
+
+        <TextBox   x:Name="tbURL"   Grid.Row="9" Grid.Column="3" />
+
+        <Button   x:Name="btnuebernahme" IsCancel="True"   Grid.Row="11" Grid.Column="1" Content="Als Beteiligten übernehmen" Click="btnuebernahme_Click" />
+        <Button   x:Name="btnabbruch" IsCancel="True"   Grid.Row="11" Grid.Column="3" Content="Abbruch" Click="btnabbruch_Click"/>
+    </Grid>
+</Window>

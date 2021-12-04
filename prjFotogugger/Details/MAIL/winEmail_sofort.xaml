@@ -1,0 +1,87 @@
+﻿<Window x:Class="Window_email_sofort"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigmaDetail" 
+    Title="Email verschicken" Height="650" Width="1123" WindowStartupLocation="CenterScreen"
+            >
+
+    <Window.Resources>
+        <!--<src:myGlobalz x:Key="myGlobalz"/>-->
+        <!--<src:MyFormatter x:Key="myformattjf" />-->
+    </Window.Resources>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11*" />
+                <ColumnDefinition Width="69*"/>
+                <ColumnDefinition Width="962*" />
+                <ColumnDefinition Width="74*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"  />
+                <RowDefinition Height="25"   />
+                <RowDefinition Height="55"   />
+                <RowDefinition Height="140*" />
+                <RowDefinition Height="25"  />
+                <RowDefinition Height="25*"  />
+            </Grid.RowDefinitions>
+            <TextBox Name="tbAN"   Grid.Column="2" Grid.Row="0"   VerticalAlignment="Top"
+          Grid.ColumnSpan="2" Margin="0,0,73.8,0" 
+                    />
+            <TextBlock  Grid.Column="0" Grid.Row="0"   Padding="10,0,0,0" Name="Label1" VerticalAlignment="Top" Grid.ColumnSpan="2">An:</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3"  Padding="10,0,0,0"  VerticalAlignment="Top" Name="Label2" Grid.ColumnSpan="2" Margin="0,30.2,0,0" Grid.RowSpan="2">Betrifft:</TextBlock>
+
+
+            <TextBlock Grid.Row="1"  Grid.Column="0"  VerticalAlignment="Top" Padding="10,0,0,0"  Name="LabelCC" Grid.ColumnSpan="2" Margin="0,0.2,0,0">CC:</TextBlock>
+            <TextBox Name="tbCC"    Grid.Row="1" Grid.Column="2"   VerticalAlignment="Top"
+           Grid.ColumnSpan="2" Margin="0,0.2,73.8,0" 
+                    />
+            <Button Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" Name="btnCC" Click="btnCC_Click" 
+                    Style="{StaticResource lessButton}" Grid.ColumnSpan="2" Margin="962,0.2,-0.2,0" Grid.RowSpan="2">...</Button>
+            <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Top" Name="btnAnhang" 
+                    Click="btnAnhang_Click" Visibility="Collapsed"
+                    Style="{StaticResource lessButton}" Grid.ColumnSpan="2" Margin="962,0.4,-0.2,0">...</Button>
+            <TextBlock  Grid.Column="3" Grid.Row="3" Name="tbanhangSize" Foreground="DarkGreen" Margin="5,5,5,0"  
+                         ToolTip="Summe aller Dateigrößen. Sollte nicht größer als 20 MB sein.">12 kb</TextBlock>
+            <TextBlock Grid.Row="2" Padding="10,0,0,0" VerticalAlignment="Top" Name="Label5" Grid.ColumnSpan="2" Margin="0,0.4,0,0">Anhang:</TextBlock>
+            <TextBox Grid.Column="2" Grid.Row="2"   Name="tbAnhang"  VerticalAlignment="Top" 
+                 Height="55" Margin="0,0.4,0.4,0" 
+                 />
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3"  VerticalAlignment="Top" Margin="5,5,5,0">
+                <CheckBox  x:Name="chkAnhangeinchecken"     IsChecked="False" Margin="15,5,5,0"   
+                      FontWeight="Black">Anhang ins Archiv aufnehmen</CheckBox>
+                <CheckBox  x:Name="chkFotosverkleinern"     IsChecked="False" Margin="55,5,5,0"  Visibility="Collapsed"
+                           ToolTip="Fotos sind zum Mailen meist zu groß. Sie werden hier automatisch verkleinert. Die Qualität ist nicht immer ausreichend."
+                      FontWeight="Black">Fotos verkleinern auf:  </CheckBox>
+                <ComboBox x:Name="cmbIMGSIZE" Width="100" Visibility="Collapsed">
+                    <ComboBoxItem >640 x 480</ComboBoxItem>
+                    <ComboBoxItem >1024 x 768</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">1280 x 1024</ComboBoxItem>
+                </ComboBox>
+                <CheckBox  x:Name="chkWorddoksZuPDFKonvertieren"     IsChecked="False" Margin="5"
+                      FontWeight="Black">Alle Worddokumente als PDF verschicken</CheckBox>
+            </StackPanel>
+
+
+            <TextBox Grid.Column="2" Grid.Row="3"  VerticalAlignment="Top" x:Name="tbBetrifft"  
+              Grid.ColumnSpan="2" Margin="0,30.2,73.8,0" Grid.RowSpan="2" 
+                 />
+            <!--<Button Grid.Column="2" Grid.Row="2"   VerticalAlignment="Bottom" Name="Button2" Click="Button2_Click" Margin="0,0,0,0"  Visibility="Collapsed"
+                     Style="{StaticResource lessButton}">...</Button>-->
+            <Button Grid.Column="2"  Grid.Row="0"   Name="Button3" Click="Button3_Click"   Style="{StaticResource lessButton}" Grid.ColumnSpan="2" Margin="962,0,-0.2,24.6" Grid.RowSpan="2">...</Button>
+        </Grid>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <Button Grid.Column="1" Grid.Row="4" Margin="39,0,84,12"
+                    Name="abschicken" Click="abschicken_Click" Width="374">abschicken</Button>
+            <CheckBox Content="vorher Outlook öffnen" x:Name="chkOutlookanzeigen" Margin="5"
+                   Visibility="Visible" ToolTip="Die Email wird über Outlook versendet. Es wird KEIN Ereignis angelegt." />
+            <Button x:Name="btnAbbruch" Click="btnAbbruch_Click" Content="Abbruch"  Style="{StaticResource lessButton}" Width="300" Margin="90,0,0,9"/>
+        </StackPanel>
+
+
+        <TextBox  TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"  Name="tbMessage"     AcceptsReturn="True" AcceptsTab="True"  
+                  SpellCheck.IsEnabled="True" Margin="5"
+             Height="338" />
+
+    </DockPanel>
+</Window>

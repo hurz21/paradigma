@@ -1,0 +1,46 @@
+﻿<Window x:Class="winUserEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail"
+        mc:Ignorable="d"
+        Title="Pers. Daten ändern" Height="300.088" Width="338.429"
+        Background="{StaticResource backg3}"  WindowStartupLocation="CenterScreen" 
+            Margin="4"  ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+            ScrollViewer.CanContentScroll="True" >
+    <DockPanel>
+        <StackPanel Margin="5">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Width="100">Tel.:</TextBlock>
+                <TextBox Width="200" Name="tbTelefon"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Width="100">Fax.:</TextBlock>
+                <TextBox Width="200" Name="tbFax"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Width="100">Raumnummer:</TextBlock>
+                <TextBox Width="200" Name="tbRaum"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Width="100">Email:</TextBlock>
+                <TextBox Width="200" Name="tbEmail"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Width="100">Kürzel:</TextBlock>
+                <TextBox Width="200" Name="tbKuerzel"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button Name="btnsave" Click="btnsave_Click" IsDefault="True" Margin="20" Width="100" IsEnabled="False">Speichern</Button>
+                <Button Name="btnabbruch" Click="btnabbruch_Click" IsCancel="True" Margin="20" Width="100">Abbruch</Button>
+            </StackPanel>
+
+        </StackPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,112 @@
+﻿<Window x:Class="WinDetailSucheFST"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:src="clr-namespace:paradigma"  
+    Title="GIS Flurstückssuche" Height="550" Width="610"  WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <src:myGlobalz x:Key="myGlobalz" />
+        <src:MyFormatter x:Key="myformattjf"  />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemarkungen" />
+    </Window.Resources>
+    <StackPanel Background="{StaticResource TabControlBackgroundBrush}">
+        <StackPanel Orientation="Horizontal" Margin="10,110,0,0">
+            <StackPanel Margin="10" Width="502">
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90" >Gemarkung:</Label>
+                    <TextBox Width="186" Name="tbGemarkung" IsEnabled="False"
+                                       Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.gemarkungstext, 
+                                        UpdateSourceTrigger='PropertyChanged'}"                                      
+                                     />
+                    <ComboBox Name="cmbgemarkung" 
+                                DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemarkungen}, XPath=/Variablen/Variable}"
+                                ItemsSource="{Binding}" 
+                                DisplayMemberPath="@Name" 
+                                SelectedValuePath="@ID"
+                                SelectedValue="{Binding Path=ID}" 
+                                SelectionChanged="cmbgemarkung_SelectionChanged"
+                                Width="20"
+                                      >
+                        <!--<ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Key}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>-->
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Flur:</Label>
+                    <TextBox Width="186" Name="tbflur" IsEnabled="False"
+                                       Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.flur , 
+                                        UpdateSourceTrigger='PropertyChanged'}" 
+                                     />
+                    <ComboBox Name="cmbFlur" ItemsSource="{Binding}" 
+                                      DisplayMemberPath="flur"  SelectedValuePath="flur"
+                                      Width="20"
+                                      ></ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Zähler:</Label>
+                    <TextBox Width="186" Name="tbZaehler" IsEnabled="False" 
+                                Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.zaehler , 
+                                        UpdateSourceTrigger='PropertyChanged'}" 
+                                     />
+                    <ComboBox Name="cmbZaehler" ItemsSource="{Binding}" 
+                                      DisplayMemberPath="zaehler"  SelectedValuePath="zaehler" 
+                                      Width="20"
+                                      ></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Nenner:</Label>
+                    <TextBox Width="186"  Name="tbNenner" IsEnabled="False" 
+                                        Text="{Binding Source={StaticResource myGlobalz}, 
+                                        Path=sitzung.aktFST.normflst.nenner , 
+                                        UpdateSourceTrigger='PropertyChanged'}" 
+                                     
+                                     
+                                     />
+                    <ComboBox Name="cmbNenner" ItemsSource="{Binding}" 
+                                      DisplayMemberPath="nenner"  SelectedValuePath="nenner"
+                                      Width="20"
+                                      ></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"></StackPanel>
+
+                <StackPanel Orientation="Horizontal"></StackPanel>
+                <StackPanel Orientation="Horizontal"></StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="9"  Grid.ColumnSpan="3" Orientation="Horizontal" Margin="5,15,5,5" >
+                    <StackPanel Orientation="Horizontal">
+                        <GroupBox Header="Eigentümer ermitteln">
+                           <StackPanel>
+
+                            <Button x:Name="btnEigentuemerALKIS" Click="btnEigentuemerALKIS_Click"  IsEnabled="False" Content="start" 
+                                    Width="200"/>
+                            <CheckBox   x:Name="chkInsArchiv" Click="chkInsArchiv_Click" 
+                                  Content="ins Archiv übernehmen"                           />
+                            <CheckBox   x:Name="chkEreignisMap" Click="chkEreignisMap_Click_1"
+                                  Content="Ereignis anlegen"                           />
+                        </StackPanel> 
+                        </GroupBox>
+                        
+
+                     
+                        
+                    </StackPanel>
+
+                    <Button   Margin="100,0,0,0"   Name="btnAbbruch"    IsCancel="True"  Width="60"  Style="{StaticResource lessButton}">Abbruch</Button>
+
+                </StackPanel>
+               
+                 
+            </StackPanel>
+            <StackPanel Margin="10">
+
+            </StackPanel>
+        </StackPanel>
+
+    </StackPanel>
+</Window>

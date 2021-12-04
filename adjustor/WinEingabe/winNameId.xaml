@@ -1,0 +1,38 @@
+﻿<Window x:Class="winNameId"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="winNameId"  Height="638" Width="797" Background="Bisque" WindowStartupLocation="CenterScreen" >
+    <DockPanel  >
+
+        <StackPanel   DockPanel.Dock="Top">
+            <TextBlock Text="ID   = Ist der unsichtbare Programmintern-verwendete Wert einer Option. Er darf NIEMALS verändert werden "/>
+            <TextBlock Text="Name = Ist der für den Anwender sichtbare Teil einer Option. Im Idealfall ist beides gleich. Er darf verändert werden." />
+            <StackPanel Orientation="Horizontal" Margin="10" Height="38" Width="738">
+                <Button Content="Hinzufügen"  Command="{Binding AddCommand}"
+                Height="30"  HorizontalAlignment="Left"  Name="Button1"  Width="116" />
+                <Button Content="Speichern"  Command="{Binding SaveCommand}"
+                Height="30" HorizontalAlignment="Left" Name="SaveButton"   Width="116" />
+                <Button Content="Entfernen"  Command="{Binding RemoveCommand}"
+                Height="30" HorizontalAlignment="Left"  Name="RemoveButton"  Width="116"  Foreground="LightPink"  />
+                <Button Content="Abbruch"  Click="AbbruchButton_Click" IsCancel="True"
+                Height="30" HorizontalAlignment="Left"  Name="AbbruchButton" VerticalAlignment="Top" Width="90" />
+                <Button Content="notepad"  Click="EditorButton_Click"  
+                Height="30" HorizontalAlignment="Left"  Name="EditorButton" VerticalAlignment="Top" Width="90" />
+                <Button Content="pspad"  Click="pspadButton_Click"  
+                Height="30" HorizontalAlignment="Left"  Name="pspadButton" VerticalAlignment="Top" Width="90" />
+                <Button Content="easyXML"  Click="easyXML_Click"  
+                Height="30" HorizontalAlignment="Left"  Name="easyXML" VerticalAlignment="Top" Width="90" />
+            </StackPanel >
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid  AutoGenerateColumns="True" ItemsSource="{Binding Path=Variablen}" SelectedItem="{Binding Path=Selection, Mode=TwoWay}"
+                    Height="400"
+                    VerticalScrollBarVisibility="Auto">
+
+                </DataGrid>
+            </ScrollViewer>
+        </StackPanel >
+
+
+
+    </DockPanel>
+</Window>

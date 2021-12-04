@@ -1,0 +1,271 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9AC903F0-CA7B-480E-BC26-BD8DDAFAEF82}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>wpfDummy</RootNamespace>
+    <AssemblyName>wpfDummy</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>true</IncrementalBuild>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>wpfDummy.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>false</IncrementalBuild>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>wpfDummy.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>wpfDummy.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>wpfDummy.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.Outlook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.OutlookViewCtl, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Outlook, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Outlook.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Tools.Word, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Word.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\DBprovider\NPpostgis\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\DBprovider\NPpostgis\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Application.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="clsGEOPoint.vb" />
+    <Compile Include="CLstart2\ActionLog.vb" />
+    <Compile Include="CLstart2\AesCrypt\AesCrypt.vb" />
+    <Compile Include="CLstart2\clsINIDatei.vb" />
+    <Compile Include="CLstart2\clsINIXML.vb" />
+    <Compile Include="CLstart2\clsMsgboxText.vb" />
+    <Compile Include="CLstart2\clsProjektAllgemein.vb" />
+    <Compile Include="CLstart2\clsVerschluessel.vb" />
+    <Compile Include="CLstart2\DMStools.vb" />
+    <Compile Include="CLstart2\HistoryKookie.vb" />
+    <Compile Include="CLstart2\mapnetworkdrive.vb" />
+    <Compile Include="CLstart2\meineHttpNet.vb" />
+    <Compile Include="CLstart2\myc.vb" />
+    <Compile Include="CLstart2\mycSimple.vb" />
+    <Compile Include="CLstart2\VIDuebergabe.vb" />
+    <Compile Include="CLstart2\ZeigeraufXMLinitdatei.vb" />
+    <Compile Include="KFAS\clskfas.vb" />
+    <Compile Include="KFAS\kfatools.vb" />
+    <Compile Include="LIBarchiv\clsHeic.vb" />
+    <Compile Include="LIBgemeinsames\myComboBoxItem.vb" />
+    <Compile Include="nurlokalerDummy\clsPresDokumente.vb" />
+    <Compile Include="pocos\clsGemarkungsParams.vb" />
+    <Compile Include="pocos\clsTupelString.vb" />
+    <Compile Include="pocos\PocoAdresse.vb" />
+    <Compile Include="pocos\PocoFlurstueck.vb" />
+    <Compile Include="pocos\PocoPerson.vb" />
+    <Compile Include="zulinken\clsdivers.vb" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CLstart2\classen.vb" />
+    <Compile Include="CLstart2\clsDBspecMSSQL.vb" />
+    <Compile Include="JFactivedirectory\clsActiveDir.vb" />
+    <Compile Include="jfCardreader\Module1.vb" />
+    <Compile Include="jfCardreader\readVcard.vb" />
+    <Compile Include="LIBarchiv\clsFotoDokument.vb" />
+    <Compile Include="LIBarchiv\Dokument.vb" />
+    <Compile Include="LIBarchiv\DokumentenTyp.vb" />
+    <Compile Include="LIBcsvausgabe\clsCSVausgaben.vb" />
+    <Compile Include="LIBDB\clsDatenbankZugriff.vb" />
+    <Compile Include="LIBDB\clsDBtools.vb" />
+    <Compile Include="LIBDB\IDB_grundfunktionen.vb" />
+    <Compile Include="LIBgemeinsames\clsBiom.vb" />
+    <Compile Include="LIBgemeinsames\clsString.vb" />
+    <Compile Include="LIBgemeinsames\md5.vb" />
+    <Compile Include="LIBgoogle\clsGoogleCoordinates.vb" />
+    <Compile Include="LIBgoogle\geoGoogleXML.vb" />
+    <Compile Include="LIBgoogle\GmapsApi3.vb" />
+    <Compile Include="LIBmailmensch\iMeilmensch.vb" />
+    <Compile Include="LIBmapgenerator\clsAufrufgenerator.vb" />
+    <Compile Include="LIBmapgenerator\clsCanvas.vb" />
+    <Compile Include="LIBmapgenerator\clsMapCrendentials.vb" />
+    <Compile Include="LIBmapgenerator\clsMapSpec.vb" />
+    <Compile Include="LIBmapgenerator\clsRange.vb" />
+    <Compile Include="LIBmapgenerator\clsWebgisControlNeu.vb" />
+    <Compile Include="LIBmapgenerator\myPoint.vb" />
+    <Compile Include="LIBmapgenerator\RaumbezugsTyp.vb" />
+    <Compile Include="LIBmapgenerator\tools.vb" />
+    <Compile Include="LIBmensch\clsBankverbindung.vb" />
+    <Compile Include="LIBmensch\clsBankverbindungSEPA.vb" />
+    <Compile Include="LIBmensch\clsBearbeiter.vb" />
+    <Compile Include="LIBmensch\Kontaktdaten.vb" />
+    <Compile Include="LIBmensch\Person.vb" />
+    <Compile Include="LIBmensch\w_adresse.vb" />
+    <Compile Include="LIBmensch\w_fonfax.vb" />
+    <Compile Include="LIBmensch\w_organisation.vb" />
+    <Compile Include="LIBoutlook2\Liboutlook2.vb" />
+    <Compile Include="LIBoutlook2\mailMensch.vb" />
+    <Compile Include="LIBpostgisNPG\clsCRUDpostgres.vb" />
+    <Compile Include="LIBpostgisNPG\clsDBspecPostgres.vb" />
+    <Compile Include="LIBpostgisNPG\clsInsert.vb" />
+    <Compile Include="LIBpostgisNPG\nondbtools.vb" />
+    <Compile Include="LIBstammdatenCRUD\AktenStandort.vb" />
+    <Compile Include="LIBstammdatenCRUD\AktenzeichenSachgebiet.vb" />
+    <Compile Include="LIBstammdatenCRUD\clsAktenzeichen.vb" />
+    <Compile Include="LIBstammdatenCRUD\clsStammCRUD_Mysql.vb" />
+    <Compile Include="LIBstammdatenCRUD\clsStammdatenTool.vb" />
+    <Compile Include="LIBstammdatenCRUD\LetzteBearbeitung.vb" />
+    <Compile Include="LIBstammdatenCRUD\Stamm.vb" />
+    <Compile Include="LIBstammdatenCRUD\Status.vb" />
+    <Compile Include="LIBwordvorlage\WordReplaceTextmarken.vb" />
+    <Compile Include="MainWindow.xaml.vb">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="DocumentFormat.OpenXml" />
+    <Import Include="DocumentFormat.OpenXml.Packaging" />
+    <Import Include="DocumentFormat.OpenXml.Wordprocessing" />
+    <Import Include="LibDB.LIBDB" />
+    <Import Include="System.Threading.Tasks" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Module1.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWpfExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.WPF.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

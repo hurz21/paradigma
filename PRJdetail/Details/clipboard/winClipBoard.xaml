@@ -1,0 +1,27 @@
+﻿<Window x:Class="winClipBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail"
+        mc:Ignorable="d"
+        Title="Zwischenablage in Dokument umwandeln" Height="400" Width="600"
+         Background="{StaticResource backg3}"  WindowStartupLocation="CenterScreen" >
+    <DockPanel>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="tbClip" Height="200" Width="300"/>
+                <Button x:Name="btnTextUebernehmen" Click="btnTextUebernehmenClick" 
+                        Margin="25" Content="Text aus Zwischenablage übernehmen"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="AliceBlue">
+
+                <Image x:Name="imgClip" Height="200" Width="300"/>
+                <Button x:Name="btnBildUebernehmen" Click="btnBildUebernehmenClick" 
+                        Margin="25" Content="Bild aus Zwischenablage übernehmen"/>
+            </StackPanel>
+
+        </StackPanel>
+    </DockPanel>
+</Window>

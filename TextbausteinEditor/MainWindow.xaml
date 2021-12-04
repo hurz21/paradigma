@@ -1,0 +1,35 @@
+﻿<Window x:Class="MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Paradigma: Textbausteine" Height="590" Width="848" WindowStartupLocation="CenterScreen"
+        Background="LightGray"
+        >
+    <DockPanel Height="387">
+        <StackPanel DockPanel.Dock="Top">
+            <StackPanel  Orientation="Horizontal">
+                <StackPanel x:Name="stckAdmin" Height="50 " Orientation="Horizontal" Visibility="Visible">
+                    <!--<Button  Name="neu" Content="Neu" Width="200" Click="neu_Click"/>-->
+                    <Button  Name="edit" Content="Edit" Width="200" Click="edit_Click" Margin="5"/>
+                    <TextBlock FontWeight="Bold" TextWrapping="Wrap" Height="60" Width="300" Margin="5">Wichtig: Die Dateien müssen als '.rtf' gespeichert werden. '.docx' reicht NICHT</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" x:Name="stpInfo">
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock   Foreground="Green" Padding="5"> Wählen Sie hier den Textbaustein aus: </TextBlock>
+                <ComboBox x:Name="cmbGruppe" Width="200" SelectionChanged="cmbGruppe_SelectionChanged"  />
+                <ComboBox x:Name="cmbSubdir" Width="200" SelectionChanged="cmbSubdir_SelectionChanged"  />
+                <Button  Name="exit" Content="Beenden" Width="200" IsCancel="True" Click="exit_Click"/>
+            </StackPanel>
+            <TextBlock DockPanel.Dock="Bottom" x:Name="tbInfo" Foreground="Green"></TextBlock>
+        </StackPanel>
+
+        <DockPanel x:Name="dckP"  >
+            <RichTextBox x:Name="rtfbox"   />
+       
+        </DockPanel>
+      
+         
+        
+    </DockPanel>
+</Window>

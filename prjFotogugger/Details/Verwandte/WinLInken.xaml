@@ -1,0 +1,45 @@
+﻿<Window x:Class="winlinken"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Verwandten Vorgang hinzufügen" Height="338" Width="647"  WindowStartupLocation="CenterScreen"        
+ >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="66"></ColumnDefinition>
+            <ColumnDefinition Width="84" />
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="119*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+         
+            <RowDefinition Height="111*" />
+            <RowDefinition Height="68*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.ColumnSpan="3" Grid.Row="1" Padding="5" Grid.Column="1" Margin="0,0,34,28" Grid.RowSpan="2">Nr. des Quellvorgangs:</TextBlock>
+        <TextBox Grid.Column="4" x:Name="tbVid"  Padding="5" Grid.ColumnSpan="3" Grid.Row="1" TextChanged="tbVid_TextChanged"/>
+        <Button Grid.Column="7" Grid.Row="1" x:Name="btnBestandsauswahl" Content="BestandAuswahl" Style="{StaticResource lessButton}" 
+                Click="btnBestandsauswahl_Click_1" Visibility="Hidden"/>
+        <Button Grid.Column="1" Grid.Row="3" x:Name="btLinken" Content="Verlinken"
+                Click="btLinken_Click"
+                Grid.ColumnSpan="3" Margin="0,0,34,0" IsDefault="True"/>
+    
+        <TextBlock Grid.Column="4" Grid.ColumnSpan="4" Grid.Row="3" Height="183"  Foreground="Green"
+                   HorizontalAlignment="Left"   TextWrapping="Wrap" VerticalAlignment="Top" Width="290" Grid.RowSpan="3">
+            Beim Linken werden keine Kopien angelegt, sondern es wird nur auf den Quellvorgang verwiesen. Ändert sich der Quellvorgang später
+            so werden auch die Änderungen angezeigt.
+             Verwenden Sie diese Möglichkeit z.B. wenn Sie nur die Verwandschaft von Vorgängen aufzeigen wollen. Z.B. bei Bearbeitung eines Bauantrages durch mehrere
+            Bearbeiter in getrennten Vorgängen.
+        </TextBlock>
+        <Button Grid.Column="7" Grid.Row="5" x:Name="btabbrechen" IsCancel="True " Content="Abbrechen" Click="btabbrechen_Click" 
+                Style="{StaticResource lessButton}" Margin="0,42,0,0" />
+       
+    </Grid>
+</Window>

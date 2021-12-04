@@ -1,0 +1,38 @@
+﻿<Window x:Class="WinExport"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="WinExport" Height="605.588" Width="779.648" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <StackPanel Width="562" DockPanel.Dock="Top">
+            <TextBlock FontWeight="Black"  Text="Bitte schließen Sie alle Word-Dokumente. Schließen Sie auch die Nachrichten in Outlook."/>
+            <StackPanel Orientation="Vertical" IsEnabled="True">
+                <CheckBox Width="400" Content="Verlauf: exportieren"  x:Name="chkExpVerlauf" IsChecked="True"/>
+                <CheckBox Width="400" Content="Beteiligte: exportieren"  x:Name="chkExpBeteiligte" IsChecked="True"/>
+                <CheckBox Width="400" Content="Raumbezug: exportieren " x:Name="chkExpRB"  IsChecked="True"/>
+                <CheckBox Width="400" Content="Dokumente: exportieren"  x:Name="chkExpDokus"  IsChecked="True"/>
+                <StackPanel >
+                    <CheckBox Width="400" Content="     Outlook-Msg-Dateien als HTML exportieren" x:Name="chkmsg2HTML" IsChecked="True"/>
+                    <CheckBox Width="400" Content="     Word-Dateien  als PDF exportieren" x:Name="chkWord2PDF" IsChecked="True"/>
+                </StackPanel>
+                <CheckBox Width="400" Content="Fotos: exportieren" x:Name="chkExpFotos" IsChecked="True"/>
+
+            </StackPanel>
+            <Separator Height="50"/>
+            <TextBlock x:Name= "TBexportDir" Text=""/>
+        </StackPanel>
+
+        <StackPanel MinWidth="400">
+            <TextBlock Height="200" x:Name="tbInfotext" Text="">
+
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Verzeichnis öffnen" Click="btnOpenDestDir" Width="200" Style="{StaticResource lessButton}" />
+                <Button Content="Export starten" Click="btnStart" Height="61" Width="200"/>
+                <Button Content="Abbruch" Click="btnAbbruch" Width="200" Style="{StaticResource lessButton}" />
+            </StackPanel>
+
+
+        </StackPanel>
+
+    </DockPanel>
+</Window>

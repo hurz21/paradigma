@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-2"?>
+    <ini>
+     <ALB  
+          mysqlserver="kis"
+          dbtyp="mysql"
+          dbismysql="1"
+          schema="alb" 
+          username="webgis"
+          password="luftikus"
+          PDFOutputPath="\\w2gis02\gdvell\cache\alb"
+          DPI="150"
+          Weight="3"
+    >     <!--alb erzeugung-->
+      </ALB>
+
+    </ini> 

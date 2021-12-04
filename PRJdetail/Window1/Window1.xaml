@@ -1,0 +1,13 @@
+﻿<Window x:Class="Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:mfrm="clr-namespace:paradigmaDetail" 
+        Title="Paradigma" WindowStartupLocation="Manual" Left="1"  Top="100" Name="Window1"     
+        ResizeMode="CanResizeWithGrip"  WindowState="Normal"   
+        Width="117.209"  Background="{StaticResource backg3}"   Height="486.582"  >
+ 
+  
+
+ 
+
+</Window>

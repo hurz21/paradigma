@@ -1,0 +1,216 @@
+﻿<Window x:Class="IllegbauFilter"
+
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            
+            xmlns:src="clr-namespace:paradigma" 
+            xmlns:mfrm="clr-namespace:paradigma" 
+            Title="Paradigma - Suchen nach Vorgängen" Height="900" Width="1832" Name="Window1" 
+            WindowStartupLocation="CenterScreen" WindowState="Normal"
+            Background="{StaticResource backg2}" ResizeMode="CanResizeWithGrip" 
+        >
+    <!--<Style x:Key="dgRowStyleLOK" TargetType="DataGridRow" BasedOn="{StaticResource dgRowStyle}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding LETZTEBEARBEITUNG}" Value="01.01.0001">
+                -->
+    <!--Value="1900-01-01 01:01:01">-->
+    <!--
+                <Setter Property="Foreground" Value="Green" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding   ERLEDIGT}" Value="1">
+                <Setter Property="Background" Value="LightGreen" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding   WVFAELLIG}" Value="1">
+                <Setter Property="FontWeight" Value="Black" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding   HATRAUMBEZUG}" Value="0">
+                <Setter Property="Foreground" Value="FireBrick" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>-->
+    <Window.Resources>
+        <!--<mfrm:MyFormatter x:Key="myformattjf" />-->
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemeinden" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxGemKRZ" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemarkungen" />
+        <XmlDataProvider x:Key="XMLSourceDateiTypen" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxEreignisArt" />
+
+
+
+        <Style x:Key="dgRowStyleLOK" TargetType="DataGridRow" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding LETZTEBEARBEITUNG}" Value="01.01.0001">
+                    <!--Value="1900-01-01 01:01:01">-->
+                    <Setter Property="Foreground" Value="Green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   STATUS}" Value="1">
+                    <Setter Property="Background" Value="LightPink" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   STATUS}" Value="3">
+                    <Setter Property="Background" Value="LightGreen" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   STATUS}" Value="2">
+                    <Setter Property="Background" Value="Yellow" />
+                </DataTrigger>
+                <!--<DataTrigger Binding="{Binding   STATUS}" Value="1">
+                    <Setter Property="Background" Value="LightBlue" />
+                </DataTrigger>-->
+                <DataTrigger Binding="{Binding   WVFAELLIG}" Value="1">
+                    <Setter Property="FontWeight" Value="Black" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   HATRAUMBEZUG}" Value="0">
+                    <Setter Property="Foreground" Value="FireBrick" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel >
+        <StackPanel  DockPanel.Dock="Top"  Background="{StaticResource backg3}"  x:Name="stckp1">
+            <!--<Button Height="120" Visibility="Hidden">dasfsdfsf</Button>-->
+            <DockPanel  Name="dpMain">
+                <TextBlock Height="40" Visibility="Visible" Background="{StaticResource backg1}" FontSize="24" FontFamily="Arial"
+                           Margin="10" Padding="10" Width="399" HorizontalAlignment="Left">Bestand - Filter für Illegale Bauten</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <StackPanel>
+                        <Button Content="Neu" Width="100" HorizontalAlignment="Right" Click="NeuerVorgang_Click"/>
+                        <Button Content="zu VorgangsNr:" Width="100" HorizontalAlignment="Right" Click="ZuvorgangsNr_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+            <StackPanel   Background="{StaticResource backg3}" Orientation="Vertical"   >
+                <StackPanel Orientation="Horizontal" Name="spButtonlist" >
+                    <Button Content="Stammdaten" Width="100" HorizontalAlignment="Left" Margin="5"  
+                            Style="{StaticResource lessButton}" x:Name="btnStammdatenFiltern" Click="btnStammdatenFiltern_Click" />
+                    <Button Content="Beteiligten" Width="100" HorizontalAlignment="Left" Margin="5" x:Name="btnbeteiligteFiltern"
+                            Style="{StaticResource lessButton}" />
+                    <Button Content="Ereignisse" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnEreignisfilter" Click="btnEreignisfilter_Click" />
+                    <Button Content="Flurstücke" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnfstSuche" Click="btnfstSuche_Click" />
+                    <Button Content="Adressen" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnadrSuche" Click="btnadrSuche_Click"/>
+                    <Button Content="Dokumente" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnDokusuche" Click="btnDokusuche_Click"/>
+                    <Button Content="Projekte" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnProjektsuche" Click="btnProjektsuche_Click"/>
+                    <Button Content="Wiedervorlagen" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" Name="btnWiedervorlage" Click="btnWiedervorlage_Click"/>
+                    <Button Content="Natureg" Width="100" HorizontalAlignment="Left" Margin="5" 
+                            Style="{StaticResource lessButton}" IsEnabled="False" />
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Header="Filter" Background="{StaticResource backg3}" Name="gbFilter">
+                        <StackPanel Margin="5" >
+                            <StackPanel Orientation="Horizontal" >
+                                <StackPanel Orientation="Horizontal" Height="30">
+                                    <TextBlock Text="Suchfilter: " Padding="5" ToolTip="Gesucht wird in den Feldern 'Beschreibung' und 'Az'"/>
+                                    <TextBox Width="200" x:Name="tbSuchtext"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="10" Orientation="Vertical" IsEnabled="True">
+
+                                    <CheckBox  IsChecked="True"  x:Name="chkplanmaessig" >
+                                        <TextBlock Text="planmäßig" Background="LightPink"/>
+                                    </CheckBox>
+                                    <CheckBox  IsChecked="True"  x:Name="chklaufend" >
+                                        <TextBlock Text="laufend" Background="Yellow"/>
+                                    </CheckBox>
+                                    <CheckBox   IsChecked="False"  x:Name="chkerledigt">
+                                        <TextBlock Text="erledigt" Background="LightGreen"/>
+                                    </CheckBox>
+                                    <CheckBox  IsChecked="False"  x:Name="chkrecherche" >
+                                        <TextBlock Text="recherche"  />
+                                    </CheckBox>
+                                </StackPanel>
+                                <GroupBox BorderBrush="Black" BorderThickness="1" Header="Ansicht">
+                                    <StackPanel Margin="10" ToolTip="Es werden nur Vorgänge angezeigt, die neben den Caterpillar-Daten auch einen Raumbezug haben !" Width="200">
+                                        <!--<CheckBox  IsChecked="True" Padding="0" x:Name="chkMitFlurstuecken" Click="chkMitFlurstuecken_Click" >
+                                            <StackPanel>
+                                                <TextBlock TextWrapping="Wrap"><Run Text="Nur Vorgänge mit Raumbezug (Flurstück) werden angezeigt"/><Run Text=". Mehrfachflurstücke möglich."/></TextBlock>
+
+                                            </StackPanel>
+
+                                        </CheckBox>-->
+                                        <RadioButton x:Name="radNurMitFlurstuecken"  GroupName="rbgrpDateiVerschieben">
+                                            <TextBlock TextWrapping="Wrap"><Run Text="Nur Vorgänge mit Raumbezug (Flurstück) werden angezeigt"/><Run Text=". Mehrfachflurstücke möglich."/></TextBlock>
+
+                                        </RadioButton>
+                                        <RadioButton x:Name="radFlurstueckEgal" IsChecked="True"  GroupName="rbgrpDateiVerschieben">
+                                            <TextBlock TextWrapping="Wrap"><Run Text="Die Vorgänge werden OHNE ihre Raumbezüge angezeigt"/><Run Text=". "/></TextBlock>
+
+                                        </RadioButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <Button Name="btnSuchen" Click="btnSuchen_Click"  IsDefault="True" Margin="10" >Suche starten</Button>
+                                <Button x:Name="btnClearNatureg" Click="btnClearNatureg_Click_1" Content=" C " Margin="15,5,5,5" Width="40" Style="{StaticResource lessButton}" ToolTip="Auswahl zurückstellen"/>
+
+
+                                <Button   IsCancel="True" Visibility="Visible" Width="67"   Margin="5" Name="btnabbruch2" Style="{StaticResource lessButton}"
+                                Click="abbruchclick">Abbruch</Button>
+
+                                <GroupBox Header="Ausgabe" Height="95" Width="70">
+
+                                    <StackPanel HorizontalAlignment="Right"  Background="{StaticResource backg3}" Width="55">
+                                        <Button Content="GIS" x:Name="ListeInsGIS" Click="ListeInsGIS_Click"  
+                                           Margin="5" ToolTip="Liste im GIS darstellen"  Visibility="Collapsed"/>
+                                        <Button Visibility="Visible" x:Name="btnBestandtoExcel"   Click="btnBestandtoExcel_Click" Margin="5"
+                                                ToolTip="Ausgabe der Liste nach Excel">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="" Margin="0" Height="23"  />
+                                                <Image x:Name="imgEreignisExcel" Source="/paradigma;component/icons/MSExcel.png" Height="23" Width="23"></Image>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Padding="5" Text="Treffer: "/>
+                                <TextBlock Padding="5" x:Name="tbpersonenTreffer"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <DataGrid Name="dgIllegbau" ItemsSource="{Binding}"   Background="{StaticResource backg1}" Visibility="Visible"  
+                                              RowStyle="{StaticResource dgRowStyleLOK}"   MaxHeight="680"
+                                 VirtualizingStackPanel.IsVirtualizing="True" EnableRowVirtualization="True" EnableColumnVirtualization="True"
+                              HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                                               ColumnHeaderStyle="{StaticResource dgHeaderStyle}"  SelectionChanged="dgIllegbau_SelectionChanged">
+                        <DataGrid.Columns>
+                            <!--<DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding id}" />-->
+                            <DataGridTextColumn Header="Vg." Width="SizeToCells" Binding="{Binding VORGANGSID }"   />
+                            <DataGridTextColumn Header="Beschreibung" Width="SizeToCells" MaxWidth="250" Binding="{Binding BESCHREIBUNG }" />
+                            <DataGridTextColumn Header="Az" Width="SizeToCells"  Binding="{Binding AZ2}"  />
+                            <DataGridTextColumn Header="GemKrz" Width="SizeToCells"  Binding="{Binding GEMKRZ}"  />
+                            <DataGridTextColumn Header="Gemarkung" Width="SizeToCells"  Binding="{Binding GEMARKUNGSTEXT}"  />
+                            <DataGridTextColumn Header="Fl." Width="SizeToCells"  Binding="{Binding FLUR}"    />
+                            <DataGridTextColumn Header="Fst" Width="SizeToCells"  Binding="{Binding ZNKOMBI}" />
+                            <DataGridTextColumn Header="Funktion" Width="SizeToCells"  Binding="{Binding TITEL}" />
+                            <DataGridTextColumn Header="Status" Width="SizeToCells" Binding="{Binding STATUS}" />
+                            <DataGridTextColumn Header="Gebiet" Width="SizeToCells" Binding="{Binding GEBIET}" />
+                            <DataGridTextColumn Header="Räumungstyp" Width="SizeToCells" Binding="{Binding RAEUMUNGSTYP}" />
+                            <DataGridTextColumn Header="Anhörung" Width="SizeToCells" Binding="{Binding ANHOERUNG,  StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="RäumBis" Width="SizeToCells" Binding="{Binding RAEUMUNGBISDATUM,   StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Räumung" Width="SizeToCells" Binding="{Binding RAEUMUNG,  StringFormat=\{0:dd.MM.yyyy\}}" />
+
+
+                            <DataGridTextColumn Header="Verfügung" Width="SizeToCells" Binding="{Binding VERFUEGUNG,    StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Erledigt" Width="SizeToCells" Binding="{Binding FALLERLEDIGT,   StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="Eingang" Width="SizeToCells" Binding="{Binding EINGANG,   StringFormat=\{0:dd.MM.yyyy\}}" />
+
+                            <DataGridTextColumn Header="Quelle" Width="SizeToCells" Binding="{Binding QUELLE}" />
+                            <DataGridTextColumn Header="Vermerk" Width="SizeToCells" Binding="{Binding VERMERK}" />
+                            <DataGridTextColumn Header="Bearbeiter" Width="SizeToCells" Binding="{Binding BEARBEITER}" />
+                            <DataGridTextColumn Header="LetzteBearbeitung" Width="SizeToCells" Binding="{Binding LETZTEBEARBEITUNG ,  StringFormat=\{0:dd.MM.yyyy\}}" />
+                            <DataGridTextColumn Header="LetztesEreignis" Width="SizeToCells" Binding="{Binding LASTACTIONHEROE}" />
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+
+    </DockPanel>
+</Window>

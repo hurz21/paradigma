@@ -1,0 +1,163 @@
+﻿<Window x:Class="winFremdRBs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail"
+        mc:Ignorable="d"
+         Background="{StaticResource backg3}"  WindowStartupLocation="CenterScreen" 
+        Title="winFremdRBs" Height="550" Width="900">
+    <Window.Resources>
+        <XmlDataProvider x:Key="XMLSourceComboBoxGemKRZ" />
+        <Style x:Key="dgRowStyleRB" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding STATUS}" Value="1">
+                    <Setter Property="Foreground" Value="blue" />
+                    <Setter Property="ToolTip" Value="Dieser Eintrag ist eine Verlinkung mit einem Verwandten Vorgang" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="dgCellStyleRBTyp" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="white" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TYP}" Value="1">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Adresse"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="2">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Flst"/>
+
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="5">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Foto"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="7">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Punkt"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="3">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Polygon"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TYP}" Value="4">
+                    <Setter Property="Background" Value="green" />
+                    <Setter Property="ContentTemplate" >
+                        <Setter.Value>
+                            <DataTemplate >
+                                <TextBox Text="Strecke"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <StackPanel>
+            <StackPanel Name="spFiltern" Height="70" Orientation="Vertical">
+                <StackPanel  Height="35" Orientation="Horizontal">
+
+                    <StackPanel Orientation="Horizontal" Height="25" Margin="2">
+                        <TextBlock    Text="Gemeinde:"     Padding="2"    
+                             ToolTip="sucht in Titel und Freitext"
+                    Margin="0,0,0,0" Width="66" />
+                        <ComboBox  x:Name="cmbGemKRZ"      ToolTip="Leer = Ganzer Kreis Offenbach" Width="25"  
+                               MouseMove="cmbGemKRZ_MouseMove" MaxDropDownHeight="800" 
+                                      DataContext="{Binding Source={StaticResource XMLSourceComboBoxGemKRZ}, XPath=/GEMKRZen/GEMKRZ}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbGemKRZ_SelectionChanged"  
+                                      />
+                        <TextBlock    x:Name="tbGEMKRZ"      Padding="2"    
+                             ToolTip="" Background="White"  
+                    Margin="0,0,0,0" Width="46" />
+                    </StackPanel>
+                    <StackPanel Margin="2"  Height="25" Orientation="Horizontal">
+                        <TextBlock    Text="Filter:"     Padding="2"    
+                             ToolTip="sucht in Titel und Freitext"
+                    Margin="0,0,0,0" Width="46" />
+                        <TextBox Name="tbFilter" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Margin="2"  Height="25" Orientation="Horizontal">
+                        <TextBlock    Text="Art:"     Padding="2"  Margin="0,0,0,0" Width="46" />
+                        <ComboBox Name="cmbTyp" SelectionChanged="CmbTyp_SelectionChanged" Width="100">
+                            <ComboBoxItem Tag="2" >Flurstück</ComboBoxItem>
+                            <ComboBoxItem Tag="3" IsSelected="True" >Polygon</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Height="35" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Treffer: " Padding="2"/>
+                        <TextBlock Name="tbAnzTreffer" Width="40" Padding="2"/>
+                    </StackPanel>
+                    <Button Name="btnRefresh" Click="BtnRefresh_Click" Content="Liste auffrischen" Margin="2" 
+                            Width="150" IsDefault="True"/>
+                    <Button Name="btnAbbruch" Click="BtnAbbruch_Click" Content="Abbruch" Style="{StaticResource lessButton}" Width="150" IsCancel="True" Margin="319,0,0,0" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </StackPanel>
+            <DataGrid  x:Name="dgRaumbezug"   ItemsSource="{Binding ''}"   Height="350"
+                                              RowStyle="{StaticResource dgRowStyleRB}"  
+                                              ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                                               SelectionChanged="dgRaumbezug_SelectionChanged"
+                                              >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Gem. " Width="Auto"   Binding="{Binding GEMKRZ}" />
+                    <DataGridTextColumn Header="Bearb." Width="Auto"   Binding="{Binding BEARBEITER}" />
+                    <DataGridTextColumn Header="Art" Width="Auto"  Binding="{Binding TYP}"  CellStyle="{StaticResource dgCellStyleRBTyp}"  />
+                    <DataGridTextColumn Header="Beschreibung" Width="Auto"   Binding="{Binding ABSTRACT}" />
+                    
+                    <DataGridTextColumn Header="Funktion " Width="Auto"   Binding="{Binding TITEL}" />
+
+                    <DataGridTextColumn Header="Az."    Binding="{Binding AZ2}" ToolTipService.ToolTip="Aktenzeichen"/>
+                    <DataGridTextColumn Header="Vorgangsbeschreibung"    Binding="{Binding STAMMBESCHREIBUNG}" ToolTipService.ToolTip="Vorgangsbeschreibung"/>
+
+             
+
+                    <DataGridTextColumn Header="Freitext" Width="Auto"   Binding="{Binding FREITEXT}" />
+
+                    <DataGridTextColumn Header="qm" Width="Auto"   Binding="{Binding FLAECHEQM}" />
+                    <DataGridTextColumn Header="m" Width="Auto"   Binding="{Binding LAENGEM}" />
+
+                    <DataGridTextColumn Header="Etikett" Width="Auto"   Binding="{Binding MITETIKETT}" />
+                    <DataGridTextColumn Header="" Width="Auto"   Binding="{Binding DOKUMENTID}" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </DockPanel>
+</Window>

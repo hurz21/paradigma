@@ -1,0 +1,185 @@
+﻿<Window x:Class="winUserDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  Name="myWindow"
+    Title="BearbeiterDetails" Height="574" Width="947" WindowStartupLocation="CenterScreen"
+        Background="DarkSlateGray" Foreground="Azure" FontSize="14"
+        >
+    <!--<Window.Resources>
+        <SolidColorBrush x:Key="formTitleBorderBrush">#FF063371</SolidColorBrush>
+        <SolidColorBrush x:Key="formTitleForegroundBrush">White</SolidColorBrush>
+    </Window.Resources>-->
+    <DockPanel x:Name="dockpBearbeiter">
+        <StackPanel    DockPanel.Dock="Top" HorizontalAlignment="Center"    x:Name="Details">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Width="678">
+                    <!--<Border HorizontalAlignment="Stretch" Margin="11" VerticalAlignment="Center" BorderThickness="2" BorderBrush="{StaticResource formTitleBorderBrush}" Background="{StaticResource formTitleBackgroundBrush}" CornerRadius="20">
+                        <TextBlock Text="BearbeiterInnen" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="{StaticResource formTitleForegroundBrush}" Margin="7,0" />
+                    </Border>-->
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">ID:</TextBlock>
+                        <TextBox Height="21" Width="250" IsReadOnly="True"  x:Name="tbID"
+                                 Text="{Binding Path=BEARBEITERID, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Name:</TextBlock>
+                        <TextBox Height="21" Name="tbName" Width="250" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                  MouseEnter="tbExplorer_MouseEnter"
+                                 />
+                        <TextBlock Padding="5">z.B. 'Feinen, Weyers'</TextBlock>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Vorname:</TextBlock>
+                        <TextBox Height="21" Name="tbVorname" Text="{Binding Vorname, UpdateSourceTrigger=PropertyChanged}"  Width="250" />
+                        <!--<TextBox Visibility="Collapsed" Height="21" Name="tbRang" Text="{Binding Path=Rang, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Width="250" />-->
+                        <TextBlock Padding="5">z.B. 'Jörg, Gunilla'</TextBlock>
+                        <!--<TextBox Visibility="Collapsed" Height="21" Name="tbRites" Text="{Binding Path=Rites, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Width="250" />-->
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"   >
+                        <TextBlock Padding="5" Width="100"
+                                   ToolTip="ist der Username mit dem sich der Anwender/die Anwenderin ins Netzwerk einloggen, z.B. 'Feinen_J, Weyers_G'">UserID:</TextBlock>
+                        <TextBox Height="21" Name="tbUserID" Text="{Binding username, UpdateSourceTrigger=PropertyChanged}" Width="250" />
+                        <TextBlock Padding="5" x:Name="testid">z.B. 'Feinen_J, Weyers_G'</TextBlock>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Namenszusatz:</TextBlock>
+                        <TextBox Height="21" Name="tbNamenszusatz" Width="250" Text="{Binding Namenszusatz, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Padding="5">z.B. 'Dr., Prof.'</TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100"  >Initial:</TextBlock>
+                        <TextBox Height="21" Width="250" Name="tbINITIAL" IsEnabled="False" 
+                              Text="{Binding Initiale, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Padding="5">z.B. 'FeiJ,WeyG'
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100" >Kürzel:</TextBlock>
+                        <TextBox Height="21" Width="250" Name="tbKUERZEL1"   
+                              Text="{Binding Kuerzel2Stellig, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Padding="5">z.B. 'fe,gw'
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Telefon:</TextBlock>
+                        <TextBox  Name="tbTelefon" Height="21" Width="250" Text="{Binding Kontakt.elektr.Telefon1, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Padding="5">z.B. '4434, 4106'</TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Fax:</TextBlock>
+                        <TextBox  Name="tbFax" Height="21" Width="250" Text="{Binding Kontakt.elektr.Fax1, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Padding="5">z.B. '4910, 4344'</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Email:</TextBlock>
+                        <TextBox Height="21"  Name="tbEmail" Width="250" Text="{Binding Kontakt.elektr.Email, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Padding="5">z.B. 'dr.j,feinen@kreis-offfenbach.de'</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Rang:</TextBlock>
+                        <TextBox Height="21"  Name="tbRang" Width="250" Text="{Binding Rang, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="False"
+                                  />
+                        <ComboBox Name="ComboBox2" Width="25">
+                            <ComboBoxItem>vorzimmer</ComboBoxItem>
+                            <ComboBoxItem>user</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock Padding="5">z.B. 'vorzimmer' oder 'user' (vorzimmer = Admin)</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Rolle:</TextBlock>
+                        <TextBox Height="21"  Name="tbRolle" Width="250" Text="{Binding Rolle, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="ComboBox3" Width="25">
+                            <ComboBoxItem Content="Amtfrau"/>
+                            <ComboBoxItem Content="Amtmann"/>
+                            <ComboBoxItem Content="Amtrat"/>
+                            <ComboBoxItem Content="Amträtin"/>
+                            <ComboBoxItem Content="Angestellte/r"/>
+                            <ComboBoxItem Content="Assistenz der Fachdienstleitung"/>
+                            <ComboBoxItem Content="Azubi"/>
+                            <ComboBoxItem Content="Fachdienstleiter"/>
+                            <ComboBoxItem Content="Oberinspektorin"/>
+                            <ComboBoxItem Content="Oberinspektor"/>
+                            <ComboBoxItem Content="Technische Amtfrau"/>
+                            <ComboBoxItem Content="Technische Amtmann"/>
+                            <ComboBoxItem Content="Technische Angestellter"/>
+                            <ComboBoxItem Content="Technischer Angestellter"/>
+                            <ComboBoxItem Content="Technischer Oberinspektor"/>
+                            <ComboBoxItem Content="Technische Oberinspektorin"/>
+                            <ComboBoxItem Content="Verwaltungsangestellte"/>
+                            <ComboBoxItem Content="Verwaltungsangestellter"/>
+                            <ComboBoxItem Content="Verwaltungsrat"/>
+                            <ComboBoxItem Content="Verwaltungsrätin"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"    >
+                        <TextBlock Padding="5" Width="100"  >Status:</TextBlock>
+                        <TextBox Name="tbAktiv" Height="21" Width="250"  
+                                 IsEnabled="False" />
+                        <ComboBox Name="ComboBox1" Width="25">
+                            <ComboBoxItem>inaktiv</ComboBoxItem>
+                            <ComboBoxItem>aktiv</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock Padding="5">z.B. 'inaktiv' oder 'aktiv'</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100">Abteilung:</TextBlock>
+                        <TextBox Height="21"  Name="tbAbteilung"  Width="250" Text="{Binding Bemerkung, UpdateSourceTrigger=PropertyChanged}" 
+                                 IsEnabled="False" 
+                                />
+                        <ComboBox Name="ComboBox4" Width="25">
+                            <ComboBoxItem>Assistenz</ComboBoxItem>
+                            <ComboBoxItem>Fachdienstleitung</ComboBoxItem>
+                            <ComboBoxItem>Stv. Fachdienstleitung</ComboBoxItem>
+                            <ComboBoxItem>Gast</ComboBoxItem>
+                            <ComboBoxItem>Untere Naturschutzbehörde</ComboBoxItem>
+                            <ComboBoxItem>Untere Wasserbehörde</ComboBoxItem>
+                            <ComboBoxItem>Immissionsschutz</ComboBoxItem>
+                            <ComboBoxItem>Graphische Datenverarbeitung</ComboBoxItem>
+                            <ComboBoxItem>Schornsteinfegerwesen</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" Width="100"
+                                   ToolTip="Gemeint ist der Explorer für die Sachgebietsnummern. Hier kann eingestellt werden für welchen Bereich er sich initial öffnet.">Explorer:</TextBlock>
+                        <TextBox Height="21"  Name="tbExplorer"  Width="250" Text="{Binding ExpandHeaderInSachgebiet, UpdateSourceTrigger=PropertyChanged}"  
+                                 IsEnabled="False" 
+                                />
+                        <ComboBox Name="cmbExplorer" Width="25">
+                            <ComboBoxItem></ComboBoxItem>
+                            <ComboBoxItem>2-Grafische Datenverarbeitung</ComboBoxItem>
+                            <ComboBoxItem>3-Naturschutz</ComboBoxItem>
+                            <ComboBoxItem>4-Wasserschutz</ComboBoxItem>
+                            <ComboBoxItem>5-Immissionsschutz</ComboBoxItem>
+                            <ComboBoxItem>7-Abfallwirtschaft</ComboBoxItem>
+                            <ComboBoxItem>1-FD Umwelt allgemein</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+
+                    <!--<Button Content="Änderungen übernehmen" Name="btnUpdate" Click="btnUpdate_Click"/>-->
+                    <Button Content="Abbruch" Name="btnAbbruch" Click="btnAbbruch_Click" IsEnabled="False"  Margin="10"/>
+                    <Button Content="Speichern" x:Name="btnSpeichern" Click="btnSpeichern_Click" IsEnabled="False"  Margin="10"/>
+                    <Popup Name="popUp" PlacementTarget="{Binding ElementName=myWindow}" Placement="Relative" VerticalOffset="30"
+                           HorizontalOffset="100"   PopupAnimation="Slide" AllowsTransparency="False" MouseDown="popUp_MouseDown">
+                        
+                    </Popup>
+                </StackPanel>
+            </StackPanel>
+            <!--<DataGrid AutoGenerateColumns="True" Name="DataGrid1" />-->
+        </StackPanel>
+
+
+
+    </DockPanel>
+
+</Window>

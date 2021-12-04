@@ -1,0 +1,71 @@
+﻿<Window x:Class="winVErwandte"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    
+    Title="Verwandten Vorgang managen" Height="493" Width="704"  WindowStartupLocation="CenterScreen"        
+    Background="{StaticResource TabControlBackgroundBrush}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="103" />
+            <ColumnDefinition Width="101*" />
+            <ColumnDefinition Width="214*" />
+            <ColumnDefinition Width="179*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46*" />
+            <RowDefinition Height="32*" />
+            <RowDefinition Height="46*" />
+            <RowDefinition Height="41*" />
+            <RowDefinition Height="45*" />
+            <RowDefinition Height="27*" />
+            <RowDefinition Height="65*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="64*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="2" Foreground="Green" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="5,4.6,5,5" 
+                   >Zum verwandten Vorgang wechseln</TextBlock>
+        <Button Content="Wechseln" Grid.Column="2" Grid.Row="2" Height="33" IsDefault="True"
+                HorizontalAlignment="Left" Name="btnZUVerwandtemWechseln" 
+                VerticalAlignment="Top" Width="189" Click="btnZUVerwandtemWechseln_Click" Margin="10,1.6,0,0" />
+        <CheckBox x:Name="chkAktVorgangSchliessen" Grid.Column="4" Grid.Row="2"  Margin="1,11"
+                  IsChecked="True" Content="akt.Vorgang schliessen" IsEnabled="True"/>
+
+        <TextBlock Grid.Row="4" Foreground="Green" Margin="5,4.4,0,0.4" Grid.ColumnSpan="2" TextWrapping="Wrap"
+                  Text="Den verwandten Vorgang aus der Liste entfernen"></TextBlock>
+
+        <Button Content="Entfernen" Grid.Column="2" Grid.Row="4" Height="31" 
+                HorizontalAlignment="Left" 
+                Name="btnLoeschenVerwandten" VerticalAlignment="Top" Width="190" 
+                
+                Click="btnLoeschenVerwandten_Click" Margin="10,0.4,0,0" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="5,23,0,0" Text="Verwandter Vorgang:" 
+                   VerticalAlignment="Top" Width="122" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" x:Name="tbVerwandtenAz" 
+                   VerticalAlignment="Top" Width="391" Grid.ColumnSpan="3" Margin="24.8,23,0,0" Grid.RowSpan="2" />
+
+
+
+        <TextBlock Grid.Row="6" Foreground="Green" Margin="5,3.8,0,0.2" Grid.ColumnSpan="2" TextWrapping="Wrap"
+                  Text="Vom verwandten Vorgang hierher kopieren (Dokus, Beteiligte, Raumbezüge)" Grid.RowSpan="2"></TextBlock>
+
+        <Button Content="Kopieren" Grid.Column="2" Grid.Row="6" Height="31" HorizontalAlignment="Left" 
+                Name="btnKopieren" VerticalAlignment="Top" Width="190" Click="btnKopieren_Click" Margin="10,0.8,0,0"   />
+        <StackPanel Grid.Column="3" Grid.Row="5" Margin="0.6,24.6,-0.4,0.2" Grid.RowSpan="2" >
+            <CheckBox x:Name="chkMitDokumentenKoperen" IsChecked="False" Content="Dokumente mitkopieren" IsEnabled="True"/>
+            <CheckBox Name="chkdoppelteDokusAuchKopieren" IsChecked="False" Content="Doppelte Dokumente auch kopieren" IsEnabled="True"/>
+            <CheckBox Name="chkEreignisOhneDokument" IsChecked="False" Content="Ereignisse ohne dokumente auch kopieren" IsEnabled="True"/>
+        </StackPanel>
+
+
+
+        <Button Content="Abbrechen" Grid.Row="12" Height="29" HorizontalAlignment="Left"   Name="btnAbbruch"  Click="btnAbbruch_Click"
+                 Style="{StaticResource lessButton}" IsCancel="True"
+                VerticalAlignment="Top" Width="150" Margin="0.6,15.6,0,0" Grid.Column="3" />
+
+        <TextBlock Grid.ColumnSpan="4" Grid.Row="7" Grid.RowSpan="4"   Text="TextBlock" x:Name="tbfortschritt" Margin="0,31.8,-0.4,0.2"/>
+    </Grid>
+</Window>

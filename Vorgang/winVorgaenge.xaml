@@ -1,0 +1,278 @@
+﻿<Window x:Class="Window_Zuletzt"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            
+            xmlns:src="clr-namespace:paradigma" 
+            xmlns:mfrm="clr-namespace:paradigma" 
+            Title="Paradigma - Suchen nach Vorgängen" Height="900" Width="1230" Name="Window1" 
+            WindowStartupLocation="CenterScreen" WindowState="Maximized"
+            Background="{StaticResource backg2}" ResizeMode="CanResizeWithGrip" 
+        >
+    <Window.Resources>
+        <mfrm:MyFormatter x:Key="myformattjf" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemeinden" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxGemKRZ" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemarkungen" />
+
+        <Style x:Key="dgRowStyleLOK" TargetType="DataGridRow" BasedOn="{StaticResource dgRowStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding LETZTEBEARBEITUNG}" Value="01.01.0001">
+                    <!--Value="1900-01-01 01:01:01">-->
+                    <Setter Property="Foreground" Value="Green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding   ERLEDIGT}" Value="1">
+                    <Setter Property="Background" Value="LightGreen" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel >
+        <StackPanel  DockPanel.Dock="Top"  Background="{StaticResource backg2}">
+            <!--<Button Height="120" Visibility="Hidden">dasfsdfsf</Button>-->
+            <TextBlock Height="40" Visibility="Visible" Background="{StaticResource backg1}" FontSize="24" FontFamily="Arial" Margin="10" Padding="10" Width="300" HorizontalAlignment="Left">Bestandsübersicht</TextBlock>
+            <Button Content="Liste im GIS darstellen" x:Name="ListeInsGIS" Click="ListeInsGIS_Click" Visibility="Collapsed" Width="200" HorizontalAlignment="Right"/>
+            <StackPanel  Height="120" Background="{StaticResource backg1}" Orientation="Vertical">
+                <TabControl x:Name="tabcontrol1"   Background="{StaticResource backg1}"  >
+                    <TabItem x:Name="stamm" Header="in den Stammdaten" ToolTip="d.h. in den Aktenzeichen, Vorgangstiteln, ProbaugAz, Schlagworten ...">
+                        <GroupBox Header="Filter" Background="AliceBlue">
+                        <StackPanel  >
+                            <StackPanel Name="mnuMenu" Orientation="Horizontal" VerticalAlignment="Top"  >
+                                <StackPanel  Margin="5,0,5,0">
+                                    <TextBlock Text="Bearbeiter:" FontSize="10"/>
+                                    <ComboBox VerticalAlignment="Top" Name="cmbUserInitial" Width="122.894"
+                                           ItemsSource="{Binding}" 
+                                           DisplayMemberPath="NAME"  SelectedValuePath="INITIALE"
+                                          />
+                                   
+                                    </StackPanel>
+                                   
+                                    <StackPanel Margin="5,0,5,0">
+                                    <TextBlock Text="+ Status:" FontSize="10"/>
+                                    <ComboBox VerticalAlignment="Top" Name="cmbErledigt" Width="122.894"></ComboBox>
+                                </StackPanel>
+                                <StackPanel Visibility="Collapsed">                                     
+                                        <TextBlock Text=" + max. Zeilen:" FontSize="10" Margin="5,0,5,0"/>
+                                    <ComboBox VerticalAlignment="Top" Name="cmbLimit" Width="128.894">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Value}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Margin="5,0,5,0">
+                                    <StackPanel   Orientation="Horizontal" >
+                                        <TextBlock Text="+ SachgebietsNr:" FontSize="10"/>
+                                        <TextBlock Name="tbaktSachgebietnr" FontSize="10" ToolTip="Hier können Sie nach Sachgebieten filtern. " />
+                                    </StackPanel   >
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox x:Name="tbsachgebietnr" Width="100" Background="White" VerticalAlignment="Top" />
+                                        <ComboBox VerticalAlignment="Top" x:Name="cmbSachgebietnr" Width="20" IsEditable="True" Visibility="Collapsed" />
+                                        <Button x:Name="btnSgtree2" Click="btnSgtree2_Click" Content="..." Width="20" Height="23" />
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <StackPanel  Margin="5,0,5,0">
+                                    <TextBlock Text="+ Gemeinde:" FontSize="10"/>
+                                    <ComboBox VerticalAlignment="Top" x:Name="cmbGemKRZ" Width="150"   ToolTip="Gemeinde / Gemarkungsfilter"
+                                          DataContext="{Binding Source={StaticResource XMLSourceComboBoxGemKRZ}, XPath=/Variablen/Variable}"
+                                            ItemsSource="{Binding}" 
+                                            DisplayMemberPath="@Name" 
+                                            SelectedValuePath="@ID"
+                                            SelectedValue="{Binding Path=ID}" 
+                                            SelectionChanged="cmbGemKRZ_SelectionChanged"
+                                          />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Name="mnuMenu2" Orientation="Horizontal" VerticalAlignment="Top" Margin="5,0,0,0" Height="50">
+
+                                    <TextBlock    Text="Treffer: "   Margin="5,0,5,0"  VerticalAlignment="Center"/>
+                                <TextBlock  
+                                    Margin="5,0,5,0" 
+                                    Name="tbTreffer" 
+                                    Text="{Binding Path=Treffer, UpdateSourceTrigger=PropertyChanged}" 
+                                    Width="60"                                  
+                                    VerticalAlignment="Center"/>
+                                <Separator Width="50"></Separator>
+                                <GroupBox >
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5"  Padding="4" VerticalAlignment="Top">+ Textfilter:</TextBlock>
+                                        <TextBox Margin="5"   Name="tbFilter" Width="160" Background="White" VerticalAlignment="Top"  ></TextBox>
+                                        <Button Margin="5" x:Name="SuchStamm" IsDefault="True" VerticalAlignment="Top"    HorizontalAlignment="Right"
+                        ToolTip="Sucht in den Stammdaten (Az. Titel...) und in den Namen der Beteiligten" Click="suchentaste" Width="99" >Liste auffrischen</Button>
+                                    </StackPanel>
+                                </GroupBox>
+                                <Separator VerticalAlignment="Top" Width="30"></Separator>
+
+                                <Button Margin="5" IsCancel="True" Visibility="Visible" Width="67" VerticalAlignment="Top" Name="Button1" 
+                                HorizontalAlignment="Right" Click="abbruchclick">Abbruch</Button>
+                            </StackPanel>
+                        </StackPanel>
+            
+            </GroupBox>
+            </TabItem>
+                    <TabItem x:Name="personen" Header="in den Beteiligten">
+                        <GroupBox Header="Filter" Background="AliceBlue">
+                            <StackPanel Margin="5" >
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Padding="5"  Margin="5" Text="Name:"></TextBlock>
+                                <TextBox Padding="5" x:Name="tbName" Width="100"  Margin="5" VerticalAlignment="Top"/>
+                                <TextBlock  Padding="5" Text="Vorname:" Margin="5"></TextBlock>
+                                <TextBox x:Name="tbVorname" Width="100" VerticalAlignment="Top"  Padding="5" Margin="5"/>
+                                <TextBlock  Padding="5" Text="Stadt:" Margin="5" ToolTip="Der Anschrift des/der Beteiligten"></TextBlock>
+                                <TextBox x:Name="tbStadt" Width="100" VerticalAlignment="Top"  Padding="5" Margin="5"/>
+                                <TextBlock  Padding="5" Text="Straße:" Margin="5" ToolTip="Der Anschrift des/der Beteiligten"></TextBlock>
+                                <TextBox x:Name="tbStrasse" Width="100" VerticalAlignment="Top"  Padding="5" Margin="5"/>
+                                <Button Name="btnSuchen" Click="btnSuchen_Click"  IsDefault="True" >Suche starten</Button>
+
+                                <Button   IsCancel="True" Visibility="Visible" Width="67"   Margin="5" Name="btnabbruch2" 
+                                Click="abbruchclick">Abbruch</Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Padding="5" Text="Treffer: "/>
+                                <TextBlock Padding="5" x:Name="tbpersonenTreffer"/>
+                            </StackPanel>
+                        </StackPanel>
+                        </GroupBox>
+                    </TabItem>
+                    <TabItem x:Name="flst" Header="in den Flurstücken (Raumbezug)">
+                        <GroupBox Header="Filter" Background="AliceBlue">
+                            <StackPanel Margin="5">
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5" Text="Gemarkung: "/>
+                                <ComboBox Margin="5"  Name="cmbgemarkung"  Width="150" 
+                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemarkungen}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbgemarkung_SelectionChanged"
+                                      >
+                                    <!--<ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Key}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>-->
+                                </ComboBox>
+
+                                <TextBlock  Margin="5" Text="Flure: "/>
+                                <ComboBox Margin="5"  Name="cmbFlur" ItemsSource="{Binding}" Width="50"
+                                      DisplayMemberPath="FLUR"  SelectedValuePath="FLUR"
+                                      SelectionChanged="cmbFlur_SelectionChanged"
+                                      ></ComboBox>
+                                <TextBlock  Margin="5" Text="Zähler: "/>
+                                <ComboBox Margin="5"  Name="cmbZaehler" ItemsSource="{Binding}"  Width="50"
+                                      DisplayMemberPath="ZAEHLER"  SelectedValuePath="ZAEHLER" 
+                                SelectionChanged="cmbZaehler_SelectionChanged" 
+                                      ></ComboBox>
+                                <TextBlock  Margin="5" Text="Nenner: "/>
+                                <ComboBox Margin="5"  Name="cmbNenner" ItemsSource="{Binding}" Width="50"
+                                      DisplayMemberPath="NENNER"  SelectedValuePath="NENNER"
+                                     SelectionChanged="cmbNenner_SelectionChanged"
+                                      ></ComboBox>
+
+                            </StackPanel>
+                        </StackPanel>
+                        </GroupBox>
+                    </TabItem>
+                    <TabItem x:Name="adressen" Header="in den Adressen (Raumbezug)" ToolTip="Sucht NICHT in den Adressen der Beteiligten!">
+                        <GroupBox Header="Filter" Background="AliceBlue">
+                            <StackPanel Margin="5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5" Text="Gemeinde: "/>
+                                <ComboBox   Name="cmbGemeinde" Grid.Column="2"  Width="200"             Grid.Row="1"  
+                                    DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemeinden}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbGemeinde_SelectionChanged"
+                                />
+
+                                <TextBlock  Margin="5" Text="Straße: "/>
+                                <ComboBox    Name="cmbStrasse" Grid.Column="2"       Grid.Row="2" Width="200"
+                                         ItemsSource="{Binding}" 
+                                       DisplayMemberPath="SNAME"  SelectedValuePath="STRCODE" SelectionChanged="cmbStrasse_SelectionChanged"/>
+                                <TextBlock  Margin="5" Text="Hausnr: "/>
+                                <ComboBox Grid.Column="2" Grid.Row="3"   Name="cmbHausnr"  Width="100"
+                                          ItemsSource="{Binding}" 
+                                       DisplayMemberPath="HAUSNRKOMBI"  SelectedValuePath="ID" Margin="0,0,0,0" SelectionChanged="cmbHausnr_SelectionChanged" />
+                            </StackPanel>
+                        </StackPanel>
+                        </GroupBox>
+                    </TabItem>
+                    <TabItem x:Name="umkreis" Header="im Umkreis" IsEnabled="False"></TabItem>
+                    <TabItem x:Name="inDokus" Header="in Dokumenten" IsEnabled="False"></TabItem>
+                </TabControl>
+            </StackPanel>
+        </StackPanel>
+        <TabControl   x:Name="tbcAnsichten">
+            <TabItem Header="Ansicht 1" x:Name="tbAnsicht1">
+                <DataGrid Name="dg" ItemsSource="{Binding}"  Background="{StaticResource backg1}"
+              RowStyle="{StaticResource dgRowStyleLOK}"   
+               ColumnHeaderStyle="{StaticResource dgHeaderStyle}"  SelectionChanged="dg_SelectionChanged">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding id}" />-->
+                        <DataGridTextColumn Header="Nr" Width="SizeToCells" Binding="{Binding VORGANGSID }" />
+                        <DataGridCheckBoxColumn Header="Ot" Width="SizeToCells"  Binding="{Binding ORTSTERMIN}"  ToolTipService.ToolTip="Ortstermin"/>
+                        <DataGridCheckBoxColumn Header="St" Width="SizeToCells"  Binding="{Binding STELLUNGNAHME}" ToolTipService.ToolTip="Stellungnahme"/>
+                        <DataGridTextColumn Header="Gem" Width="SizeToCells"  Binding="{Binding GEMKRZ}" />
+                        <DataGridTextColumn Header="SgNr" Width="SizeToCells"  Binding="{Binding SACHGEBIETNR}"  />
+                        <!--<DataGridCheckBoxColumn Header="Ab" Width="SizeToCells"  Binding="{Binding Ortstermin}"   ToolTipService.ToolTip="Abnahme"/>-->
+                        <DataGridTextColumn Header="Az" Width="SizeToCells"  Binding="{Binding AZ2}" />
+                        <DataGridTextColumn Header="Titel" Width="SizeToCells" Binding="{Binding BESCHREIBUNG}" />
+                        <!--<DataGridTextColumn Header="Bearbeiter" Width="SizeToCells" Binding="{Binding Bearbeiter}" />-->
+                        <DataGridTextColumn Header="LetzteBearbeitung" Width="SizeToCells" Binding="{Binding LETZTEBEARBEITUNG , Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                        <!--<DataGridTextColumn Header="Sachgebiet" Width="SizeToCells" Binding="{Binding Sachgebietnr}" />
+                <DataGridTextColumn Header="erledigt" Width="SizeToCells" Binding="{Binding erledigt}" />-->
+                        <DataGridTextColumn Header="LetztesEreignis" Width="SizeToCells" Binding="{Binding LASTACTIONHEROE}" />
+                        <DataGridTextColumn Header="Eingang" Width="SizeToCells" Binding="{Binding EINGANG,   Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                        <DataGridTextColumn Header="ProBaugAZ" Width="SizeToCells" Binding="{Binding PROBAUGAZ}" />
+                        <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding NAME}" />
+                        <DataGridTextColumn Header="Vorname" Width="SizeToCells" Binding="{Binding VORNAME}" />
+                        <DataGridTextColumn Header="Ort" Width="SizeToCells" Binding="{Binding GEMEINDENAME}" />
+                        <DataGridTextColumn Header="Straße" Width="SizeToCells" Binding="{Binding STRASSE}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Ansicht 2" x:Name="tbAnsicht2">
+                <DataGrid Name="dg2" ItemsSource="{Binding}"  Background="{StaticResource backg1}"
+                             RowStyle="{StaticResource dgRowStyleLOK}"   
+                             ColumnHeaderStyle="{StaticResource dgHeaderStyle}"   SelectionChanged="dg_SelectionChanged">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding id}" />-->
+                        <DataGridTextColumn Header="Nr" Width="SizeToCells" Binding="{Binding VORGANGSID }" />
+                        <DataGridCheckBoxColumn Header="Ot" Width="SizeToCells"  Binding="{Binding ORTSTERMIN}"  ToolTipService.ToolTip="Ortstermin"/>
+                        <DataGridCheckBoxColumn Header="St" Width="SizeToCells"  Binding="{Binding STELLUNGNAHME}" ToolTipService.ToolTip="Stellungnahme"/>
+                        <DataGridTextColumn Header="Eingang" Width="SizeToCells" Binding="{Binding EINGANG,   Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+
+                        <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding NAME}" />
+                        <DataGridTextColumn Header="Vorname" Width="SizeToCells" Binding="{Binding VORNAME}" />
+                        <DataGridTextColumn Header="Ort" Width="SizeToCells" Binding="{Binding GEMEINDENAME}" />
+                        <DataGridTextColumn Header="Straße" Width="SizeToCells" Binding="{Binding STRASSE}" />
+                      
+                      
+                        <DataGridTextColumn Header="Titel" Width="SizeToCells" Binding="{Binding BESCHREIBUNG}" />
+    
+                        <DataGridTextColumn Header="Az" Width="SizeToCells"  Binding="{Binding AZ2}" />
+                        <!--<DataGridTextColumn Header="Bearbeiter" Width="SizeToCells" Binding="{Binding Bearbeiter}" />-->
+                        <DataGridTextColumn Header="LetzteBearbeitung" Width="SizeToCells" Binding="{Binding LETZTEBEARBEITUNG , Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />
+                        <!--<DataGridTextColumn Header="Sachgebiet" Width="SizeToCells" Binding="{Binding Sachgebietnr}" />
+                <DataGridTextColumn Header="erledigt" Width="SizeToCells" Binding="{Binding erledigt}" />-->
+                        <DataGridTextColumn Header="LetztesEreignis" Width="SizeToCells" Binding="{Binding LASTACTIONHEROE}" />
+                        <DataGridTextColumn Header="Gem" Width="SizeToCells"  Binding="{Binding GEMKRZ}" />
+                        <DataGridTextColumn Header="SgNr" Width="SizeToCells"  Binding="{Binding SACHGEBIETNR}"  />
+                        <!--<DataGridCheckBoxColumn Header="Ab" Width="SizeToCells"  Binding="{Binding Ortstermin}"   ToolTipService.ToolTip="Abnahme"/>-->
+                        <DataGridTextColumn Header="ProBaugAZ" Width="SizeToCells" Binding="{Binding PROBAUGAZ}" />
+                        <DataGridTextColumn Header="AltAz" Width="SizeToCells" Binding="{Binding ALTAZ}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+       
+    </DockPanel>
+</Window>

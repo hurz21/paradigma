@@ -1,0 +1,16 @@
+﻿<Window x:Class="winPDFA"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStartupLocation="CenterScreen"
+    Title="winPDFA" Height="640" Width="722" Background="AliceBlue">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal"  DockPanel.Dock="Top">
+            <TextBlock x:Name="tbINfo" Padding="5">kkjoj</TextBlock>
+            <Button Click="Button_Click" Width="221" IsDefault="True"> Start </Button>
+            <Button Click="clickAbbruch" Width="221" Margin="5" IsCancel="True"> Abbruch/ Fertig </Button>
+
+        </StackPanel>
+       
+        <TextBox x:Name="tbArbeit" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True"
+                 Height="500" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" />
+    </DockPanel>
+</Window>

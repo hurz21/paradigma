@@ -1,0 +1,11 @@
+﻿<Window x:Class="Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="FeuerWehrPlan-Verwaltung" Height="388" Width="318" Left="0">
+    <StackPanel Width="147">
+        <TextBlock Margin="10">(c) Dr. Feinen 2010</TextBlock>
+        <Button   Click="neuaufnahme">Neuer Plan</Button>
+        <Button   Click="suchen" IsDefault="True">Bestand</Button>
+        <Button   Click="abbruch" IsCancel="True">Abbruch</Button>
+    </StackPanel>
+</Window>

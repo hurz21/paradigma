@@ -1,0 +1,707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{478559E0-4F7C-43B9-BD2C-37EC27ECEF6B}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TX_Text_Control_Words</RootNamespace>
+    <AssemblyName>ParadigmaWordEditor</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+    <ApplicationIcon>Icons\tx.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug</OutputPath>
+    <DocumentationFile>TX Text Control Words Ribbon.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release</OutputPath>
+    <DocumentationFile>TX Text Control Words Ribbon.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug</OutputPath>
+    <DocumentationFile>TX Text Control Words Ribbon.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release</OutputPath>
+    <DocumentationFile>TX Text Control Words Ribbon.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="RibbonControlsLibrary, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="TXDocumentServer, Version=24.0.1000.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\dll\TXDocumentServer.dll</HintPath>
+    </Reference>
+    <Reference Include="TXDrawing, Version=24.0.200.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\dll\TXDrawing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TXDrawing.WPF, Version=24.0.200.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\dll\TXDrawing.WPF.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TXTextControl, Version=24.0.1700.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\dll\TXTextControl.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TXTextControl.Server, Version=24.0.900.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\dll\TXTextControl.Server.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TXTextControl.WPF, Version=24.0.900.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\dll\TXTextControl.WPF.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomNumericUpDown.xaml.vb">
+      <DependentUpon>CustomNumericUpDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaxPrevRowsDialog.xaml.vb">
+      <DependentUpon>MaxPrevRowsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportingTab_FinishGroup_PreviewTab.vb" />
+    <Compile Include="ReportingTab_SampleDbButton.vb" />
+    <Compile Include="Win32.vb" />
+    <Page Include="AboutBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <ApplicationDefinition Include="Application.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="CustomNumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MaxPrevRowsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MergeWaitDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OptionsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserPromptDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AboutBox.xaml.vb">
+      <DependentUpon>AboutBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationMenu.vb" />
+    <Compile Include="ApplicationMenuEvents.vb" />
+    <Compile Include="AssemblyAttributes.vb" />
+    <Compile Include="ContextMenu_AppFields.vb" />
+    <Compile Include="DragDropHandler.vb" />
+    <Compile Include="FileHandling\DocumentDirtyChangedEventArgs.vb" />
+    <Compile Include="FileHandling\DocumentFileNameChangedEventArgs.vb" />
+    <Compile Include="FileHandling\FileHandler.vb" />
+    <Compile Include="FileHandling\ShowMessageBoxEventArgs.vb" />
+    <Compile Include="FileHandling\UserInputRequestedEventArgs.vb" />
+    <Compile Include="FileHandlerEvents.vb" />
+    <Compile Include="FolderBrowserDialog.vb" />
+    <Compile Include="MainWindow.xaml.vb">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindowEvents.vb" />
+    <Compile Include="MergeWaitDialog.xaml.vb">
+      <DependentUpon>MergeWaitDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptionsDialog.xaml.vb">
+      <DependentUpon>OptionsDialog.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QuickAccessToolbarEvents.vb" />
+    <Compile Include="ReportingTab_FinishGroup.vb" />
+    <Compile Include="TextControlEvents.vb" />
+    <Compile Include="UserPromptDialog.xaml.vb">
+      <DependentUpon>UserPromptDialog.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\tx.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Large_32bit\clientpaste.png" />
+    <Resource Include="Images\Large_32bit\columnsdialog.png" />
+    <Resource Include="Images\Large_32bit\dataconfigfile.png" />
+    <Resource Include="Images\Large_32bit\deletebookmark.png" />
+    <Resource Include="Images\Large_32bit\deletefooter.png" />
+    <Resource Include="Images\Large_32bit\deleteheader.png" />
+    <Resource Include="Images\Large_32bit\deletehyperlink.png" />
+    <Resource Include="Images\Large_32bit\deletepagenumber.png" />
+    <Resource Include="Images\Large_32bit\deletetable.png" />
+    <Resource Include="Images\Large_32bit\deletetablecell.png" />
+    <Resource Include="Images\Large_32bit\deletetablecol.png" />
+    <Resource Include="Images\Large_32bit\deletetablerow.png" />
+    <Resource Include="Images\Large_32bit\editbookmark.png" />
+    <Resource Include="Images\Large_32bit\edithyperlink.png" />
+    <Resource Include="Images\Large_32bit\exit.png" />
+    <Resource Include="Images\Large_32bit\footer.png" />
+    <Resource Include="Images\Large_32bit\formlayoutrtl.png" />
+    <Resource Include="Images\Large_32bit\header.png" />
+    <Resource Include="Images\Large_32bit\hyphenation.png" />
+    <Resource Include="Images\Large_32bit\image.png" />
+    <Resource Include="Images\Large_32bit\imageplaceholder.png" />
+    <Resource Include="Images\Large_32bit\insertbookmark.png" />
+    <Resource Include="Images\Large_32bit\insertcharts.png" />
+    <Resource Include="Images\Large_32bit\insertfile.png" />
+    <Resource Include="Images\Large_32bit\inserthyperlink.png" />
+    <Resource Include="Images\Large_32bit\insertpagecolumnbreak.png" />
+    <Resource Include="Images\Large_32bit\insertpagenumber.png" />
+    <Resource Include="Images\Large_32bit\insertsectionbreakpage.png" />
+    <Resource Include="Images\Large_32bit\insertsectionbreakparagraph.png" />
+    <Resource Include="Images\Large_32bit\insertshapes.png" />
+    <Resource Include="Images\Large_32bit\insertsymbol.png" />
+    <Resource Include="Images\Large_32bit\inserttablecolleft.png" />
+    <Resource Include="Images\Large_32bit\inserttablecolright.png" />
+    <Resource Include="Images\Large_32bit\inserttablerowabove.png" />
+    <Resource Include="Images\Large_32bit\inserttablerowbelow.png" />
+    <Resource Include="Images\Large_32bit\insert_charts.png" />
+    <Resource Include="Images\Large_32bit\languagedetection.png" />
+    <Resource Include="Images\Large_32bit\list123.png" />
+    <Resource Include="Images\Large_32bit\listabc.png" />
+    <Resource Include="Images\Large_32bit\listabccapital.png" />
+    <Resource Include="Images\Large_32bit\listarrow.png" />
+    <Resource Include="Images\Large_32bit\listasterisk.png" />
+    <Resource Include="Images\Large_32bit\listdash.png" />
+    <Resource Include="Images\Large_32bit\listdiamond.png" />
+    <Resource Include="Images\Large_32bit\listdisc.png" />
+    <Resource Include="Images\Large_32bit\listroman.png" />
+    <Resource Include="Images\Large_32bit\listromancapital.png" />
+    <Resource Include="Images\Large_32bit\liststruct123.png" />
+    <Resource Include="Images\Large_32bit\liststructabc.png" />
+    <Resource Include="Images\Large_32bit\liststructabccapital.png" />
+    <Resource Include="Images\Large_32bit\liststructroman.png" />
+    <Resource Include="Images\Large_32bit\liststructromancapital.png" />
+    <Resource Include="Images\Large_32bit\loaddictionary.png" />
+    <Resource Include="Images\Large_32bit\mailmergedatasource.png" />
+    <Resource Include="Images\Large_32bit\mailmergedatasourceconfig.png" />
+    <Resource Include="Images\Large_32bit\mailmergedatasourcedemo.png" />
+    <Resource Include="Images\Large_32bit\mailmergedatasourcexml.png" />
+    <Resource Include="Images\Large_32bit\mailmergedatatable.png" />
+    <Resource Include="Images\Large_32bit\mailmergedatefield.png" />
+    <Resource Include="Images\Large_32bit\mailmergedeleteblock.png" />
+    <Resource Include="Images\Large_32bit\mailmergedeletefield.png" />
+    <Resource Include="Images\Large_32bit\mailmergeeditblocks.png" />
+    <Resource Include="Images\Large_32bit\mailmergeeditdatarelations.png" />
+    <Resource Include="Images\Large_32bit\mailmergefieldnavigation.png" />
+    <Resource Include="Images\Large_32bit\mailmergefieldproperties.png" />
+    <Resource Include="Images\Large_32bit\mailmergefinish.png" />
+    <Resource Include="Images\Large_32bit\mailmergefirstrecord.png" />
+    <Resource Include="Images\Large_32bit\mailmergehighlightblocks.png" />
+    <Resource Include="Images\Large_32bit\mailmergehighlightfields.png" />
+    <Resource Include="Images\Large_32bit\mailmergeiffield.png" />
+    <Resource Include="Images\Large_32bit\mailmergeincludetextfield.png" />
+    <Resource Include="Images\Large_32bit\mailmergeinsertblock.png" />
+    <Resource Include="Images\Large_32bit\mailmergeinsertfield.png" />
+    <Resource Include="Images\Large_32bit\mailmergeintocurrentdoc.png" />
+    <Resource Include="Images\Large_32bit\mailmergeintoindivfiles.png" />
+    <Resource Include="Images\Large_32bit\mailmergeintosinglefile.png" />
+    <Resource Include="Images\Large_32bit\mailmergelastrecord.png" />
+    <Resource Include="Images\Large_32bit\mailmergenextfield.png" />
+    <Resource Include="Images\Large_32bit\mailmergenextiffield.png" />
+    <Resource Include="Images\Large_32bit\mailmergenextrecord.png" />
+    <Resource Include="Images\Large_32bit\mailmergepreview.png" />
+    <Resource Include="Images\Large_32bit\mailmergepreviousrecord.png" />
+    <Resource Include="Images\Large_32bit\mailmergeprint.png" />
+    <Resource Include="Images\Large_32bit\mailmergesavedatabase.png" />
+    <Resource Include="Images\Large_32bit\mailmergeshowfieldcodes.png" />
+    <Resource Include="Images\Large_32bit\mailmergeshowfieldtext.png" />
+    <Resource Include="Images\Large_32bit\mergetablecells.png" />
+    <Resource Include="Images\Large_32bit\mousecursor.png" />
+    <Resource Include="Images\Large_32bit\newpage.png" />
+    <Resource Include="Images\Large_32bit\objectaligncenter.png" />
+    <Resource Include="Images\Large_32bit\objectalignleft.png" />
+    <Resource Include="Images\Large_32bit\objectalignright.png" />
+    <Resource Include="Images\Large_32bit\objectbehindtext.png" />
+    <Resource Include="Images\Large_32bit\objectdialog.png" />
+    <Resource Include="Images\Large_32bit\objectiddialog.png" />
+    <Resource Include="Images\Large_32bit\objectinfrontoftext.png" />
+    <Resource Include="Images\Large_32bit\objectinlinewithtext.png" />
+    <Resource Include="Images\Large_32bit\objectname.png" />
+    <Resource Include="Images\Large_32bit\objectposition.png" />
+    <Resource Include="Images\Large_32bit\objecttopandbottom.png" />
+    <Resource Include="Images\Large_32bit\open.png" />
+    <Resource Include="Images\Large_32bit\opendemo.png" />
+    <Resource Include="Images\Large_32bit\options.png" />
+    <Resource Include="Images\Large_32bit\pagebreak.png" />
+    <Resource Include="Images\Large_32bit\pagecolumnsone.png" />
+    <Resource Include="Images\Large_32bit\pagecolumnsthree.png" />
+    <Resource Include="Images\Large_32bit\pagecolumnstwo.png" />
+    <Resource Include="Images\Large_32bit\pagedialog.png" />
+    <Resource Include="Images\Large_32bit\pageframedialog.png" />
+    <Resource Include="Images\Large_32bit\pagenumberbottom.png" />
+    <Resource Include="Images\Large_32bit\pagenumbertop.png" />
+    <Resource Include="Images\Large_32bit\pageorientation.png" />
+    <Resource Include="Images\Large_32bit\pageorientationlandscape.png" />
+    <Resource Include="Images\Large_32bit\pageorientationportrait.png" />
+    <Resource Include="Images\Large_32bit\pageviewnormal.png" />
+    <Resource Include="Images\Large_32bit\pageviewprint.png" />
+    <Resource Include="Images\Large_32bit\paste.png" />
+    <Resource Include="Images\Large_32bit\pastesepcial.png" />
+    <Resource Include="Images\Large_32bit\print.png" />
+    <Resource Include="Images\Large_32bit\printpreview.png" />
+    <Resource Include="Images\Large_32bit\printquick.png" />
+    <Resource Include="Images\Large_32bit\proofingoptions.png" />
+    <Resource Include="Images\Large_32bit\save.png" />
+    <Resource Include="Images\Large_32bit\saveas.png" />
+    <Resource Include="Images\Large_32bit\saveasdoc.png" />
+    <Resource Include="Images\Large_32bit\saveasdocx.png" />
+    <Resource Include="Images\Large_32bit\saveashtml.png" />
+    <Resource Include="Images\Large_32bit\saveasotherformats.png" />
+    <Resource Include="Images\Large_32bit\saveaspdf.png" />
+    <Resource Include="Images\Large_32bit\saveasrtf.png" />
+    <Resource Include="Images\Large_32bit\saveastxt.png" />
+    <Resource Include="Images\Large_32bit\selecttable.png" />
+    <Resource Include="Images\Large_32bit\selecttablecell.png" />
+    <Resource Include="Images\Large_32bit\selecttablecol.png" />
+    <Resource Include="Images\Large_32bit\selecttablerow.png" />
+    <Resource Include="Images\Large_32bit\setlanguage.png" />
+    <Resource Include="Images\Large_32bit\shapefill.png" />
+    <Resource Include="Images\Large_32bit\shapeoutline.png" />
+    <Resource Include="Images\Large_32bit\shapestyles.png" />
+    <Resource Include="Images\Large_32bit\showbookmarkmarkers.png" />
+    <Resource Include="Images\Large_32bit\showtextframemarkerlines.png" />
+    <Resource Include="Images\Large_32bit\spellasyoutype.png" />
+    <Resource Include="Images\Large_32bit\spelling.png" />
+    <Resource Include="Images\Large_32bit\splittable.png" />
+    <Resource Include="Images\Large_32bit\splittableabove.png" />
+    <Resource Include="Images\Large_32bit\splittablebelow.png" />
+    <Resource Include="Images\Large_32bit\splittablecells.png" />
+    <Resource Include="Images\Large_32bit\styledialog.png" />
+    <Resource Include="Images\Large_32bit\table.png" />
+    <Resource Include="Images\Large_32bit\tableborderbox.png" />
+    <Resource Include="Images\Large_32bit\tabledialog.png" />
+    <Resource Include="Images\Large_32bit\tablegridlines.png" />
+    <Resource Include="Images\Large_32bit\textflow.png" />
+    <Resource Include="Images\Large_32bit\textframe.png" />
+    <Resource Include="Images\Large_32bit\textwrappingbreak.png" />
+    <Resource Include="Images\Large_32bit\tx_icon32.png" />
+    <Resource Include="Images\Large_32bit\tx_icon48.png" />
+    <Resource Include="Images\Large_32bit\zoom.png" />
+    <Resource Include="Images\Large_32bit\zoom100.png" />
+    <Resource Include="Images\Large_32bit\zoompageheight.png" />
+    <Resource Include="Images\Large_32bit\zoompagewidth.png" />
+    <Resource Include="Images\Large_32bit\zorderbottom.png" />
+    <Resource Include="Images\Large_32bit\zorderbottommost.png" />
+    <Resource Include="Images\Large_32bit\zorderdown.png" />
+    <Resource Include="Images\Large_32bit\zordertop.png" />
+    <Resource Include="Images\Large_32bit\zordertopmost.png" />
+    <Resource Include="Images\Large_32bit\zorderup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Small_32bit\aligncenter.png" />
+    <Resource Include="Images\Small_32bit\alignjustify.png" />
+    <Resource Include="Images\Small_32bit\alignleft.png" />
+    <Resource Include="Images\Small_32bit\alignright.png" />
+    <Resource Include="Images\Small_32bit\autobackcolor.png" />
+    <Resource Include="Images\Small_32bit\autoforecolor.png" />
+    <Resource Include="Images\Small_32bit\barcode.png" />
+    <Resource Include="Images\Small_32bit\barcodeqrcode.png" />
+    <Resource Include="Images\Small_32bit\borderall.png" />
+    <Resource Include="Images\Small_32bit\borderbottom.png" />
+    <Resource Include="Images\Small_32bit\borderbox.png" />
+    <Resource Include="Images\Small_32bit\borderinnerhor.png" />
+    <Resource Include="Images\Small_32bit\borderinnervert.png" />
+    <Resource Include="Images\Small_32bit\borderleft.png" />
+    <Resource Include="Images\Small_32bit\bordernone.png" />
+    <Resource Include="Images\Small_32bit\borderright.png" />
+    <Resource Include="Images\Small_32bit\bordertop.png" />
+    <Resource Include="Images\Small_32bit\capitalizeword.png" />
+    <Resource Include="Images\Small_32bit\cellalignbottomcentered.png" />
+    <Resource Include="Images\Small_32bit\cellalignbottomjustified.png" />
+    <Resource Include="Images\Small_32bit\cellalignbottomleft.png" />
+    <Resource Include="Images\Small_32bit\cellalignbottomright.png" />
+    <Resource Include="Images\Small_32bit\cellalignmiddlecentered.png" />
+    <Resource Include="Images\Small_32bit\cellalignmiddlejustified.png" />
+    <Resource Include="Images\Small_32bit\cellalignmiddleleft.png" />
+    <Resource Include="Images\Small_32bit\cellalignmiddleright.png" />
+    <Resource Include="Images\Small_32bit\cellaligntopcentered.png" />
+    <Resource Include="Images\Small_32bit\cellaligntopjustified.png" />
+    <Resource Include="Images\Small_32bit\cellaligntopleft.png" />
+    <Resource Include="Images\Small_32bit\cellaligntopright.png" />
+    <Resource Include="Images\Small_32bit\changeimage.png" />
+    <Resource Include="Images\Small_32bit\charactersettings.png" />
+    <Resource Include="Images\Small_32bit\chart.png" />
+    <Resource Include="Images\Small_32bit\checkmark.png" />
+    <Resource Include="Images\Small_32bit\clearformatting.png" />
+    <Resource Include="Images\Small_32bit\colordialog.png" />
+    <Resource Include="Images\Small_32bit\columnsdialog.png" />
+    <Resource Include="Images\Small_32bit\copy.png" />
+    <Resource Include="Images\Small_32bit\crosshair.png" />
+    <Resource Include="Images\Small_32bit\cut.png" />
+    <Resource Include="Images\Small_32bit\databaseplain.png" />
+    <Resource Include="Images\Small_32bit\dataconfigfile.png" />
+    <Resource Include="Images\Small_32bit\delete.png" />
+    <Resource Include="Images\Small_32bit\deletebookmark.png" />
+    <Resource Include="Images\Small_32bit\deletefooter.png" />
+    <Resource Include="Images\Small_32bit\deleteheader.png" />
+    <Resource Include="Images\Small_32bit\deletehyperlink.png" />
+    <Resource Include="Images\Small_32bit\deletepagenumber.png" />
+    <Resource Include="Images\Small_32bit\deletetable.png" />
+    <Resource Include="Images\Small_32bit\deletetablecell.png" />
+    <Resource Include="Images\Small_32bit\deletetablecol.png" />
+    <Resource Include="Images\Small_32bit\deletetablerow.png" />
+    <Resource Include="Images\Small_32bit\dialoglauncher.png" />
+    <Resource Include="Images\Small_32bit\drawing.png" />
+    <Resource Include="Images\Small_32bit\drawingcanvas.png" />
+    <Resource Include="Images\Small_32bit\drawingmarkerlines.png" />
+    <Resource Include="Images\Small_32bit\editbookmark.png" />
+    <Resource Include="Images\Small_32bit\edithyperlink.png" />
+    <Resource Include="Images\Small_32bit\exit.png" />
+    <Resource Include="Images\Small_32bit\export.png" />
+    <Resource Include="Images\Small_32bit\fieldnavigatornodeblock.png" />
+    <Resource Include="Images\Small_32bit\fieldnavigatornodefield.png" />
+    <Resource Include="Images\Small_32bit\find.png" />
+    <Resource Include="Images\Small_32bit\fontbold.png" />
+    <Resource Include="Images\Small_32bit\fontcolor.png" />
+    <Resource Include="Images\Small_32bit\fontdialog.png" />
+    <Resource Include="Images\Small_32bit\fontitalic.png" />
+    <Resource Include="Images\Small_32bit\fontsizedecrease.png" />
+    <Resource Include="Images\Small_32bit\fontsizeincrease.png" />
+    <Resource Include="Images\Small_32bit\fontunderline.png" />
+    <Resource Include="Images\Small_32bit\footer.png" />
+    <Resource Include="Images\Small_32bit\formattedtext.png" />
+    <Resource Include="Images\Small_32bit\formlayoutrtl.png" />
+    <Resource Include="Images\Small_32bit\goto.png" />
+    <Resource Include="Images\Small_32bit\header.png" />
+    <Resource Include="Images\Small_32bit\help.png" />
+    <Resource Include="Images\Small_32bit\hfdialog.png" />
+    <Resource Include="Images\Small_32bit\highlightcolor.png" />
+    <Resource Include="Images\Small_32bit\hyphenation.png" />
+    <Resource Include="Images\Small_32bit\image.png" />
+    <Resource Include="Images\Small_32bit\imageplaceholder.png" />
+    <Resource Include="Images\Small_32bit\indentafter.png" />
+    <Resource Include="Images\Small_32bit\indentbefore.png" />
+    <Resource Include="Images\Small_32bit\indentdecrease.png" />
+    <Resource Include="Images\Small_32bit\indentincrease.png" />
+    <Resource Include="Images\Small_32bit\indentright.png" />
+    <Resource Include="Images\Small_32bit\insertbookmark.png" />
+    <Resource Include="Images\Small_32bit\insertcharts.png" />
+    <Resource Include="Images\Small_32bit\insertfile.png" />
+    <Resource Include="Images\Small_32bit\inserthyperlink.png" />
+    <Resource Include="Images\Small_32bit\insertlinebreak.png" />
+    <Resource Include="Images\Small_32bit\insertpagecolumnbreak.png" />
+    <Resource Include="Images\Small_32bit\insertpagenumber.png" />
+    <Resource Include="Images\Small_32bit\insertsectionbreakpage.png" />
+    <Resource Include="Images\Small_32bit\insertsectionbreakparagraph.png" />
+    <Resource Include="Images\Small_32bit\insertshapes.png" />
+    <Resource Include="Images\Small_32bit\insertsymbol.png" />
+    <Resource Include="Images\Small_32bit\inserttablecolleft.png" />
+    <Resource Include="Images\Small_32bit\inserttablecolright.png" />
+    <Resource Include="Images\Small_32bit\inserttablerowabove.png" />
+    <Resource Include="Images\Small_32bit\inserttablerowbelow.png" />
+    <Resource Include="Images\Small_32bit\languagedetection.png" />
+    <Resource Include="Images\Small_32bit\linespacing.png" />
+    <Resource Include="Images\Small_32bit\listbullet.png" />
+    <Resource Include="Images\Small_32bit\listdialog.png" />
+    <Resource Include="Images\Small_32bit\liststructured.png" />
+    <Resource Include="Images\Small_32bit\loaddictionary.png" />
+    <Resource Include="Images\Small_32bit\mailmergedatasource.png" />
+    <Resource Include="Images\Small_32bit\mailmergedatasourceconfig.png" />
+    <Resource Include="Images\Small_32bit\mailmergedatasourcedemo.png" />
+    <Resource Include="Images\Small_32bit\mailmergedatasourcexml.png" />
+    <Resource Include="Images\Small_32bit\mailmergedatatable.png" />
+    <Resource Include="Images\Small_32bit\mailmergedatefield.png" />
+    <Resource Include="Images\Small_32bit\mailmergedeleteblock.png" />
+    <Resource Include="Images\Small_32bit\mailmergedeletefield.png" />
+    <Resource Include="Images\Small_32bit\mailmergeeditblocks.png" />
+    <Resource Include="Images\Small_32bit\mailmergeeditdatarelations.png" />
+    <Resource Include="Images\Small_32bit\mailmergefieldnavigation.png" />
+    <Resource Include="Images\Small_32bit\mailmergefieldproperties.png" />
+    <Resource Include="Images\Small_32bit\mailmergefinish.png" />
+    <Resource Include="Images\Small_32bit\mailmergefirstrecord.png" />
+    <Resource Include="Images\Small_32bit\mailmergehighlightblocks.png" />
+    <Resource Include="Images\Small_32bit\mailmergehighlightfields.png" />
+    <Resource Include="Images\Small_32bit\mailmergeiffield.png" />
+    <Resource Include="Images\Small_32bit\mailmergeincludetextfield.png" />
+    <Resource Include="Images\Small_32bit\mailmergeinsertblock.png" />
+    <Resource Include="Images\Small_32bit\mailmergeinsertfield.png" />
+    <Resource Include="Images\Small_32bit\mailmergeintocurrentdoc.png" />
+    <Resource Include="Images\Small_32bit\mailmergeintoindivfiles.png" />
+    <Resource Include="Images\Small_32bit\mailmergeintosinglefile.png" />
+    <Resource Include="Images\Small_32bit\mailmergelastrecord.png" />
+    <Resource Include="Images\Small_32bit\mailmergenextfield.png" />
+    <Resource Include="Images\Small_32bit\mailmergenextiffield.png" />
+    <Resource Include="Images\Small_32bit\mailmergenextrecord.png" />
+    <Resource Include="Images\Small_32bit\mailmergepreview.png" />
+    <Resource Include="Images\Small_32bit\mailmergepreviousrecord.png" />
+    <Resource Include="Images\Small_32bit\mailmergeprint.png" />
+    <Resource Include="Images\Small_32bit\mailmergeshowfieldcodes.png" />
+    <Resource Include="Images\Small_32bit\mailmergeshowfieldtext.png" />
+    <Resource Include="Images\Small_32bit\mergetablecells.png" />
+    <Resource Include="Images\Small_32bit\moresymbols.png" />
+    <Resource Include="Images\Small_32bit\mousecursor.png" />
+    <Resource Include="Images\Small_32bit\newpage.png" />
+    <Resource Include="Images\Small_32bit\objectaligncenter.png" />
+    <Resource Include="Images\Small_32bit\objectalignleft.png" />
+    <Resource Include="Images\Small_32bit\objectalignright.png" />
+    <Resource Include="Images\Small_32bit\objectbehindtext.png" />
+    <Resource Include="Images\Small_32bit\objectdialog.png" />
+    <Resource Include="Images\Small_32bit\objectiddialog.png" />
+    <Resource Include="Images\Small_32bit\objectinfrontoftext.png" />
+    <Resource Include="Images\Small_32bit\objectinlinewithtext.png" />
+    <Resource Include="Images\Small_32bit\objectname.png" />
+    <Resource Include="Images\Small_32bit\objecttopandbottom.png" />
+    <Resource Include="Images\Small_32bit\open.png" />
+    <Resource Include="Images\Small_32bit\opendemo.png" />
+    <Resource Include="Images\Small_32bit\options.png" />
+    <Resource Include="Images\Small_32bit\pagebreak.png" />
+    <Resource Include="Images\Small_32bit\pagecolumnsone.png" />
+    <Resource Include="Images\Small_32bit\pagecolumnsthree.png" />
+    <Resource Include="Images\Small_32bit\pagecolumnstwo.png" />
+    <Resource Include="Images\Small_32bit\pagedialog.png" />
+    <Resource Include="Images\Small_32bit\pageframedialog.png" />
+    <Resource Include="Images\Small_32bit\pagenumberbottom.png" />
+    <Resource Include="Images\Small_32bit\pagenumberdialog.png" />
+    <Resource Include="Images\Small_32bit\pagenumbertop.png" />
+    <Resource Include="Images\Small_32bit\pageorientation.png" />
+    <Resource Include="Images\Small_32bit\pageorientationlandscape.png" />
+    <Resource Include="Images\Small_32bit\pageorientationportrait.png" />
+    <Resource Include="Images\Small_32bit\pageviewnormal.png" />
+    <Resource Include="Images\Small_32bit\pageviewprint.png" />
+    <Resource Include="Images\Small_32bit\paradialog.png" />
+    <Resource Include="Images\Small_32bit\paragraphbackcolor.png" />
+    <Resource Include="Images\Small_32bit\paragraphsettings.png" />
+    <Resource Include="Images\Small_32bit\paragraphsign.png" />
+    <Resource Include="Images\Small_32bit\paste.png" />
+    <Resource Include="Images\Small_32bit\pasteclient.png" />
+    <Resource Include="Images\Small_32bit\pastespecial.png" />
+    <Resource Include="Images\Small_32bit\print.png" />
+    <Resource Include="Images\Small_32bit\printpreview.png" />
+    <Resource Include="Images\Small_32bit\printquick.png" />
+    <Resource Include="Images\Small_32bit\proofingoptions.png" />
+    <Resource Include="Images\Small_32bit\redo.png" />
+    <Resource Include="Images\Small_32bit\replace.png" />
+    <Resource Include="Images\Small_32bit\ruler.png" />
+    <Resource Include="Images\Small_32bit\save.png" />
+    <Resource Include="Images\Small_32bit\saveas.png" />
+    <Resource Include="Images\Small_32bit\saveasdoc.png" />
+    <Resource Include="Images\Small_32bit\saveasdocx.png" />
+    <Resource Include="Images\Small_32bit\saveashtml.png" />
+    <Resource Include="Images\Small_32bit\saveaspdf.png" />
+    <Resource Include="Images\Small_32bit\saveasrtf.png" />
+    <Resource Include="Images\Small_32bit\saveastxt.png" />
+    <Resource Include="Images\Small_32bit\selectall.png" />
+    <Resource Include="Images\Small_32bit\selecttable.png" />
+    <Resource Include="Images\Small_32bit\selecttablecell.png" />
+    <Resource Include="Images\Small_32bit\selecttablecol.png" />
+    <Resource Include="Images\Small_32bit\selecttablerow.png" />
+    <Resource Include="Images\Small_32bit\setlanguage.png" />
+    <Resource Include="Images\Small_32bit\shapealignbottom.png" />
+    <Resource Include="Images\Small_32bit\shapealignleft.png" />
+    <Resource Include="Images\Small_32bit\shapealignright.png" />
+    <Resource Include="Images\Small_32bit\shapealigntop.png" />
+    <Resource Include="Images\Small_32bit\shapefill.png" />
+    <Resource Include="Images\Small_32bit\shapefliphorizontally.png" />
+    <Resource Include="Images\Small_32bit\shapeflipvertically.png" />
+    <Resource Include="Images\Small_32bit\shapenofill.png" />
+    <Resource Include="Images\Small_32bit\shapenooutline.png" />
+    <Resource Include="Images\Small_32bit\shapeoutline.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlinemorelines.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight025.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight050.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight075.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight100.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight150.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight225.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight300.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight450.png" />
+    <Resource Include="Images\Small_32bit\shapeoutlineweight600.png" />
+    <Resource Include="Images\Small_32bit\shapestyles.png" />
+    <Resource Include="Images\Small_32bit\showbookmarkmarkers.png" />
+    <Resource Include="Images\Small_32bit\showdrawingmarkerlines.png" />
+    <Resource Include="Images\Small_32bit\showtextframemarkerlines.png" />
+    <Resource Include="Images\Small_32bit\spellasyoutype.png" />
+    <Resource Include="Images\Small_32bit\spelling.png" />
+    <Resource Include="Images\Small_32bit\splittable.png" />
+    <Resource Include="Images\Small_32bit\splittableabove.png" />
+    <Resource Include="Images\Small_32bit\splittablebelow.png" />
+    <Resource Include="Images\Small_32bit\splittablecells.png" />
+    <Resource Include="Images\Small_32bit\strikethrough.png" />
+    <Resource Include="Images\Small_32bit\styledialog.png" />
+    <Resource Include="Images\Small_32bit\styles.png" />
+    <Resource Include="Images\Small_32bit\subscript.png" />
+    <Resource Include="Images\Small_32bit\superscript.png" />
+    <Resource Include="Images\Small_32bit\table.png" />
+    <Resource Include="Images\Small_32bit\tablebackcolor.png" />
+    <Resource Include="Images\Small_32bit\tableborderall.png" />
+    <Resource Include="Images\Small_32bit\tableborderbottom.png" />
+    <Resource Include="Images\Small_32bit\tableborderbox.png" />
+    <Resource Include="Images\Small_32bit\tableborderinnerhor.png" />
+    <Resource Include="Images\Small_32bit\tableborderinnervert.png" />
+    <Resource Include="Images\Small_32bit\tableborderleft.png" />
+    <Resource Include="Images\Small_32bit\tableborderright.png" />
+    <Resource Include="Images\Small_32bit\tablebordertop.png" />
+    <Resource Include="Images\Small_32bit\tabledialog.png" />
+    <Resource Include="Images\Small_32bit\tablegridlines.png" />
+    <Resource Include="Images\Small_32bit\tablelinecolor.png" />
+    <Resource Include="Images\Small_32bit\tablelinewidth.png" />
+    <Resource Include="Images\Small_32bit\tabs.png" />
+    <Resource Include="Images\Small_32bit\textdirltr.png" />
+    <Resource Include="Images\Small_32bit\textdirrtl.png" />
+    <Resource Include="Images\Small_32bit\textflow.png" />
+    <Resource Include="Images\Small_32bit\textframe.png" />
+    <Resource Include="Images\Small_32bit\textwrappingbreak.png" />
+    <Resource Include="Images\Small_32bit\tx_icon16.png" />
+    <Resource Include="Images\Small_32bit\undo.png" />
+    <Resource Include="Images\Small_32bit\unformattedtext.png" />
+    <Resource Include="Images\Small_32bit\zoom.png" />
+    <Resource Include="Images\Small_32bit\zoom100.png" />
+    <Resource Include="Images\Small_32bit\zoompageheight.png" />
+    <Resource Include="Images\Small_32bit\zoompagewidth.png" />
+    <Resource Include="Images\Small_32bit\zorderbottom.png" />
+    <Resource Include="Images\Small_32bit\zorderbottommost.png" />
+    <Resource Include="Images\Small_32bit\zorderdown.png" />
+    <Resource Include="Images\Small_32bit\zordertop.png" />
+    <Resource Include="Images\Small_32bit\zordertopmost.png" />
+    <Resource Include="Images\Small_32bit\zorderup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWpfExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.WPF.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <AppDesigner Include="My Project\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\txwords_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Large_32bit\Templates\templateinvoice.png" />
+    <Resource Include="Images\Large_32bit\Templates\templatepackinglist.png" />
+    <Resource Include="Images\Large_32bit\Templates\templateshippinglabel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Large_32bit\previewclose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Small_32bit\previewclose.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

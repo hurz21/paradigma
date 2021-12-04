@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2C59736-226F-4634-B949-D26365D48863}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <StartupObject>SerialServer.modSerialserver</StartupObject>
+    <RootNamespace>SerialServer</RootNamespace>
+    <AssemblyName>SerialServer</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Console</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SerialServer.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SerialServer.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Devart.Data, Version=5.0.792.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data.Oracle, Version=7.9.333.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Interop.MapWinGIS, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>.\Interop.MapWinGIS.dll</HintPath>
+    </Reference>
+    <Reference Include="LIBraumbezug, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LIBraumbezug.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LIBpostgisNPG\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.2.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LIBpostgisNPG\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Devart" />
+    <Import Include="Devart.Common" />
+    <Import Include="Devart.Data" />
+    <Import Include="Devart.Data.Oracle" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="SerialServer" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\LibDBMysql\clsDatenbankZugriff.vb">
+      <Link>clsDatenbankZugriff.vb</Link>
+    </Compile>
+    <Compile Include="..\LibDBMysql\clsDBtools.vb">
+      <Link>clsDBtools.vb</Link>
+    </Compile>
+    <Compile Include="..\LibDBMysql\IDB_grundfunktionen.vb">
+      <Link>IDB_grundfunktionen.vb</Link>
+    </Compile>
+    <Compile Include="..\LIBoracle\clsDBspecOracle.vb">
+      <Link>clsDBspecOracle.vb</Link>
+    </Compile>
+    <Compile Include="..\LIBoracle\clsOracleInsert.vb">
+      <Link>clsOracleInsert.vb</Link>
+    </Compile>
+    <Compile Include="clsCGI4VBNET.vb" />
+    <Compile Include="clsString.vb" />
+    <Compile Include="md5.vb" />
+    <Compile Include="modMail.vb" />
+    <Compile Include="modSerialFromPostgis.vb" />
+    <Compile Include="modSerialserver.vb" />
+    <Compile Include="modShapfileExtraktor.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ORACLE\modRB.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dll\offlinetools2.vshost.exe.manifest" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Mono.Security.dll" />
+    <Content Include="bin\Debug\Npgsql.dll" />
+    <Content Include="dll\Devart.Data.dll" />
+    <Content Include="dll\Devart.Data.Oracle.dll" />
+    <Content Include="dll\LibDB.dll" />
+    <Content Include="dll\LibDB.pdb" />
+    <Content Include="dll\LibDB.xml" />
+    <Content Include="dll\LIBgemeinsames.dll" />
+    <Content Include="dll\LIBgemeinsames.pdb" />
+    <Content Include="dll\LIBgemeinsames.xml" />
+    <Content Include="dll\LibGISmapgenerator.dll" />
+    <Content Include="dll\LibGISmapgenerator.pdb" />
+    <Content Include="dll\LibGISmapgenerator.xml" />
+    <Content Include="dll\LIBMensch.dll" />
+    <Content Include="dll\LIBMensch.pdb" />
+    <Content Include="dll\LIBMensch.xml" />
+    <Content Include="dll\LIBmyMapWindowGis.dll" />
+    <Content Include="dll\LIBmyMapWindowGis.pdb" />
+    <Content Include="dll\LIBmyMapWindowGis.xml" />
+    <Content Include="dll\LIBmysql.dll" />
+    <Content Include="dll\LIBmysql.pdb" />
+    <Content Include="dll\LIBmysql.xml" />
+    <Content Include="dll\LIBoracle.dll" />
+    <Content Include="dll\LIBoracle.pdb" />
+    <Content Include="dll\LIBoracle.xml" />
+    <Content Include="dll\LIBraumbezug.dll" />
+    <Content Include="dll\LIBraumbezug.pdb" />
+    <Content Include="dll\LIBraumbezug.xml" />
+    <Content Include="dll\Mono.Security.dll" />
+    <Content Include="dll\Npgsql.dll" />
+    <Content Include="dll\offlinetools2.exe" />
+    <Content Include="dll\offlinetools2.pdb" />
+    <Content Include="dll\offlinetools2.vshost.exe" />
+    <Content Include="dll\offlinetools2.xml" />
+    <Content Include="Interop.MapWinGIS.dll" />
+    <Content Include="Mono.Security.dll" />
+    <Content Include="Npgsql.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem opy $(targetfilename) L:\inetpub\scripts\apps\paradigmaex\serialserver\serialserver.cgi</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

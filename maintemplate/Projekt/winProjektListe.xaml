@@ -1,0 +1,64 @@
+﻿<Window x:Class="winProjektListe"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"      
+    xmlns:src="clr-namespace:paradigma"         
+    Title="ProjektListe: Wählen Sie ein Projekt aus um es so mit dem Vorgang zu koppeln" Height="607" Width="975" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <src:myGlobalz x:Key="myGlobalz"/>
+        <!--<src:MyFormatter x:Key="myformattjf" />-->
+        <XmlDataProvider x:Key="XMLSourceComboBoxEreignisse"    />
+    </Window.Resources>
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button x:Name="btnNeuesProjekt" Click="btnNeuesProjekt_Click" Content=" Neues Projekt anlegen " Margin="20"/>
+            <ComboBox   x:Name="cmbObergruppe" 	  Width="90"  Height="40"  Margin="5" 
+                        SelectionChanged="cmbObergruppe_SelectionChanged"
+                        ToolTip="Hauptkategorie auswählen"
+              >
+                <ComboBoxItem Tag=""></ComboBoxItem>
+                <ComboBoxItem Tag="B-Plan">B-Plan</ComboBoxItem>
+                <ComboBoxItem Tag="Bauantrag">Bauantrag</ComboBoxItem>
+                <ComboBoxItem Tag="Kompensation">Kompensation</ComboBoxItem>
+                <ComboBoxItem Tag="Artbeobachtung">Artbeobachtung</ComboBoxItem>
+                <ComboBoxItem Tag="Ersatzgeld">Ersatzgeld</ComboBoxItem>
+                <ComboBoxItem Tag="Planfeststellung">Planfeststellung</ComboBoxItem>
+                <ComboBoxItem Tag="unbestimmt">unbestimmt</ComboBoxItem>
+            </ComboBox>
+            <ComboBox   Name="cmbUntergruppe"  	  Width="90"  Height="40" Margin="5"       ToolTip="Unterkategorie auswählen"
+                  SelectionChanged="cmbUntergruppe_SelectionChanged"  Grid.ColumnSpan="2" >
+                <ComboBoxItem Tag=""></ComboBoxItem>
+                <ComboBoxItem Tag="Schwalben">Schwalben</ComboBoxItem>
+                <ComboBoxItem Tag="Eulen">Eulen</ComboBoxItem>
+                <ComboBoxItem Tag="Feuersalamander">Feuersalamander</ComboBoxItem>
+                <ComboBoxItem Tag="Naturdenkmale">Naturdenkmale</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Textfilter:" Padding="5" Margin="20,20,0,0"/>
+            <TextBox Width="100" Name="tbfilter" Margin="0,20,20,20" ToolTip="Bitte nur ein Textfragment eingeben!"></TextBox>
+            <Button Name="btnRefreshPrj" Click="btnRefreshPrj_Click" Content="start" Margin="0,20,20,20" Width="150"
+                    ToolTip="Sucht in Kurz und Langbezeichnung"/>
+            <Button x:Name="btnAbbruch" Click="btnAbbruch_Click" Content=" Abbruch " Margin="20"  Style="{StaticResource lessButton}"/>
+        </StackPanel>
+        <DockPanel>
+            <DataGrid  x:Name="dgProjektliste"   ItemsSource="{Binding ''}"      Background="{StaticResource TabControlBackgroundBrush}" 
+											  RowStyle="{StaticResource dgRowStyle}"  
+											  ColumnHeaderStyle="{StaticResource dgHeaderStyle}"   
+                     SelectionChanged="dgProjektliste_SelectionChanged"
+								  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="HauptK." Width="Auto"  Binding="{Binding KATEGORIE1}" />
+                    <DataGridTextColumn Header="UnterK." Width="Auto"  Binding="{Binding KATEGORIE2}" />
+                    <DataGridTextColumn Header="Bereich" Width="Auto"  Binding="{Binding GEMEINDE}" />
+                    <DataGridTextColumn Header="Kurz" Width="Auto"  Binding="{Binding BEZEICHNUNGKURZ}" />
+                    <DataGridTextColumn Header="Lang" Width="Auto"  Binding="{Binding BEZEICHNUNGLAN}" />
+                    <DataGridTextColumn Header="Qu" Width="Auto" Binding="{Binding QUELLE}" />
+                    <DataGridTextColumn Header="TS" Width="Auto" Binding="{Binding TS,  StringFormat=\{0:dd.MM.yyyy\}}" />
+                    <DataGridTextColumn Header="Beschreibung" Width="Auto"  Binding="{Binding BESCHREIBUNG}" />
+                    <!--<DataGridTextColumn Header="von" Width="Auto" Binding="{Binding VONDATUM, Converter={StaticResource myformattjf}, ConverterParameter='dd.MM.yyyy'}" />-->
+                    <DataGridTextColumn Header="bis" Width="Auto" Binding="{Binding BISDATUM, StringFormat=\{0:dd.MM.yyyy\}}" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </DockPanel>
+</Window>

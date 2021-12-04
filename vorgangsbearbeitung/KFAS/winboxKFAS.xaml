@@ -1,0 +1,40 @@
+﻿<Window x:Class="winboxKFAS"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigma"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="winboxKFAS" Height="250" Width="363.918">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal">
+
+            <StackPanel Margin="5" Width="100">
+
+                <Button x:Name="btnVorgang" Click="btnVorgang_Click" Height="50" Margin="5" >
+                    <StackPanel>
+
+                        <TextBlock>Vorgang</TextBlock>
+                        <TextBlock>  erzeugen</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btndelete" Click="btndelete_Click" Height="50" Margin="5" >
+                    <StackPanel>
+                        <TextBlock>Formular</TextBlock>
+                        <TextBlock>  löschen</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnAbbruch" Click="btnAbbruch_Click"
+                        IsCancel="True"
+                        Height="50" Margin="5" >
+                    <StackPanel>
+
+                        <TextBlock>Abbruch</TextBlock>
+                        <TextBlock>  ------</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <TextBlock x:Name="tbinfo" ></TextBlock>
+        </StackPanel>
+    </DockPanel>
+</Window>

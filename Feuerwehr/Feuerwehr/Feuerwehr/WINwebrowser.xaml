@@ -1,0 +1,10 @@
+﻿<Window x:Class="WINwebrowser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="WINwebrowser" Height="558" Width="1208">
+    <StackPanel  >
+        <WebBrowser Name="wb2" Height="558" Width="1208">
+            
+        </WebBrowser>
+    </StackPanel>
+</Window>

@@ -1,0 +1,215 @@
+﻿<Window x:Class="Window_Flurstuecksauswahl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigmaDetail"  
+    Title="Raumbezug: Flurstück" Height="480" Width="776"  WindowStartupLocation="CenterScreen"
+        >
+    <Window.Resources>
+        <!--<src:myGlobalz x:Key="myGlobalz" />-->
+        <!--<src:MyFormatter x:Key="myformattjf"  />-->
+        <XmlDataProvider x:Key="XMLSourceComboBoxRBfunktion" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemarkungen" />
+    </Window.Resources>
+    <StackPanel  >
+        <StackPanel Orientation="Horizontal" Margin="10,10,0,0" Height="336">
+            <StackPanel Margin="10" Width="456" Height="320">
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90" >Gemarkung:</Label>
+                    <TextBox Width="186" Name="tbGemarkung" IsEnabled="False"
+               Text="{Binding aktFST.normflst.gemarkungstext,  UpdateSourceTrigger=PropertyChanged}"  
+                                    
+                                     />
+                    <ComboBox Name="cmbgemarkung"  MaxDropDownHeight="800"
+                                       DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemarkungen}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbgemarkung_SelectionChanged"
+                                      Width="20"
+                                      >
+                        <!--<ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Key}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>-->
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Flur:</Label>
+                    <TextBox Width="186" Name="tbflur" IsEnabled="False"
+                          
+                             
+                             Text="{Binding aktFST.normflst.flur,  UpdateSourceTrigger=PropertyChanged}"  
+                             
+                                     />
+                    <ComboBox Name="cmbFlur" ItemsSource="{Binding}"  MaxDropDownHeight="800"
+                                      DisplayMemberPath="flur"  SelectedValuePath="flur"
+                                      Width="20"
+                               SelectionChanged="cmbFlur_SelectionChanged"
+                                      ></ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Zähler:</Label>
+                    <TextBox Width="186" Name="tbZaehler" IsEnabled="False" 
+                              
+                             
+                             
+                                  Text="{Binding aktFST.normflst.zaehler,  UpdateSourceTrigger=PropertyChanged}"  
+                                     />
+                    <ComboBox Name="cmbZaehler" ItemsSource="{Binding}"  MaxDropDownHeight="800"
+                                      DisplayMemberPath="zaehler"  SelectedValuePath="zaehler" 
+                                      Width="20" SelectionChanged="cmbZaehler_SelectionChanged"
+                                      ></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Nenner:</Label>
+                    <TextBox Width="186"  Name="tbNenner" IsEnabled="False" 
+                                       
+                                     
+                                             Text="{Binding aktFST.normflst.nenner,  UpdateSourceTrigger=PropertyChanged}"  
+                                     />
+                    <ComboBox Name="cmbNenner" ItemsSource="{Binding}"  MaxDropDownHeight="800"
+                                      DisplayMemberPath="nenner"  SelectedValuePath="nenner"
+                                      Width="20"
+                                      SelectionChanged="cmbNenner_SelectionChanged"
+                                      ></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">FS:</Label>
+                    <TextBox Width="186" IsEnabled="True"  IsReadOnly="True" Name="lblFS" 
+                                        
+                                     Text="{Binding aktFST.normflst.FS,  UpdateSourceTrigger=PropertyChanged}"  
+                             />
+                    <Button Name="btnDossier" Content="Dossier" Click="btnDossier_Click" FontWeight="Bold"
+                                    Width="60" Style="{StaticResource newButton}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90">Koordinaten:</Label>
+                    <TextBox Name="tbCoords" Width="186" IsEnabled="False" 
+                                  
+                              Text="{Binding aktFST.coordsAbstract,  UpdateSourceTrigger=PropertyChanged}"  
+                                        />
+                    <Label Width="90">Fläche (qm):</Label>
+                    <TextBox Name="tbarea" Width="92" IsEnabled="True" 
+                                   
+                             
+                                Text="{Binding aktFST.flaecheqm,  UpdateSourceTrigger=PropertyChanged}"  
+                                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90" ToolTip="Funktion oder Charakteristik dieses Flurstücks. In der Karte entspreicht dies dem Etikett der Fläche.">Funktion:</Label>
+                    <TextBox    Name="tbKurz"  Width="186" 
+                                />
+                    <ComboBox Grid.Row="6"  Grid.Column="2"  x:Name="cmbFunktionsvorschlaege"  MaxDropDownHeight="800" 
+                      DataContext="{Binding Source={StaticResource XMLSourceComboBoxRBfunktion}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbFunktionsvorschlaege_SelectionChanged"
+                      />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="90" ToolTip="Beliebieger Text">Freitext:</Label>
+                    <TextBox    Name="tbFreitext"  Width="365"  
+                              
+                                /> 
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox  IsChecked="True" x:Name="chkMapenabled" Margin="0,5,5,5"  
+                      HorizontalAlignment="Left" Width="227" ToolTip="In der Karte darstellen oder unterdrücken"
+                           Click="chkMapenabled_Click">immer in der Karte darstellen</CheckBox>
+                </StackPanel>
+                <StackPanel    Orientation="Horizontal" Margin="5,15,5,5" >
+                    <Button     Name="btnLoeschenEreignis"   IsEnabled="False"   Width="60" 
+                                ToolTip="Ereignisse lassen sich nicht löschen!"
+                                         Style="{StaticResource lessButton}"
+                                        >Löschen</Button>
+                    <Separator Width="10"></Separator>
+                    <Button Height="23"  Width="120"  Name="btnSpeichernFlurstueck" Click="btnSpeichernFlurstueck_Click">Speichern</Button>
+                    <Separator Width="10"></Separator>
+                    <Button     Name="btnAbbruch"    IsCancel="True"  Width="60"  Style="{StaticResource lessButton}">Abbruch</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"></StackPanel>
+                <!--<Button Height="23" Name="btnSpeichernFlurstueck" Width="75" Margin="10">speichern</Button>-->
+            </StackPanel>
+            <StackPanel Margin="10">
+                <CheckBox Grid.Column="3" Grid.Row="2" Margin="6.25,6.25,20,0" Padding="4,4,4,4" 
+                  Name="CheckBox1">Freie Texteingabe</CheckBox>
+
+                <!--<Label Grid.Column="3" Grid.Row="5" Margin="0,12.189,20,0" Grid.RowSpan="3" >
+                    <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="Hyperlink_RequestNavigate" >
+                        <TextBlock Text="Zeige Lokalität im GIS" />
+                    </Hyperlink>
+                </Label>-->
+
+                <Button x:Name="btnstarteGIS" Content="GIS mit Flurstück starten?" Click="Hyperlink_RequestNavigate"  Grid.Column="3" Grid.Row="5"
+                        Style="{StaticResource greenButton}" ToolTip="Dieses Flurstück im GIS zeigen"/>
+                
+                
+                <!--<Label Grid.Column="3" Grid.Row="6" Margin="0,0,20,0" Height="26" VerticalAlignment="Bottom" Visibility="Collapsed">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="Hyperlink_RequestNavigateEigentumer" >
+                                <TextBlock Text="Eigentümer feststellen (ALB)" />
+                            </Hyperlink>
+                        </Label>-->
+
+                <GroupBox Header="Eigentümer ermitteln">
+                    <StackPanel Height="63" VerticalAlignment="Bottom">
+                        <Button Name="btnEigentuemerALKIS" Click="btnEigentuemerALKIS_Click"  IsEnabled="False">PDF-Datei erzeugen</Button>
+                        <CheckBox   x:Name="chkInsArchiv" Click="chkInsArchiv_Click"
+                                  Content="ins Archiv übernehmen"                  Margin="5,0,0,0"         />
+                        <CheckBox   x:Name="chkEreignisMap" Click="chkEreignisMap_Click_1"
+                                  Content="Ereignis anlegen"                         Margin="5,0,0,0"      />
+                    </StackPanel>
+                </GroupBox>
+
+
+                <Button Name="btnFSTausCSVliste" Click="btnFSTausCSVliste_Click"  IsEnabled="true"  Style="{StaticResource lessButton}" Visibility="Hidden"
+                        >Flurstücke aus CSV-Liste erstellen</Button>
+                <!--<Button x:Name="btnWardawas" Content="War da was?" Click="btnWardawas_Click" 
+                        Style="{StaticResource greenButton}" ToolTip="War da schon mal ein Vorgang ?"/>-->
+
+
+                <Label Grid.Column="3" Grid.Row="3" Margin="0,0,20,0" 
+                       Grid.RowSpan="3" Visibility="Visible">
+                    <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="btnWardawas_Click" >
+                        <TextBlock Text="War da was?" />
+                    </Hyperlink>
+                </Label>
+                <Label Grid.Column="3" Grid.Row="3" Margin="0,0,20,0" 
+                       Grid.RowSpan="3" Visibility="Visible">
+                    <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="btnWardawasVerwandte_Click" >
+                        <TextBlock Text="War da was? => Verwandte" />
+                    </Hyperlink>
+                </Label>
+                <StackPanel  Margin="0,00,0,0"  Background="AliceBlue" >
+                    <StackPanel  Orientation="Horizontal"  >
+                        <Button Name="btnPufferbilden" Click="btnPufferbilden_Click"    IsEnabled="true" 
+                        Style="{StaticResource lessButton}" ToolTip="Erzeugt ein Pufferobjekt mit definiertem Radius" Width="58"
+                        Height="28"
+                        Margin="0,10,0,0" VerticalAlignment="Top">
+                            <StackPanel Orientation="Horizontal" >
+
+                                <TextBlock >Puffern</TextBlock>
+                            </StackPanel >
+                        </Button>
+                        <TextBox x:Name="tbpufferinmeter" Width="30" Text="1,5" Height="27" Margin="0,10,0,0" />
+                        <TextBlock Text="[m]" Padding="5" Height="27" Margin="0,10,0,0" />
+                    </StackPanel>
+                    <Image  x:Name="myPDFdruck" Source="/paradigmaDetail;component/Details/icons/flPuffer.png"  
+                                Width="66"  Margin="0" Height="40"></Image>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </StackPanel>
+</Window>

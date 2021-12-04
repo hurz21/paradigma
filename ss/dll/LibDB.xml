@@ -1,0 +1,46 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+LibDB
+</name>
+</assembly>
+<members>
+<member name="P:LibDB.clsDatenbankZugriff.ServiceName">
+	<summary>
+ ServiceName für OracleDB
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:LibDB.clsDatenbankZugriff.dbtyp">
+	<summary>
+ "mdb" oder "dbf" oder "mysql"  
+ </summary>
+	<value></value>
+	<remarks></remarks>
+</member><member name="P:LibDB.My.Resources.Resources.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:LibDB.My.Resources.Resources.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="T:LibDB.My.Resources.Resources">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member><member name="M:LibDB.clsDBtools.SpalteZuDatatableHinzufuegen(System.Data.DataTable,System.String,System.String)">
+	<summary>
+ ergänzt in der datatalbe ein spalte mit dem angegebenen typ
+ </summary>
+	<param name="meinelokaleDT"></param>
+	<param name="Spaltenname"></param>
+	<param name="SpaltenTyp"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

@@ -1,0 +1,142 @@
+﻿<Window x:Class="winRechtsDBMan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail" Background="LightGray"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" AllowDrop="True" 
+        Title="RechtsgrundlagenManager" Height="500" Width="1049">
+    <DockPanel>
+        <StackPanel>
+            <!--<TabControl>
+                <TabItem Header="Hinzufügen">-->
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="AliceBlue">
+                            <GroupBox Header="Hinzufügen zu:" Visibility="Collapsed">
+                                <StackPanel  >
+                                    <StackPanel Orientation="Horizontal" ToolTip="wird auch in ALLEN untergeordneten Einheiten sichtbar">
+                                        <RadioButton x:Name="radlevel1" GroupName="radlevel" Content="" />
+                                        <TextBlock Text=""  />
+                                        <TextBox x:Name="tblevel1nr" />
+                                        <TextBox x:Name="tblevel1text"  />
+
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" ToolTip="wird auch in ALLEN untergeordneten Einheiten sichtbar">
+                                        <RadioButton x:Name="radlevel2" GroupName="radlevel" Content=""/>
+                                        <TextBlock Text=" "  />
+                                        <TextBox x:Name="tblevel2nr"  />
+                                        <TextBox x:Name="tblevel2text"  />
+
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" ToolTip="wird auch in ALLEN untergeordneten Einheiten sichtbar">
+                                        <RadioButton x:Name="radlevel3" GroupName="radlevel" Content="" />
+                                        <TextBlock Text=" "  />
+                                        <TextBox x:Name="tblevel3nr" />
+                                        <TextBox x:Name="tblevel3text"  />
+
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal"  ToolTip="Wird nur in diesem einen Sachgebiet sichtbar">
+                                        <RadioButton x:Name="radlevel4" GroupName="radlevel" Content=""/>
+                                        <TextBlock Text=" "  />
+                                        <TextBox x:Name="tblevel4nr"  />
+                                        <TextBox x:Name="tblevel4text" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Zugeordnet zu Sachgebiet:"  Height="150">
+                                <StackPanel Orientation="Horizontal">
+                                    <DataGrid x:Name="dgsachgebietZugeorndet" SelectionChanged="dgsachgebietZugeorndet_SelectionChanged" 
+            							MinWidth="100" Margin="5" Width="208"  
+            							ItemsSource="{Binding}" AutoGenerateColumns="False"                                            
+            							SelectionMode="Single" SelectionUnit="FullRow"                                                                             
+            							ColumnHeaderStyle="{StaticResource dgHeaderStyle}"   
+            							FontWeight="Normal" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="SG-Nr" Width="60"   Binding="{Binding Zahl}"   />
+                                            <DataGridTextColumn Header="SG-Name"    Binding="{Binding Header}"   />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <StackPanel>
+
+
+                                        <Button x:Name="btnaddSachgebiet" Click="btnaddSachgebiet_Click" Content="   +   "  FontSize="20" ToolTip="Sachgebiet hinzufügen" Margin="5"/>
+                                        <Button x:Name="btnKillSachgebiete" Click="btnKillSachgebiete_Click" Content="   C   "  FontSize="20" ToolTip="Sachgebiete löschen" Margin="5"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+
+                            </GroupBox>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <GroupBox Header="Schlagworte (erhöhen die Wiederfindbarkeit)" Margin="5" Width="400" Height="60">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox TextWrapping="Wrap" AcceptsReturn="False"  x:Name="tbschlagworteRechtsdb"  MinWidth="300" SelectionChanged="tbschlagworteRechtsdb_SelectionChanged"/>
+
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox Header="Kommentar / Beschreibung der Datei" Margin="5" Width="400" Height="100">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox TextWrapping="Wrap" AcceptsReturn="False"  x:Name="tbBeschreibung" MinWidth="300" SelectionChanged="tbBeschreibung_SelectionChanged"/>
+
+                                        </StackPanel>
+                                    </GroupBox>
+                                </StackPanel>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="Art:" Padding="5" Width="70"/>
+                                        <!--<TextBox x:Name="tbArt" Width="90"/>-->
+                                        <ComboBox x:Name="cmbArt" Width="122" SelectionChanged="cmbArt_SelectionChanged"
+                                                       ItemsSource="{Binding}"   MaxDropDownHeight="800"  DisplayMemberPath="text"  SelectedValuePath="id" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="Herkunft:" Padding="5" Width="70"/>
+                                        <!--<TextBox x:Name="tbHerkunft" Width="90"/>-->
+                                        <ComboBox x:Name="cmbHerkunft" Width="122" SelectionChanged="cmbHerkunft_SelectionChanged"
+                                                       ItemsSource="{Binding}"  MaxDropDownHeight="800"   DisplayMemberPath="text"  SelectedValuePath="id" />
+                                    </StackPanel>
+                                    <StackPanel Margin="5">
+                                        <CheckBox Content="ist gültig" x:Name="chkistgueltig" IsChecked="True"/>
+
+                                    </StackPanel>
+                                    <StackPanel Margin="5" Orientation="Horizontal" >
+                                        <TextBox Text="seit:" ToolTip="Datum der Veröffentlichung" Width="70" Background="AliceBlue"/>
+                                        <TextBox x:Name="tbSeit" Width="100" Visibility="Collapsed"/>
+                                        <DatePicker x:Name="datepGueltig" SelectedDateChanged="datepGueltig_SelectedDateChanged"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Height="200" x:Name="stck1">
+
+                            <TextBlock Name="tbdateiHinweis" Text="Hier bitte die Datei mit DragUndDrop fallen lassen:" Margin="20"/>
+
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <DataGrid x:Name="dgNeueDateien" SelectionChanged="dgNeueDateien_SelectionChanged"  
+            						Margin="5"  Width="500" HorizontalAlignment="Left"
+            						ItemsSource="{Binding}" AutoGenerateColumns="False"                                            
+            						SelectionMode="Single" SelectionUnit="FullRow"                                                                           
+                                               
+            						FontWeight="Normal" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn      Binding="{Binding ''}"   />
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button x:Name="btnDateienloeschen" Click="btnDateienloeschen_Click" Content="   C   "/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="btnSpeichern" Content="Speichern" Click="btnSpeichern_Click" Margin="5" Width="200" />
+                            <Button Name="btnGesetzloeschen" Content="Löschen" Click="btnGesetzloeschen_Click" Margin="5 " Width="200"/>
+                            <Button x:Name="btnabbrechen" Content="Abbrechen" Click="btnabbrechen_Click" Margin="5,24,5,25" IsCancel="True"  Width="200"/>
+                        </StackPanel>
+                    </StackPanel>
+                <!--</TabItem>
+                <TabItem Header="Ändern"/>
+            </TabControl>-->
+        </StackPanel>
+    </DockPanel>
+</Window>

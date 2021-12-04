@@ -1,0 +1,27 @@
+﻿<Window x:Class="wininfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="wininfo" Height="389" Width="635" WindowStartupLocation="CenterScreen"    >
+    <DockPanel>
+
+        <TextBox Name="tbinfo" AcceptsReturn="True" AcceptsTab="True"    TextWrapping="Wrap"   DockPanel.Dock="Top"
+                 MaxHeight="300" MinHeight="300"
+                 AutoWordSelection="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" 
+                 ScrollViewer.CanContentScroll="True"  />
+
+
+        <StackPanel  Orientation="Horizontal" Height="50" DockPanel.Dock="Bottom" >
+            <Separator Width="50" Visibility="Hidden"></Separator>
+            <Button Name="btnabbruch" Click="btnabbruch_Click" Content=" Abbruch " IsCancel="True" 
+                    HorizontalAlignment="Left" />
+            <Separator Width="50" Visibility="Hidden" ></Separator>
+            <Button    Name="btnClipboard" Click="btnClipboard_Click" Content=" In die Zwischenablage kopieren " 
+                       HorizontalAlignment="Right" />
+            <Separator Width="50" Visibility="Hidden" ></Separator>
+            <Button    Name="btnAlsDokument" Click="btnAlsDokument_Click" Content=" Als Dokument speichern " 
+                       HorizontalAlignment="Right" />
+            <Separator Width="50" Visibility="Hidden" ></Separator>
+            <TextBlock Name="tbhinweis"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

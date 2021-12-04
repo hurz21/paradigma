@@ -1,0 +1,122 @@
+﻿<Window x:Class="WinThemen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Themenauswahl und Freitext-Suche" Height="677" Width="568" WindowStartupLocation="CenterScreen"        
+    Background="{StaticResource backg3}" 
+        >
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    </Window.Resources>
+    <DockPanel Height="617" Width="543">
+        <StackPanel  DockPanel.Dock="Top" Margin="5" Orientation="Horizontal">
+
+            <StackPanel ></StackPanel>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Height="572" Width="525">
+          
+                <StackPanel   CanVerticallyScroll="True" CanHorizontallyScroll="False" MinWidth="300" MinHeight="500">
+                    <StackPanel x:Name="abteilungen"  Margin="15,10,15,10" >
+                        <StackPanel Orientation="Horizontal"  Margin="0,0,5,0" >
+                            
+                        <Label Grid.Column="1" Grid.Row="10" Margin="0,0,5,0" Grid.ColumnSpan="3" ToolTip="Typische Themen addieren"> <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de" 
+                                Hyperlink.RequestNavigate="alleUNB_Click" ><TextBlock Text="UNB" /></Hyperlink>
+                        </Label>
+                        <Label Grid.Column="1" Grid.Row="10" Margin="0,0,5,0" Grid.ColumnSpan="3" ToolTip="Typische Themen addieren">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de" 
+                                Hyperlink.RequestNavigate="alleUWB_Click" >
+                                <TextBlock Text="UWB" />
+                            </Hyperlink>
+                        </Label>
+                        <Label Grid.Column="1" Grid.Row="10" Margin="0,0,5,0" Grid.ColumnSpan="3" ToolTip="Typische Themen addieren">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de" 
+                                Hyperlink.RequestNavigate="alleIMMI_Click" >
+                                <TextBlock Text="Immis." />
+                            </Hyperlink>
+                        </Label>
+                        <Label Grid.Column="1" Grid.Row="10" Margin="0,0,5,0" Grid.ColumnSpan="3" ToolTip="Typische Themen addieren">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de" 
+                                Hyperlink.RequestNavigate="alleBauen_click" >
+                                <TextBlock Text="Bauen" />
+                            </Hyperlink>
+                        </Label>
+
+                        <Label Grid.Column="1" Grid.Row="10" Margin="0,0,5,0" Grid.ColumnSpan="3" ToolTip="Typische Themen addieren">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de" 
+                                Hyperlink.RequestNavigate="weisseFlurkarte_Click" >
+                                <TextBlock Text="weisse Flurkarte" />
+                            </Hyperlink>
+                        </Label>
+                        <Label Grid.Column="1" Grid.Row="10" Margin="0,0,5,0" Grid.ColumnSpan="3" ToolTip="Typische Themen addieren">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de" 
+                                Hyperlink.RequestNavigate="flure_Click" >
+                                <TextBlock Text="Flure" />
+                            </Hyperlink>
+                        </Label>
+                    
+                        <Label Grid.Column="1" Grid.Row="10" Margin="0,0,5,0" Grid.ColumnSpan="3" ToolTip="Typische Themen addieren">
+                            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de" 
+                                Hyperlink.RequestNavigate="alleVorgaengeDazu_Click" >
+                                <TextBlock Text="alle Vorgänge" />
+                            </Hyperlink>
+                        </Label>
+                        <!--<Button FontSize="12" Margin="5,0,5,0" Name="alleUNB" Click="alleUNB_Click" ToolTip="Typische Themen addieren">UNB</Button>
+                            <Button FontSize="12"  Margin="5,0,5,0" Name="alleUWB" Click="alleUWB_Click" ToolTip="Typische Themen addieren">UWB</Button>
+                            <Button FontSize="12"  Margin="5,0,5,0" Name="alleIMMI" Click="alleIMMI_Click" ToolTip="Typische Themen addieren">Immis.</Button>
+                            <Button FontSize="12"  Margin="5,0,5,0" Name="alleBauen" Click="alleBauen_click" ToolTip="Typische Themen addieren" >Bauen</Button>
+                            <Button FontSize="12"  Margin="5,0,5,0" Name="weisseFlurkarte" Click="weisseFlurkarte_Click" ToolTip="Für die Verwendung mit dem Luftbild" >weisse Flurkarte                            </Button>
+                            <Button FontSize="12" Name="aktVorgangDazu" Click="aktVorgangDazu_Click"  Margin="5,0,5,0">akt. Vorgang</Button>
+                            <Button FontSize="12" Name="alleVorgaengeDazu" Click="alleVorgaengeDazu_Click"  Margin="5,0,5,0">alle Vorgänge</Button>-->
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                        </StackPanel>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Padding="5" FontSize="14">Suchen:</TextBlock>
+                        <TextBox x:Name="tbThemenSuchfilter" Width="392" Padding="5" Background="White"> </TextBox>
+                        <Button x:Name="btnThemensucheStarten" Click="btnThemensucheStarten_Click" IsDefault="True" Width="56" 
+                                ToolTip="Suche in der Dokumentation und in den Titeln der Ebenen. Die Schlagworte werden UND-verknüpft."> 
+                        <Image  x:Name="myimagerefresh" Source="/paradigma;component/icons/suche.png"  ></Image>                            
+                    </Button>
+                    </StackPanel>
+
+             
+                    <StackPanel Orientation="Horizontal">
+                        <ListBox x:Name="multicolumnComboBox" Height="446" Width="500" VerticalAlignment="Top">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="0" >                                 
+                                    <CheckBox  IsChecked="{Binding IsChecked}" Margin="5,0,5,0"/>
+                                    <RadioButton   IsChecked="{Binding istAktiveEbene}"  GroupName="jaja"
+                                           ToolTip="Hier können Sie die Datenbank der Ebene aktivieren. Baustelle" 
+                                           Visibility="{Binding istAktivierbar,Converter={StaticResource boolToVisibilityConverter} }"  Margin="5,0,5,0"/>
+                                    <TextBlock Text="{Binding Name}"  Margin="5,0,5,0" ToolTip="{Binding dokuTitel}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="multicolumnComboBoxSuchergebnis" Height="446" Width="7">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="0" >
+                                    <CheckBox  IsChecked="{Binding IsChecked}"  />
+                                    <RadioButton   IsChecked="{Binding istAktiveEbene}" GroupName="jaja"
+                                           ToolTip="Hier können Sie die Datenbank der Ebene aktivieren. Baustelle" 
+                                                        Visibility="{Binding istAktivierbar,Converter={StaticResource boolToVisibilityConverter} }" Margin="5,0,5,0"/>
+                                    <TextBlock Text="{Binding Name}"  ToolTip="{Binding dokuTitel}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                  
+                    <StackPanel Orientation="Horizontal"  Height="40" MinWidth="300">
+                        <Button Margin="5" Name="btnRefresh" FontSize="16" Click="btnRefresh_Click">Minimap aktualisieren</Button>
+                        <Button Margin="5" Name="btnCancel" Click="btnCancel_Click" IsCancel="True">Abbruch</Button>
+                        <Button FontSize="10" Name="keineVgrund" Click="keineVgrund_Click" ToolTip="kein Vordergrund" Width="30" Foreground="red">X</Button>
+                    </StackPanel>
+                </StackPanel>
+        
+        </StackPanel>
+    </DockPanel>
+</Window>

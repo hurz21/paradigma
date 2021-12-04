@@ -1,0 +1,216 @@
+﻿<Window x:Class="Window_RB_Adresse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:src="clr-namespace:paradigma" 
+        xmlns:mfrm="clr-namespace:paradigma"   
+    Title="Raumbezug: Adresse" Height="471" Width="743" Name="Window1" WindowStartupLocation="CenterOwner" 
+        >
+    <Window.Resources>
+        <src:myGlobalz x:Key="myGlobalz"/>
+        <mfrm:MyFormatter x:Key="myformattjf" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemeinden" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxRBfunktion" />
+
+    </Window.Resources>
+    <DockPanel>
+        <Grid Margin="0,40,0,0" Height="342.5" Width="698"  DockPanel.Dock="Top" Background="{StaticResource TabControlBackgroundBrush}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="21*" />
+                <RowDefinition Height="26*"/>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="25" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="102.25*" />
+                <ColumnDefinition Width="240*" />
+                <ColumnDefinition Width="18*" />
+                <ColumnDefinition Width="90*" />
+                <ColumnDefinition Width="106*" />
+                <ColumnDefinition Width="136.75*" />
+                <ColumnDefinition Width="14*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox   Name="cmbGemeinde" Grid.Column="2" 
+                     DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemeinden}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbGemeinde_SelectionChanged"
+                   Grid.Row="1" Margin="0,1,0,0" />
+
+            <TextBlock Padding="5"  Name="Label1" Grid.Row="1" Height="26" VerticalAlignment="Top">Gemeinde:</TextBlock>
+            <TextBlock  Padding="5"  Grid.Row="4"   Name="Label2" >Straße:</TextBlock>
+            <ComboBox    Name="cmbStrasse" Grid.Column="2"       Grid.Row="4"
+                     ItemsSource="{Binding}" 
+                   DisplayMemberPath="sname"  SelectedValuePath="strcode" HorizontalAlignment="Right" Width="18" />
+
+            <TextBlock  Padding="5"  Grid.Row="5"   Name="Label3" Grid.RowSpan="2" Margin="0,0,0,24">Hausnummer:</TextBlock>
+            <ComboBox Grid.Column="2" Grid.Row="5"   Name="cmbHausnr"  
+                          ItemsSource="{Binding}"  DisplayMemberPath="hausnrkombi"  SelectedValuePath="id"
+                   Margin="0,0,0,0" />
+            <Button Grid.Row="5" Grid.Column="5" x:Name="btnBingMaps" Content="BingMaps" Click="btnBingMaps_Click_1" Style="{StaticResource greenButton}" ToolTip="Adresse in Bing-Maps betrachten" Height="Auto" Grid.RowSpan="2"/>
+
+            <Button Grid.Row="7" Grid.Column="5" x:Name="btnWardawas" Content="War da was?" Click="btnWardawas_Click" Style="{StaticResource greenButton}" ToolTip="War da schon mal ein Vorgang ?"/>
+            <Button Grid.Row="8" Grid.Column="5" x:Name="btnGoogleKoordinaten" Content="Google-Strasse suchen" Click="btnGoogleKoordinaten_Click" IsEnabled="True" Margin="0,0,0,20" Grid.RowSpan="2"/>
+            <!--<Button  x:Name="btnEigentuemer" Content="Eigentümer" Click="btnEigentuemer_Click"
+                     Style="{StaticResource lessButton}"/>-->
+
+            <GroupBox Header="Eigentümer ermitteln" Grid.Row="0" Grid.Column="5" Grid.RowSpan="4">
+                <StackPanel>
+                    <Button Name="btnEigentuemerALKIS" Click="btnEigentuemer_Click"  >Word-Datei erzeugen</Button>
+                    <CheckBox   x:Name="chkInsArchiv" Click="chkInsArchiv_Click"
+                                  Content="ins Archiv übernehmen"                  Margin="5,0,0,0"         />
+                    <CheckBox   x:Name="chkEreignisMap" Click="chkEreignisMap_Click_1"
+                                  Content="Ereignis anlegen"                         Margin="5,0,0,0"      />
+                </StackPanel>
+            </GroupBox>
+
+            <Button Grid.Row="10" Grid.Column="5" x:Name="btnWindrosen" Content="Windrose anzeigen" Click="btnWindrosen_Click" IsEnabled="False" Margin="0,0,0,40" Grid.RowSpan="2"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="11"  Grid.ColumnSpan="3" Orientation="Horizontal" Margin="5,5,5,5" >
+                <Button     Name="btnLoeschenEreignis"   IsEnabled="False"   Width="60" 
+                         Style="{StaticResource lessButton}"
+                        ToolTip="Ereignisse lassen sich nicht löschen!">Löschen</Button>
+                <Separator Width="10"></Separator>
+                <Button   Width="120"  Name="btnSpeichern" Click="btnSpeichern_Click_3">Speichern</Button>
+                <Separator Width="10"></Separator>
+                <Button     Name="btnAbbruch"    IsCancel="True"  Width="60"  Style="{StaticResource lessButton}" >Abbruch</Button>
+            </StackPanel>
+
+            <!--<Button Grid.Column="1" Grid.Row="9" Name="btnSpeichern" IsEnabled="true" >Speichern</Button>-->
+            <Label Grid.Column="1" Grid.Row="12" Margin="0,0,20,0" Grid.ColumnSpan="3">
+                <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="Hyperlink_RequestNavigate" >
+                    <TextBlock Text="Zeige Lokalität im GIS" />
+                </Hyperlink>
+            </Label>
+            <!--<Label Grid.Column="3" Grid.Row="9" Margin="0,0,20,0" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+                       Hyperlink.RequestNavigate="Hyperlink_RequestNavigateEigentumer" >
+                <TextBlock Text="Eigentümer feststellen" />
+            </Hyperlink>
+        </Label>-->
+            <TextBox   Name="tbGemeinde" IsEnabled="False" Grid.Column="1" Grid.Row="1" 
+                    Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.Gisadresse.gemeindeName , 
+                UpdateSourceTrigger='PropertyChanged'}" HorizontalAlignment="Left" Width="237" Margin="0,1,0,0" />
+            <StackPanel x:Name="stckBuchstaben1" Orientation="Horizontal"  Grid.Column="1" Grid.Row="2" IsEnabled="False" Grid.ColumnSpan="3">
+                <Button Content="a"   Click="btnstreet" Width="17" Height="22"/>
+                <Button Content="b"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="c"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="d"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="e"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="f"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="g"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="h"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="i"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="j"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="k"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="l"   Click="btnstreet" Width="17" Height="22"/>
+                <Button Content="m"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="n"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="o"   Click="btnstreet"  Width="17" Height="22"/>
+            </StackPanel>
+
+            <StackPanel x:Name="stckBuchstaben2" Orientation="Horizontal"  Grid.Column="1" Grid.Row="3" 
+                        IsEnabled="False" Grid.ColumnSpan="4">
+
+
+                <Button Content="p"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="q"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="r"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="s"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="t"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="u"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="v"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="w"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="x"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="y"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="z"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="ä"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="ö"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="ü"   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content=" "   Click="btnstreet"  Width="17" Height="22"/>
+                <Button Content="Strasse fehlt ?!"   Click="btnStrassefehlt"  Width="110" Height="22"/>
+            </StackPanel>
+            <TextBox Grid.Row="4"   Name="tbStrasse" IsEnabled="False" Grid.Column="1" 
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.Gisadresse.strasseName , 
+                UpdateSourceTrigger='PropertyChanged'}" 
+                 />
+            <TextBox Grid.Row="5"   Name="tbHausnr" IsEnabled="False" Grid.Column="1"   
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.Gisadresse.HausKombi , 
+                UpdateSourceTrigger='PropertyChanged'}" 
+                 />
+            <CheckBox Grid.Column="5"  
+                  x:Name="ckbFreieAdresseingabe" Grid.Row="11"   VerticalAlignment="Bottom">Freie Texteingabe</CheckBox>
+            <TextBlock  Padding="5"  Grid.Row="6" Margin="0,0,0 ,0"  Name="Label4" 
+                    ToolTip="Funktion oder Charakteristik dieser Adresse. In der Karte entspreicht dies dem Etikett des Punktes.">Funktion:</TextBlock>
+            <TextBlock  Padding="5"  Grid.Row="7" Margin="0,0,0 ,0"   
+                    ToolTip="Funktion oder Charakteristik dieser Adresse. In der Karte entspreicht dies dem Etikett des Punktes.">
+                Freitext:</TextBlock>
+
+            <TextBox Grid.Row="6"  Name="tbKurzbeschreibung" 
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.Name , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.Column="1" />
+            <TextBox Grid.Row="7"  x:Name="tbFreitext" 
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.Freitext , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.Column="1" Grid.ColumnSpan="3" />
+            <ComboBox Grid.Row="6"  Grid.Column="2"  x:Name="cmbFunktionsvorschlaege"  
+                      DataContext="{Binding Source={StaticResource XMLSourceComboBoxRBfunktion}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbFunktionsvorschlaege_SelectionChanged"
+                      />
+
+            <Label Grid.Column="1" Grid.Row="8" Name="lblCoords"               
+               Content="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.coordsAbstract ,  
+                UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+            <CheckBox Grid.Column="1" Grid.Row="9" IsChecked="True" x:Name="chkMapenabled" Margin="0,5,5,5"  
+                      HorizontalAlignment="Right" Width="227"
+                      ToolTip="In der Karte darstellen oder unterdrücken">immer in der Karte darstellen</CheckBox>
+            <Label Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2" Name="lblCoordsGoogle" 
+               />
+            <TextBlock  Padding="5"  Grid.Row="8" Name="Label5">Koordinaten:</TextBlock>
+            <TextBlock  Padding="5"  Grid.Row="10" Margin="0,0,0,0" Name="Label6" Height="25" VerticalAlignment="Bottom" Visibility="Hidden">FS:</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="10" Name="lblFS"  IsEnabled="False"  Visibility="Hidden"
+                Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.FS ,  
+                UpdateSourceTrigger=PropertyChanged}"  ></TextBox>
+            <!--<Label Grid.Column="1" Grid.Row="8"    
+                Content="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.FS ,  
+                UpdateSourceTrigger='PropertyChanged'}"   />-->
+            <TextBlock  Padding="5"  Grid.Column="3" Grid.Row="3"   Name="lblPLZ" HorizontalAlignment="Right" Width="122" Visibility="Hidden">Postleitzahl:</TextBlock>
+            <TextBlock  Padding="5"  Grid.Column="3" Grid.Row="4"   Name="lblPostfach"  Visibility="Hidden">Postfach:</TextBlock>
+            <!--<Label Grid.Column="3" Grid.Row="4"   Name="lblRolle">Rolle:</Label>-->
+            <!--<ComboBox Grid.Column="4" Grid.Row="4"   Name="cmbRolleAdresse"    />-->
+            <TextBox Grid.Column="4" Grid.Row="4"   Name="tbPostfach"  Visibility="Hidden"
+                    Text="{Binding Source={StaticResource myGlobalz}, 
+                    Path=sitzung.aktADR.Postfach, 
+                    UpdateSourceTrigger=PropertyChanged}"
+                 />
+            <TextBox Grid.Column="4" Grid.Row="3" Name="tbPLZ"  Visibility="Hidden"
+                   Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktADR.PLZ, 
+                UpdateSourceTrigger=PropertyChanged}" Height="25" VerticalAlignment="Top" />
+        </Grid>
+        <TextBlock Name="nachrichtenzeile" DockPanel.Dock="Bottom" Height="30"></TextBlock>
+    </DockPanel>
+</Window>

@@ -1,0 +1,75 @@
+﻿<Window x:Class="Win_punktMitUmkreis"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:paradigma" 
+    Title="Raumbezug: Punkt mit Umkreis" Height="364" Width="792" WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanResizeWithGrip">
+    <Window.Resources>
+        <src:myGlobalz x:Key="myGlobalz"/>
+        <XmlDataProvider x:Key="XMLSourceComboBoxRBfunktion" />
+    </Window.Resources>
+    <DockPanel>
+    <Grid  Background="{StaticResource TabControlBackgroundBrush}" DockPanel.Dock="Top" Height="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="133*" />
+            <ColumnDefinition Width="157*" />
+            <ColumnDefinition Width="35*" /> 
+            <ColumnDefinition Width="112*" />
+                <ColumnDefinition Width="26*" />
+            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28" />
+            <RowDefinition Height="28" />
+            <RowDefinition Height="28" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="32*" />
+            <RowDefinition Height="31*" />
+                <RowDefinition Height="47*" />
+                <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Text="Rechtswert UTM [m]:" Padding="5" Margin="0,0,20,0"></TextBlock>
+        <TextBlock Grid.Row="2" Text="Hochwert UTM [m]:" Padding="5" Margin="0,0,20,0"></TextBlock>
+        <TextBlock Grid.Row="3" Text="Radius [m]:" Padding="5" Margin="0,0,20,0"></TextBlock>
+        <TextBlock Grid.Row="5" Text="Funktion:" Padding="5" Margin="0,0,20,0"></TextBlock>
+            <TextBlock Grid.Row="6" Text="Freitext:" Padding="5" Margin="0,0,20,0"></TextBlock>
+
+            <TextBox Grid.Row="1"   Padding="5"
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktPMU.punkt.X , 
+                UpdateSourceTrigger='PropertyChanged'}" Name="TextBox1" Grid.Column="1" />
+        <TextBox Grid.Row="2"   Padding="5" Name="TextBox2" Height="28" VerticalAlignment="Top"
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktPMU.punkt.Y , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.Column="1" />
+        <TextBox Grid.Row="3"   Padding="5" Name="TextBox3" 
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktPMU.Radius , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.Column="1" />
+        <TextBox Grid.Row="5"   Padding="5" Name="tbBeschreibung" 
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktPMU.Name , 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="3" Grid.Column="1" />
+        <TextBox Grid.Row="6"   Padding="5" Name="tbFreitext" 
+                  Text="{Binding Source={StaticResource myGlobalz}, 
+                Path=sitzung.aktPMU.Freitext, 
+                UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="3" Grid.Column="1" />
+
+            <ComboBox Grid.Row="5"  Grid.Column="4"  x:Name="cmbFunktionsvorschlaege"  
+                      DataContext="{Binding Source={StaticResource XMLSourceComboBoxRBfunktion}, XPath=/Variablen/Variable}"
+                                                                ItemsSource="{Binding}" 
+                                                                DisplayMemberPath="@Name" 
+                                                                SelectedValuePath="@ID"
+                                                                SelectedValue="{Binding Path=ID}" 
+                                                              SelectionChanged="cmbFunktionsvorschlaege_SelectionChanged"
+                      />
+
+            <Button Grid.Row="8" Content="Löschen"   x:Name="btnLoeschen" Click="btnLoeschen_Click" Style="{StaticResource lessButton}" Margin="0,10,20,15" />
+        <Button Grid.Row="8" Content="Speichern"   x:Name="btnSpeichern" Click="btnSpeichern_Click" Margin="0,7,0,13" Grid.Column="1" />
+            <Button Grid.Column="2" Grid.Row="8" Content="Abbruch" x:Name="btnAbbruch" IsCancel="True" Style="{StaticResource lessButton}" Click="btnAbbruch_Click" Grid.ColumnSpan="2" Margin="0,10,67,15" />
+
+        <Button Grid.Column="3" Grid.Row="3" Content="Windrose" Name="btnWindrose" IsCancel="True" Click="btnWindrose_Click" IsEnabled="False" Grid.ColumnSpan="2" />
+    </Grid>
+        <TextBlock x:Name="tbNachricht" Height="20"/>
+    </DockPanel>
+</Window>

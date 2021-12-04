@@ -1,0 +1,353 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 	
+	xmlns:mmm="clr-namespace:paradigmaDetail" 
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    x:Class="winBeteiligteDetail" 
+	Title="Beteiligte: Details" Height="790.541" Width="1084.231" WindowStartupLocation="CenterScreen" x:Name="Window1"
+		 mc:Ignorable="d"
+		>
+    <Window.Resources>
+        <mmm:myGlobalz x:Key="myGlobalz"/>
+        <!--<mmm:MyFormatter x:Key="myformattjf" />-->
+        <XmlDataProvider x:Key="XMLSourceComboBoxbeteiligteRollen" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxbeteiligteFunktion" />
+        <XmlDataProvider x:Key="XMLSourceComboBoxgemeinden" />
+
+    </Window.Resources>
+
+    <Window.Background>
+        <StaticResource ResourceKey="backg1"/>
+    </Window.Background>
+    <DockPanel>
+        <StackPanel>
+            <StackPanel Margin="29">
+                <Button x:Name="btnPersonenuernehmen" Content="Person aus vorhandenen DB übernehmen" Click="btnPersonenuernehmen_Click" Visibility="Collapsed"></Button>
+            </StackPanel>
+            <Grid DockPanel.Dock="Top" x:Name="grdMainKontakt" Background="{StaticResource backg1}"   Height="630" Width="1030">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="122" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="22"/>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="101" />
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="62" />
+                    <ColumnDefinition Width="190" />
+                    <ColumnDefinition Width="21" />
+                    <ColumnDefinition Width="35*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="47" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"  Grid.Column="0" x:Name="Label1" Padding="5,0,0,0"   ><Run Text="Rolle im Vorgang:"/></TextBlock>
+                <TextBlock Grid.Row="1"  x:Name="Label2" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"><Run Text="Name:"/></TextBlock>
+                <TextBlock Grid.Row="2"  x:Name="Label3" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"  Grid.RowSpan="2"><Run Text="Vorname:"/></TextBlock>
+
+                <TextBlock Grid.Row="3"  x:Name="vertretung" HorizontalAlignment="Left" Width="122" Padding="15,0,0,0"  Grid.RowSpan="2"><Run Text="    vertr. durch:"/></TextBlock>
+                
+                <TextBlock Grid.Row="4"   x:Name="Label4" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"><Run Text="Titel / Anrede:"/></TextBlock>
+                <TextBlock Grid.Row="5"   x:Name="lblB" HorizontalAlignment="Left" Width="122" Padding="5,0,0,0"><Run Text="Bemerkung:"/></TextBlock>
+                <TextBlock Grid.Row="16" Grid.Column="4"  x:Name="lblQ" HorizontalAlignment="Left"  Padding="5,0,0,0" Width="42"  >Quelle:</TextBlock>
+                <TextBlock Grid.Row="16" Grid.Column="6"  HorizontalAlignment="Left"  Padding="5,0,0,0" ToolTip="zuletzt geändert am" Width="44" >Zuletzt:</TextBlock>
+
+
+                <TextBlock Grid.Row="8"   x:Name="Label77" Grid.Column="0" Padding="5,0,0,0"  Grid.RowSpan="1"  ToolTip="max. 7 Zeichen"><Run Text="PLZ/Ort:"/></TextBlock>
+                <TextBlock Grid.Row="11"   x:Name="Label78" Grid.Column="0" Padding="5,0,0,0"   ><Run Text="Straße:"/></TextBlock>
+                <TextBlock Grid.Row="12"   x:Name="Label79" Grid.Column="0" Padding="5,0,0,0"   ><Run Text="Hausnr:"/></TextBlock>
+                <TextBlock Grid.Row="13"   x:Name="Label833" Padding="5,0,0,0"     ><Run Text="Postfach:"/></TextBlock>
+                <TextBlock Grid.Row="14"   x:Name="Label836" Padding="5,0,0,0"     ><Run Text="Postfach-Postleitzahl:"/></TextBlock>
+                <TextBlock Grid.Row="15"   x:Name="Label83634" Padding="5,0,0,0"     ><Run Text="Bezirk:"/></TextBlock>
+
+                <StackPanel Grid.Row="8"   Grid.Column="1"  Orientation="Horizontal" Grid.ColumnSpan="2"   >
+                    <TextBox   x:Name="tbPLZ" Width="80" KeyboardNavigation.TabIndex="8"
+					Text="{Binding sitzung.aktPerson.Kontakt.Anschrift.PLZ, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"  />
+                    <TextBox    x:Name="tbgemeinde" Width="140" KeyboardNavigation.TabIndex="9"
+					Text="{Binding sitzung.aktPerson.Kontakt.Anschrift.Gemeindename, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"  />
+                    <ComboBox      x:Name="cmbGemeinde"  Width="20" KeyboardNavigation.TabIndex="6"  MaxDropDownHeight="800"
+								DataContext="{Binding Source={StaticResource XMLSourceComboBoxgemeinden}, XPath=/Variablen/Variable}"
+																ItemsSource="{Binding}" 
+																DisplayMemberPath="@Name" 
+																SelectedValuePath="@ID"
+																SelectedValue="{Binding Path=ID}" 
+															  SelectionChanged="cmbGemeinde_SelectionChanged" Height="31" VerticalAlignment="Top" 				 
+				/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="11"  Grid.Column="1"  Orientation="Horizontal" Grid.ColumnSpan="2"  >
+                    <TextBox   x:Name="tbstrasse" Width="220" KeyboardNavigation.TabIndex="10"
+					Text="{Binding sitzung.aktPerson.Kontakt.Anschrift.Strasse, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"  
+					/>
+                    <ComboBox   x:Name="cmbStrasse" Width="20"  MaxDropDownHeight="800"
+					ItemsSource="{Binding}" 
+					DisplayMemberPath="sname"  SelectedValuePath="strcode"
+								   />
+                </StackPanel>
+                <StackPanel  Grid.Row="12" Grid.Column="1"  Orientation="Horizontal" Grid.ColumnSpan="2"  >
+                    <TextBox  Width="220"  x:Name="tbHausnr"  KeyboardNavigation.TabIndex="11"
+					Text="{Binding sitzung.aktPerson.Kontakt.Anschrift.Hausnr, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"  />
+                    <ComboBox    x:Name="cmbHausnr" Width="20"  MaxDropDownHeight="800"
+					ItemsSource="{Binding}" 
+					DisplayMemberPath="hausnrkombi"  SelectedValuePath="id" />
+
+                </StackPanel>
+                <StackPanel x:Name="stckBuchstaben1" Orientation="Horizontal"  Grid.Column="1" Grid.Row="9" IsEnabled="False" Grid.ColumnSpan="3">
+                    <Button Content="a"   Click="btnstreet" Width="17" Height="22"/>
+                    <Button Content="b"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="c"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="d"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="e"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="f"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="g"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="h"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="i"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="j"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="k"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="l"   Click="btnstreet" Width="17" Height="22"/>
+                    <Button Content="m"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="n"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="o"   Click="btnstreet"  Width="17" Height="22"/>
+                </StackPanel>
+
+                <StackPanel x:Name="stckBuchstaben2" Orientation="Horizontal"  Grid.Column="1" Grid.Row="10" IsEnabled="False" Grid.ColumnSpan="3">
+
+
+                    <Button Content="p"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="q"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="r"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="s"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="t"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="u"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="v"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="w"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="x"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="y"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="z"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="ä"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="ö"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content="ü"   Click="btnstreet"  Width="17" Height="22"/>
+                    <Button Content=" "   Click="btnstreet"  Width="17" Height="22"/>
+                </StackPanel>
+                <TextBox Grid.Row="13"   Grid.Column="1" x:Name="tbPostfach"  KeyboardNavigation.TabIndex="12"
+				Text="{Binding sitzung.aktPerson.Kontakt.Anschrift.Postfach, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2"  />
+                <TextBox Grid.Row="14"   Grid.Column="1" x:Name="tbPostfachPLZ"  KeyboardNavigation.TabIndex="13"
+				Text="{Binding sitzung.aktPerson.Kontakt.Anschrift.PostfachPLZ, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2"  />
+                <TextBox Grid.Row="15"   Grid.Column="1" x:Name="tbBezirk"  KeyboardNavigation.TabIndex="14"
+				Text="{Binding sitzung.aktPerson.Bezirk, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2" />
+
+                <TextBlock Grid.Row="16"  Grid.Column="5" x:Name="lblQuelle"    
+				Text="{Binding sitzung.aktPerson.Quelle, 
+                    Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,4,0" />
+
+                <TextBlock Grid.Row="16"  Grid.Column="7" x:Name="lbllastchange"    
+				Text="{Binding sitzung.aktPerson.lastchange,  
+                    Source={StaticResource myGlobalz}, 
+                    UpdateSourceTrigger=PropertyChanged,StringFormat=\{0:dd.MM.yy\}}" Margin="0,0,4,0" />
+
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3"  >
+                    <TextBox  x:Name="tbRolle"   Width="220" HorizontalAlignment="Right" IsReadOnly="True" KeyboardNavigation.TabIndex="0"
+					Text="{Binding sitzung.aktPerson.Rolle, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"    />
+                    <ComboBox   x:Name="ComboBoxBeteiligte" HorizontalAlignment="Right" Width="20"   MaxDropDownHeight="800"
+							 DataContext="{Binding Source={StaticResource XMLSourceComboBoxbeteiligteRollen}, XPath=/Variablen/Variable}"
+																ItemsSource="{Binding}" 
+																DisplayMemberPath="@Name" 
+																SelectedValuePath="@ID"
+																SelectedValue="{Binding Path=ID}" 
+															  SelectionChanged="ComboBoxBeteiligte_SelectionChanged" 
+							/>
+                </StackPanel>
+
+
+                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="2"   >
+                    <TextBox   x:Name="tbNamenszusatz" 
+					Text="{Binding sitzung.aktPerson.Namenszusatz, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+					Width="90"  />
+                    <ComboBox   x:Name="cmbNamenszusatz" HorizontalAlignment="Left" Width="20"  MaxDropDownHeight="800" KeyboardNavigation.TabIndex="5"/>
+                    <Separator Width="40"/>
+                    <TextBox  x:Name="tbAnrede" Width="70"
+					Text="{Binding sitzung.aktPerson.Anrede, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"   />
+
+                    <ComboBox  x:Name="cmbAnrede" SelectionChanged="cmbAnrede_SelectionChanged" HorizontalAlignment="Right" Width="20"  KeyboardNavigation.TabIndex="6" />
+                </StackPanel>
+
+                <TextBox Grid.Column="1" Grid.Row="5"   x:Name="tbBemerkung" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
+                          KeyboardNavigation.TabIndex="7"
+				Text="{Binding sitzung.aktPerson.Bemerkung, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+				Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+
+
+
+
+
+
+
+                <TextBox Grid.Column="1" Grid.Row="1"   x:Name="tbName" KeyboardNavigation.TabIndex="1"
+				Text="{Binding sitzung.aktPerson.Name, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"    />
+                <Button  Grid.Column="2" Grid.Row="1"  Content="..." x:Name="btnNamenAuswaehlen" Click="btnNamenAuswaehlen_click" Background="Gray"
+                         IsDefault="True"
+                         ToolTip="Bitte übernehmen sie nach Möglichkeit einen bestehenden Eintrag"/>
+                <TextBox Grid.Column="1" Grid.Row="2"   x:Name="tbVname"  KeyboardNavigation.TabIndex="2" 
+				Text="{Binding sitzung.aktPerson.Vorname, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.ColumnSpan="2"      />
+                <TextBox Grid.Column="1" Grid.Row="3"   x:Name="tbVertretendurch"  KeyboardNavigation.TabIndex="2" Background="LightGray"
+				Text="{Binding sitzung.aktPerson.VERTRETENDURCH, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.ColumnSpan="2"  TextChanged="tbVertretendurch_TextChanged"    />
+         
+                <TextBlock Grid.Row="0"  Grid.Column="4"  x:Name="Label66"   ><Run Text="Gesell. Funktion:"/></TextBlock>
+
+                <TextBox Grid.Column="5"  x:Name="tbFunktion" 
+					Text="{Binding sitzung.aktPerson.Kontakt.GesellFunktion, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" HorizontalAlignment="Left" Width="300" />
+
+
+                <TextBlock Grid.Row="1"   x:Name="Label72" Grid.Column="4"      ><Run Text="Organisation:"/></TextBlock>
+                <TextBlock Grid.Row="2"   x:Name="Label73" Grid.Column="4"      ><Run Text=" - Org. Zusatz:"/></TextBlock>
+                <TextBlock Grid.Row="3"   x:Name="Label74" Grid.Column="4"       ><Run Text="Type1:"/></TextBlock>
+                <TextBlock Grid.Row="4"   x:Name="Label75" Grid.Column="4"          ><Run Text="Type2:"/></TextBlock>
+                <TextBlock Grid.Row="5"   x:Name="Label61" Grid.Column="4"        ><Run Text="Eigentümer:"/></TextBlock>
+
+                <TextBox Grid.Row="1" Grid.Column="5"   x:Name="tbOrg"   KeyboardNavigation.TabIndex="3"
+					Text="{Binding sitzung.aktPerson.Kontakt.Org.Name, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <!--<ComboBox Width="20"   x:Name="cmbOrg" IsEnabled="False"/>-->
+
+                <!--<Button   Grid.Row="1" Grid.Column="6"   x:Name="btnOrg"   Content="OrgListe" Visibility="Collapsed" Margin="17,0,0,9" Grid.RowSpan="2" />-->
+                <TextBox Grid.Column="5" Grid.Row="2"   x:Name="tbOrgzusatz"  KeyboardNavigation.TabIndex="4"
+				Text="{Binding sitzung.aktPerson.Kontakt.Org.Zusatz, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <TextBox Grid.Column="5" Grid.Row="3"   x:Name="tbTyp1"  KeyboardNavigation.TabIndex="15"
+				Text="{Binding sitzung.aktPerson.Kontakt.Org.Typ1, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <TextBox Grid.Column="5" Grid.Row="4"   x:Name="tbTyp2"  KeyboardNavigation.TabIndex="16"
+				Text="{Binding sitzung.aktPerson.Kontakt.Org.Typ2, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <TextBox Grid.Column="5" Grid.Row="5"   x:Name="tbEigentuemer"  KeyboardNavigation.TabIndex="17"
+				Text="{Binding sitzung.aktPerson.Kontakt.Org.Eigentuemer, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+
+                <TextBlock Grid.Row="6"    x:Name="Label5" Grid.Column="4"   KeyboardNavigation.TabIndex="18" ><Run Text="Email:"/></TextBlock>
+                <TextBlock Grid.Row="7"   x:Name="Labeel8" Grid.Column="4"  KeyboardNavigation.TabIndex="19"       ><Run Text="Telefon Nr.1:"/></TextBlock>
+                <TextBlock Grid.Row="9"   x:Name="Labeel9" Grid.Column="4"   KeyboardNavigation.TabIndex="20"  ><Run Text="Mobil:"/></TextBlock>
+                <TextBlock Grid.Row="10"   x:Name="Labele7" Grid.Column="4" KeyboardNavigation.TabIndex="21"      ><Run Text="Fax Nr.1:"/></TextBlock>
+                <TextBlock Grid.Row="12"  x:Name="Label71" Grid.Column="4"   KeyboardNavigation.TabIndex="22"    ><Run Text="HomePage:"/></TextBlock>
+                <TextBlock Grid.Row="13"  x:Name="Lab7kk1" Grid.Column="4"    KeyboardNavigation.TabIndex="23"     ><Run Text="Kassenkonto:"/></TextBlock>
+
+                <Button  Grid.Row="14"  x:Name="btnBank" Grid.Column="4"    Content="Bankverbindung"  
+                           KeyboardNavigation.TabIndex="25" Click="btnBank_Click" ToolTip="Sie müssen die Person erst abspeichern bevor Sie eine Bankverbindung zuordnen können!!!"/>
+                <!--<TextBlock x:Name="tbPersonenVorlage" Grid.Row="14" Grid.Column="7" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.696"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>-->
+                <ComboBox x:Name="cmbPersonenVorlage" Grid.Row="14" Grid.Column="9" SelectionChanged="cmbPersonenVorlage_SelectionChanged">
+                    <ComboBoxItem ></ComboBoxItem>
+                    <ComboBoxItem >Personenvorlage</ComboBoxItem>
+                    <ComboBoxItem >Keine Personenvorlage</ComboBoxItem>
+                </ComboBox>
+                <TextBox Grid.Row="6"  Grid.Column="5"  x:Name="tbEmail"  KeyboardNavigation.TabIndex="17"
+				Text="{Binding sitzung.aktPerson.Kontakt.elektr.Email, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <TextBox  Grid.Row="7" Grid.Column="5"   x:Name="tbTelefon"   KeyboardNavigation.TabIndex="18"
+					Text="{Binding sitzung.aktPerson.Kontakt.elektr.Telefon1, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <TextBlock  Grid.Row="8" Grid.Column="4"    HorizontalAlignment="Left" Width="67"><Run Text="Telefon Nr.2:"/></TextBlock>
+
+
+
+                <TextBox  Grid.Row="8" Grid.Column="5"    x:Name="tbTelefon2"  KeyboardNavigation.TabIndex="19"
+						  Text="{Binding sitzung.aktPerson.Kontakt.elektr.Telefon2, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+
+                <TextBox Grid.Row="9"  Grid.Column="5"  x:Name="tbMobil"   KeyboardNavigation.TabIndex="20"
+				Text="{Binding sitzung.aktPerson.Kontakt.elektr.MobilFon, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+
+                <TextBox  Grid.Row="10"   Grid.Column="5"  x:Name="tbFax"   KeyboardNavigation.TabIndex="21"
+					Text="{Binding sitzung.aktPerson.Kontakt.elektr.Fax1, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <TextBlock  Grid.Row="11"   Grid.Column="4"  ><Run Text="Fax Nr.2:"/></TextBlock>
+                <TextBox   Grid.Row="11"   Grid.Column="5" x:Name="tbFax2"   KeyboardNavigation.TabIndex="22"
+					Text="{Binding sitzung.aktPerson.Kontakt.elektr.Fax2, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+
+
+                <TextBox Grid.Row="12"   Grid.Column="5" x:Name="tbHomepage"   KeyboardNavigation.TabIndex="23"
+				Text="{Binding sitzung.aktPerson.Kontakt.elektr.Homepage, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" 
+                         Grid.ColumnSpan="4" />
+                <Button Grid.Row="12"   Grid.Column="9" x:Name="btnShowHomepage" Click="btnShowHomepage_Click" 
+                        ToolTip="Homepage im Internetexplorer anzeigen">
+                    <Image   Source="/paradigmaDetail;component/icons/ie.jpg"
+						Height="23" Width="25">
+                    </Image>
+                </Button>
+
+                <TextBox Grid.Row="13"   Grid.Column="5" x:Name="tbKassenkonto"   KeyboardNavigation.TabIndex="24"
+				Text="{Binding sitzung.aktPerson.Kassenkonto, Source={StaticResource myGlobalz}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" />
+                <TextBox Grid.Row="14"   Grid.Column="5" x:Name="tbIBAN"   KeyboardNavigation.TabIndex="24"
+				  Grid.ColumnSpan="4" />
+
+                <Button Grid.Row="16" Grid.Column="9" x:Name="btnKontaktNachOutlookUebernehmen" 
+                        Click="btnKontaktNachOutlookUebernehmen_Click"
+					ToolTip="Hier können Sie den Kontakt nach Outlook übernehmen."  Height="Auto">
+                    <Image  x:Name="ereignisOutlook" Source="/paradigmaDetail;component/icons/Outlook.png"
+						Height="23" Width="25">
+                    </Image>
+                </Button>
+                <!--<Button Grid.Row="13" Grid.Column="5" Grid.RowSpan="4" x:Name="btnprinttest" Width="30" Click="btnprinttest_Click"
+				  Margin="1,0,0,11">   Hc       
+			</Button>-->
+
+                <!--<TextBlock Grid.Row="6" Grid.Column="6"   Height="26"   ><Hyperlink   NavigateUri="https://geodateninfrastruktur.kreis-offenbach.de"
+					RequestNavigate="Email_sofort_senden" ><InlineUIContainer>
+						<TextBlock Text="senden" Padding="5,0,0,0" ToolTip="Spontane Email an diese Adresse senden" />
+					</InlineUIContainer></Hyperlink></TextBlock>-->
+
+
+
+                <StackPanel  Grid.Row="17"  Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="6"   VerticalAlignment="Bottom" Height="36"  Grid.RowSpan="2" Margin="0,0,5,0">
+                    <Button x:Name="BTNanschirftgenerieren" Click="BTNanschirftgenerieren_Click" Content="Anschrift rauskopieren" Margin="55,0,55,0"/>
+                    <Button     x:Name="btnLoeschenPerson"  IsEnabled="False"   Width="60" Content="Löschen" Style="{StaticResource lessButton}" />
+                    <Separator Width="10"/>
+                    <Button Grid.Column="1" Grid.Row="8"   Width="120"  x:Name="btnSpeichernPerson" Click="btnSpeichernPerson_Click"  
+                              KeyboardNavigation.TabIndex="24" Content="Speichern"      />
+                    <Separator Width="10"/>
+                    <Button     x:Name="btnAbbruch"    IsCancel="True"  Width="72" Content="Abbruch" Margin="0,2.821"
+                                  KeyboardNavigation.TabIndex="25" Style="{StaticResource lessButton}"/>
+                </StackPanel>
+                <ComboBox x:Name="cmbFunktion"  MaxDropDownHeight="800" DataContext="{Binding Source={StaticResource XMLSourceComboBoxbeteiligteFunktion}, XPath=/Variablen/Variable}"
+                          ItemsSource="{Binding}" DisplayMemberPath="@Name" SelectedValuePath="@ID" SelectedValue="{Binding Path=ID}" 
+                          SelectionChanged="ComboBoxBeteiligte_SelectionChanged" Grid.Column="8" Margin="1,0,0,0"  />
+            </Grid>
+        </StackPanel>
+        <!--<StackPanel x:Name="spCursor" DockPanel.Dock="Bottom" Height="69" Grid.ColumnSpan="4" Background="{StaticResource backg1}" Visibility="Collapsed">
+			<StackPanel  Orientation="Horizontal" Visibility="visible" Margin="20">
+				<Button x:Name="btnRueckwaerts" Width="76" Height="30" Click="rueckwaerts" Background="Gray" Content="Rückwärts"/>
+				<TextBlock  x:Name="tbcursor" Width="50" FontSize="21.333"/>
+				<TextBlock   Width="50" FontSize="21.333"><Run Text="von ("/></TextBlock>
+				<TextBlock x:Name="tbKontakteAnzahl" Width="50" FontSize="21.333"/>
+				<TextBlock   Width="50" FontSize="21.333"><Run Text=")"/></TextBlock>
+				<Button x:Name="btnVorwaerts" Width="70" Height="30" Click="vorwaerts" Background="Gray" Content="Vorwärts"/>
+				<Separator Width="50"/>
+				<Button x:Name="btnBlaetternabbruch" Width="100" Height="30"   Click="Blaetternabbruch" Content="Abbruch"/>
+				<Button x:Name="btnBlaetternspeichern" Width="248" Height="30" Click="Blaetternspeichern" Content="Person übernehmen"/>
+			</StackPanel>
+		</StackPanel>-->
+    </DockPanel>
+</Window>

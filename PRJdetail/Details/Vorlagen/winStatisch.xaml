@@ -1,0 +1,40 @@
+﻿<Window x:Class="winStatisch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:paradigmaDetail"
+        mc:Ignorable="d"      WindowStartupLocation="CenterScreen"
+        Title="Statische Vorlagen" Height="450" Width="800">
+    <DockPanel>
+        <StackPanel>
+            <StackPanel>
+
+              
+                    <StackPanel Orientation="Horizontal" Margin="5  ">
+                        <TextBlock Width="150" Margin="5" ToolTip="Einstellen unter 'Optionen'">Wurzelverzeichnis:</TextBlock>
+                    <TextBlock Name="tbSVorlagenRoot" Width="500" Margin="5" MouseDown="tbSVorlagenRoot_MouseDown"/>
+                    <CheckBox x:Name="ckbEditVorlagenDatei" IsChecked="False" Content="edit"   Margin="5"  Width="140"
+                                  ToolTip="Mit Haken: Die Datei wird nur zum  Ändern aufgerufen. Ohne Haken: Die Datei wird als Vorlage für die Textmarken ausgewählt."/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5  ">
+                    <TextBlock Width="150" Margin="5" ToolTip="Einstellen unter 'Optionen'">Zielverzeichnis:</TextBlock>
+                    <TextBlock Name="tbSZielverzeichnis" Width="500" Margin="5" MouseDown="tbSZielverzeichnis_MouseDown"/>
+                </StackPanel>
+             
+
+            </StackPanel>
+            <DataGrid  x:Name="dgVorlagen"   ItemsSource="{Binding ''}"  Margin="5"  
+                        RowStyle="{StaticResource dgRowStyle}"   
+                        ColumnHeaderStyle="{StaticResource dgHeaderStyle}"    
+                        SelectionChanged="dgVorlagen_SelectionChanged"
+                        FontWeight="Normal">
+                <DataGrid.Columns> 
+                    <DataGridTextColumn Header="Datei" Width="Auto"  Binding="{Binding Name, Mode=OneWay}" />
+                    <DataGridTextColumn Header="Geändert" Width="30*"  Binding="{Binding LastAccessTime, Mode=OneWay}" />
+                 </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,723 @@
+﻿<r:RibbonWindow
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:r="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"
+	xmlns:tx="clr-namespace:TXTextControl.WPF;assembly=TXTextControl.WPF"
+	xmlns:txw="clr-namespace:TX_Text_Control_Words"
+	x:Class="MainWindow"
+	Title="MainWindow"
+	Loaded="MainWindow_Loaded"
+	Closing="MainWindow_Closing"
+	Icon="Icons/tx.ico"
+	Height="800"
+	Width="1000">
+
+	<r:RibbonWindow.Resources>
+		<!-- File- and Print-commands -->
+
+		<RoutedUICommand
+			x:Key="SaveAsDocCommand" />
+		<RoutedUICommand
+			x:Key="SaveAsDocxCommand" />
+		<RoutedUICommand
+			x:Key="SaveAsRtfCommand" />
+		<RoutedUICommand
+			x:Key="SaveAsPdfCommand" />
+		<RoutedUICommand
+			x:Key="SaveAsHtmlCommand" />
+		<RoutedUICommand
+			x:Key="SaveAsOtherFormatsCommand" />
+		<RoutedUICommand
+			x:Key="QuickPrintCommand" />
+		<RoutedUICommand
+			x:Key="OptionsCommand" />
+		<RoutedUICommand
+			x:Key="MergeIntoCurrentDocumentCommand" />
+		<RoutedUICommand
+			x:Key="PreviewCommand" />
+		<RoutedUICommand
+			x:Key="MergeIntoSingleFileCommand" />
+		<RoutedUICommand
+			x:Key="MergeIntoSeparateFilesCommand" />
+		<RoutedUICommand
+			x:Key="MergePrintCommand" />
+		<RoutedUICommand
+			x:Key="OpenSampleTemplateCommand" />
+		<RoutedUICommand
+			x:Key="LoadSampleDatabaseCommand" />
+		<RoutedUICommand
+			x:Key="ClosePreviewCommand" />
+		<RoutedUICommand
+			x:Key="FirstRecordCommand" />
+		<RoutedUICommand
+			x:Key="PreviousRecordCommand" />
+		<RoutedUICommand
+			x:Key="NextRecordCommand" />
+		<RoutedUICommand
+			x:Key="LastRecordCommand" />
+		<!-- "Finish & Merge" group with button and dropdown menu -->
+		<r:RibbonGroup
+			x:Key="RibbonGroupFinish"
+			Header="Finish"
+			SmallImageSource="Images/Small_32bit/mailmergefinish.png"
+			IsEnabled="False">
+			<r:RibbonButton
+				Label="Preview"
+				LargeImageSource="Images/Large_32bit/mailmergepreview.png"
+				SmallImageSource="Images/Small_32bit/mailmergepreview.png"
+				CanAddToQuickAccessToolBarDirectly="False"
+				Command="{StaticResource PreviewCommand}"
+				KeyTip="W" />
+			<r:RibbonSplitButton
+				Label="Finish &amp; Merge"
+				LargeImageSource="Images/Large_32bit/mailmergefinish.png"
+				SmallImageSource="Images/Small_32bit/mailmergefinish.png"
+				Command="{StaticResource MergeIntoCurrentDocumentCommand}"
+				KeyTip="O">
+				<r:RibbonSplitButton.Items>
+					<r:RibbonMenuItem
+						Header="Merge into Current Document"
+						ImageSource="Images/Small_32bit/mailmergeintocurrentdoc.png"
+						Command="{StaticResource MergeIntoCurrentDocumentCommand}" />
+					<r:RibbonMenuItem
+						Header="Merge into Single File"
+						ImageSource="Images/Small_32bit/mailmergeintosinglefile.png">
+						<r:RibbonMenuItem
+							Header="PDF"
+							ImageSource="Images/Small_32bit/saveaspdf.png"
+							Command="{StaticResource MergeIntoSingleFileCommand}"
+							CommandParameter="pdf" />
+						<r:RibbonMenuItem
+							Header="RTF"
+							ImageSource="Images/Small_32bit/saveasrtf.png"
+							Command="{StaticResource MergeIntoSingleFileCommand}"
+							CommandParameter="rtf" />
+						<r:RibbonMenuItem
+							Header="DOCX"
+							ImageSource="Images/Small_32bit/saveasdocx.png"
+							Command="{StaticResource MergeIntoSingleFileCommand}"
+							CommandParameter="docx" />
+						<r:RibbonMenuItem
+							Header="DOC"
+							ImageSource="Images/Small_32bit/saveasdoc.png"
+							Command="{StaticResource MergeIntoSingleFileCommand}"
+							CommandParameter="doc" />
+						<r:RibbonMenuItem
+							Header="HTML"
+							ImageSource="Images/Small_32bit/saveashtml.png"
+							Command="{StaticResource MergeIntoSingleFileCommand}"
+							CommandParameter="html" />
+						<r:RibbonMenuItem
+							Header="TXT"
+							ImageSource="Images/Small_32bit/saveastxt.png"
+							Command="{StaticResource MergeIntoSingleFileCommand}"
+							CommandParameter="txt" />
+					</r:RibbonMenuItem>
+					<r:RibbonMenuItem
+						Header="Merge into Individual Documents"
+						ImageSource="Images/Small_32bit/mailmergeintoindivfiles.png">
+						<r:RibbonMenuItem
+							Header="PDF"
+							ImageSource="Images/Small_32bit/saveaspdf.png"
+							Command="{StaticResource MergeIntoSeparateFilesCommand}"
+							CommandParameter="pdf" />
+						<r:RibbonMenuItem
+							Header="RTF"
+							ImageSource="Images/Small_32bit/saveasrtf.png"
+							Command="{StaticResource MergeIntoSeparateFilesCommand}"
+							CommandParameter="rtf" />
+						<r:RibbonMenuItem
+							Header="DOCX"
+							ImageSource="Images/Small_32bit/saveasdocx.png"
+							Command="{StaticResource MergeIntoSeparateFilesCommand}"
+							CommandParameter="docx" />
+						<r:RibbonMenuItem
+							Header="DOC"
+							ImageSource="Images/Small_32bit/saveasdoc.png"
+							Command="{StaticResource MergeIntoSeparateFilesCommand}"
+							CommandParameter="doc" />
+						<r:RibbonMenuItem
+							Header="HTML"
+							ImageSource="Images/Small_32bit/saveashtml.png"
+							Command="{StaticResource MergeIntoSeparateFilesCommand}"
+							CommandParameter="html" />
+						<r:RibbonMenuItem
+							Header="TXT"
+							ImageSource="Images/Small_32bit/saveastxt.png"
+							Command="{StaticResource MergeIntoSeparateFilesCommand}"
+							CommandParameter="txt" />
+					</r:RibbonMenuItem>
+					<r:RibbonMenuItem
+						Header="Print Document"
+						ImageSource="Images/Small_32bit/mailmergeprint.png"
+						Command="{StaticResource MergePrintCommand}" />
+				</r:RibbonSplitButton.Items>
+			</r:RibbonSplitButton>
+		</r:RibbonGroup>
+
+		<!-- Application field context menu -->
+		<ContextMenu
+			x:Key="ContextMenuApplicationFields">
+			<MenuItem
+				Click="MnuItmFieldProps_Click">
+				<MenuItem.Icon>
+					<Image
+						Source="Images/Small_32bit/mailmergefieldproperties.png" />
+				</MenuItem.Icon>
+			</MenuItem>
+			<MenuItem
+				Click="MnuItemDeleteField_Click">
+				<MenuItem.Icon>
+					<Image
+						Source="Images/Small_32bit/mailmergedeletefield.png" />
+				</MenuItem.Icon>
+			</MenuItem>
+		</ContextMenu>
+
+		<!-- Load sample db button -->
+		<r:RibbonMenuItem
+			x:Key="MnuItmLoadSampleDb"
+			Header="Load Sample Database"
+			ImageSource="Images/Small_32bit/mailmergedatasourcedemo.png"
+			Command="{StaticResource LoadSampleDatabaseCommand}" />
+	</r:RibbonWindow.Resources>
+
+	<!-- Disable key bindings handled by TextControl natively -->
+
+	<r:RibbonWindow.InputBindings>
+		<KeyBinding
+			Command="ApplicationCommands.NotACommand"
+			Gesture="Ctrl+V" />
+		<KeyBinding
+			Command="ApplicationCommands.NotACommand"
+			Gesture="Ctrl+X" />
+		<KeyBinding
+			Command="ApplicationCommands.NotACommand"
+			Gesture="Ctrl+C" />
+		<KeyBinding
+			Command="ApplicationCommands.NotACommand"
+			Gesture="Ctrl+Z" />
+		<KeyBinding
+			Command="ApplicationCommands.NotACommand"
+			Gesture="Ctrl+Y" />
+        <KeyBinding
+			Command="ApplicationCommands.NotACommand"
+			Gesture="Ctrl+O" />
+        <KeyBinding
+			Command="ApplicationCommands.NotACommand"
+			Gesture="Ctrl+S" />
+    </r:RibbonWindow.InputBindings>
+
+	<r:RibbonWindow.CommandBindings>
+		<CommandBinding
+			Command="ApplicationCommands.SaveAs"
+			Executed="FileSaveAsHandler"
+			CanExecute="TextControlExists" />
+		<CommandBinding
+			Command="ApplicationCommands.Print"
+			Executed="PrintHandler"
+			CanExecute="TextControlExists" />
+		<CommandBinding
+			Command="ApplicationCommands.Close"
+			Executed="CloseHandler" />
+		<CommandBinding
+			Command="ApplicationCommands.Undo"
+			Executed="UndoHandler"
+			CanExecute="CanUndo" />
+		<CommandBinding
+			Command="ApplicationCommands.Redo"
+			Executed="RedoHandler"
+			CanExecute="CanRedo" />
+		<CommandBinding
+			Command="ApplicationCommands.SelectAll"
+			Executed="SelectAllHandler"
+			CanExecute="TextControlExists" />
+		<CommandBinding
+			Command="ApplicationCommands.Find"
+			Executed="FindHandler"
+			CanExecute="TextControlExists" />
+		<CommandBinding
+			Command="ApplicationCommands.Help"
+			Executed="HelpHandler" />
+
+		<!-- File- and print-commands -->
+
+		<CommandBinding
+			Command="ApplicationCommands.New"
+			Executed="FileNewHandler"
+			CanExecute="TextControlExists" />
+		<CommandBinding
+			Command="ApplicationCommands.Open"
+			Executed="FileOpenHandler"
+			CanExecute="TextControlExists" />
+		<CommandBinding
+			Command="ApplicationCommands.Save"
+			Executed="FileSaveHandler"
+			CanExecute="CanSave" />
+		<CommandBinding
+			Command="ApplicationCommands.SaveAs"
+			Executed="FileSaveAsHandler"
+			CanExecute="TextControlExists" />
+		<CommandBinding
+			Command="{StaticResource QuickPrintCommand}"
+			Executed="QuickPrintHandler" />
+		<CommandBinding
+			Command="{StaticResource OptionsCommand}"
+			Executed="OptionsHandler" />
+		<CommandBinding
+			Command="{StaticResource MergeIntoCurrentDocumentCommand}"
+			Executed="MergeIntoCurrentDocumentCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource PreviewCommand}"
+			Executed="PreviewCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource MergeIntoSingleFileCommand}"
+			Executed="MergeIntoSingleFileCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource MergeIntoSeparateFilesCommand}"
+			Executed="MergeIntoSeparateFilesCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource MergePrintCommand}"
+			Executed="MergePrintCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource OpenSampleTemplateCommand}"
+			Executed="OpenSampleTemplateCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource LoadSampleDatabaseCommand}"
+			Executed="LoadSampleDatabaseCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource ClosePreviewCommand}"
+			Executed="ClosePreviewCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource FirstRecordCommand}"
+			Executed="FirstRecordCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource PreviousRecordCommand}"
+			Executed="PreviousRecordCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource NextRecordCommand}"
+			Executed="NextRecordCommand_Executed" />
+		<CommandBinding
+			Command="{StaticResource LastRecordCommand}"
+			Executed="LastRecordCommand_Executed" />
+	</r:RibbonWindow.CommandBindings>
+
+	<DockPanel
+		LastChildFill="True">
+
+		<r:Ribbon
+			Background="#F5F6F7"
+			DockPanel.Dock="Top"
+			Loaded="Ribbon_Loaded"
+			SelectionChanged="Ribbon_SelectionChanged"
+			x:Name="m_ribbon">
+
+			<!-- About button -->
+
+			<r:Ribbon.HelpPaneContent>
+				<r:RibbonButton
+					SmallImageSource="Images/Small_32bit/help.png"
+					Command="Help" />
+			</r:Ribbon.HelpPaneContent>
+
+			<!-- Ribbon application menu -->
+
+			<!--<r:Ribbon.ApplicationMenu>-->
+				<!--<r:RibbonApplicationMenu
+					Name="m_appMenu"
+					SmallImageSource="Images/Small_32bit/tx_icon16.png"
+					LargeImageSource="Images/Large_32bit/tx_icon32.png"
+					ToolTipTitle="TX Text Control Application Menu"
+					ToolTipDescription="Please click here to get started with TX Text Control WPF."
+					ToolTipImageSource="Images/Large_32bit/tx_icon48.png"
+					KeyTip="F">
+					<r:RibbonApplicationMenuItem
+						Name="m_appMnuItmNew"
+						Header="_New"
+						Command="New"
+						ImageSource="Images/Large_32bit/newpage.png"
+						ToolTip="New Document"
+						KeyTip="N" />
+					<r:RibbonApplicationMenuItem
+						Name="m_appMnuItmOpen"
+						Header="_Open…"
+						Command="Open"
+						ImageSource="Images/Large_32bit/open.png"
+						ToolTip="Open Document"
+						ToolTipDescription="Open Document."
+						KeyTip="O" />
+					<r:RibbonApplicationMenuItem
+						Name="m_appMnuItmOpenTmpl"
+						Header="Open _Sample Template…"
+						ImageSource="Images/Large_32bit/opendemo.png"
+						ToolTip="Open a sample template."
+						KeyTip="OS">
+						<r:RibbonApplicationMenuItem.Items>
+							<r:RibbonApplicationMenuItem
+								Name="m_mnuItm_OpenSampleInvoice"
+								Header="Load a Sample Invoice."
+								Command="{StaticResource OpenSampleTemplateCommand}"
+								CommandParameter="{x:Static txw:SampleTemplateType.Invoice}"
+								ImageSource="Images/Large_32bit/Templates/templateinvoice.png"
+								ToolTip="Load a Sample Invoice." />
+							<r:RibbonApplicationMenuItem
+								Name="m_mnuItm_OpenSampleShipLabel"
+								Header="Load a Sample Shipping Label."
+								Command="{StaticResource OpenSampleTemplateCommand}"
+								CommandParameter="{x:Static txw:SampleTemplateType.ShippingLabel}"
+								ImageSource="Images/Large_32bit/Templates/templateshippinglabel.png"
+								ToolTip="Load a Sample Shipping Label." />
+							<r:RibbonApplicationMenuItem
+								Name="m_mnuItm_OpenSamplePackList"
+								Header="Load a Sample Packing List."
+								Command="{StaticResource OpenSampleTemplateCommand}"
+								CommandParameter="{x:Static txw:SampleTemplateType.PackingList}"
+								ImageSource="Images/Large_32bit/Templates/templatepackinglist.png"
+								ToolTip="Load a Sample Packing List." />
+						</r:RibbonApplicationMenuItem.Items>
+					</r:RibbonApplicationMenuItem>
+					<r:RibbonApplicationMenuItem
+						Name="m_appMnuItmSave"
+						Header="_Save"
+						Command="Save"
+						ImageSource="Images/Large_32bit/save.png"
+						ToolTip="Save Document"
+						ToolTipDescription="Save Document."
+						KeyTip="S" />
+					<r:RibbonApplicationSplitMenuItem 
+						Name="m_appMnuItmSaveAs"
+						Header="Save As…"
+						Command="SaveAs"
+						ImageSource="Images/Large_32bit/saveas.png"
+						ToolTip="Save Document"
+						KeyTip="A">
+						<r:RibbonApplicationSplitMenuItem.Items>
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmSaveAsDoc"
+								Header="Word 97 – 2003 Document (*.doc)"
+								Command="SaveAs"
+								CommandParameter="doc"
+								ImageSource="Images/Large_32bit/saveasdoc.png"
+								ToolTip="Save a copy of the document that is fully compatible with Microsoft Word 97 – 2003." />
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmSaveAsDocx"
+								Header="Word Document (*.docx)"
+								Command="SaveAs"
+								CommandParameter="docx"
+								ImageSource="Images/Large_32bit/saveasdocx.png"
+								ToolTip="Save a copy of the document in the DOCX-Format." />
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmSaveAsRtf"
+								Header="Rich Text Format (*.rtf)"
+								Command="SaveAs"
+								CommandParameter="rtf"
+								ImageSource="Images/Large_32bit/saveasrtf.png"
+								ToolTip="Save a copy of the document in the Rich Text Format." />
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmSaveAsPdf"
+								Header="Adobe PDF Document (*.pdf)"
+								Command="SaveAs"
+								CommandParameter="pdf"
+								ImageSource="Images/Large_32bit/saveaspdf.png"
+								ToolTip="Save a copy of the document in the Adobe Portable Document Format." />
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmSaveAsHtml"
+								Header="Hypertext Markup Language (*.html)"
+								Command="SaveAs"
+								CommandParameter="html"
+								ImageSource="Images/Large_32bit/saveashtml.png"
+								ToolTip="Save a copy of the document as a web page." />
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmSaveAsOther"
+								Header="Other Formats"
+								Command="SaveAs"
+								ImageSource="Images/Large_32bit/saveas.png"
+								ToolTip="Open the save as dialog box to select from all possible file formats." />
+						</r:RibbonApplicationSplitMenuItem.Items>
+					</r:RibbonApplicationSplitMenuItem>
+					<r:RibbonApplicationSplitMenuItem
+						Name="m_appSpltMnuItmPrint"
+						Header="Print…"
+						Command="Print"
+						ImageSource="Images/Large_32bit/print.png"
+						ToolTip="Print Document"
+						KeyTip="P">
+						<r:RibbonApplicationSplitMenuItem.Items>
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmPrint"
+								Header="Print…"
+								Command="Print"
+								ImageSource="Images/Large_32bit/print.png"
+								ToolTip="Select a printer, number of copies and other printing options before printing." />
+							<r:RibbonApplicationMenuItem
+								Name="m_appMnuItmQuickPrint"
+								Header="Quick Print"
+								Command="{StaticResource QuickPrintCommand}"
+								ImageSource="Images/Large_32bit/printquick.png"
+								ToolTip="Send the document directly to the default printer without making any changes." />
+						</r:RibbonApplicationSplitMenuItem.Items>
+					</r:RibbonApplicationSplitMenuItem>
+					<r:RibbonApplicationMenu.FooterPaneContent>
+						<DockPanel
+							LastChildFill="False">
+							<r:RibbonButton
+								Name="m_btnClose"
+								Command="Close"
+								SmallImageSource="Images/Small_32bit/exit.png"
+								Label="Exit"
+								KeyTip="X"
+								DockPanel.Dock="Right"
+								Margin="2" />
+							<r:RibbonButton
+								Name="m_btnOptions"
+								DockPanel.Dock="Right"
+								SmallImageSource="Images/Small_32bit/options.png"
+								Command="{StaticResource OptionsCommand}"
+								Margin="2"
+								KeyTip="O"
+								Label="Options…" />
+						</DockPanel>
+					</r:RibbonApplicationMenu.FooterPaneContent>
+					<r:RibbonApplicationMenu.AuxiliaryPaneContent>
+						<r:RibbonGallery
+							CanUserFilter="False"
+							Name="m_rgRecentFiles"
+							ScrollViewer.VerticalScrollBarVisibility="Auto"
+							SelectionChanged="RecentFiles_SelectionChanged">
+							<r:RibbonGalleryCategory
+								Name="m_rgcRecentFiles"
+								Header="Recent Documents"
+								MaxColumnCount="1">
+							</r:RibbonGalleryCategory>
+						</r:RibbonGallery>
+					</r:RibbonApplicationMenu.AuxiliaryPaneContent>
+				</r:RibbonApplicationMenu>-->
+			<!--</r:Ribbon.ApplicationMenu>-->
+
+			<!-- Quick access toolbar -->
+
+			<r:Ribbon.QuickAccessToolBar>
+				<r:RibbonQuickAccessToolBar>
+					<r:RibbonButton
+						Name="m_btnSave"
+						Content="_Save"
+						Command="Save"
+						LargeImageSource="Images/Large_32bit/save.png"
+						SmallImageSource="Images/Small_32bit/save.png"
+						ToolTip="Save Document"
+						Label="Save Document" />
+					<!--<r:RibbonButton
+						Name="m_btnOpen"
+						Content="_Open…"
+						Command="Open"
+						LargeImageSource="Images/Large_32bit/open.png"
+						SmallImageSource="Images/Small_32bit/open.png"
+						ToolTip="Open Document"
+						Label="Open Document" />-->
+					<!--<r:RibbonButton
+						Name="m_btnNew"
+						Content="_New"
+						Command="New"
+						LargeImageSource="Images/Large_32bit/newpage.png"
+						SmallImageSource="Images/Small_32bit/newpage.png"
+						ToolTip="New Document"
+						Label="New Document" />-->
+					<r:RibbonButton
+						Name="m_btnUndo"
+						Content="_Undo"
+						SmallImageSource="Images/Small_32bit/undo.png"
+						IsEnabled="{Binding ElementName=m_textControl, Path=CanUndo}"
+						Command="Undo"
+						ToolTip="Undo" />
+					<r:RibbonButton
+						Name="m_btnRedo"
+						Content="Redo"
+						SmallImageSource="Images/Small_32bit/redo.png"
+						IsEnabled="{Binding ElementName=m_textControl, Path=CanRedo}"
+						Command="Redo"
+						ToolTip="Redo" />
+					<r:RibbonButton
+						Name="m_btnPrint"
+						Content="Print"
+						LargeImageSource="Images/Large_32bit/print.png"
+						SmallImageSource="Images/Small_32bit/print.png"
+						Command="Print"
+						ToolTip="Select a printer, number of copies and other printing options before printing." />
+				</r:RibbonQuickAccessToolBar>
+			</r:Ribbon.QuickAccessToolBar>
+
+			<!-- Preview contextual tab -->
+			<r:RibbonTab
+				Header="Preview"
+				Name="m_previewTab"
+				ContextualTabGroupHeader="Reporting"
+				KeyTip="W">
+				<!-- "Preview" group -->
+				<r:RibbonGroup
+					Name="m_grpPreview"
+					Header="Preview"
+					SmallImageSource="Images/Small_32bit/previewclose.png"
+					CanAddToQuickAccessToolBarDirectly="False">
+					<r:RibbonButton
+						Name="m_btnClosePreview"
+						Label="Close Preview"
+						LargeImageSource="Images/Large_32bit/previewclose.png"
+						SmallImageSource="Images/Small_32bit/previewclose.png"
+						CanAddToQuickAccessToolBarDirectly="False"
+						KeyTip="X"
+						Command="{StaticResource ClosePreviewCommand}" />
+				</r:RibbonGroup>
+				<r:RibbonGroup
+					Name="m_grpNavigate"
+					Header="Navigate"
+					SmallImageSource="Images/Small_32bit/mailmergelastrecord.png">
+					<r:RibbonButton
+						Name="m_btnFirstRecord"
+						Label="First Record"
+						LargeImageSource="Images/Large_32bit/mailmergefirstrecord.png"
+						SmallImageSource="Images/Small_32bit/mailmergefirstrecord.png"
+						ToolTipTitle="First Record"
+						ToolTipDescription="Go to record no. 1."
+						CanAddToQuickAccessToolBarDirectly="False"
+						KeyTip="F"
+						ToolTipOpening="FirstRecord_ToolTipOpening"
+						Command="{StaticResource FirstRecordCommand}" />
+					<r:RibbonButton
+						Name="m_btnPreviousRecord"
+						Label="Previous Record"
+						LargeImageSource="Images/Large_32bit/mailmergepreviousrecord.png"
+						SmallImageSource="Images/Small_32bit/mailmergepreviousrecord.png"
+						ToolTipTitle="Previous Record"
+						ToolTipDescription="Go to record no. 2."
+						KeyTip="P"
+						ToolTipOpening="PreviousRecord_ToolTipOpening"
+						CanAddToQuickAccessToolBarDirectly="False"
+						Command="{StaticResource PreviousRecordCommand}" />
+					<r:RibbonButton
+						Name="m_btnNextRecord"
+						Label="Next Record"
+						LargeImageSource="Images/Large_32bit/mailmergenextrecord.png"
+						SmallImageSource="Images/Small_32bit/mailmergenextrecord.png"
+						ToolTipTitle="Next Record"
+						ToolTipDescription="Go to record no. 4."
+						CanAddToQuickAccessToolBarDirectly="False"
+						KeyTip="N"
+						ToolTipOpening="NextRecord_ToolTipOpening"
+						Command="{StaticResource NextRecordCommand}" />
+					<r:RibbonButton
+						Name="m_btnLastRecord"
+						Label="Last Record"
+						LargeImageSource="Images/Large_32bit/mailmergelastrecord.png"
+						SmallImageSource="Images/Small_32bit/mailmergelastrecord.png"
+						ToolTipTitle="Last Record"
+						ToolTipDescription="Go to record no. 5."
+						CanAddToQuickAccessToolBarDirectly="False"
+						KeyTip="L"
+						ToolTipOpening="LastRecord_ToolTipOpening"
+						Command="{StaticResource LastRecordCommand}" />
+				</r:RibbonGroup>
+			</r:RibbonTab>
+
+			<tx:RibbonFormattingTab
+				Name="m_formattingTab" />
+			<tx:RibbonInsertTab
+				Name="m_insertTab" />
+			<tx:RibbonPageLayoutTab
+				Name="m_pageLayoutTab" />
+			<tx:RibbonReportingTab
+				Name="m_reportingTab" />
+			<tx:RibbonViewTab
+				Name="m_viewTab" />
+			<tx:RibbonProofingTab
+				Name="m_proofingTab" />
+			<tx:RibbonTableLayoutTab
+				Name="m_tableLayoutTab"
+				ContextualTabGroupHeader="Table Tools" />
+			<tx:RibbonFrameLayoutTab
+				Name="m_frameLayoutTab"
+				ContextualTabGroupHeader="Frame Tools" />
+
+			<!-- Contextual tab groups -->
+			<r:Ribbon.ContextualTabGroups>
+				<r:RibbonContextualTabGroup
+					Header="Table Tools"
+					Name="m_ctgTableTools"
+					Background="#6600FF00" />
+				<r:RibbonContextualTabGroup
+					Header="Frame Tools"
+					Name="m_ctgFrameTools"
+					Background="#66FF00FF" />
+				<r:RibbonContextualTabGroup
+					Header="Reporting"
+					Name="m_ctgReportingPreview"
+					Background="#66FFFF00" />
+			</r:Ribbon.ContextualTabGroups>
+		</r:Ribbon>
+
+		<tx:RulerBar
+			Name="m_rulerBarHor">
+		</tx:RulerBar>
+
+		<!-- Status Bar with zoom slider -->
+
+		<tx:StatusBar
+			Name="m_statusBar"
+			ShowZoom="False"
+			BorderStyle="VerticalColorScheme">
+		</tx:StatusBar>
+
+		<!-- Vertical ruler bar -->
+
+		<tx:RulerBar
+			Name="m_rulerBarVert"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Stretch"
+			DockPanel.Dock="Left">
+		</tx:RulerBar>
+
+		<!-- TextControl -->
+
+		<tx:TextControl
+			AllowDrag="True"
+			AllowDrop="True"
+			Changed="TextControl_Changed"
+			DocumentLinkClicked="TextControl_DocumentLinkClicked"
+			DocumentTargetMarkers="True"
+			DragEnter="TextControl_DragEnter"
+			DragOver="TextControl_DragOver"
+			DrawingActivated="TextControl_DrawingActivated"
+			DrawingDeselected="TextControl_DrawingDeselected"
+			Drop="TextControl_Drop"
+			FieldCursor="Hand"
+			FontFamily="Arial"
+			FontSize="10pt"
+			FrameDeselected="TextControl_FrameDeselected"
+			FrameSelected="TextControl_FrameSelected"
+			HideSelection="False"
+			HypertextLinkClicked="TextControl_HypertextLinkClicked"
+			InputPositionChanged="TextControl_InputPositionChanged"
+			KeyDown="TextControl_KeyDown"
+			Loaded="TextControl_Loaded"
+			Name="m_textControl"
+			RibbonFormattingTab="m_formattingTab"
+			RibbonFrameLayoutTab="m_frameLayoutTab"
+			RibbonInsertTab="m_insertTab"
+			RibbonPageLayoutTab="m_pageLayoutTab"
+			RibbonProofingTab="m_proofingTab"
+			RibbonReportingTab="m_reportingTab"
+			RibbonTableLayoutTab="m_tableLayoutTab"
+			RibbonViewTab="m_viewTab"
+			RulerBar="m_rulerBarHor"
+			StatusBar="m_statusBar"
+			TextContextMenuOpening="TextControl_TextContextMenuOpening"
+			VerticalRulerBar="m_rulerBarVert">
+			<tx:TextControl.DisplayColors>
+				<tx:TextControlColors
+					DesktopColor="#F5F6F7"
+					DarkShadowColor="#F5F6F7"
+					LightShadowColor="#F5F6F7" />
+			</tx:TextControl.DisplayColors>
+		</tx:TextControl>
+
+	</DockPanel>
+</r:RibbonWindow>

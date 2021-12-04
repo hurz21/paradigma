@@ -1,0 +1,53 @@
+﻿<Window x:Class="winPDFDruck"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="PDF-Druck" Height="460" Width="424"   Background="{StaticResource backg3}" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="0,0,0,0" x:Name="stackPmain" VerticalAlignment="Top">
+        <GroupBox Header="Druckmethode">
+            <StackPanel Margin="5">
+                <RadioButton GroupName="jaja" Name="klassisch" IsChecked="True"   >Klassischer PDF-Druck (Luftbilder mit guter Auflösung)</RadioButton>
+                <RadioButton GroupName="jaja" Name="neu">Neuer PDF-Druck</RadioButton>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Einträge">
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Horizontal"  >
+                    <TextBlock Width="100">Ort:</TextBlock>
+                    <TextBox x:Name="tbOrtsname" Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"  >
+                    <TextBlock Width="100">Bemerkung:</TextBlock>
+                    <TextBox x:Name="tbBemerkung" Width="200"></TextBox>
+                </StackPanel>
+                
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Zusatz" x:Name="grpZusatz">
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Vertical"  >
+                    <CheckBox Width="300" x:Name="chkmitLegende" Content="Legende anfügen"/>
+                    <CheckBox Width="300" x:Name="chkmitDoku" Content="Dokumentation  anfügen"/>
+                    <CheckBox Width="300" x:Name="chkInsArchiv" Content="PDF-Datei als Dokument in das Archiv einfügen " 
+                              IsEnabled="True"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Ereignis anlegen" x:Name="grpEreignis">
+            <StackPanel Margin="5" Height="50">
+                <CheckBox Width="300" x:Name="chkEreignisMap" Click="chkEreignisMap_Click_1" Content="Ereignis anlegen" HorizontalAlignment="Left"
+                          VerticalAlignment="Top"/>                
+                <StackPanel Orientation="Horizontal"  >
+                    <TextBlock Text="Beschreibung:"   Padding="5"  Width="90"/>
+                    <TextBox x:Name="tbBeschreibung" Height="25" Width="300" IsEnabled="False"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="PDF erzeugen" Click="Button_Click_1" x:Name="btnPDFdruck" IsDefault="True" Margin="10" Width="200"/>
+            <Button Content="Abbruch" Click="Button_Click_2" IsCancel="True" Margin="10"/>
+        </StackPanel>
+
+    </StackPanel>
+</Window>

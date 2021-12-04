@@ -1,0 +1,48 @@
+﻿rem sqlplus /nolog
+rem connect system/lkof4 as sysdba
+rem C:\oraclexe\app\oracle\product\11.2.0\server\bin\TNSPING XE pause
+
+
+CREATE TABLESPACE paradigma
+      DATAFILE 'D:\umwelt-paradigma\dbf\paradigma.dbf' SIZE 100M
+      AUTOEXTEND ON NEXT 200K  MAXSIZE 2000M;
+
+
+rem CREATE OR REPLACE DIRECTORY imp_dir AS 'C:\or11\DBF';
+rem Hinweis: das impdir sollte sich auf einem anderen datenträger befinden. am besten auf einem echten physischen Datenträger
+
+rem C:\oraclexe\app\oracle\product\11.2.0\server\bin\impdp SYSTEM/lkof4 SCHEMAS=paradigma DIRECTORY=imp_dir DUMPFILE=schema.dmp  
+REMAP_SCHEMA=hr:hrdev EXCLUDE=constraint, ref_constraint, index   
+TABLE_EXISTS_ACTION=replace LOGFILE=impschema.log
+
+C:\oraclexe\app\oracle\product\11.2.0\server\bin\impdp SYSTEM/lkof4 SCHEMAS=paradigma DIRECTORY=imp_dir  DUMPFILE=schema.dmp TABLE_EXISTS_ACTION=replace LOGFILE=impschema.log
+
+          o:
+          cd\umwelt-paradigma
+          mkdir   \umwelt-paradigma\gis\gis\div\backup\archiv\1\0\1
+          mkdir   \umwelt-paradigma\div\deploy
+          mkdir   \umwelt-paradigma\div\combos
+           mkdir   \umwelt-paradigma\div\logging\main
+           mkdir   \umwelt-paradigma\div\logging\karte
+          cd gis
+
+    mkdir
+
+pause eXPORT UND IMPORT MIT sqldeveloper
+ folgende zeilen im sqldev\bin\s...conf ergänzen:
+
+AddVMOption -Duser.language=en
+AddVMOption -Duser.country=US
+AddVMOption -Doracle.jdbc.mapDateToTimestamp=false
+
+letzteres verhindert den dateformat error beim import (date wird nämlich in timestamp umgewandelt!) 
+drop muss ergänzt werden und auch zuerst ausgeführt werden! (auf zielcomputer)
+storage ausschalten!!!! so wird verhindert, daß der tablespace im script erscheint!
+
+-----------
+vor import: mit pspad das sammelscript laden und voranstellen
+:
+set scan off;
+set define off;
+beides verhindert den substitution prompt bei ampersands! &
+

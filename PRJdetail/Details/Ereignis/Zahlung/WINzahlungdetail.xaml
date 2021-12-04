@@ -1,0 +1,221 @@
+﻿<Window x:Class="WINzahlungdetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:paradigmaDetail"  
+        KeyboardNavigation.TabNavigation="Cycle"
+        Title="Zahlungsdetails - Modus: "
+        Height="523" Width="790"  
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        WindowStartupLocation="CenterScreen" 
+        Name="Window1"
+        >
+    <Window.Resources>
+        <!--<src:myGlobalz x:Key="myGlobalz"/>-->
+        <!--<src:MyFormatter x:Key="myformattjf" />-->
+        <XmlDataProvider x:Key="XMLSourceComboBoxTyp"    />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*" />
+            <ColumnDefinition Width="130*" />
+            <ColumnDefinition Width="31*" />
+            <ColumnDefinition Width="103*" />
+            <ColumnDefinition Width="64*"/>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="45" />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="35*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Aktenzeichen:" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Betrag (Euro):" Padding="5"/>
+
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Typ:" Padding="5"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Richtung:" Padding="5"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Festgesetzt am:" Padding="5"/>
+        <TextBlock Grid.Row="7" Grid.Column="5" Text="Angeordnet am:" Padding="5"   Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="8" Grid.Column="0" Text="Eingang/Ausgang am:" Padding="5"/>
+        <TextBlock Grid.Row="9" Text="Zahler/Empfänger:" Padding="5" Name="tblZahler"/>
+        <TextBlock Grid.Row="10" Text="Beschreibung:" Padding="5"/>
+        <TextBlock Grid.Row="11" Text="Notiz:" Padding="5"/>
+        <TextBlock Grid.Row="14" Grid.Column="0" Text="Anordnung veranlasst:" Padding="5"/>
+        <TextBlock Grid.Row="15" Grid.Column="0" Text="Anordnung erledigt:" Padding="5"/>
+        <TextBlock Grid.Row="16" Text="Haushaltsstelle:" Padding="5"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10" Orientation="Horizontal" >
+            <TextBlock Text="SachgebietsNr.:" Padding="5"   />
+
+            <TextBlock Text="{Binding  
+                            Path=aktVorgang.Stammdaten.az.sachgebiet.Zahl, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                   Padding="5"   />
+            <TextBlock   Text="VorgangsNr:" Padding="5"/>
+            <TextBlock  Text="{Binding  
+                            Path=VorgangsID, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                            Padding="5"  />
+            <TextBlock Text="Bearbeiter:" Padding="5"/>
+            <TextBlock  Text="{Binding  
+                            Path=aktVorgang.Stammdaten.Bearbeiter.Initiale,  
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                   Padding="5"   />
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Text="{Binding  
+                            Path=aktVorgang.Stammdaten.az.gesamt, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                   Padding="5" Grid.ColumnSpan="7" Margin="115,0,23,0" />
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,1,0" Width="112" Grid.Column="1">
+            <!--<TextBox   Width="100"   KeyboardNavigation.TabIndex="0" Validation.ErrorTemplate="{x:Null}"
+                       Text="{Binding  
+                            Path=aktZahlung.Betrag, 
+                            UpdateSourceTrigger='PropertyChanged'}" 
+                       ToolTip="Bitte mit Punkten (.) als Dezimaltrennzeichen eingeben !!!"
+                       Name="tbBetrag"/>-->
+            <TextBox   Width="100"   KeyboardNavigation.TabIndex="0"                     
+                       ToolTip="Bitte mit Komma ',' als Dezimaltrennzeichen eingeben !!!"
+                       Name="tbBetrag"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="€" Padding="5,3,1,1"/>
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="5" Grid.Column="1" x:Name="tbTyp" Padding="5" 
+                      Text="{Binding  
+                            Path=aktZahlung.Typ, 
+                            UpdateSourceTrigger='PropertyChanged'}"  />
+        <!--<TextBlock Grid.Row="6" Grid.Column="1" Name="tbRichtung" Padding="5" 
+                      Text="{Binding  
+                            Path=aktZahlung.Richtung, 
+                            UpdateSourceTrigger='PropertyChanged'}"   />-->
+
+        <StackPanel   Grid.Row="6" Grid.Column="1"  Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,25" Grid.RowSpan="3" >
+            <RadioButton  VerticalAlignment="Top" GroupName="GRPRichtung" x:Name="richtungein" Margin="5,5,5,5" Content="Eingang"   Click="richtung"/>
+            <RadioButton  VerticalAlignment="Top" GroupName="GRPRichtung" x:Name="richtungaus" Margin="5,5,5,5" Content="Ausgang" Click="richtung"/>
+        </StackPanel>
+        <!--<TextBox Grid.Row="7" Grid.Column="1" Name="tbVerschickt" IsEnabled="False"
+                  Text="{Binding  
+                            Path=aktZahlung.VerschicktAm,   StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}',
+                            UpdateSourceTrigger='PropertyChanged'}"   />-->
+        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" >
+            <!--<DatePicker  Height="29" x:Name="VerschicktAm"   Padding="-6" Width="140"		KeyboardNavigation.TabIndex="2"	
+								 SelectedDate="{Binding aktZahlung.VerschicktAm, StringFormat='{}{0:dd.MM.yyyy}'  ,
+					 UpdateSourceTrigger=PropertyChanged}"   />-->
+            <xctk:DateTimePicker Height="30" Name="VerschicktAm"  Grid.ColumnSpan="4" Format="Custom"
+                     FormatString="dd/MM/yyyy HH:mm"
+                     TimeFormat="Custom"
+                     TimeFormatString="HH:mm"
+                                      ValueChanged="VerschicktAm_ValueChanged"  HorizontalAlignment="Left"/>
+            <TextBox Margin="5,0,0,0" Width="21"  x:Name="tbVerschicktAmStunde" TextChanged="tbVerschicktAmStunde_TextChanged" 
+                     Visibility="Hidden"></TextBox>
+            <TextBlock Text=":" Padding="5"  Visibility="Hidden"/>
+            <TextBox  Margin="5,0,0,0"  Width="27"  Visibility="Hidden"   x:Name="tbVerschicktAmMinute" TextChanged="tbVerschicktAmMinute_TextChanged"></TextBox>
+        </StackPanel>
+        <!--<TextBox Grid.Row="7" Grid.Column="7" Name="tbAngeordnetAm" IsEnabled="False"
+                  Text="{Binding  
+                            Path=aktZahlung.AngeordnetAm,   StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}',
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="3" Margin="0,0,65,0"   />-->
+        <!--<TextBox Grid.Row="8" Grid.Column="1" Name="tbEingangAm" IsEnabled="False"
+                  Text="{Binding  
+                            Path=aktZahlung.EingangAm,     StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}',
+                            UpdateSourceTrigger='PropertyChanged'}"  />-->
+        <TextBox Grid.Row="9" Name="tbZahler" KeyboardNavigation.TabIndex="5"
+                      Text="{Binding  
+                            Path=aktZahlung.Zahler, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="9" Grid.Column="1" />
+        <TextBox Grid.Row="10" Grid.Column="1" Name="tbBeschreibung" IsEnabled="False" KeyboardNavigation.TabIndex="6"
+                      Text="{Binding  
+                            Path=aktEreignis.Beschreibung, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="9" />
+        <TextBox Grid.Row="11" Grid.Column="1" x:Name="tbNotiz" AcceptsReturn="True" AcceptsTab="True" TextWrapping="WrapWithOverflow"
+                 KeyboardNavigation.TabIndex="7"
+                  Text="{Binding  
+                            Path=aktEreignis.Notiz, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="5"  Grid.RowSpan="3"  />
+        <CheckBox Grid.Row="14" Grid.Column="1" IsChecked="{Binding  
+                            Path=aktZahlung.istAnordnungbestellt, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="5" Margin="6,0,0,0" KeyboardNavigation.TabIndex="8"/>
+        <CheckBox Grid.Row="15" IsChecked="{Binding  
+                            Path=aktZahlung.istAngeordnet, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="5" Grid.Column="1" Margin="6,0,0,0" KeyboardNavigation.TabIndex="9"/>
+        <TextBox Grid.Row="16" Grid.Column="1" Text="{Binding  
+                            Path=aktZahlung.HausHaltsstelle, 
+                            UpdateSourceTrigger='PropertyChanged'}" Grid.ColumnSpan="5"    />
+
+        <ComboBox  Grid.Row="16" Grid.Column="6" Name="cmbHHST"  />
+        <ComboBox  Grid.Row="5" Grid.Column="2" Name="cmbTyp" 
+                   DataContext="{Binding Source={StaticResource XMLSourceComboBoxTyp}, XPath=/Variablen/Variable}" 
+                   DisplayMemberPath="@Name" ItemsSource="{Binding}" SelectedValuePath="@ID"
+SelectedValue="{Binding Path=ID}"  />
+        <ComboBox  Grid.Row="9" Grid.Column="10" x:Name="cmbBeteiligte" ItemsSource="{Binding}" KeyboardNavigation.TabIndex="1"
+                   DisplayMemberPath="ABSTRACT"  SelectedValuePath="ABSTRACT" Margin="0,0,6,0"   />
+
+        <!--<DatePicker Grid.Row="7" Grid.Column="2" x:Name="dpVerschickt" Padding="-5"   />-->
+        <!--<DatePicker Grid.Row="7" Grid.Column="9" x:Name="dpAngeordnet" Padding="-5" HorizontalAlignment="Left"
+                    Width="24" SelectedDateChanged="dpAngeordnet_SelectedDateChanged" 
+                    Margin="9,1,0,25" RenderTransformOrigin="2.375,0.577" Grid.RowSpan="2" />-->
+        <StackPanel Grid.Row="7" Grid.Column="7" Grid.ColumnSpan="3" Orientation="Horizontal" >
+            <!--<DatePicker  Height="29" x:Name="dpAngeordnet"   Padding="-6" Width="140"	KeyboardNavigation.TabIndex="3"	   />-->
+            <xctk:DateTimePicker   Name="dpAngeordnet"  Grid.ColumnSpan="4" Format="Custom"
+                     FormatString="dd/MM/yyyy HH:mm"
+                     TimeFormat="Custom"
+                     TimeFormatString="HH:mm"
+                                      ValueChanged="dpAngeordnet_ValueChanged"  />
+            <TextBox Margin="5,0,0,0" Width="21"  Visibility="Hidden" x:Name="tbAngeordnetAmStunde" TextChanged="tbAngeordnetAmStunde_TextChanged"></TextBox>
+            <TextBlock Text=":" Padding="5" Visibility="Hidden" />
+            <TextBox  Margin="5,0,0,0"   Visibility="Hidden" Width="27"   x:Name="tbAngeordnetAmMinute" TextChanged="tbAngeordnetAmMinute_TextChanged"></TextBox>
+        </StackPanel>
+        
+        <!--<DatePicker Grid.Row="8" Grid.Column="2"    x:Name="dpEingang"   Padding="-5" SelectedDateChanged="dpEingang_SelectedDateChanged"  />-->
+        <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" >
+            <!--<DatePicker   Height="29" x:Name="dpEingang"   Padding="-6" Width="140"	KeyboardNavigation.TabIndex="4"	 
+						  SelectedDateChanged="dpEingang_SelectedDateChanged" 
+                          />-->
+            <xctk:DateTimePicker  Name="dpEingang"  Grid.ColumnSpan="4" Format="Custom"
+                     FormatString="dd/MM/yyyy HH:mm"
+                     TimeFormat="Custom"
+                     TimeFormatString="HH:mm"
+                                      ValueChanged="dpEingang_ValueChanged"  HorizontalAlignment="Left"/>
+
+            <TextBox Margin="5,0,0,0" Width="21"  Visibility="Hidden" x:Name="tbEingangAmStunde" TextChanged="tbEingangAmStunde_TextChanged"></TextBox>
+            <TextBlock Text=":" Padding="5" Visibility="Hidden" />
+            <TextBox  Margin="5,0,0,0"  Width="27"  Visibility="Hidden"   x:Name="tbEingangAmMinute" TextChanged="tbEingangAmMinute_TextChanged"></TextBox>
+        </StackPanel>
+
+        <Button  Grid.Row="14" Grid.Column="7" Name="btnAnnahmeanordnung" Content="Annahmeanordnung" Click="btnAnnahmeanordnung_Click"
+                 ToolTip="Schickt Email ans Vorzimmer zwecks Erstellung einer Annahmeanordnung" Height="Auto" Margin="18,1,14,0" Grid.ColumnSpan="4" />
+        <Button  Grid.Row="15" Grid.Column="7" Name="btnExcel" Content="Excel"  Click="btnExcel_Click"
+                 ToolTip="Ausgabe aller Zahlungen nach Excel" Height="Auto" Margin="18,1,14,0" Grid.ColumnSpan="4" />
+
+        <Button  Grid.Row="17" Grid.Column="0" Name="btnLoeschen" Content="Löschen"   Click="btnLoeschen_Click" Margin="0,0,0,22" Grid.RowSpan="2" Height="Auto"/>
+        <Button  Grid.Row="17" Name="btnSpeichern" KeyboardNavigation.TabIndex="10"
+                 Content="Speichern" Click="btnZahlungSpeichernClick" Grid.ColumnSpan="5" Height="Auto" Margin="56,0,29,0" Grid.Column="1" />
+        <Button  Grid.Row="17" Grid.Column="7" Name="btnAbbruch" Content="Abbruch" IsCancel="True" Click="abbruch" Grid.ColumnSpan="4" Margin="0,0,0,22" Grid.RowSpan="2" Height="Auto"/>
+
+    </Grid>
+</Window>

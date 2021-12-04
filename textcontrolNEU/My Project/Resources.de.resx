@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_MENU_EXIT" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="APP_MENU_EXIT_TOOLTIP" xml:space="preserve">
+    <value>Das Programm beenden</value>
+  </data>
+  <data name="APP_MENU_NEW" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="APP_MENU_NEW_TOOLTIP" xml:space="preserve">
+    <value>Neues Dokument</value>
+  </data>
+  <data name="APP_MENU_OPEN" xml:space="preserve">
+    <value>Öffnen…</value>
+  </data>
+  <data name="APP_MENU_OPEN_SAMPLE" xml:space="preserve">
+    <value>Beispieldokument Öffnen</value>
+  </data>
+  <data name="APP_MENU_OPEN_SAMPLE_INVOICE" xml:space="preserve">
+    <value>Eine Beispielrechnung öffnen.</value>
+  </data>
+  <data name="APP_MENU_OPEN_SAMPLE_PACK_LST" xml:space="preserve">
+    <value>Einen Beispiel-Lieferschein öffnen.</value>
+  </data>
+  <data name="APP_MENU_OPEN_SAMPLE_SHIP_LBL" xml:space="preserve">
+    <value>Ein Beispiel-Versandetikett öffnen.</value>
+  </data>
+  <data name="APP_MENU_OPEN_SAMPLE_TOOLTIP" xml:space="preserve">
+    <value>Eine mitgelieferte Beispiel-Dokumentvorlage öffnen.</value>
+  </data>
+  <data name="APP_MENU_OPEN_TOOLTIP" xml:space="preserve">
+    <value>Dokument öffnen</value>
+  </data>
+  <data name="APP_MENU_OPTIONS" xml:space="preserve">
+    <value>Optionen…</value>
+  </data>
+  <data name="APP_MENU_OPTIONS_TOOLTIP" xml:space="preserve">
+    <value>Den Optionsdialog anzeigen</value>
+  </data>
+  <data name="APP_MENU_PRINT" xml:space="preserve">
+    <value>Drucken…</value>
+  </data>
+  <data name="APP_MENU_PRINT_PREVIEW" xml:space="preserve">
+    <value>Druckvorschau…</value>
+  </data>
+  <data name="APP_MENU_PRINT_QUICK" xml:space="preserve">
+    <value>Schnelldruck</value>
+  </data>
+  <data name="APP_MENU_PRINT_QUICK_TOOLTIP" xml:space="preserve">
+    <value>Das Dokument sofort ausdrucken ohne weitere Einstellungen vorzunehmen.</value>
+  </data>
+  <data name="APP_MENU_PRINT_TOOLTIP" xml:space="preserve">
+    <value>Den Druckdialog anzeigen, um vor dem Drucken die Anzahl der Kopien, den gewünschten Drucker und andere Einstellungen auswählen zu können.</value>
+  </data>
+  <data name="APP_MENU_RECENT_ITEMS_HEADER" xml:space="preserve">
+    <value>Letzte Dateien</value>
+  </data>
+  <data name="APP_MENU_SAVE" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS" xml:space="preserve">
+    <value>Speichern als…</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_DOC" xml:space="preserve">
+    <value>Word 97 - 2003 Dokument (*.doc)</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_DOCX" xml:space="preserve">
+    <value>Word-Dokument (*.docx)</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_DOCX_TOOLTIP" xml:space="preserve">
+    <value>Eine Kopie des Dokuments im DOCX-Format speichern.</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_DOC_TOOLTIP" xml:space="preserve">
+    <value>Eine Kopie des Dokuments speichern, die voll kompatibel zu Microsoft Word 97 – 2003 ist.</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_HTML" xml:space="preserve">
+    <value>Hypertext Markup Language (*.htm, *.html)</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_HTML_TOOLTIP" xml:space="preserve">
+    <value>Eine Kopie des Dokuments als Webseite speichern.</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_OTHER" xml:space="preserve">
+    <value>Andere Formate</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_OTHER_TOOLTIP" xml:space="preserve">
+    <value>Den "Speichern"-Dialog öffnen, um ein Dateiformat auswählen zu können.</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_PDF" xml:space="preserve">
+    <value>Adobe PDF Dokument (*.pdf)</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_PDF_TOOLTIP" xml:space="preserve">
+    <value>Eine Kopie des Dokuments im Adobe Portable Document Format speichern.</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_RTF" xml:space="preserve">
+    <value>Rich Text Format (*.rtf)</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_RTF_TOOLTIP" xml:space="preserve">
+    <value>Eine Kopie des Dokuments im Rich Text Format speichern.</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_TOOLTIP" xml:space="preserve">
+    <value>Dokument speichern als…</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_TX" xml:space="preserve">
+    <value>Internes Unicode-Format (*.tx)</value>
+  </data>
+  <data name="APP_MENU_SAVE_AS_TXT" xml:space="preserve">
+    <value>Textdokument (*.txt)</value>
+  </data>
+  <data name="APP_MENU_SAVE_TOOLTIP" xml:space="preserve">
+    <value>Dokument speichern</value>
+  </data>
+  <data name="APP_MENU_TOOLTIP_DESC" xml:space="preserve">
+    <value>Hier klicken um mit TX Text Control WPF loszulegen.</value>
+  </data>
+  <data name="APP_MENU_TOOLTIP_TITLE" xml:space="preserve">
+    <value>TX Text Control Applikationsmenü</value>
+  </data>
+  <data name="BTN_CANCEL" xml:space="preserve">
+    <value>&amp;Abbrechen</value>
+  </data>
+  <data name="BTN_CLOSE_PREVIEW" xml:space="preserve">
+    <value>Vorschau schließen</value>
+  </data>
+  <data name="BTN_CLOSE_PREVIEW_TOOLTIP" xml:space="preserve">
+    <value>Schließt die Vorschau.</value>
+  </data>
+  <data name="BTN_FINISH_AND_MERGE" xml:space="preserve">
+    <value>Dokument mit Daten füllen</value>
+  </data>
+  <data name="BTN_FINISH_AND_MERGE_TOOLTIP" xml:space="preserve">
+    <value>Daten in das derzeit geöffnete Dokument einfügen.</value>
+  </data>
+  <data name="BTN_FIRST_RECORD" xml:space="preserve">
+    <value>Erster Datensatz</value>
+  </data>
+  <data name="BTN_INSERT_CHART" xml:space="preserve">
+    <value>Diagramm</value>
+  </data>
+  <data name="BTN_LAST_RECORD" xml:space="preserve">
+    <value>Letzter Datensatz</value>
+  </data>
+  <data name="BTN_LTR" xml:space="preserve">
+    <value>Links nach Rechts</value>
+  </data>
+  <data name="BTN_MERGE_INTO_CURRENT" xml:space="preserve">
+    <value>Daten in das geöffnete Dokument einfügen</value>
+  </data>
+  <data name="BTN_MERGE_INTO_INDIV_X_FILES_TOOLTIP" xml:space="preserve">
+    <value>Separate {0}-Dateien erzeugen.</value>
+    <comment>{0} is an upper case file type (e. g. PDF or DOCX)</comment>
+  </data>
+  <data name="BTN_MERGE_INTO_MULTIPLE_FILES" xml:space="preserve">
+    <value>Pro Datensatz eine Dokumentdatei erzeugen</value>
+  </data>
+  <data name="BTN_MERGE_INTO_MULTIPLE_FILES_TOOLTIP" xml:space="preserve">
+    <value>Pro Datensatz eine einzelne Dokumentdatei erzeugen.</value>
+  </data>
+  <data name="BTN_MERGE_INTO_SINGLE_FILE" xml:space="preserve">
+    <value>Eine einzige Datei erzeugen</value>
+  </data>
+  <data name="BTN_MERGE_INTO_SINGLE_FILE_TOOLTIP" xml:space="preserve">
+    <value>Eine einzige Datei aus den Reporting-Daten erzeugen.</value>
+  </data>
+  <data name="BTN_MERGE_INTO_SINGLE_X_FILE_TOOLTIP" xml:space="preserve">
+    <value>Eine einzige {0}-Datei erzeugen.</value>
+    <comment>{0} is an upper case file type (e. g. PDF or DOCX)</comment>
+  </data>
+  <data name="BTN_MERGE_PRINT" xml:space="preserve">
+    <value>Dokument ausdrucken</value>
+  </data>
+  <data name="BTN_MERGE_PRINT_TOOLTIP" xml:space="preserve">
+    <value>Reporting-Daten mit dem Dokument zusammenführen und das Ergebnis ausdrucken.</value>
+  </data>
+  <data name="BTN_NEXT_RECORD" xml:space="preserve">
+    <value>Nächster Datensatz</value>
+  </data>
+  <data name="BTN_OK" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="BTN_PREVIEW" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
+  <data name="BTN_PREVIEW_TOOLTIP" xml:space="preserve">
+    <value>Füge Daten der Datenquelle in die Seriendruckfelder und wiederholenden Blöcke ein, um eine Vorschau des zu erstellenden Dokumentes zu erzeugen.</value>
+  </data>
+  <data name="BTN_PREVIOUS_RECORD" xml:space="preserve">
+    <value>Vorheriger Datensatz</value>
+  </data>
+  <data name="BTN_REDO" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="BTN_RTL" xml:space="preserve">
+    <value>Rechts nach Links</value>
+  </data>
+  <data name="BTN_UNDO" xml:space="preserve">
+    <value>Rückgängig</value>
+  </data>
+  <data name="CHART_DATA_GRID_DLG_TITLE" xml:space="preserve">
+    <value>Diagrammdaten</value>
+  </data>
+  <data name="CONTEXTMENU_CHART_PROPS" xml:space="preserve">
+    <value>&amp;Diagrammeigenschaften…</value>
+  </data>
+  <data name="CONTEXTMENU_EDIT_CHART_DATA" xml:space="preserve">
+    <value>&amp;Diagrammdaten bearbeiten…</value>
+  </data>
+  <data name="CONTEXTMENU_SET_CHART_DATA_REL" xml:space="preserve">
+    <value>&amp;Diagrammdatenrelationen…</value>
+  </data>
+  <data name="CONTEXTUAL_TAB_GROUP_REPORTING" xml:space="preserve">
+    <value>Seriendruck</value>
+  </data>
+  <data name="CONT_TAB_GRP_FRAME_TOOLS" xml:space="preserve">
+    <value>Rahmenwerkzeuge</value>
+  </data>
+  <data name="CONT_TAB_GRP_TBL_TOOLS" xml:space="preserve">
+    <value>Tabellenwerkzeuge</value>
+  </data>
+  <data name="DOC_TITLE_UNTITLED" xml:space="preserve">
+    <value>[unbenannt]</value>
+  </data>
+  <data name="EXC_LICENSE_PRO" xml:space="preserve">
+    <value>Es muss mindestens die Professional-Version installiert
+sein, um diese Funktion zu nutzen.</value>
+  </data>
+  <data name="EXC_MERGEBLOCK_EMPTY_BLOCK_NAME" xml:space="preserve">
+    <value>Der Blockname darf nicht leer oder null sein.</value>
+  </data>
+  <data name="EXC_MERGE_BLOCK_CONVERSION" xml:space="preserve">
+    <value>TX Text Control Reports:
+Die folgenden wiederholenden Blöcke konnten nicht konvertiert werden:
+{0}
+
+Die zugehörigen Textmarken können folgendermaßen
+entfernt werden:
+Einfügen - Textmarke - Textmarke Löschen.
+Ein neuer wiederholender Block kann folgendermaßen erzeugt werden:
+Seriendruck - Wiederholenden Block Einfügen - Eigenen Wiederholenden Block einfügen.</value>
+    <comment>{0} is a list of merge block names separated by line breaks</comment>
+  </data>
+  <data name="EXC_ONLY_ABS_PATH_SUPORTED" xml:space="preserve">
+    <value>Es werden nur absolute Pfade / Links unterstützt.</value>
+  </data>
+  <data name="EXC_PDF_SIGNATURE" xml:space="preserve">
+    <value>Es konnte keine PDF-Signatur erzeugt werden: {0}</value>
+    <comment>{0} is the exception text</comment>
+  </data>
+  <data name="FIELDNAV_DLG_MERGE_BLOCK_NOT_EMPTY" xml:space="preserve">
+    <value>Der Mergeblock ist nicht leer. Vor dem Löschen eines Blocks bitte alle enthaltenen Felder und Kind-Blöcke löschen.</value>
+  </data>
+  <data name="FIELD_NAV_BTN_PROPERTIES" xml:space="preserve">
+    <value>&amp;Eigenschaften…</value>
+  </data>
+  <data name="FIELD_NAV_BTN_REMOVE" xml:space="preserve">
+    <value>&amp;Löschen</value>
+  </data>
+  <data name="FIELD_NAV_LBL_HEADER" xml:space="preserve">
+    <value>Feldnavigation</value>
+  </data>
+  <data name="FIELD_NAV_SEARCH_TEXT_PLACEHOLDER" xml:space="preserve">
+    <value>Template Durchsuchen</value>
+  </data>
+  <data name="FIELD_NAV_TAB_MERGE_BLOCKS" xml:space="preserve">
+    <value>mergeblöcke</value>
+  </data>
+  <data name="FIELD_NAV_TAB_MERGE_FIELDS" xml:space="preserve">
+    <value>mergefelder</value>
+  </data>
+  <data name="GO_TO_RECORD_TOOLTIP" xml:space="preserve">
+    <value>Gehe zu Datensatz Nummer {0}.</value>
+    <comment>{0} is the record number</comment>
+  </data>
+  <data name="LIMIT_PREVIEW_DATA_DLG_CANCEL" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="LIMIT_PREVIEW_DATA_DLG_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LIMIT_PREVIEW_DATA_DLG_TEXT" xml:space="preserve">
+    <value>&amp;Anzahl der Vorschau-Datensätze:</value>
+  </data>
+  <data name="LIMIT_PREVIEW_DATA_DLG_TITLE" xml:space="preserve">
+    <value>Begrenzung der Vorschau-Daten</value>
+  </data>
+  <data name="MERGE_NO_MERGE_RESULTS" xml:space="preserve">
+    <value>Es konnte kein Dokument erzeugt werden. Der vorgang wird abgebrochen.</value>
+  </data>
+  <data name="MERGE_WAIT_DLG_LBL_MERGING" xml:space="preserve">
+    <value>Daten werden eingefügt…</value>
+  </data>
+  <data name="MERGE_WAIT_DLG_TITLE" xml:space="preserve">
+    <value>Bitte Warten</value>
+  </data>
+  <data name="MSG_CONFIRM_UPDATE_MERGE_BLOCK_TYPE" xml:space="preserve">
+    <value>Die Dokumentvorlage war vorher in einem älteren TX Text Control Format abgespeichert.
+Soll sie im aktuellen Format gespeichert werden?</value>
+  </data>
+  <data name="MSG_COULD_NOT_OPEN_LINK" xml:space="preserve">
+    <value>Link / Datei konnte nicht geöffnet werden.</value>
+  </data>
+  <data name="MSG_FILE_DOES_NOT_EXIST" xml:space="preserve">
+    <value>Datei "{0}" wurde nicht gefunden.</value>
+    <comment>{0} is the file name</comment>
+  </data>
+  <data name="MSG_REMOVE_FILE_FROM_LIST" xml:space="preserve">
+    <value>Die gewählte Datei existiert nicht. Soll sie 
+von der Liste der zuletzt geöffneten Dateien
+entfernt werden?</value>
+  </data>
+  <data name="MSG_UNKNOWN_FILE_TYPE" xml:space="preserve">
+    <value>Unbekannter Dateityp (*{0}).</value>
+    <comment>{0} is the file extension of the file which could not be loaded.</comment>
+  </data>
+  <data name="OPEN_SAMPLE_DB_MENU_BTN_TEXT" xml:space="preserve">
+    <value>Beispieldatenbank Laden</value>
+  </data>
+  <data name="OPEN_SAMPLE_DB_MENU_BTN_TOOLTIP" xml:space="preserve">
+    <value>Die mitgelieferte Beispieldatenbank laden.</value>
+  </data>
+  <data name="OPT_DLG_CSS_GRP_SAVEOPTS" xml:space="preserve">
+    <value>Speicheroptionen</value>
+  </data>
+  <data name="OPT_DLG_CSS_INLINE" xml:space="preserve">
+    <value>&amp;Inline-Stylesheet</value>
+  </data>
+  <data name="OPT_DLG_CSS_LBL_FILE" xml:space="preserve">
+    <value>Stylesheet-Datei:</value>
+  </data>
+  <data name="OPT_DLG_CSS_NONE" xml:space="preserve">
+    <value>&amp;Kein Stylesheet</value>
+  </data>
+  <data name="OPT_DLG_CSS_SAVE_NOT_OVR" xml:space="preserve">
+    <value>S&amp;peichern, vorhandene Datei aber nicht überschreiben</value>
+  </data>
+  <data name="OPT_DLG_CSS_SEPARATE_FILE" xml:space="preserve">
+    <value>&amp;Stylesheet in separater Datei speichern</value>
+  </data>
+  <data name="OPT_DLG_PDFEXP_ENABLE_PDFA" xml:space="preserve">
+    <value>&amp;PDF/A aktivieren</value>
+  </data>
+  <data name="OPT_DLG_PDFEXP_GRP_OPTS" xml:space="preserve">
+    <value>PDF Export-Optionen</value>
+  </data>
+  <data name="OPT_DLG_PDFIMP_GRP_OPTS" xml:space="preserve">
+    <value>PDF Import-Optionen</value>
+  </data>
+  <data name="OPT_DLG_PDFIMP_LBL_MODE" xml:space="preserve">
+    <value>Import-Modus:</value>
+  </data>
+  <data name="OPT_DLG_PDFIMP_MODE_FRAMES" xml:space="preserve">
+    <value>Textrahmen</value>
+  </data>
+  <data name="OPT_DLG_PDFIMP_MODE_PAR" xml:space="preserve">
+    <value>Absatzerkennung</value>
+  </data>
+  <data name="OPT_DLG_PDFIMP_MODE_PLAIN" xml:space="preserve">
+    <value>Einfacher Text</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_ALLOW_ACCESSIBILITY" xml:space="preserve">
+    <value>Zugriff durch Vorlese-Anwendungen für Menschen mit Sehbehinderung erlauben</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_ALLOW_EXTR_CNT" xml:space="preserve">
+    <value>&amp;Kopieren von Text, Bildern und anderen Elementen erlauben</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_CHNGALLOW_ANY" xml:space="preserve">
+    <value>Alle bis auf Seitenextraktion</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_CHNGALLOW_COMMENTS" xml:space="preserve">
+    <value>Kommentieren, Formularfelder ausfüllen und Signierung</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_CHNGALLOW_FORMFLDS" xml:space="preserve">
+    <value>Formularfelder ausfüllen und Signierung</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_CHNGALLOW_INSDEL" xml:space="preserve">
+    <value>Einfügen, löschen und Seitendrehung</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_CHNGALLOW_NONE" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_ERR_NO_DOC_PWD" xml:space="preserve">
+    <value>Das Dokumentpaswort-Feld ist leer. Bitte legen sie ein Passwort fest oder deaktivieren sie die Option.</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_ERR_NO_MASTER_PWD" xml:space="preserve">
+    <value>Das Haupt-Passwortfeld ist leer. Bitte legen sie ein Passwort fest oder deaktivieren sie die Option.</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_ERR_SAME_PWD" xml:space="preserve">
+    <value>Haupt- und Dokumentpasswort sind identisch. Bitte ändern sie entweder das Haupt- oder das Dokumentpasswort.</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_GRP_DIG_SIG" xml:space="preserve">
+    <value>Digitale Signatur</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_GRP_DOC_PWD" xml:space="preserve">
+    <value>PDF-Dokument-Passwort</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_GRP_PERM" xml:space="preserve">
+    <value>Berechtigungen</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_LBL_ALLOW_CHNG" xml:space="preserve">
+    <value>&amp;Änderungsberechtigungen:</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_LBL_ALLOW_PRNT" xml:space="preserve">
+    <value>&amp;Druckberechtigungen:</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_LBL_CERT_FILE" xml:space="preserve">
+    <value>&amp;Zertifikatsdatei (*.pfx):</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_LBL_CERT_PWD" xml:space="preserve">
+    <value>Zertifikat-&amp;Passwort:</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_LBL_DOC_PWD" xml:space="preserve">
+    <value>&amp;Passwort:</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_LBL_PERM_PWD" xml:space="preserve">
+    <value>&amp;Passwort:</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_PRNTMODE_HIRES" xml:space="preserve">
+    <value>Hohe Auflösung</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_PRNTMODE_LOWRES" xml:space="preserve">
+    <value>Niedrige Auflösung</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_PRNTMODE_NONE" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_REQ_DOC_PWD" xml:space="preserve">
+    <value>Dokument mit einem &amp;Passwort schützen</value>
+  </data>
+  <data name="OPT_DLG_PDFSEC_REQ_MSTR_PWD" xml:space="preserve">
+    <value>Das Ausdrucken und Bearbeiten des Dokuments mit einem Passwo&amp;rt schützen</value>
+  </data>
+  <data name="OPT_DLG_TAB_HTMLOPTS" xml:space="preserve">
+    <value>HTML-Optionen</value>
+  </data>
+  <data name="OPT_DLG_TAB_PDFEXP" xml:space="preserve">
+    <value>PDF-Export</value>
+  </data>
+  <data name="OPT_DLG_TAB_PDFIMP" xml:space="preserve">
+    <value>PDF-Import</value>
+  </data>
+  <data name="OPT_DLG_TAB_PDFSEC" xml:space="preserve">
+    <value>PDF-Berechtigungen</value>
+  </data>
+  <data name="OPT_DLG_TITLE" xml:space="preserve">
+    <value>Optionen</value>
+  </data>
+  <data name="RIBBON_GROUP_FINISH" xml:space="preserve">
+    <value>Fertigstellen</value>
+  </data>
+  <data name="RIBBON_GROUP_NAVIGATE" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="RIBBON_GROUP_PREVIEW" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
+  <data name="RIBBON_TAB_FRAME_FORMAT_HEADER" xml:space="preserve">
+    <value>Rahmenformatierung</value>
+  </data>
+  <data name="RIBBON_TAB_PREVIEW_HEADER" xml:space="preserve">
+    <value>   Vorschau   </value>
+  </data>
+  <data name="RIBBON_TAB_TABLE_FORMAT_HEADER" xml:space="preserve">
+    <value>Tabellenformatierung</value>
+  </data>
+  <data name="SAVE_CHANGES_TO" xml:space="preserve">
+    <value>Änderungen an {0} speichern?</value>
+    <comment>{0} is the document title</comment>
+  </data>
+  <data name="STATUSBAR_COLUMN" xml:space="preserve">
+    <value>Spalte: </value>
+  </data>
+  <data name="STATUSBAR_LINE" xml:space="preserve">
+    <value>Zeile: </value>
+  </data>
+  <data name="STATUSBAR_PAGE" xml:space="preserve">
+    <value>Seite: </value>
+  </data>
+  <data name="STATUSBAR_SECTION" xml:space="preserve">
+    <value>Abschnitt: </value>
+  </data>
+  <data name="TGL_BTN_FIELD_NAVIGATION" xml:space="preserve">
+    <value>Feldnavigation</value>
+  </data>
+  <data name="TGL_BTN_FIELD_NAVIGATION_TOOLTIP" xml:space="preserve">
+    <value>Blendet den Feldnavigator ein oder aus.</value>
+  </data>
+  <data name="USR_INP_MASTER_PASSWORD_LABEL" xml:space="preserve">
+    <value>Bitte das Master-Passwort für das Dokument
+eingeben oder „Abbrechen“ klicken, um das
+Dokument mit Einschränkungen zu laden:</value>
+  </data>
+  <data name="USR_INP_MASTER_PASSWORD_TITLE" xml:space="preserve">
+    <value>Master-Passwort Eingeben</value>
+  </data>
+  <data name="USR_INP_MERGE_BLOCK_NAME_LABEL" xml:space="preserve">
+    <value>Mergeblockname:</value>
+  </data>
+  <data name="USR_INP_MERGE_BLOCK_NAME_TITLE" xml:space="preserve">
+    <value>Mergeblock Umbenennen</value>
+  </data>
+  <data name="USR_INP_PASSWORD_LABEL" xml:space="preserve">
+    <value>Bitte geben Sie das Passwort für die passwortgeschützte Datei ein:</value>
+  </data>
+  <data name="USR_INP_PASSWORD_TITLE" xml:space="preserve">
+    <value>Passworteingabe</value>
+  </data>
+</root>

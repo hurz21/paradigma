@@ -1,0 +1,100 @@
+﻿<Window x:Class="WinDS_gruppen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Gruppen Zuordnung" Height="649" Width="512" WindowStartupLocation="CenterScreen">
+    <DockPanel Margin="0,0,0,-0">
+
+        <StackPanel Margin="0,2,0,20" Width="429">
+            <!--<TextBlock Text="Der Lesezugriff ist erlaubt für folgende Gruppen:"/>-->
+
+
+            <TextBlock Text="In diesem Formular regeln Sie wer lesenden Zugriff auf diesen Vorgang hat." Margin="10"/>
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+
+                <GroupBox  x:Name="grp1" Header="Der Lesezugriff ist erlaubt für folgende Gruppen:" Margin="5,0,1,1">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="7,15,5,5">
+                            <CheckBox  x:Name="ckalleeinaus" Click="ckalleeinaus_Click" >alle ein/aus</CheckBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckAlt" Click="ckAlt_Click" Margin="2">Altflächenauskunft</CheckBox>
+                            <Button x:Name="btnwhoisinAlt" Click="btnwhoisinAlt_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckBauantrag" Click="ckBauantrag_Click" Margin="2">Bauantrag</CheckBox>
+                            <Button x:Name="btnwhoisinBauantrag" Click="btnwhoisinBauantrag_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckFDU" Click="ckFDU_Click" Margin="2" >FD Umwelt</CheckBox>
+                            <Button x:Name="btnwhoisinFDU" Click="btnwhoisinFDU_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckGIS" Click="ckGIS_Click" Margin="2">GIS</CheckBox>
+                            <Button x:Name="btnwhoisinGIS" Click="btnwhoisinGIS_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckImm" Click="ckImm_Click" Margin="2">Immissionsschutz/Abfallwirtschaft</CheckBox>
+                            <Button x:Name="btnwhoisinImm" Click="btnwhoisinImm_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckOeff" Click="ckOeff_Click" Margin="2">Öffentliche Veranstaltungen im AB</CheckBox>
+                            <Button x:Name="btnwhoisinOeff" Click="btnwhoisinOeff_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckUNB" Click="ckUNB_Click" Margin="2">Untere Naturschutzbehörde</CheckBox>
+                            <Button x:Name="btnwhoisinUNB" Click="btnwhoisinUNB_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckUWB" Click="ckUWB_Click" Margin="2">Untere Wasser- Bodenschutzbehörde</CheckBox>
+                            <Button x:Name="btnwhoisinUWB" Click="btnwhoisinUWB_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+
+
+
+
+
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckSchorn" Click="ckSchorn_Click" Margin="2">Schornsteinfegerwesen</CheckBox>
+                            <Button x:Name="btnwhoisinSchorn" Click="btnwhoisinSchorn_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5" Visibility="Collapsed">
+                            <CheckBox x:Name="ckSys" Click="ckSys_Click" Margin="2">Systementwicklung</CheckBox>
+                            <Button x:Name="btnwhoisinSYS" Click="btnwhoisinSYS_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox x:Name="ckIll" Click="ckill_Click" Margin="2">IllegaleBauten</CheckBox>
+                            <Button x:Name="btnwhoisinIll" Click="btnwhoisinIll_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>-->
+                        <StackPanel Orientation="Horizontal"  Margin="5"  Visibility="Collapsed">
+                            <CheckBox x:Name="ckFDL" Click="ckFDL_Click" Margin="2" IsChecked="True" IsEnabled="False">Fachdienstleitung</CheckBox>
+                            <Button x:Name="btnwhoisinFDL" Click="btnwhoisinFDL_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5" Visibility="Visible">
+                            <CheckBox x:Name="ckFDASS" Click="ckFDL_Click" Margin="2" IsChecked="True" IsEnabled="False">Assistenz</CheckBox>
+                            <Button x:Name="btnwhoisinFDASS" Click="btnwhoisinFDASS_Click" Content=" ? " Margin="15,0,0,0" Height="20" Style="{StaticResource lessButton}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="5" >
+                            <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Sowie folgende Einzelpersonen:"/>
+                            <Button x:Name="btnEinzelpersonen" Content=" ... " Width="50" Height="20" Margin="5,0,0,0" Click="btnEinzelpersonen_Click"
+                                    Style="{StaticResource lessButton}"/>
+                            </StackPanel>
+                            <TextBlock x:Name="tbEinzelpersonen" TextWrapping="WrapWithOverflow"/>
+                    
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <!--<StackPanel Margin="50" Visibility="Collapsed">
+
+                    <Button Content="Diese Zusammenstellung als Standard speichern" x:Name="btnSpeichernStandard" Click="btnSpeichernStandard_Click" Visibility="Collapsed"
+                             Style="{StaticResource lessButton}"/>
+                    <Button Content="Standard anwenden" x:Name="btnrecallStandard" Click="btnrecallStandard_Click"   Style="{StaticResource lessButton}"  Visibility="Collapsed"/>
+                    --><!--<TextBox x:Name="tbInfo" TextWrapping="Wrap" AcceptsReturn="True" Margin="5,20"/>--><!--
+                    <TextBox  TextWrapping="Wrap" AcceptsReturn="True" Margin="5,20" x:Name="tbStand"/>
+                </StackPanel>-->
+            </StackPanel>
+            <Button Content="Speichern" x:Name="btnSpeichern" Click="btnSpeichern_Click" Width="120" Margin="10"  HorizontalAlignment="Center"/>
+        </StackPanel>
+    </DockPanel>
+</Window>
