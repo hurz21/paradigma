@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:src="clr-namespace:paradigmaDetail"
     x:Class="Window_Detail" 
-    Title="Paradigma - Die Vorgangsbearbeitung. (c) Dr. Feinen 2009"   ResizeMode="CanResizeWithGrip" 
+    Title="Paradigma -> Die Vorgangsbearbeitung. (c) Dr. Feinen 2009"   ResizeMode="CanResizeWithGrip" 
             WindowState="Normal"    Left="0"  StateChanged="Window_StateChanged" SizeChanged="Window_SizeChanged" 
             Height="1000" Width="1600" AllowsTransparency="False" WindowStyle="ThreeDBorderWindow"
             x:Name="Window1"  Background="Black"  WindowStartupLocation="CenterScreen" 
