@@ -1,4 +1,5 @@
-﻿Namespace CLstart
+﻿Imports System
+Namespace CLstart
     Public Class ZeigeraufXMLinitdatei
         Shared Sub nachricht(text As String)
             My.Log.WriteEntry(text)
@@ -28,7 +29,7 @@
         Private Shared Function readFromZeigerDatei(zeigerdatei As String) As String
             Dim XMLdatei = ""
             Try
-                Dim fi As New IO.FileInfo(zeigerdatei)
+                Dim fi As New System.IO.FileInfo(zeigerdatei)
                 If fi.Exists Then
                     Using fineu As New IO.StreamReader(zeigerdatei, System.Text.Encoding.GetEncoding(1252))
                         XMLdatei = fineu.ReadLine
@@ -44,7 +45,7 @@
                     Return XMLdatei
                 End If
             Catch ex As Exception
-                nachricht("Fehler in readFromZeigerDatei: " ,ex)
+                nachricht("Fehler in readFromZeigerDatei: ", ex)
                 Return "fehler"
             End Try
         End Function
@@ -92,7 +93,7 @@
                 My.Log.WriteEntry("My.Log.DefaultFileLogWriter: " & My.Log.DefaultFileLogWriter.FullLogFileName)
                 My.Log.WriteEntry("startlog: " & Now.ToString)
             Catch ex As Exception
-                nachricht("Fehler in " & System.Reflection.MethodBase.GetCurrentMethod().Name & ": " ,ex)
+                nachricht("Fehler in " & System.Reflection.MethodBase.GetCurrentMethod().Name & ": ", ex)
             End Try
         End Sub
         Public Shared Sub nachricht(text As String)
