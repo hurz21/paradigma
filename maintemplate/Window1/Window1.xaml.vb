@@ -304,7 +304,7 @@ Class Window1
 
     Private Shared Sub hatZugriffOderEnde(ByVal testfile As IO.FileInfo)
         If Not testfile.Exists Then
-            MessageBox.Show("Die Paradigmaresource  '\\file-paradigma' ist nicht Ihrem Zugriff. " & Environment.NewLine &
+            MessageBox.Show("Die Paradigmaresource  '\\file-paradigma'   ist nicht Ihrem Zugriff. " & Environment.NewLine &
                             "Bitte " & Environment.NewLine &
                             "1. Rechner neu starten oder " & Environment.NewLine &
                             "2. die IT-Abteilung informieren!",
