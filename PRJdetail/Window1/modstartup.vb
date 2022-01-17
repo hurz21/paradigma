@@ -147,7 +147,7 @@
     Public Sub hatZugriffOderEnde(ByVal paradigmaXML As String)
         Dim testfile As New IO.FileInfo(paradigmaXML)
         If Not testfile.Exists Then
-            MessageBox.Show("Die Paradigmaresource (\\file-) ist nicht Ihrem Zugriff. " & Environment.NewLine &
+            MessageBox.Show("Die Paradigmaresource (\\file-paradigma) ist nicht Ihrem Zugriff. " & Environment.NewLine &
                             "Bitte " & Environment.NewLine &
                             "1. Rechner neu starten oder " & Environment.NewLine &
                             "2. die IT-Abteilung informieren!",
