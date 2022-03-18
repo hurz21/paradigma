@@ -56,6 +56,19 @@ Class Window1
         End If
         'userImUmweltamtLautAD()
         ladevorgangabgeschlossen = True
+        If myglobalz.zuhause Then
+            btnProjekte.Visibility = Visibility.Collapsed
+            btnZahlungen.Visibility = Visibility.Collapsed
+            btnhandbuch.Visibility = Visibility.Collapsed
+            btnEigentuemer.Visibility = Visibility.Collapsed
+            grpOnline.Visibility = Visibility.Collapsed
+            btnZahlungen.Visibility = Visibility.Collapsed
+            btnStartbis.Visibility = Visibility.Collapsed
+            btnStake.Visibility = Visibility.Collapsed
+            btnNureinScreen.Visibility = Visibility.Collapsed
+        Else
+            btnDokumente.Visibility = Visibility.Collapsed
+        End If
         FocusManager.SetFocusedElement(Me, tbzuVorgang)
     End Sub
 
@@ -768,6 +781,29 @@ Class Window1
         www.handleDrop(e)
         www = Nothing
     End Sub
+
+    Private Sub btnDokumente_Click(sender As Object, e As RoutedEventArgs)
+        e.Handled = True
+        nachricht("Dokumente")
+        KillKookieFenster()
+        '  Dim procExists as Boolean = Process.GetProcesses().Any(Function(p) p.ProcessName.Contains("Bestand-"))
+        If myglobalz.BestandsFensterIstgeoeffnet Then
+            ' MsgBox("Es ist bereits eine Bestandsübersicht geöffnet. Sie können Sie direkt über die Taskbar von Windows aufrufen.", MsgBoxStyle.Information, "Zur Bestandsliste")
+            Exit Sub
+        End If
+        nachricht("Dokumente")
+        nachricht("FormularBestandStammdaten2")
+        Dim wz As New winDokuFilter(False)
+        Dim modalOeffnen = True
+        If modalOeffnen Then
+            wz.ShowDialog()
+        Else
+            wz.Show()
+        End If
+        nachricht("FormularBestandStammdaten3")
+
+    End Sub
+
     Private Sub btnExplorer_Click(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         Process.Start(kfatools.KFAeingangsDir)

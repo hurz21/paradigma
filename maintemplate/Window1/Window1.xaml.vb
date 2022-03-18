@@ -67,6 +67,11 @@ Class Window1
         'userImUmweltamtLautAD()
         ladevorgangabgeschlossen = True
         FocusManager.SetFocusedElement(Me, tbzuVorgang)
+        If myGlobalz.zuhause Then
+            btnProjekte.Visibility = Visibility.Collapsed
+            btnZahlungen.Visibility = Visibility.Collapsed
+            btnHandbuch.Visibility = Visibility.Collapsed
+        End If
     End Sub
 
 
@@ -258,7 +263,11 @@ Class Window1
             'End If
             'Paradigma_start.Win1Tools.UserinifileAnlegen()
             'myc.userIniProfile = New clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale & ".ini"))
-
+            If myGlobalz.zuhause Then
+                btnProjekte.Visibility = Visibility.Collapsed
+                btnZahlungen.Visibility = Visibility.Collapsed
+                btnHandbuch.Visibility = Visibility.Collapsed
+            End If
             CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
                                                    IO.Path.Combine(initP.getValue("Haupt.UserInis")),
                                                                    myGlobalz.sitzung.aktBearbeiter.Initiale)

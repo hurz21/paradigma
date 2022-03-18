@@ -115,7 +115,7 @@
                     <TextBlock Text=" B-Pläne" Padding="0"/>
                 </StackPanel>
             </Button>
-            <Button Content="Handbuch" Width="100"  Margin="0"  Height="29" Click="Handbuch_Click" />
+            <Button Content="Handbuch" Width="100"  Margin="0"  Height="29" Click="Handbuch_Click" Name="btnHandbuch"/>
             <Button Content="GIS " Width="100"  Margin="0"  Height="29" Click="NeuGis_Click"   Name="btnStartbis"/>
             <GroupBox Header="Online-Formulare" FontSize="8">
                 <StackPanel>

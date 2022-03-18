@@ -77,6 +77,12 @@
                     x:Name="btnmeineinArbeit" 
                     IsDefault="True" 
                     Click="btnBestand_Click">Bestand</Button>
+            <Button  Width="100" 
+                    Height="44" 
+                    VerticalAlignment="Bottom" 
+                    x:Name="btnDokumente" 
+                    IsDefault="True" 
+                    Click="btnDokumente_Click">Dokumente</Button>
             <Button  Width="100" Visibility="Collapsed"  Height="29"  Margin="0" VerticalAlignment="Top" Name="btnAdmin"
                      Click="btnAdmin_Click">Admin</Button>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -116,9 +122,9 @@
                     <TextBlock Text=" B-Pläne" Padding="0"/>
                 </StackPanel>
             </Button>
-            <Button Content="Handbuch" Width="100"  Margin="0"  Height="29" Click="Handbuch_Click" />
+            <Button Content="Handbuch" Name="btnhandbuch" Width="100"  Margin="0"  Height="29" Click="Handbuch_Click" />
             <Button Content="GIS " Width="100"  Margin="0"  Height="29" Click="NeuGis_Click"   Name="btnStartbis"/>
-            <GroupBox Header="Online-Formulare" FontSize="8">
+            <GroupBox Header="Online-Formulare" FontSize="8" Name="grpOnline">
                 <StackPanel>
                     <Button Width="90"  Margin="0"   Height="29" Click="btnOnlineforms_Click" 
                              Style="{StaticResource lessButton}" Name="btnOnlineforms" >
@@ -137,7 +143,7 @@
             <!--<Button Content=".Heic " Width="100"  Margin="0"  Height="29" 
                     ToolTip="Wandelt das neue Apple-Fotoformat nach JPG um"
                     Click="btnHeic2jpg_Click"   Name="btnHeic2jpg"/>-->
-            <Button Background="AliceBlue">
+            <Button Background="AliceBlue" Name="btnNureinScreen">
                 <CheckBox Name="cbNurEinBildschirm" Content="nur 1 Monitor" IsChecked="False" 
                       Checked="cbNurEinBildschirm_Checked" Unchecked="cbNurEinBildschirm_Unchecked" Height="25"/>
             </Button>
