@@ -70,4 +70,77 @@ Public Class Kookieliste
             nachricht_und_Mbox("" & ex.ToString)
         End Try
     End Sub
+
+    Private Sub btnstammdaten_Click(sender As Object, e As RoutedEventArgs)
+        e.Handled = True
+        nachricht("BESTAND")
+        'KillKookieFenster()
+        '  Dim procExists as Boolean = Process.GetProcesses().Any(Function(p) p.ProcessName.Contains("Bestand-"))
+        If myglobalz.BestandsFensterIstgeoeffnet Then
+            ' MsgBox("Es ist bereits eine Bestandsübersicht geöffnet. Sie können Sie direkt über die Taskbar von Windows aufrufen.", MsgBoxStyle.Information, "Zur Bestandsliste")
+            Exit Sub
+        End If
+        nachricht("BESTAND2")
+        clsStartup.FormularBestandStammdaten(False, False)
+    End Sub
+
+    Private Sub btnDokumente_Click(sender As Object, e As RoutedEventArgs)
+        nachricht("Dokumente")
+        Dim wz As New winDokuFilter(False)
+        Dim modalOeffnen = True
+        If modalOeffnen Then
+            wz.ShowDialog()
+        Else
+            wz.Show()
+        End If
+        nachricht("FormularBestandStammdaten3")
+    End Sub
+
+    Private Sub btnAdresse_Click(sender As Object, e As RoutedEventArgs)
+        nachricht("Dokumente")
+        Dim wz As New winAdressBestand(False)
+        Dim modalOeffnen = True
+        If modalOeffnen Then
+            wz.ShowDialog()
+        Else
+            wz.Show()
+        End If
+        nachricht("FormularBestandStammdaten3")
+    End Sub
+
+    Private Sub btnFST_Click(sender As Object, e As RoutedEventArgs)
+        nachricht("Dokumente")
+        Dim wz As New winFlurstueckFilter(False)
+        Dim modalOeffnen = True
+        If modalOeffnen Then
+            wz.ShowDialog()
+        Else
+            wz.Show()
+        End If
+        nachricht("FormularBestandStammdaten3")
+    End Sub
+
+    Private Sub btnBeteiligte_Click(sender As Object, e As RoutedEventArgs)
+        nachricht("Dokumente")
+        Dim wz As New winBestandBeteiligte(False)
+        Dim modalOeffnen = True
+        If modalOeffnen Then
+            wz.ShowDialog()
+        Else
+            wz.Show()
+        End If
+        nachricht("FormularBestandStammdaten3")
+    End Sub
+
+    Private Sub btnIllegale_Click(sender As Object, e As RoutedEventArgs)
+        nachricht("Dokumente")
+        Dim wz As New IllegbauFilter(False)
+        Dim modalOeffnen = True
+        If modalOeffnen Then
+            wz.ShowDialog()
+        Else
+            wz.Show()
+        End If
+        nachricht("FormularBestandStammdaten3")
+    End Sub
 End Class

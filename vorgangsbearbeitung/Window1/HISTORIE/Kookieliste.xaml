@@ -33,6 +33,15 @@
         </Style>
     </Window.Resources>
     <DockPanel  >
+        <StackPanel Name="stpTopline" Height="30" DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Padding="5">Suche in: </TextBlock>
+            <Button Name="btnstammdaten" Content="Stammdaten" Click="btnstammdaten_Click" Margin="5,0,5,0" Height="25"/>
+            <Button Name="btnDokumente" Content="Dokumente" Click="btnDokumente_Click" Margin="5,0,5,0" Height="25"/>
+            <Button Name="btnAdresse" Content="Adresse" Click="btnAdresse_Click" Margin="5,0,5,0" Height="25"/>
+            <Button Name="btnFST" Content="Flurstück" Click="btnFST_Click" Margin="5,0,5,0" Height="25"/>
+            <Button Name="btnBeteiligte" Content="Beteiligte" Click="btnBeteiligte_Click" Margin="5,0,5,0" Height="25"/>
+            <Button Name="btnIllegale" Content="illegale Bauten" Click="btnIllegale_Click" Margin="5,0,5,0" Height="25"/>
+        </StackPanel>
         <DataGrid x:Name="dgHistory" ItemsSource="{Binding}"     Visibility="Visible"  
                                       MaxHeight="580" RowStyle="{StaticResource dgRowStyleHistory}" 
                                    ColumnHeaderStyle="{StaticResource dgHeaderStyle}"  
