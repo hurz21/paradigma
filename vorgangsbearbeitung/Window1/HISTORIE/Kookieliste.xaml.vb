@@ -87,7 +87,7 @@ Public Class Kookieliste
     Private Sub btnDokumente_Click(sender As Object, e As RoutedEventArgs)
         nachricht("Dokumente")
         Dim wz As New winDokuFilter(False)
-        Dim modalOeffnen = True
+        Dim modalOeffnen = False
         If modalOeffnen Then
             wz.ShowDialog()
         Else
@@ -99,7 +99,7 @@ Public Class Kookieliste
     Private Sub btnAdresse_Click(sender As Object, e As RoutedEventArgs)
         nachricht("Dokumente")
         Dim wz As New winAdressBestand(False)
-        Dim modalOeffnen = True
+        Dim modalOeffnen = False
         If modalOeffnen Then
             wz.ShowDialog()
         Else
@@ -111,7 +111,7 @@ Public Class Kookieliste
     Private Sub btnFST_Click(sender As Object, e As RoutedEventArgs)
         nachricht("Dokumente")
         Dim wz As New winFlurstueckFilter(False)
-        Dim modalOeffnen = True
+        Dim modalOeffnen = False
         If modalOeffnen Then
             wz.ShowDialog()
         Else
@@ -123,7 +123,7 @@ Public Class Kookieliste
     Private Sub btnBeteiligte_Click(sender As Object, e As RoutedEventArgs)
         nachricht("Dokumente")
         Dim wz As New winBestandBeteiligte(False)
-        Dim modalOeffnen = True
+        Dim modalOeffnen = False
         If modalOeffnen Then
             wz.ShowDialog()
         Else
@@ -135,7 +135,7 @@ Public Class Kookieliste
     Private Sub btnIllegale_Click(sender As Object, e As RoutedEventArgs)
         nachricht("Dokumente")
         Dim wz As New IllegbauFilter(False)
-        Dim modalOeffnen = True
+        Dim modalOeffnen = False
         If modalOeffnen Then
             wz.ShowDialog()
         Else

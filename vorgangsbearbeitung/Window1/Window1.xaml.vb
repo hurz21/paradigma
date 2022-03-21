@@ -794,7 +794,7 @@ Class Window1
         nachricht("Dokumente")
         nachricht("FormularBestandStammdaten2")
         Dim wz As New winDokuFilter(False)
-        Dim modalOeffnen = True
+        Dim modalOeffnen = False
         If modalOeffnen Then
             wz.ShowDialog()
         Else
