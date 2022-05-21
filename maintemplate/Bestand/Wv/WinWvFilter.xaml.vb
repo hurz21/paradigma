@@ -33,15 +33,15 @@ Public Class WinWvFilter
 
     Private Sub initStartPositionOnScreen()
         If myGlobalz.nurEinBildschirm Then Exit Sub
-        Dim topval = (CLstart.formposition.setPosition("diverse", "winbestandformpositiontop", Me.Top))
+        Dim topval = (CLstart.formposition.getPosition("diverse", "winbestandformpositiontop", Me.Top))
         If topval < 0 Then
             Me.Top = 0
         Else
             Me.Top = topval
         End If
-        Me.Left = CLstart.formposition.setPosition("diverse", "winbestandformpositionleft", Me.Left)
-        Me.Width = CLstart.formposition.setPosition("diverse", "winbestandformpositionwidth", Me.Width)
-        Me.Height = CLstart.formposition.setPosition("diverse", "winbestandformpositionheight", Me.Height)
+        Me.Left = CLstart.formposition.getPosition("diverse", "winbestandformpositionleft", Me.Left)
+        Me.Width = CLstart.formposition.getPosition("diverse", "winbestandformpositionwidth", Me.Width)
+        Me.Height = CLstart.formposition.getPosition("diverse", "winbestandformpositionheight", Me.Height)
     End Sub
     Shared Sub einfaerbenDerRowsvorbereiten()
         For i = 0 To myGlobalz.sitzung.DBWiedervorlageREC.dt.Rows.Count - 1

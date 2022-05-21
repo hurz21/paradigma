@@ -32,11 +32,11 @@ Class Window1
         myGlobalz.nurEinBildschirm = read_nurEinBildschirm()
         Height = 1 : Width = 1
         'If Not myGlobalz.nurEinBildschirm Then
-        '    Me.Top = CLstart.formposition.setPosition("diverse", "winHauptformpositiontop", Me.Top)
-        '    Me.Left = CLstart.formposition.setPosition("diverse", "winHauptformpositionleft", Me.Left)
+        '    Me.Top = CLstart.formposition.getPosition("diverse", "winHauptformpositiontop", Me.Top)
+        '    Me.Left = CLstart.formposition.getPosition("diverse", "winHauptformpositionleft", Me.Left)
         'End If
-        'Me.Width = CLstart.formposition.setPosition("diverse", "winHauptformpositionwidth", Me.Width)
-        'Me.Height = CLstart.formposition.setPosition("diverse", "winHauptformpositionheight", Me.Height)
+        'Me.Width = CLstart.formposition.getPosition("diverse", "winHauptformpositionwidth", Me.Width)
+        'Me.Height = CLstart.formposition.getPosition("diverse", "winHauptformpositionheight", Me.Height)
         'If startModus = "neu" Then
         KillKookieFenster()
         Dim modus = "normal"

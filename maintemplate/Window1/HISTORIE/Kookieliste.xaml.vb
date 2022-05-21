@@ -16,8 +16,8 @@ Public Class Kookieliste
         e.Handled = True
         ShowHistory()
         If myGlobalz.nurEinBildschirm Then Exit Sub
-        Me.Top = CLstart.formposition.setPosition("diverse", "winKOOKIEositiontop", Me.Top)
-        Me.Left = CLstart.formposition.setPosition("diverse", "winKOOKIEpositionleft", Me.Left)
+        Me.Top = CLstart.formposition.getPosition("diverse", "winKOOKIEositiontop", Me.Top)
+        Me.Left = CLstart.formposition.getPosition("diverse", "winKOOKIEpositionleft", Me.Left)
     End Sub
     Private Sub savePosition()
         If myGlobalz.nurEinBildschirm Then Exit Sub
