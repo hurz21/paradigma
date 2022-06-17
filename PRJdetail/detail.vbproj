@@ -302,6 +302,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Details\WindetailNEU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Details\winPDFA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -732,6 +736,9 @@
     <Compile Include="Details\Stamm\clsStammTools.vb" />
     <Compile Include="Details\Vorlagen\winStatisch.xaml.vb">
       <DependentUpon>winStatisch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Details\WindetailNEU.xaml.vb">
+      <DependentUpon>WindetailNEU.xaml</DependentUpon>
     </Compile>
     <Compile Include="gesetzesManager\clsgesetzesManager.vb" />
     <Compile Include="gesetzesManager\clsGesetzesOracle.vb" />
@@ -1234,22 +1241,22 @@
   <ItemGroup>
     <PublishFile Include="Devart.Data.Oracle">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="MySql.Data">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
