@@ -1258,7 +1258,7 @@ Partial Public Class Window_Detail
         If neuesFenster Then
             Dim nf As New WindetailNEU
             nf.Show()
-            Close()
+            '  Close()
         End If
         Debug.Print("" & Environment.UserName)
 
