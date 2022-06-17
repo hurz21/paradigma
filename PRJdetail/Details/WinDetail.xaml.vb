@@ -1254,6 +1254,12 @@ Partial Public Class Window_Detail
     End Function
     Private Sub Window_Detail_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         e.Handled = True
+        Dim neuesFenster = True
+        If neuesFenster Then
+            Dim nf As New WindetailNEU
+            nf.Show()
+            Close()
+        End If
         Debug.Print("" & Environment.UserName)
 
         If myGlobalz.sitzung.aktBearbeiter.username.ToLower = "feinen_j" Then

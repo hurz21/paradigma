@@ -5,6 +5,7 @@ Imports System.Data
 Imports System.Data.Common
 Namespace bestandTools
     Public Class vorgangidListe
+        'hurz
         Public Shared Function fuelleFaelligeMitAllenVorgaengen(ByVal meinDT As DataTable, ByRef faelligeWV As Integer()) As String
             nachricht("HoleFaelligeWiedervorlagen ---------------")
             If meinDT Is Nothing Then
@@ -22,7 +23,7 @@ Namespace bestandTools
                 KorrigiereSummeString(summe)
                 Return summe
             Catch ex As Exception
-                nachricht("Fehler in HoleFaelligeWiedervorlagen ---------------" ,ex)
+                nachricht("Fehler in HoleFaelligeWiedervorlagen ---------------", ex)
                 Return ""
             End Try
         End Function
