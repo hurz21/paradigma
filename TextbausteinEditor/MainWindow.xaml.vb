@@ -5,6 +5,9 @@ Class MainWindow
     Public Property username As String = Environment.GetEnvironmentVariable("username")
     Public Property aktTB As New TB_Auswahl(TB_RootPath)
     Private Sub MainWindow_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
+#If debug Then
+        TB_RootPath="c:\"
+#End If
         initGruppenCombo()
         '  rtf2Box()
         initAdmin()

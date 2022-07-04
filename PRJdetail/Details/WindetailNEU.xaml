@@ -280,11 +280,11 @@
     <DockPanel    >
         <TabControl Name="tbControl1"  Background="{StaticResource backg3}" >
             <TabItem Header="Sachdaten" IsSelected="True" x:Name="tiSachdaten" Margin="-2,0,2,0"  
-                     AllowDrop="True"  >
+                     AllowDrop="True" Height="20" VerticalAlignment="Top"  >
                 <DockPanel>
-                    <DockPanel x:Name="kopp" DockPanel.Dock="Top"     Height="310"   >
-                       
-                        <StackPanel x:Name="stackp1">
+                    <DockPanel x:Name="kopp" DockPanel.Dock="Top"     Height="150"   >
+
+                        <StackPanel x:Name="stackp1" Height="150">
                             <StackPanel Orientation="Horizontal">
                                 <Button Height="100" Margin="5,25,5,5" Width="30" x:Name="btnAkteziehen" Click="btnAkteziehen_Click">
                                     <TextBlock Text="Akte ziehen">
@@ -293,6 +293,21 @@
                                         </TextBlock.LayoutTransform>
                                     </TextBlock>
                                 </Button>
+                                <GroupBox Header="GIS" Width="90" Height="90" Name="grpGisstart"   >
+                                    <StackPanel>
+                                        <StackPanel Margin="10" Visibility="Collapsed">
+                                            <RadioButton Name="rbNeustartGIS" GroupName="gisstartmode" IsChecked="True" Content="Neustart"/>
+                                            <RadioButton Name="rbNeueGISInstanz" GroupName="gisstartmode"  Content="als weitere Instanz"/>
+                                        </StackPanel>
+                                        <Button    x:Name="btngislayer"   Click="btnZumGis_Click" Width="80"  
+                                           ToolTip="Ausschnitt im DesktopGIS darstellen"  >GIS starten
+                                        </Button>
+                                        <Button Name="btnStartBplan" Click="btnStartBplan_Click" ToolTip="Das Bebauungsplanklataster wird gestartet. Dort können sie sich eine B-Plan aussuchen!"
+                                                 Content="B-Pläne" Width="80" />
+                                        <Button Name="btngooglestarten" Click="btngooglestarten_Click" Content="Google-Maps" 
+                                                Visibility="Collapsed"  Margin="10" />
+                                    </StackPanel>
+                                </GroupBox>
                                 <TabControl x:Name="Werkzeuge"  >
                                     <TabItem Header="Werkzeuge" Margin="3,0,-3,0" Name="tiWerkzeuge">
 
@@ -441,112 +456,10 @@
                                 </TabControl>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Height="180">
+                            <StackPanel Orientation="Horizontal" Height="18">
 
-                                <GroupBox Header="Zahlungen" Margin="0,-10,0,0" FontSize="10" Height="154"  Padding="0,5,0,0" IsEnabled="True"
-                                           x:Name="grpBoxKosten" >
-
-                                    <Grid >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="74" />
-                                            <ColumnDefinition Width="36"/>
-                                            <ColumnDefinition Width="70" />
-
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="15"/>
-                                            <RowDefinition Height="15"/>
-                                            <RowDefinition Height="15"/>
-                                            <RowDefinition Height="15"/>
-                                            <RowDefinition Height="15"/>
-                                            <RowDefinition Height="15"/>
-                                            <RowDefinition Height="15"/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <CheckBox Grid.Column="0" Content="Interne Leistungsverrechnung" Grid.ColumnSpan="3"
-                                     Click="chkboxInterneZahlungNEU" x:Name="chkboxInterneZahlung" Margin="0,0,0,14" Grid.RowSpan="2"/>
-                                        <CheckBox Grid.Column="0" Grid.Row="1" Content="Verwaltungsgebühr"
-                                          x:Name="chkboxverwaltungsgebuehr" Click="chkboxverwaltungsgebuehr_Click_1" Margin="0,1,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="2"  Grid.Row="1" Content="bezahlt"
-                                            x:Name="verwaltungsgebuehrBezahlt" Click="verwaltungsgebuehrBezahlt_Click_1" Margin="0,1,0,13" Grid.RowSpan="2"/>
-
-                                        <CheckBox Grid.Column="0" Grid.Row="2" Content="Verwarnungsgeld"
-                                            x:Name="VERWARNUNGSGELD" Click="VERWARNUNGSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="2"  Grid.Row="2" Content="bezahlt"
-                                            x:Name="VerwarnungsgeldBezahlt" Click="VerwarnungsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
-
-                                        <CheckBox Grid.Column="0" Grid.Row="3" Content="Bußgeld"
-                                            x:Name="BUSSGELD" Click="BUSSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="2"  Grid.Row="3" Content="bezahlt"
-                                            x:Name="BUSSGELDBezahlt" Click="BUSSGELDBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
-
-
-                                        <CheckBox Grid.Column="0" Grid.Row="4" Content="Zwangsgeld"
-                                            x:Name="Zwangsgeld" Click="Zwangsgeld_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="2"  Grid.Row="4" Content="bezahlt"
-                                            x:Name="ZwangsgeldBezahlt" Click="ZwangsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,00"/>
-
-                                        <CheckBox Grid.Column="0" Grid.Row="5" Content="Ersatzgeld"
-                                            x:Name="ersatzgeld" Click="ersatzgeld_Click_1" Margin="0,2,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="1"  Grid.Row="5" Content="be-"
-                                            x:Name="ersatzgeldBezahlt" Click="ersatzgeldBezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="1"/>
-
-                                        <CheckBox Grid.Column="2"  Grid.Row="5" Content="ausgezahlt"
-                                            x:Name="ersatzgeldausgezahlt" Click="ersatzgeldausgezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="2"/>
-
-                                        <CheckBox Grid.Column="0" Grid.Row="6" Content="Sicherheitsleistung"
-                                            x:Name="sicherheit" Click="sicherheit_Click_1" Grid.RowSpan="2" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="2"  Grid.Row="6" Content="hinterlegt"
-                                            x:Name="sicherheitBezahlt" Click="sicherheitBezahlt_Click_1" Grid.RowSpan="2" Margin="0,3,0,11"/>
-
-                                        <CheckBox Grid.Column="0" Grid.Row="7" Content="Beihilfe/Zuschuss"
-                                            x:Name="beihilfe" Click="beihilfe_Click_1" Margin="0,3,0,0" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="2"  Grid.Row="7" Content="gezahlt"
-                                            x:Name="beihilfeBezahlt" Click="beihilfeBezahlt_Click_1" Margin="0,3,0,00"/>
-                                    </Grid>
-                                </GroupBox>
-                                <GroupBox Header="GIS" Width="200" Height="154" Name="grpGisstart" Margin="0,-10,0,0" >
-                                    <StackPanel>
-                                        <StackPanel Margin="10" Visibility="Collapsed">
-                                            <RadioButton Name="rbNeustartGIS" GroupName="gisstartmode" IsChecked="True" Content="Neustart"/>
-                                            <RadioButton Name="rbNeueGISInstanz" GroupName="gisstartmode"  Content="als weitere Instanz"/>
-                                        </StackPanel>
-                                        <Button    x:Name="btngislayer"   Click="btnZumGis_Click" Width="100"  Margin="10,20"
-                                           ToolTip="Ausschnitt im DesktopGIS darstellen"  >GIS starten
-                                        </Button>
-                                        <Button Name="btnStartBplan" Click="btnStartBplan_Click" ToolTip="Das Bebauungsplanklataster wird gestartet. Dort können sie sich eine B-Plan aussuchen!"
-                                                Margin="10" Content="Bebauungspläne" Width="100" />
-                                        <Button Name="btngooglestarten" Click="btngooglestarten_Click" Content="Google-Maps" 
-                                                Visibility="Collapsed"  Margin="10" />
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Bauantrag-Online" Width="200" Name="grpbauantrag" Height="154" Margin="0,-10,0,0"  >
-                                    <StackPanel Margin="5">
-
-                                        <Button Name="btnZuConject" Click="BtnZuConject_Click"    VerticalAlignment="Center"   Width="170" Margin="5">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock VerticalAlignment="Center">Übersicht öffnen</TextBlock>
-                                            </StackPanel>
-                                        </Button>
-                                        <StackPanel Orientation="Horizontal">
-                                            <CheckBox Name="cbIstConject" Click="CbIstConject_Click"  
-                                                      Margin="0,9,0,5"
-                                                      ToolTip="Aktivieren wenn dieser Vorgang mit Bauantrag Online bearbeitet wird.">
-                                                <StackPanel>
-                                                    <TextBlock>Bauantrag-</TextBlock>
-                                                    <TextBlock>Online</TextBlock>
-                                                </StackPanel>
-                                            </CheckBox>
-                                            <Button Name="btnDownloaddir" Click="BtnDownloaddir_Click" HorizontalAlignment="Right"
-                                                Content="Download" ToolTip="Download - Verzeichnis anzeigen lassen" Width=" 90" Margin="5"/>
-                                        </StackPanel>
-
-                                        <StackPanel Background="NavajoWhite" Height="49">
-                                            <TextBlock Name="tbConjectDropText" Text="ConjectPM.zip hier droppen" HorizontalAlignment="Center"  />
-                                        </StackPanel>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Kontakte" Width="400" Height="154" Name="grpKontakte"
+                               
+                                <GroupBox Visibility="Collapsed" Header="Kontakte" Width="400" Height="154" Name="grpKontakte"
                                           Background="{StaticResource backg3}" >
                                     <TabControl  >
                                         <TabItem Header="FD Umwelt" MouseDown="TabItemFDU_MouseDown" >
@@ -1575,7 +1488,7 @@
             <TabItem x:Name="tiStammdaten" Header="Stammdaten" Height="20" VerticalAlignment="Top">
                 <DockPanel>
                     <GroupBox DockPanel.Dock="Top" x:Name="grpStammdatenUebersicht" 
-                                 
+                         Margin="50"        
                       Header="Stammdaten"    >
                         <Grid x:Name="grdKopf" 
                                 VerticalAlignment="Top" 
@@ -1807,6 +1720,107 @@
 
                             </TextBlock>
                         </Grid>
+                    </GroupBox>
+
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name="tiZahlungen" Header="Zahlungen" Height="20" VerticalAlignment="Top">
+                <DockPanel>
+                    <GroupBox DockPanel.Dock="Right" VerticalAlignment="Top" Margin="50"
+                        Header="Zahlungen"  FontSize="10" Height="154"  Padding="0,5,0,0" IsEnabled="True"
+                                           x:Name="grpBoxKosten" >
+
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="74" />
+                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="70" />
+
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Column="0" Content="Interne Leistungsverrechnung" Grid.ColumnSpan="3"
+                                     Click="chkboxInterneZahlungNEU" x:Name="chkboxInterneZahlung" Margin="0,0,0,14" Grid.RowSpan="2"/>
+                            <CheckBox Grid.Column="0" Grid.Row="1" Content="Verwaltungsgebühr"
+                                          x:Name="chkboxverwaltungsgebuehr" Click="chkboxverwaltungsgebuehr_Click_1" Margin="0,1,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="1" Content="bezahlt"
+                                            x:Name="verwaltungsgebuehrBezahlt" Click="verwaltungsgebuehrBezahlt_Click_1" Margin="0,1,0,13" Grid.RowSpan="2"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="2" Content="Verwarnungsgeld"
+                                            x:Name="VERWARNUNGSGELD" Click="VERWARNUNGSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="2" Content="bezahlt"
+                                            x:Name="VerwarnungsgeldBezahlt" Click="VerwarnungsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="3" Content="Bußgeld"
+                                            x:Name="BUSSGELD" Click="BUSSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="3" Content="bezahlt"
+                                            x:Name="BUSSGELDBezahlt" Click="BUSSGELDBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
+
+
+                            <CheckBox Grid.Column="0" Grid.Row="4" Content="Zwangsgeld"
+                                            x:Name="Zwangsgeld" Click="Zwangsgeld_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="4" Content="bezahlt"
+                                            x:Name="ZwangsgeldBezahlt" Click="ZwangsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,00"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="5" Content="Ersatzgeld"
+                                            x:Name="ersatzgeld" Click="ersatzgeld_Click_1" Margin="0,2,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="1"  Grid.Row="5" Content="be-"
+                                            x:Name="ersatzgeldBezahlt" Click="ersatzgeldBezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="1"/>
+
+                            <CheckBox Grid.Column="2"  Grid.Row="5" Content="ausgezahlt"
+                                            x:Name="ersatzgeldausgezahlt" Click="ersatzgeldausgezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="2"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="6" Content="Sicherheitsleistung"
+                                            x:Name="sicherheit" Click="sicherheit_Click_1" Grid.RowSpan="2" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="6" Content="hinterlegt"
+                                            x:Name="sicherheitBezahlt" Click="sicherheitBezahlt_Click_1" Grid.RowSpan="2" Margin="0,3,0,11"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="7" Content="Beihilfe/Zuschuss"
+                                            x:Name="beihilfe" Click="beihilfe_Click_1" Margin="0,3,0,0" Grid.ColumnSpan="2"/>
+                            <CheckBox Grid.Column="2"  Grid.Row="7" Content="gezahlt"
+                                            x:Name="beihilfeBezahlt" Click="beihilfeBezahlt_Click_1" Margin="0,3,0,00"/>
+                        </Grid>
+                    </GroupBox>
+
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name="tiBAonline" Header="Bauantrag-Online" Margin="-2,-2,-2,2">
+                <DockPanel>
+                    <GroupBox VerticalAlignment="Top" HorizontalAlignment="Left" 
+                              
+                              Header="Bauantrag-Online" Width="200" Name="grpbauantrag" Height="154" Margin="50"  >
+                        <StackPanel Margin="5">
+
+                            <Button Name="btnZuConject" Click="BtnZuConject_Click"    VerticalAlignment="Center"   Width="170" Margin="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center">Übersicht öffnen</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Name="cbIstConject" Click="CbIstConject_Click"  
+                                                      Margin="0,9,0,5"
+                                                      ToolTip="Aktivieren wenn dieser Vorgang mit Bauantrag Online bearbeitet wird.">
+                                    <StackPanel>
+                                        <TextBlock>Bauantrag-</TextBlock>
+                                        <TextBlock>Online</TextBlock>
+                                    </StackPanel>
+                                </CheckBox>
+                                <Button Name="btnDownloaddir" Click="BtnDownloaddir_Click" HorizontalAlignment="Right"
+                                                Content="Download" ToolTip="Download - Verzeichnis anzeigen lassen" Width=" 90" Margin="5"/>
+                            </StackPanel>
+
+                            <StackPanel Background="NavajoWhite" Height="49">
+                                <TextBlock Name="tbConjectDropText" Text="ConjectPM.zip hier droppen" HorizontalAlignment="Center"  />
+                            </StackPanel>
+                        </StackPanel>
                     </GroupBox>
 
                 </DockPanel>

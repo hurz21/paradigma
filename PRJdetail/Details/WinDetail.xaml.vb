@@ -1254,12 +1254,12 @@ Partial Public Class Window_Detail
     End Function
     Private Sub Window_Detail_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         e.Handled = True
-        Dim neuesFenster = True
-        If neuesFenster Then
-            Dim nf As New WindetailNEU
-            nf.Show()
-            '  Close()
-        End If
+        'Dim neuesFenster = True
+        'If neuesFenster Then
+        '    Dim nf As New WindetailNEU
+        '    nf.Show()
+        '    '  Close()
+        'End If
         Debug.Print("" & Environment.UserName)
 
         If myGlobalz.sitzung.aktBearbeiter.username.ToLower = "feinen_j" Then
@@ -3489,6 +3489,7 @@ Partial Public Class Window_Detail
 
         Dim dummy = modstartup.Startroutine()
         myGlobalz.zuhause = getZuhauseFromInifile()
+        myGlobalz.zuhause = getZuhauseFromInifile()
 
         If myGlobalz.zuhause Then
             gigabyte = CLstart.clsPlattenplatz.clsPlattenplatz("z:")
@@ -3503,7 +3504,7 @@ Partial Public Class Window_Detail
         '    myGlobalz.zuhause = True
         'End If
         If myGlobalz.zuhause Then
-            suppressUmweltkram()
+            'suppressUmweltkram()
         End If
         initDarkTheme()
         tbBemerkungReiter.DataContext = myGlobalz.sitzung.aktVorgang.Stammdaten

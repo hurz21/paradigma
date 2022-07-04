@@ -3485,6 +3485,7 @@ Public Class WindetailNEU
 
         Dim dummy = modstartup.Startroutine()
         myGlobalz.zuhause = getZuhauseFromInifile()
+        myGlobalz.zuhause = False
 
         If myGlobalz.zuhause Then
             gigabyte = CLstart.clsPlattenplatz.clsPlattenplatz("z:")
