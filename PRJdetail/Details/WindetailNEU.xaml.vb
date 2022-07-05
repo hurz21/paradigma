@@ -5740,10 +5740,12 @@ Public Class WindetailNEU
 
     End Sub
 
+
+
     Private Sub btnZumGis_Click(sender As Object, e As RoutedEventArgs)
-
+        mgisStarten(CBool(paradigmaKILLALLGIS.IsChecked))
+        e.Handled = True
     End Sub
-
 
     'Private Sub btnMehrfachDokumenteDrucken_Click(sender As Object, e As RoutedEventArgs)
     '    e.Handled = True
