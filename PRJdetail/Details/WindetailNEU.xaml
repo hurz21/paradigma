@@ -278,10 +278,14 @@
     </Window.Resources>
 
     <DockPanel    >
+        <TextBlock Name="tbBeschreibung3" FontSize="16" Background="Black" Foreground="white" Margin="5,0,0,0" DockPanel.Dock="Top"
+                 MouseDown="tbBeschreibung3_MouseDown">OOOOOOOOOOOOOOOOOOOOOOO</TextBlock>
         <TabControl Name="tbControl1"  Background="{StaticResource backg3}" >
+            
             <TabItem Header="Sachdaten" IsSelected="True" x:Name="tiSachdaten" Margin="-2,0,2,0"  
-                     AllowDrop="True" Height="20" VerticalAlignment="Top"  >
+                   Height="20" VerticalAlignment="Top"  >
                 <DockPanel>
+                
                     <DockPanel x:Name="kopp" DockPanel.Dock="Top"     Height="150"   >
 
                         <StackPanel x:Name="stackp1" Height="150">
@@ -416,6 +420,64 @@
                                             </StackPanel>
                                         </StackPanel>
                                     </TabItem>
+                                    <TabItem Header="Kontakte">
+                                        <StackPanel Orientation="Horizontal"   VerticalAlignment="Top">
+
+
+                                        
+                                                <TabControl  >
+                                                    <TabItem Header="FD Umwelt" MouseDown="TabItemFDU_MouseDown" >
+                                                        <ListView    Height="100"  Width="385"   HorizontalAlignment="Left"
+                                                    x:Name="MainListBox"
+                                                          Background="{StaticResource backg3}" 
+                                                    BorderBrush="#FFCCCCCC" 
+                                                    BorderThickness="1,1,1,1" 
+                                                    FontFamily="Arial" 
+                                                    FontSize="12"                    
+                                                    Margin="0"                           
+                                                    SelectionChanged="MainListBox_SelectionChanged"
+                                                    ItemTemplate="{StaticResource userListTemplateFDU}" 
+                                              >
+                                                            <ListView.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <WrapPanel Width="345"      >
+                                                                    </WrapPanel>
+                                                                </ItemsPanelTemplate>
+                                                            </ListView.ItemsPanel>
+                                                        </ListView>
+                                                    </TabItem>
+                                                    <TabItem Header="FD Bauaufsicht , Kommunen">
+                                                        <StackPanel Orientation="Horizontal" Background="{StaticResource backg3}" 
+                                                        Name="stpBauaufischt">
+                                                            <ListView    Height="100"  Width="245"   HorizontalAlignment="Left"
+                                                    x:Name="ListboxBauaufsicht"  
+                                                              Background="{StaticResource backg3}" 
+                                                    BorderBrush="#FFCCCCCC" 
+                                                    BorderThickness="1,1,1,1" 
+                                                    FontFamily="Arial" 
+                                                    FontSize="12"                    
+                                                    Margin="0"                           
+                                                    SelectionChanged="ListboxBauaufsicht_SelectionChanged"
+                                                    ItemTemplate="{StaticResource userListTemplateBA}" 
+                                              >
+                                                                <ListView.ItemsPanel>
+                                                                    <ItemsPanelTemplate>
+                                                                        <WrapPanel Width="230"      >
+                                                                        </WrapPanel>
+                                                                    </ItemsPanelTemplate>
+                                                                </ListView.ItemsPanel>
+                                                            </ListView>
+                                                            <StackPanel >
+                                                                <Button Name="btnKurzeBAliste" Content="Bauaufsicht " Click="BtnKurzeBAliste_Click"  Style="{StaticResource lessButton}" Width="100" Margin="0,10,0,0"></Button>
+                                                                <Button Content="BA detailliert" Click="ButtonBALANG_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
+                                                                <Button Content="Kommunen" Click="Buttonkommunen_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </TabItem>
+                                                </TabControl>
+                                   
+                                        </StackPanel>
+                                    </TabItem>
                                 </TabControl>
                                 <TabControl x:Name="Werkzeuge2"  Background="{StaticResource backg3}" >
                                     <TabItem Header="Wechsel" Margin="3,0,-3,0" Name="tiWerkzeuge2">
@@ -456,63 +518,7 @@
                                 </TabControl>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Height="18">
-
-                               
-                                <GroupBox Visibility="Collapsed" Header="Kontakte" Width="400" Height="154" Name="grpKontakte"
-                                          Background="{StaticResource backg3}" >
-                                    <TabControl  >
-                                        <TabItem Header="FD Umwelt" MouseDown="TabItemFDU_MouseDown" >
-                                            <ListView    Height="100"  Width="385"   HorizontalAlignment="Left"
-                                                    x:Name="MainListBox"
-                                                          Background="{StaticResource backg3}" 
-                                                    BorderBrush="#FFCCCCCC" 
-                                                    BorderThickness="1,1,1,1" 
-                                                    FontFamily="Arial" 
-                                                    FontSize="12"                    
-                                                    Margin="0"                           
-                                                    SelectionChanged="MainListBox_SelectionChanged"
-                                                    ItemTemplate="{StaticResource userListTemplateFDU}" 
-                                              >
-                                                <ListView.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <WrapPanel Width="345"      >
-                                                        </WrapPanel>
-                                                    </ItemsPanelTemplate>
-                                                </ListView.ItemsPanel>
-                                            </ListView>
-                                        </TabItem>
-                                        <TabItem Header="FD Bauaufsicht , Kommunen">
-                                            <StackPanel Orientation="Horizontal" Background="{StaticResource backg3}" 
-                                                        Name="stpBauaufischt">
-                                                <ListView    Height="100"  Width="245"   HorizontalAlignment="Left"
-                                                    x:Name="ListboxBauaufsicht"  
-                                                              Background="{StaticResource backg3}" 
-                                                    BorderBrush="#FFCCCCCC" 
-                                                    BorderThickness="1,1,1,1" 
-                                                    FontFamily="Arial" 
-                                                    FontSize="12"                    
-                                                    Margin="0"                           
-                                                    SelectionChanged="ListboxBauaufsicht_SelectionChanged"
-                                                    ItemTemplate="{StaticResource userListTemplateBA}" 
-                                              >
-                                                    <ListView.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <WrapPanel Width="230"      >
-                                                            </WrapPanel>
-                                                        </ItemsPanelTemplate>
-                                                    </ListView.ItemsPanel>
-                                                </ListView>
-                                                <StackPanel >
-                                                    <Button Name="btnKurzeBAliste" Content="Bauaufsicht " Click="BtnKurzeBAliste_Click"  Style="{StaticResource lessButton}" Width="100" Margin="0,10,0,0"></Button>
-                                                    <Button Content="BA detailliert" Click="ButtonBALANG_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
-                                                    <Button Content="Kommunen" Click="Buttonkommunen_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </TabItem>
-                                    </TabControl>
-                                </GroupBox>
-                            </StackPanel>
+                       
                         </StackPanel>
                     </DockPanel>
                     <TextBox  DockPanel.Dock="Bottom"  x:Name="tbNachricht"  MaxHeight="25"
@@ -1792,7 +1798,7 @@
 
                 </DockPanel>
             </TabItem>
-            <TabItem x:Name="tiBAonline" Header="Bauantrag-Online" Margin="-2,-2,-2,2">
+            <TabItem x:Name="tiBAonline" Header="Bauantrag-Online"      AllowDrop="True">
                 <DockPanel>
                     <GroupBox VerticalAlignment="Top" HorizontalAlignment="Left" 
                               

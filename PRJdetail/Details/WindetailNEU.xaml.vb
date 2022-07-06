@@ -46,7 +46,7 @@ Public Class WindetailNEU
         l("prepareActionlog-----------------------------------")
         Dim alogdir As String
         alogdir = initP.getValue("Haupt.ActionLogRoot")
-        alogdir = alogdir & myGlobalz.sitzung.defineArchivVorgangsDir(myGlobalz.sitzung.aktVorgangsID)
+        alogdir = alogdir & myglobalz.sitzung.defineArchivVorgangsDir(myglobalz.sitzung.aktVorgangsID)
         l("alogdir " & alogdir)
         'myglobalz.sitzung.aktVorgang.Stammdaten.ArchivSubdir = myglobalz.sitzung.defineArchivVorgangsDir(myglobalz.sitzung.aktVorgangsID) 'glob2.archicsubdirfeststellen()
         'l("myGlobalz.sitzung.aktVorgang.Stammdaten.ArchivSubdir " & myglobalz.sitzung.aktVorgang.Stammdaten.ArchivSubdir)
@@ -74,9 +74,9 @@ Public Class WindetailNEU
     Private Function starteDetails() As Boolean
         Try
 
-            Debug.Print("aktuser" & myGlobalz.sitzung.aktBearbeiter.username)
-            Debug.Print("aktuser" & myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.username)
-            If myGlobalz.sitzung.modus.IsNothingOrEmpty Then myGlobalz.sitzung.modus = "edit"
+            Debug.Print("aktuser" & myglobalz.sitzung.aktBearbeiter.username)
+            Debug.Print("aktuser" & myglobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.username)
+            If myglobalz.sitzung.modus.IsNothingOrEmpty Then myglobalz.sitzung.modus = "edit"
             stckmehrfachtools.Visibility = Windows.Visibility.Collapsed : stckmehrfachfotos.Visibility = Windows.Visibility.Collapsed : stckBeteiligteMehrfachtools.Visibility = Visibility.Collapsed
             Psession.presDokus = New List(Of clsPresDokumente)
             gastLayout()
@@ -85,7 +85,7 @@ Public Class WindetailNEU
             glob2.dina4InMM.w = 297 : glob2.dina4InMM.h = 210
             glob2.dina3InMM.w = 420 : glob2.dina3InMM.h = 297
 
-            grpStammdatenUebersicht.DataContext = myGlobalz.sitzung.aktVorgang.Stammdaten
+            grpStammdatenUebersicht.DataContext = myglobalz.sitzung.aktVorgang.Stammdaten
             initTabcontrolsMaxheight()
             'setCanvasSize()
             nachricht("starteDetails")
@@ -109,15 +109,15 @@ Public Class WindetailNEU
             'detailsTools.initErgeinistypCombo(Me, "detail_GISHintergrund.xml", "XMLSourceComboBoxGISHintergrund") : cmbGISHintergrund.SelectedIndex = 0
             '####################### datenschutz 
             Dim lesezugriffErlaubt As Boolean = False
-            If myGlobalz.zuhause Then
+            If myglobalz.zuhause Then
                 lesezugriffErlaubt = True
             End If
             Dim HauptBearbeiter As String = ""
             Dim erlaubnisGrund As Integer = GetErlaubnisGrund(lesezugriffErlaubt, HauptBearbeiter)
             If Not lesezugriffErlaubt Then
-                MsgBox(glob2.getMsgboxText("DSkeinZugriffAuf", New List(Of String)(New String() {CStr(myGlobalz.sitzung.aktVorgangsID), HauptBearbeiter})),
+                MsgBox(glob2.getMsgboxText("DSkeinZugriffAuf", New List(Of String)(New String() {CStr(myglobalz.sitzung.aktVorgangsID), HauptBearbeiter})),
                     , "Datenschutz: Zugriff verweigert")
-                nachricht("fehler Datenschutz_zugriff verweitert " & myGlobalz.sitzung.aktVorgangsID & ", " & myGlobalz.sitzung.aktBearbeiter.username)
+                nachricht("fehler Datenschutz_zugriff verweitert " & myglobalz.sitzung.aktVorgangsID & ", " & myglobalz.sitzung.aktBearbeiter.username)
                 DS_Tools.DS_protokoll("Detailstartup", erlaubnisGrund, "-1")
                 End
             End If
@@ -128,23 +128,23 @@ Public Class WindetailNEU
             setzeErledigtflagfarbe()
 
             'detailsTools.OfficemerkerLoeschen(Nothing)
-            refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-            refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, True)
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-            refreshFotos(myGlobalz.sitzung.aktVorgangsID)
-            refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
-            refreshverwandteServer(myGlobalz.sitzung.aktVorgangsID)
-            refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
-            refreshProjekt(myGlobalz.sitzung.aktVorgangsID)
-            refreshKosten(myGlobalz.sitzung.aktVorgangsID)
-            refreshIstConject(myGlobalz.sitzung.aktVorgangsID)
+            refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+            refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, True)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+            refreshFotos(myglobalz.sitzung.aktVorgangsID)
+            refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
+            refreshverwandteServer(myglobalz.sitzung.aktVorgangsID)
+            refreshverwandte(myglobalz.sitzung.aktVorgangsID)
+            refreshProjekt(myglobalz.sitzung.aktVorgangsID)
+            refreshKosten(myglobalz.sitzung.aktVorgangsID)
+            refreshIstConject(myglobalz.sitzung.aktVorgangsID)
             initCombosVerwandte()
             initKostenFeld()
-            If myGlobalz.sitzung.modus = "neu" Then
+            If myglobalz.sitzung.modus = "neu" Then
                 TabControl1.SelectedIndex = 6
             End If
 
-            If myGlobalz.sitzung.aktBearbeiter.binEignerOderAdmin(myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter, myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
+            If myglobalz.sitzung.aktBearbeiter.binEignerOderAdmin(myglobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter, myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
                 btnAllgemeinLoeschen.IsEnabled = True
             Else
                 btnAllgemeinLoeschen.IsEnabled = False
@@ -153,12 +153,12 @@ Public Class WindetailNEU
             setWeitereBearbeiterListeDarstellen()
             detailsTools.VorgangLocking("ein")
             alleButtonsAusschalten()
-            sachgebietsDBknopfEinschalten(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl)
-            detailsTools.SG3307_eintragAnlegen(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl)
+            sachgebietsDBknopfEinschalten(myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl)
+            detailsTools.SG3307_eintragAnlegen(myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl)
             projektDatenholen()
             prepareActionlog()
-            CLstart.myc.aLog.wer = myGlobalz.sitzung.aktBearbeiter.Initiale
-            CLstart.myc.aLog.vorgang = myGlobalz.sitzung.aktVorgangsID.ToString
+            CLstart.myc.aLog.wer = myglobalz.sitzung.aktBearbeiter.Initiale
+            CLstart.myc.aLog.vorgang = myglobalz.sitzung.aktVorgangsID.ToString
             CLstart.myc.aLog.komponente = "detail"
             CLstart.myc.aLog.aktion = "vorgang geoeffnet"
             CLstart.myc.aLog.log()
@@ -173,9 +173,9 @@ Public Class WindetailNEU
             nachricht("FORMSTART ERFOLGFREICH DURCHGEFÜHRT detail ######################################################### detail")
             initOptionen()
             initPumuckelVersion()
-            If myGlobalz.PumuckelVersion = 2 Then
+            If myglobalz.PumuckelVersion = 2 Then
                 '2 = kein pumuckel
-                If myGlobalz.zuhause Then
+                If myglobalz.zuhause Then
                     btnNachVorlage.Visibility = Visibility.Visible
                 Else
                     btnNachVorlage.Visibility = Visibility.Visible
@@ -186,7 +186,7 @@ Public Class WindetailNEU
             'ladevorgangAbgeschlossen = True
             Protokollzugriffschalten()
             'myGlobalz.historyMy = New CLstart.HistoryKookie.HistoryItem(myGlobalz.ClientCookieDir & "verlaufscookies")
-            CLstart.HistoryKookie.HistoryItem.verlaufsCookieDir = myGlobalz.ClientCookieDir & "verlaufscookies"
+            CLstart.HistoryKookie.HistoryItem.verlaufsCookieDir = myglobalz.ClientCookieDir & "verlaufscookies"
             starteThumbnailer()
             tbClipText.Text = getTextFromCB()
             'If Application.zweiteInstanz Then
@@ -198,7 +198,7 @@ Public Class WindetailNEU
             '    btnFotoshinzu2.IsEnabled = False
             'End If
             'starteWebbrowserControl()
-            tbSuchSGnr.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl
+            tbSuchSGnr.Text = myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl
 
 
             'initRechteDBControls(rrechtsdbARTcoll, "Select * from t36 as rechtsdb_art order by reihenf")
@@ -211,19 +211,19 @@ Public Class WindetailNEU
             cmbArt.DataContext = rrechtsdbARTcoll : cmbHerkunft.DataContext = rrechtsdbHerkunftcoll
             spGesetzeSuchfunktion.Visibility = Visibility.Collapsed
             '   refreshGesetzdb(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl, GesetzListefirstTime)
-            myGlobalz.colBearbeiterFDU = userTools.getBearbeiterCollection("select * from " & CLstart.myViewsNTabs.tabBearbeiter & "  where aktiv=1 order by  aktiv desc, nachNAME asc")
-            userTools.getOnlineStatus(myGlobalz.colBearbeiterFDU)
-            userTools.MakeKapitelsKontakte(myGlobalz.colBearbeiterFDU)
-            MainListBox.ItemsSource = myGlobalz.colBearbeiterFDU
+            myglobalz.colBearbeiterFDU = userTools.getBearbeiterCollection("select * from " & CLstart.myViewsNTabs.tabBearbeiter & "  where aktiv=1 order by  aktiv desc, nachNAME asc")
+            userTools.getOnlineStatus(myglobalz.colBearbeiterFDU)
+            userTools.MakeKapitelsKontakte(myglobalz.colBearbeiterFDU)
+            MainListBox.ItemsSource = myglobalz.colBearbeiterFDU
 
 
-            myGlobalz.colBearbeiterBA = userTools.getBearbeiterCollectionBA("select personenid,nachname,vorname,fftelefon1,ffemail,bezirk,orgzusatz from " & CLstart.myViewsNTabs.TABSTAKEHOLDER & " as stakeholder" &
+            myglobalz.colBearbeiterBA = userTools.getBearbeiterCollectionBA("select personenid,nachname,vorname,fftelefon1,ffemail,bezirk,orgzusatz from " & CLstart.myViewsNTabs.TABSTAKEHOLDER & " as stakeholder" &
                                                                             " where rolle='Bauaufsicht' order by NACHNAME")
 
             l("nach myGlobalz.colBearbeiterBA")
-            userTools.MakeKapitelsKontakte(myGlobalz.colBearbeiterBA)
+            userTools.MakeKapitelsKontakte(myglobalz.colBearbeiterBA)
             l("nach myGlobalz.colBearbeiterBA2")
-            ListboxBauaufsicht.ItemsSource = myGlobalz.colBearbeiterBA
+            ListboxBauaufsicht.ItemsSource = myglobalz.colBearbeiterBA
             l("nach myGlobalz.colBearbeiterBA3")
             'If Environment.UserName.ToLower = "weyers_g" Or
             '        Environment.UserName.ToLower = "nehler_u" Or
@@ -237,11 +237,12 @@ Public Class WindetailNEU
             '        myGlobalz.VorlagenRoot = myGlobalz.VorlagenRoot.Replace("Vordruck_paradigma", "Vordruck_paradigma_hashtag")
             '    End If
             'End If
-            tbuserAbsteract.Text = myGlobalz.sitzung.aktBearbeiter.getString(Environment.NewLine)
+            tbuserAbsteract.Text = myglobalz.sitzung.aktBearbeiter.getString(Environment.NewLine)
 
             'myGlobalz.zuhause = getZuhauseFromInifile()
             tbVorlagenRoot.Text = getVorlagenrootFromIniFile()
             tbVorlagenWork.Text = getVorlagenworkFromIniFile()
+
             Return True
         Catch ex As Exception
             MsgBox(String.Format("Schwerer Fehler in der Startroutine! Bitte Admin informieren.{0}{1}", vbCrLf, ex))
@@ -321,8 +322,8 @@ Public Class WindetailNEU
     Private Sub refreshIstConject(aktVorgangsID As Integer)
         Try
             l(" MOD ---------------------- anfang")
-            myGlobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(aktVorgangsID)
-            If myGlobalz.sitzung.aktVorgang.istConjectVorgang Then
+            myglobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(aktVorgangsID)
+            If myglobalz.sitzung.aktVorgang.istConjectVorgang Then
                 If ladevorgangAbgeschlossen Then zeigeIstConjectFarbe()
                 cbIstConject.IsChecked = True
             Else
@@ -348,25 +349,25 @@ Public Class WindetailNEU
                     rbpumuckelversion1.IsChecked = CType(1, Boolean?)
                     'myGlobalz.PumuckelInteropVersionNutzen = 1
                     rbpumuckelversion1.IsChecked = True
-                    myGlobalz.PumuckelVersion = 1
+                    myglobalz.PumuckelVersion = 1
                 End If
                 If wert = "0" Then
                     rbpumuckelversion0.IsChecked = CType(0, Boolean?)
                     'myGlobalz.PumuckelInteropVersionNutzen = 0
                     rbpumuckelversion0.IsChecked = True
-                    myGlobalz.PumuckelVersion = 0
+                    myglobalz.PumuckelVersion = 0
                 End If
                 If wert = "2" Then
                     rbpumuckelversion0.IsChecked = CType(2, Boolean?)
                     'myGlobalz.PumuckelInteropVersionNutzen = 0
                     rbpumuckelversion2.IsChecked = True
-                    myGlobalz.PumuckelVersion = 2
+                    myglobalz.PumuckelVersion = 2
                 End If
             Else
                 CLstart.myc.userIniProfile.WertSchreiben("PUMUCKEL", "interop", CType(0, String))
                 rbpumuckelversion0.IsChecked = CType(0, Boolean?)
                 'myGlobalz.PumuckelInteropVersionNutzen = 0
-                myGlobalz.PumuckelVersion = 0
+                myglobalz.PumuckelVersion = 0
             End If
             l(" initPumuckelVersion ---------------------- ende")
         Catch ex As Exception
@@ -412,15 +413,15 @@ Public Class WindetailNEU
         Dim erlaubnisGrund As Integer = 0
         If DS_Tools.istWeitererBearbeiter Then erlaubnisGrund = 1
         If DS_Tools.istHauptBearbeiter(HauptBearbeiter) Then erlaubnisGrund = 2
-        If ds1Tools.istFachdienstLeitung(myGlobalz.sitzung.VorgangREC, myGlobalz.sitzung.aktBearbeiter.username, trenn) Then erlaubnisGrund = 3
+        If ds1Tools.istFachdienstLeitung(myglobalz.sitzung.VorgangREC, myglobalz.sitzung.aktBearbeiter.username, trenn) Then erlaubnisGrund = 3
         If DS_Tools.istFachdienstAssistenz Then erlaubnisGrund = 4
-        If DS_Tools.istEinzelerlaubnis(myGlobalz.sitzung.aktVorgangsID, myGlobalz.sitzung.aktBearbeiter.username) Then erlaubnisGrund = 5
+        If DS_Tools.istEinzelerlaubnis(myglobalz.sitzung.aktVorgangsID, myglobalz.sitzung.aktBearbeiter.username) Then erlaubnisGrund = 5
         Dim gruppe As String = ""
         If DS_Tools.aktuserIstTeilDerGruppe(gruppe) Then erlaubnisGrund = 6
 
         If erlaubnisGrund > 0 Then
-            If DS_Tools.istPersonalVorgang(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl) Then
-                If ds1Tools.istFachdienstLeitung(myGlobalz.sitzung.VorgangREC, myGlobalz.sitzung.aktBearbeiter.username, trenn) Then
+            If DS_Tools.istPersonalVorgang(myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl) Then
+                If ds1Tools.istFachdienstLeitung(myglobalz.sitzung.VorgangREC, myglobalz.sitzung.aktBearbeiter.username, trenn) Then
                     erlaubnisGrund = 1500
                     lesezugriffErlaubt = True
                 Else
@@ -439,7 +440,7 @@ Public Class WindetailNEU
         Return erlaubnisGrund
     End Function
     Shared Function deckblattvorhanden() As Boolean
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl = "562" Then Return True
+        If myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl = "562" Then Return True
         Return False
     End Function
 
@@ -459,10 +460,10 @@ Public Class WindetailNEU
 
     Sub initCombosVerwandte()
         Try
-            cmbDokuverwandte.DataContext = myGlobalz.sitzung.VerwandteDT
-            cmbBeteiligteVerwandte.DataContext = myGlobalz.sitzung.VerwandteDT
-            cmbRBVerwandte.DataContext = myGlobalz.sitzung.VerwandteDT
-            cmbVerlaufVerwandte.DataContext = myGlobalz.sitzung.VerwandteDT
+            cmbDokuverwandte.DataContext = myglobalz.sitzung.VerwandteDT
+            cmbBeteiligteVerwandte.DataContext = myglobalz.sitzung.VerwandteDT
+            cmbRBVerwandte.DataContext = myglobalz.sitzung.VerwandteDT
+            cmbVerlaufVerwandte.DataContext = myglobalz.sitzung.VerwandteDT
         Catch ex As Exception
             'MsgBox("Fehler in initCombosVerwandte." ,ex)
             nachricht("Fehler initCombosVerwandte.", ex)
@@ -471,13 +472,13 @@ Public Class WindetailNEU
 
     Sub alteDTsloeschen()
         Try
-            If myGlobalz.sitzung.tempREC.dt IsNot Nothing Then myGlobalz.sitzung.tempREC.dt.Clear()
-            If myGlobalz.sitzung.beteiligteREC.dt IsNot Nothing Then myGlobalz.sitzung.beteiligteREC.dt.Clear()
-            If myGlobalz.sitzung.EreignisseRec.dt IsNot Nothing Then myGlobalz.sitzung.EreignisseRec.dt.Clear()
-            If myGlobalz.sitzung.raumbezugsRec.dt IsNot Nothing Then myGlobalz.sitzung.raumbezugsRec.dt.Clear()
-            If myGlobalz.Arc.vorgangDocDt IsNot Nothing Then myGlobalz.Arc.vorgangDocDt.Clear()
-            If myGlobalz.Arc.ArcRec.dt IsNot Nothing Then myGlobalz.Arc.ArcRec.dt.Clear()
-            If myGlobalz.sitzung.VerwandteDT IsNot Nothing Then myGlobalz.sitzung.VerwandteDT.Clear()
+            If myglobalz.sitzung.tempREC.dt IsNot Nothing Then myglobalz.sitzung.tempREC.dt.Clear()
+            If myglobalz.sitzung.beteiligteREC.dt IsNot Nothing Then myglobalz.sitzung.beteiligteREC.dt.Clear()
+            If myglobalz.sitzung.EreignisseRec.dt IsNot Nothing Then myglobalz.sitzung.EreignisseRec.dt.Clear()
+            If myglobalz.sitzung.raumbezugsRec.dt IsNot Nothing Then myglobalz.sitzung.raumbezugsRec.dt.Clear()
+            If myglobalz.Arc.vorgangDocDt IsNot Nothing Then myglobalz.Arc.vorgangDocDt.Clear()
+            If myglobalz.Arc.ArcRec.dt IsNot Nothing Then myglobalz.Arc.ArcRec.dt.Clear()
+            If myglobalz.sitzung.VerwandteDT IsNot Nothing Then myglobalz.sitzung.VerwandteDT.Clear()
         Catch ex As Exception
             l("Fehler in alteDTsloeschen.", ex)
         End Try
@@ -508,12 +509,12 @@ Public Class WindetailNEU
     Sub setTitelleiste()
         If Environment.UserName.ToLower = "feinen_j" Then
             Title = detailsTools.settitle("Stammformular__, " &
-", Eingang: " & myGlobalz.sitzung.aktVorgang.Stammdaten.Eingangsdatum &
-", Angelegt: " & myGlobalz.sitzung.aktVorgang.Stammdaten.Aufnahmedatum & " . Restplatz auf Server[GB]: " & gigabyte)
+", Eingang: " & myglobalz.sitzung.aktVorgang.Stammdaten.Eingangsdatum &
+", Angelegt: " & myglobalz.sitzung.aktVorgang.Stammdaten.Aufnahmedatum & " . Restplatz auf Server[GB]: " & gigabyte)
         Else
             Title = detailsTools.settitle("Stammformular__, " &
-", Eingang: " & myGlobalz.sitzung.aktVorgang.Stammdaten.Eingangsdatum &
-", Angelegt: " & myGlobalz.sitzung.aktVorgang.Stammdaten.Aufnahmedatum)
+", Eingang: " & myglobalz.sitzung.aktVorgang.Stammdaten.Eingangsdatum &
+", Angelegt: " & myglobalz.sitzung.aktVorgang.Stammdaten.Aufnahmedatum)
         End If
 
         'If Application.zweiteInstanz Then
@@ -523,7 +524,7 @@ Public Class WindetailNEU
 
 
     Shared Function Stammdateneinlesen() As Boolean
-        Return clsVorgangCTRL.leseVorgangvonDBaufObjekt(myGlobalz.sitzung.aktVorgangsID, myGlobalz.sitzung.aktVorgang.Stammdaten, myGlobalz.sitzung.VorgangREC)
+        Return clsVorgangCTRL.leseVorgangvonDBaufObjekt(myglobalz.sitzung.aktVorgangsID, myglobalz.sitzung.aktVorgang.Stammdaten, myglobalz.sitzung.VorgangREC)
     End Function
 
 
@@ -536,9 +537,9 @@ Public Class WindetailNEU
             Dim item As String = CType(cmbVerlaufAuswahl.SelectedValue, String)
             detailsTools.eEreignisstarten(item, CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
             ' cmbVerlaufAuswahl.SelectedValue = ""
-            refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-            refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+            refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+            refreshFotos(myglobalz.sitzung.aktVorgangsID)
             '     cmbStatus.SelectedValue = myGlobalz.sitzung.aktVorgang.Stammdaten.status ihah
             setzeErledigtflagfarbe()
             e.Handled = True
@@ -566,7 +567,7 @@ Public Class WindetailNEU
                     dgEreignisse.DataContext = ereignisDokListe ' myGlobalz.sitzung.EreignisseRec.dt
                 Catch ex As Exception
                 End Try
-                tabheaderVerlauf.Header = "Verlauf " & myGlobalz.sitzung.EreignisseRec.dt.Rows.Count
+                tabheaderVerlauf.Header = "Verlauf " & myglobalz.sitzung.EreignisseRec.dt.Rows.Count
             Else
                 Try
                 Catch ex As Exception
@@ -582,10 +583,10 @@ Public Class WindetailNEU
 
     Private Sub btnRefreshEreignisse_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: refresh ereignisse  ")
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
         'refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -594,7 +595,7 @@ Public Class WindetailNEU
         Dim hinweis As String = ""
         Dim VerwandtschaftsStatusWert As Int16
         Try
-            If Not myGlobalz.zuhause Then
+            If Not myglobalz.zuhause Then
                 OptionMIniMapDarstellen()
             End If
             '  If Not CBool(chkMiniMapDarstellen.IsChecked) Then Exit Sub
@@ -605,17 +606,17 @@ Public Class WindetailNEU
             End If
             dgRaumbezug.DataContext = Nothing
             Dim erfolg As Boolean = RBtoolsns.initraumbezugsDT_alleDB.exe(vid)
-            If erfolg Then RBtoolsns.statusSpalteErgaenzenUndFuellen.VerwandtschaftsStatusSpalteErgaenzenUndMitStandardFuellen(myGlobalz.sitzung.raumbezugsRec.dt,
+            If erfolg Then RBtoolsns.statusSpalteErgaenzenUndFuellen.VerwandtschaftsStatusSpalteErgaenzenUndMitStandardFuellen(myglobalz.sitzung.raumbezugsRec.dt,
                 "STATUS", VerwandtschaftsStatusWert)
             If erfolg Then
-                dgRaumbezug.DataContext = myGlobalz.sitzung.raumbezugsRec.dt
+                dgRaumbezug.DataContext = myglobalz.sitzung.raumbezugsRec.dt
             Else
                 dgRaumbezug.DataContext = Nothing
             End If
-            tabheaderRaumbezug.Header = detailsTools.getRBheadertext("Raumbezug ", myGlobalz.sitzung.raumbezugsRec.dt)
+            tabheaderRaumbezug.Header = detailsTools.getRBheadertext("Raumbezug ", myglobalz.sitzung.raumbezugsRec.dt)
 
 
-            If myGlobalz.sitzung.aktVorgang.Stammdaten.hatraumbezug Then
+            If myglobalz.sitzung.aktVorgang.Stammdaten.hatraumbezug Then
                 chkRaumbezuegeObsolet.IsChecked = True
             Else
                 chkRaumbezuegeObsolet.IsChecked = False
@@ -627,8 +628,8 @@ Public Class WindetailNEU
                 _uselastrange = True
             End If
 
-            INITMiniMapPresentation(myGlobalz.sitzung.raumbezugsRec.dt, _uselastrange)
-            If Not myGlobalz.zuhause Then
+            INITMiniMapPresentation(myglobalz.sitzung.raumbezugsRec.dt, _uselastrange)
+            If Not myglobalz.zuhause Then
                 glob2.generateLayerWithShapes()
 
                 '  If CBool(paradigmaKILLALLGIS.IsChecked) Then
@@ -658,7 +659,7 @@ Public Class WindetailNEU
     'End Sub
 
     Sub zum_Ergeignis_Editmode()
-        myGlobalz.sitzung.Ereignismodus = "edit"
+        myglobalz.sitzung.Ereignismodus = "edit"
         glob2._Ergeignis_edit(CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
     End Sub
     ''' <summary>
@@ -676,12 +677,12 @@ Public Class WindetailNEU
             Dim bresult As Boolean = Await task
 
             If bresult Then
-                Psession.presDokus = detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
-                anzahlEigeneDokumente = myGlobalz.Arc.ArcRec.dt.Rows.Count
+                Psession.presDokus = detail_dokuauswahl.dokuDTnachObj(myglobalz.Arc.ArcRec.dt.Copy)
+                anzahlEigeneDokumente = myglobalz.Arc.ArcRec.dt.Rows.Count
             Else
                 Psession.presDokus.Clear()
                 dgVorgangDokumente.DataContext = Nothing
-                myGlobalz.Arc.vorgangDocDt = Nothing
+                myglobalz.Arc.vorgangDocDt = Nothing
             End If
             referenzvorgangsID = VerwandteTools.divers.getReferenzvorgangsId(VorgangsID)
 
@@ -689,13 +690,13 @@ Public Class WindetailNEU
                 Dim task2 As System.Threading.Tasks.Task(Of Boolean) = DokArcTools.dokusVonVorgangHolen.executeAsync(CStr(referenzvorgangsID), "keinefotos", alleBilder:=True, 0)
                 Dim bresult2 As Boolean = Await task2
                 Dim presdokVerwandte As New List(Of clsPresDokumente)
-                presdokVerwandte = detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
+                presdokVerwandte = detail_dokuauswahl.dokuDTnachObj(myglobalz.Arc.ArcRec.dt.Copy)
                 'Psession.presDokus = New List(Of clsPresDokumente)
                 For Each dok As clsPresDokumente In presdokVerwandte
                     dok.istNurVerwandt = True
                     Psession.presDokus.Add(dok)
 
-                    anzahlReferenzDokumente = myGlobalz.Arc.ArcRec.dt.Rows.Count
+                    anzahlReferenzDokumente = myglobalz.Arc.ArcRec.dt.Rows.Count
                 Next
             End If
 
@@ -756,14 +757,14 @@ Public Class WindetailNEU
             Dim task As System.Threading.Tasks.Task(Of Boolean) = DokArcTools.dokusVonVorgangHolen.executeAsync(CStr(VorgangsID), "nurfotos", alleBilder:=True, 0)
             Dim bresult As Boolean = Await task
             If bresult Then
-                Psession.presFotos = detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
+                Psession.presFotos = detail_dokuauswahl.dokuDTnachObj(myglobalz.Arc.ArcRec.dt.Copy)
                 ' myGlobalz.Arc.vorgangFotoDt = myGlobalz.Arc.ArcRec.dt.Copy
                 detailsTools.thumbNailsFotosHinzuFuegen(Psession.presFotos, ereignisDokListe)
                 dgVorgangFotos.DataContext = Psession.presFotos 'myGlobalz.Arc.vorgangFotoDt
                 tabheaderFotos.Header = "Fotos " & Psession.presFotos.Count
             Else
                 Psession.presFotos = Nothing
-                myGlobalz.Arc.vorgangFotoDt = Nothing
+                myglobalz.Arc.vorgangFotoDt = Nothing
                 dgVorgangFotos.DataContext = Nothing
                 tabheaderFotos.Header = "Fotos"
             End If
@@ -778,17 +779,17 @@ Public Class WindetailNEU
         If glob2.FktDokumentehinzu(0, sollconject) Then
             If sollconject Then
                 cbIstConject.IsChecked = True
-                myGlobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(myGlobalz.sitzung.aktVorgangsID)
-                If myGlobalz.sitzung.aktVorgang.istConjectVorgang Then
+                myglobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(myglobalz.sitzung.aktVorgangsID)
+                If myglobalz.sitzung.aktVorgang.istConjectVorgang Then
                 Else
-                    clsStammTools.saveIstConject(myGlobalz.sitzung.aktVorgangsID, 1)
-                    myGlobalz.sitzung.aktVorgang.istConjectVorgang = True
+                    clsStammTools.saveIstConject(myglobalz.sitzung.aktVorgangsID, 1)
+                    myglobalz.sitzung.aktVorgang.istConjectVorgang = True
                 End If
 
                 zeigeIstConjectFarbe()
             End If
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-            refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+            refreshFotos(myglobalz.sitzung.aktVorgangsID)
         End If
 
     End Sub
@@ -805,14 +806,14 @@ Public Class WindetailNEU
 
     Function starteRaumbezugdetail(ByVal typ As String) As Boolean
         Dim anychange As Boolean = True
-        myGlobalz.sitzung.raumbezugsmodus = "neu"
+        myglobalz.sitzung.raumbezugsmodus = "neu"
         ' myGlobalz.sitzung.aktEreignis.Datum = Now
         Select Case typ$.ToLower
             Case "adresse"
                 Dim winadr As New Window_RB_Adresse
                 winadr.ShowDialog()
                 anychange = CBool(winadr.DialogResult)
-                refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+                refreshverwandte(myglobalz.sitzung.aktVorgangsID)
             Case "flurstück"
                 Dim winflur As New Window_Flurstuecksauswahl
                 winflur.ShowDialog()
@@ -828,19 +829,19 @@ Public Class WindetailNEU
             Case "raumbezüge aus anderen vorgängen"
                 Dim frb As New winFremdRBs
                 frb.ShowDialog()
-                refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, False)
+                refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, False)
             Case Else
                 MsgBox("Fehler: Raumbezugstyp:" & typ & " ist unbekannt!")
                 anychange = False
         End Select
         'btnAllgemein.IsEnabled = False 'wg dem gemeindekürzel, das ja teil der stammdaten ist
-        myGlobalz.sitzung.aktEreignis.Art = typ
+        myglobalz.sitzung.aktEreignis.Art = typ
         Return anychange
     End Function
 
     Private Sub btnAllcheckout_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAllcheckout.Click
         nachricht("USERAKTION: alles zum PC ")
-        myGlobalz.Arc.AllesDokusAuscheckenVorgang(True, True)
+        myglobalz.Arc.AllesDokusAuscheckenVorgang(True, True)
         e.Handled = True
     End Sub
 
@@ -857,10 +858,10 @@ Public Class WindetailNEU
 
 
     Public Function zum_dgFlurstueck_Editmode() As Boolean
-        Dim sekid$ = CStr(myGlobalz.sitzung.aktFST.SekID)
+        Dim sekid$ = CStr(myglobalz.sitzung.aktFST.SekID)
         ' DBraumbezug_Mysql.RB_Flurstueck_holen(sekid$)  'auf temprec
         RBtoolsns.RB_Flurstueck_holen_alleDB.exe(sekid)
-        FST_tools.DTaufFSTObjektabbilden(myGlobalz.sitzung.tempREC.dt, myGlobalz.sitzung.aktFST)
+        FST_tools.DTaufFSTObjektabbilden(myglobalz.sitzung.tempREC.dt, myglobalz.sitzung.aktFST)
 
         'form aufrufen
         Dim wfst As New Window_Flurstuecksauswahl
@@ -869,21 +870,21 @@ Public Class WindetailNEU
     End Function
 
     Public Sub zum_dgFotoEditmode()
-        Dim sekid = CStr(myGlobalz.sitzung.aktParaFoto.SekID)
+        Dim sekid = CStr(myglobalz.sitzung.aktParaFoto.SekID)
         ' DBraumbezug_Mysql.RB_ParaFoto_holen(sekid$)
         RBtoolsns.RB_ParaFoto_holen_alleDB.exe(sekid$)
-        myGlobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)                                                          'hire wird zum dokument verzweigt. NICHt zum Raumbezug
-        myGlobalz.sitzung.aktDokument.DocID = CInt(clsDBtools.fieldvalue(myGlobalz.sitzung.tempREC.dt.Rows(0).Item("dokumentid")))
-        myGlobalz.sitzung.aktDokument.EXIFlon = myGlobalz.sitzung.aktParaFoto.punkt.X.ToString
-        myGlobalz.sitzung.aktDokument.EXIFlat = myGlobalz.sitzung.aktParaFoto.punkt.Y.ToString
+        myglobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)                                                          'hire wird zum dokument verzweigt. NICHt zum Raumbezug
+        myglobalz.sitzung.aktDokument.DocID = CInt(clsDBtools.fieldvalue(myglobalz.sitzung.tempREC.dt.Rows(0).Item("dokumentid")))
+        myglobalz.sitzung.aktDokument.EXIFlon = myglobalz.sitzung.aktParaFoto.punkt.X.ToString
+        myglobalz.sitzung.aktDokument.EXIFlat = myglobalz.sitzung.aktParaFoto.punkt.Y.ToString
 
         '   DBraumbezug_Mysql.einzelDokument_holen(myGlobalz.sitzung.aktDokument.DocID.ToString)
-        RBtoolsns.einzelDokument_holen_alleDB.exe(myGlobalz.sitzung.aktDokument.DocID.ToString)
+        RBtoolsns.einzelDokument_holen_alleDB.exe(myglobalz.sitzung.aktDokument.DocID.ToString)
 
-        detailsTools.DTaufFotoObjektabbilden(myGlobalz.sitzung.aktDokument, myGlobalz.sitzung.tempREC.dt)
-        myGlobalz.sitzung.aktDokument.makeFullname_ImArchiv(myGlobalz.Arc.rootDir)
+        detailsTools.DTaufFotoObjektabbilden(myglobalz.sitzung.aktDokument, myglobalz.sitzung.tempREC.dt)
+        myglobalz.sitzung.aktDokument.makeFullname_ImArchiv(myglobalz.Arc.rootDir)
         Dim ausgabeVerzeichnis As String = ""
-        myGlobalz.sitzung.aktDokument.makeFullname_Checkout(myGlobalz.sitzung.aktVorgangsID, myGlobalz.Arc.lokalerCheckoutcache, myGlobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
+        myglobalz.sitzung.aktDokument.makeFullname_Checkout(myglobalz.sitzung.aktVorgangsID, myglobalz.Arc.lokalerCheckoutcache, myglobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
         'form aufrufen
         '	DokumentenArchiv.JPG_handeln(myGlobalz.sitzung.aktDokument)
 
@@ -891,11 +892,11 @@ Public Class WindetailNEU
         '	dgVorgangDokumente.SelectedItem = Nothing
         Dim handlenr As Integer = 0
         l("fotoeditmode")
-        Dim darst As Boolean = detailsTools.Archiv_aktiviere_Dokument(False, CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked), "", alleBilder:=True, myGlobalz.sitzung.aktDokument.EreignisID)
+        Dim darst As Boolean = detailsTools.Archiv_aktiviere_Dokument(False, CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked), "", alleBilder:=True, myglobalz.sitzung.aktDokument.EreignisID)
 
         detailsTools.darstellen(darst)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
 
@@ -949,33 +950,33 @@ Public Class WindetailNEU
         Try
             Dim item As DataRowView = CType(dgRaumbezug.SelectedItem, DataRowView)
             If item Is Nothing Then Return
-            myGlobalz.sitzung.raumbezugsmodus = "edit"
+            myglobalz.sitzung.raumbezugsmodus = "edit"
             Dim rbtyp As String = item("TYP").ToString
             Select Case rbtyp
                 Case CInt(RaumbezugsTyp.Adresse).ToString
-                    glob2.raumbezugsDataRowView2OBJ(item, myGlobalz.sitzung.aktADR)
-                    myGlobalz.sitzung.aktADR.setcoordsAbstract()
+                    glob2.raumbezugsDataRowView2OBJ(item, myglobalz.sitzung.aktADR)
+                    myglobalz.sitzung.aktADR.setcoordsAbstract()
                     glob2.zum_dgAdresse_Editmode()
                 Case CInt(RaumbezugsTyp.Flurstueck).ToString
-                    glob2.raumbezugsDataRowView2OBJ(item, myGlobalz.sitzung.aktFST)
-                    myGlobalz.sitzung.aktFST.setcoordsAbstract()
+                    glob2.raumbezugsDataRowView2OBJ(item, myglobalz.sitzung.aktFST)
+                    myglobalz.sitzung.aktFST.setcoordsAbstract()
                     anyChange = zum_dgFlurstueck_Editmode()
                 Case CInt(RaumbezugsTyp.Foto).ToString
-                    glob2.raumbezugsDataRowView2OBJ(item, myGlobalz.sitzung.aktParaFoto)
+                    glob2.raumbezugsDataRowView2OBJ(item, myglobalz.sitzung.aktParaFoto)
                     '    myGlobalz.sitzung.aktParaFoto.dokumentid = CStr(item("DOKUMENTID"))
-                    myGlobalz.sitzung.aktParaFoto.setcoordsAbstract()
+                    myglobalz.sitzung.aktParaFoto.setcoordsAbstract()
                     zum_dgFotoEditmode()
                 Case CInt(RaumbezugsTyp.Umkreis).ToString
-                    glob2.raumbezugsDataRowView2OBJ(item, myGlobalz.sitzung.aktPMU)
-                    myGlobalz.sitzung.aktParaFoto.setcoordsAbstract()
+                    glob2.raumbezugsDataRowView2OBJ(item, myglobalz.sitzung.aktPMU)
+                    myglobalz.sitzung.aktParaFoto.setcoordsAbstract()
                     ParaUmkreisTools.zum_dgUmkreisEditmode("")'UTMCoordinate.Text)
                 Case CInt(RaumbezugsTyp.Polygon).ToString, CInt(RaumbezugsTyp.Polyline).ToString
-                    glob2.raumbezugsDataRowView2OBJ(item, myGlobalz.sitzung.aktPolygon)
+                    glob2.raumbezugsDataRowView2OBJ(item, myglobalz.sitzung.aktPolygon)
                     PolygonTools.zum_dgPolygonEditmode()
 
             End Select
             dgRaumbezug.SelectedItem = Nothing
-            refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, True)
+            refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, True)
         Catch ex As Exception
             MessageBox.Show(String.Format("dgRaumbezug_SelectionChanged: {0}", ex))
         End Try
@@ -983,10 +984,10 @@ Public Class WindetailNEU
 
     Private Sub raumbezugHinzufuegenUndRefresh(ByVal rbtyp$)
         If Raumbezug_hinzufuegen(rbtyp) Then
-            refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, True)
+            refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, True)
 
             ' HatRaumbezug in den  Stammdaten speichern 
-            detailsTools.Edit_singleUpdate_Stammdaten(myGlobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "HATRAUMBEZUG")
+            detailsTools.Edit_singleUpdate_Stammdaten(myglobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "HATRAUMBEZUG")
             '  Dim erfolg As Boolean = VSTTools.editStammdaten_alleDB.exe(myGlobalz.sitzung.aktVorgangsID, myGlobalz.sitzung.aktVorgang.Stammdaten)
         End If
     End Sub
@@ -1022,13 +1023,13 @@ Public Class WindetailNEU
     End Function
 
     Sub starteBeteiligtedetail() 'ByVal Rolle$)
-        myGlobalz.sitzung.BeteiligteModus = "neu"
-        myGlobalz.sitzung.aktPerson.clear()
+        myglobalz.sitzung.BeteiligteModus = "neu"
+        myglobalz.sitzung.aktPerson.clear()
         'Dim winpers As New Window_Person
         'winpers.ShowDialog()
         Dim winpersneu As New winBeteiligteDetail("neu")
         winpersneu.ShowDialog()
-        refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
 
@@ -1037,11 +1038,11 @@ Public Class WindetailNEU
             'Dim item As DataRowView
             'item = CType(dgBeteiligte.SelectedItem, DataRowView)
             'If item Is Nothing Then Return
-            myGlobalz.sitzung.BeteiligteModus = "edit"
+            myglobalz.sitzung.BeteiligteModus = "edit"
             'clsBeteiligteBUSI.BeteiligtenRec2Obj(item, myGlobalz.sitzung.aktPerson)
 
             zum_Beteiligte_Editmode()
-            refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+            refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
         Catch ex As Exception
             nachricht("BeteiligtenAusgewaehlt: " & String.Format("BeteiligtenAusgewaehlt: {0}", ex))
         End Try
@@ -1053,7 +1054,7 @@ Public Class WindetailNEU
         If ladevorgangAbgeschlossen = False Then Exit Sub
         Dim item As New Person
         Try
-            myGlobalz.sitzung.aktPerson = CType(dgBeteiligte.SelectedItem, Person)
+            myglobalz.sitzung.aktPerson = CType(dgBeteiligte.SelectedItem, Person)
         Catch ex As Exception
             nachricht(ex.ToString)
             Exit Sub
@@ -1066,7 +1067,7 @@ Public Class WindetailNEU
     End Sub
 
     Sub zum_Beteiligte_Editmode()
-        myGlobalz.sitzung.BeteiligteModus = "edit"
+        myglobalz.sitzung.BeteiligteModus = "edit"
         _Beteiligte_edit()
     End Sub
 
@@ -1074,13 +1075,13 @@ Public Class WindetailNEU
         'clsGlobalz.sitzung.Vorgang.clear()
         Dim winpersneu As New winBeteiligteDetail("edit")
         winpersneu.ShowDialog()
-        refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub btnExplorer_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnExplorer.Click
         nachricht("USERAKTION: explorer  ")
-        IO.Directory.CreateDirectory(String.Format("{0}\{1}", myGlobalz.Arc.lokalerCheckoutcache, myGlobalz.sitzung.aktVorgangsID))
-        System.Diagnostics.Process.Start(String.Format("{0}\{1}", myGlobalz.Arc.lokalerCheckoutcache, myGlobalz.sitzung.aktVorgangsID))
+        IO.Directory.CreateDirectory(String.Format("{0}\{1}", myglobalz.Arc.lokalerCheckoutcache, myglobalz.sitzung.aktVorgangsID))
+        System.Diagnostics.Process.Start(String.Format("{0}\{1}", myglobalz.Arc.lokalerCheckoutcache, myglobalz.sitzung.aktVorgangsID))
         e.Handled = True
     End Sub
 
@@ -1120,12 +1121,12 @@ Public Class WindetailNEU
 
         'dokumenteRitemousekeypressed = False
         If Not auswahlspalteDokus.Visibility = Windows.Visibility.Visible Then
-            myGlobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)
-            myGlobalz.sitzung.aktDokument = CType(item.Clone, Dokument)
-            DokArc.setzeVerwandschaftsstatus(myGlobalz.sitzung.aktDokument, myGlobalz.sitzung.aktVorgangsID)
-            myGlobalz.sitzung.aktDokument.makeFullname_ImArchiv(myGlobalz.Arc.rootDir)
+            myglobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)
+            myglobalz.sitzung.aktDokument = CType(item.Clone, Dokument)
+            DokArc.setzeVerwandschaftsstatus(myglobalz.sitzung.aktDokument, myglobalz.sitzung.aktVorgangsID)
+            myglobalz.sitzung.aktDokument.makeFullname_ImArchiv(myglobalz.Arc.rootDir)
             Dim ausgabeVerzeichnis As String = ""
-            myGlobalz.sitzung.aktDokument.makeFullname_Checkout(myGlobalz.sitzung.aktVorgangsID, myGlobalz.Arc.lokalerCheckoutcache, myGlobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
+            myglobalz.sitzung.aktDokument.makeFullname_Checkout(myglobalz.sitzung.aktVorgangsID, myglobalz.Arc.lokalerCheckoutcache, myglobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
             Debug.Print(cbIstConject.IsChecked.ToString)
             dgVorgangDokumente_SelectionChanged_1Extracted("", True)
         End If
@@ -1157,7 +1158,7 @@ Public Class WindetailNEU
             Dim EreignisDokTyp As String = CStr(item.EreignisDokTyp)
             If EreignisDokTyp = "0" Or EreignisDokTyp = "3" Then
                 'als ereignisladen
-                myGlobalz.sitzung.aktEreignis.ID = CInt(ereignisID)
+                myglobalz.sitzung.aktEreignis.ID = CInt(ereignisID)
                 dgEreignisse.SelectedItem = Nothing
                 zum_Ergeignis_Editmode()
                 'refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
@@ -1167,16 +1168,16 @@ Public Class WindetailNEU
                 'als Dokument laden
                 aktThumbnailNotiz = detailsTools.getAktThumbNailNotiz(ereignisID, aktThumbnailNotiz, ereignisDokListe)
 
-                myGlobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)
-                detailsTools.Dokument2Obj(item, myGlobalz.sitzung.aktDokument)
-                DokArc.setzeVerwandschaftsstatus(myGlobalz.sitzung.aktDokument, myGlobalz.sitzung.aktVorgangsID)
-                myGlobalz.sitzung.aktDokument.makeFullname_ImArchiv(myGlobalz.Arc.rootDir)
+                myglobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)
+                detailsTools.Dokument2Obj(item, myglobalz.sitzung.aktDokument)
+                DokArc.setzeVerwandschaftsstatus(myglobalz.sitzung.aktDokument, myglobalz.sitzung.aktVorgangsID)
+                myglobalz.sitzung.aktDokument.makeFullname_ImArchiv(myglobalz.Arc.rootDir)
                 Dim ausgabeVerzeichnis As String = ""
-                Debug.Print(myGlobalz.sitzung.aktDokument.EreignisID.ToString)
-                myGlobalz.sitzung.aktDokument.makeFullname_Checkout(myGlobalz.sitzung.aktVorgangsID, myGlobalz.Arc.lokalerCheckoutcache, myGlobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
+                Debug.Print(myglobalz.sitzung.aktDokument.EreignisID.ToString)
+                myglobalz.sitzung.aktDokument.makeFullname_Checkout(myglobalz.sitzung.aktVorgangsID, myglobalz.Arc.lokalerCheckoutcache, myglobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
                 dgVorgangDokumente_SelectionChanged_1Extracted(aktThumbnailNotiz, False)
             End If
-            refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+            refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
             'refreshDokumente(myglobalz.sitzung.aktVorgangsID)
             'refreshFotos(myglobalz.sitzung.aktVorgangsID)
             dgVorgangDokumente.SelectedItem = Nothing
@@ -1192,11 +1193,11 @@ Public Class WindetailNEU
 
     Public Sub btnFotoGucker_ClickExtracted()
 
-        If DokArc.aktiviereFotoGucker(myGlobalz.sitzung.aktVorgangsID, myGlobalz.OhneObsoletenDokus, myGlobalz.sitzung.aktEreignis.ID, alleBilder:=True) > 0 Then
+        If DokArc.aktiviereFotoGucker(myglobalz.sitzung.aktVorgangsID, myglobalz.OhneObsoletenDokus, myglobalz.sitzung.aktEreignis.ID, alleBilder:=True) > 0 Then
             Dim winfotoguck = New winFotoGucker
             winfotoguck.ShowDialog()
             glob2.MeinGarbage()
-            refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+            refreshFotos(myglobalz.sitzung.aktVorgangsID)
         Else
             nachricht_und_Mbox("Keine Fotos gefunden")
         End If
@@ -1208,29 +1209,43 @@ Public Class WindetailNEU
         resetBeteiligteliste_ClickExtracted()
     End Sub
     Private Sub SetzeStammdatenExplizitInsUI()
-        Debug.Print(myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt)
-        lblAZ.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt
+        Debug.Print(myglobalz.sitzung.aktVorgang.Stammdaten.az.gesamt)
+        lblAZ.Text = myglobalz.sitzung.aktVorgang.Stammdaten.az.gesamt
         Label14.Text = bildeLabel14()
-        tbBeschreibung2.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Beschreibung
-        lblVorgangsID.Text = CStr(myGlobalz.sitzung.aktVorgangsID)
-        tbBemerkung.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Bemerkung
-        tbStandort.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr
-        tbParagraph.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Paragraf
-        tbProbaugAZ.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz
-        tbAltAz.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.AltAz
-        tbGEMKRZ.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.GemKRZ
-        tbInternenr.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.InterneNr
-        tbBearbeiter.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale
-        tbWeitereBearbeiter.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter
+        tbBeschreibung2.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Beschreibung
+        tbBeschreibung3.Text = myglobalz.sitzung.aktVorgang.Stammdaten.az.gesamt & " / " & myglobalz.sitzung.aktVorgang.Stammdaten.Beschreibung
+        tbBeschreibung3.Text &= " / " & beteiligteNachnamen(Psession.presBeteiligte)
+        'tbBeschreibung3.Text &= " / " & raumbezugKurz(myglobalz.sitzung.raumbezugsRec.dt)
+
+        lblVorgangsID.Text = CStr(myglobalz.sitzung.aktVorgangsID)
+        tbBemerkung.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Bemerkung
+        tbStandort.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr
+        tbParagraph.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Paragraf
+        tbProbaugAZ.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz
+        tbAltAz.Text = myglobalz.sitzung.aktVorgang.Stammdaten.AltAz
+        tbGEMKRZ.Text = myglobalz.sitzung.aktVorgang.Stammdaten.GemKRZ
+        tbInternenr.Text = myglobalz.sitzung.aktVorgang.Stammdaten.InterneNr
+        tbBearbeiter.Text = myglobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale
+        tbWeitereBearbeiter.Text = myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter
     End Sub
+
+    'Private Function raumbezugKurz(dt As DataTable) As String
+    '    Try
+    '        For Each row As DataRow In dt.Rows
+    '            row.Item(NeuSpaltenname) = standardwert
+    '        Next
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Function
 
     Private Shared Function bildeLabel14() As String
         Dim retval As String = ""
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header.StartsWith(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl) Then
-            retval = myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header
+        If myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header.StartsWith(myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl) Then
+            retval = myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header
         Else
-            retval = myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl & "-" &
-         myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header
+            retval = myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl & "-" &
+         myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header
         End If
         Return retval
     End Function
@@ -1258,7 +1273,7 @@ Public Class WindetailNEU
         e.Handled = True
         Debug.Print("" & Environment.UserName)
 
-        If myGlobalz.sitzung.aktBearbeiter.username.ToLower = "feinen_j" Then
+        If myglobalz.sitzung.aktBearbeiter.username.ToLower = "feinen_j" Then
             btnTxtfileanlegen.Visibility = Visibility.Visible
         Else
             btnTxtfileanlegen.Visibility = Visibility.Collapsed
@@ -1269,13 +1284,13 @@ Public Class WindetailNEU
             initStartPositionOnScreen()
         End If
         mgistools.mgisAktualisieren()
-        Debug.Print(myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Kontakt.elektr.Email)
-        Debug.Print(myGlobalz.sitzung.aktBearbeiter.Name)
+        Debug.Print(myglobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Kontakt.elektr.Email)
+        Debug.Print(myglobalz.sitzung.aktBearbeiter.Name)
         If Not starteDetails() Then
-            myGlobalz.einVorgangistgeoeffnet = False
+            myglobalz.einVorgangistgeoeffnet = False
             Me.Close()
         Else
-            myGlobalz.einVorgangistgeoeffnet = True
+            myglobalz.einVorgangistgeoeffnet = True
         End If
         cmbVerlaufAuswahl.SelectedIndex = 0
         SetzeStammdatenExplizitInsUI()
@@ -1286,7 +1301,7 @@ Public Class WindetailNEU
         initTimetool()
         initcbreadOnlyDoxsInTxtCrtlOeffnen()
         'initDarkTheme()
-        kopp.DataContext = myGlobalz.sitzung
+        kopp.DataContext = myglobalz.sitzung
         ladevorgangAbgeschlossen = True
         Me.Activate()
     End Sub
@@ -1294,14 +1309,14 @@ Public Class WindetailNEU
     Private Sub genProbaugAZbutton()
         'btnZuProbauG
         '       tbProbaugAZ.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz.IsNothingOrEmpty Then
+        If myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz.IsNothingOrEmpty Then
             btnZuProbauG.Visibility = Visibility.Hidden
             Exit Sub
         End If
-        myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz = myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz.Trim
+        myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz = myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz.Trim
         Dim jahr, nummer As String
         Dim erfolg As Boolean
-        erfolg = detailsTools.zerlegeProbaugAZ(myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz, jahr, nummer)
+        erfolg = detailsTools.zerlegeProbaugAZ(myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz, jahr, nummer)
         If erfolg Then
             'showAnzeigeButton
             btnZuProbauG.Visibility = Visibility.Visible
@@ -1378,7 +1393,7 @@ Public Class WindetailNEU
         grpDokumenthinzu.Style = grpbauantrag.Style
 
         grpNeu.Style = grpbauantrag.Style
-        grpKontakte.Style = grpbauantrag.Style
+        'grpKontakte.Style = grpbauantrag.Style
         grpFotoMehrfachauswahl.Style = grpbauantrag.Style
         'MainListBox.Style = grpbauantrag.Style
 
@@ -1548,7 +1563,7 @@ Public Class WindetailNEU
 
 
     Private Sub initStartPositionOnScreen()
-        If myGlobalz.nureinbildschirm Then Exit Sub
+        If myglobalz.nureinbildschirm Then Exit Sub
         Dim topval = (CLstart.formposition.getPosition("diverse", "windetailformpositiontop", Me.Top))
         If topval < 0 Then
             Me.Top = 0
@@ -1562,21 +1577,21 @@ Public Class WindetailNEU
 
     Private Sub btnAllgemeinLoeschen_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAllgemeinLoeschen.Click
         e.Handled = True
-        If Not myGlobalz.sitzung.EreignisseRec.dt.IsNothingOrEmpty Then 'Rows.Count > 0 Then
+        If Not myglobalz.sitzung.EreignisseRec.dt.IsNothingOrEmpty Then 'Rows.Count > 0 Then
             MessageBox.Show("Dem Vorgang sind noch Ereignisse zugeordnet. " + vbCrLf &
          "Bitte löschen Sie zuerst alle Ereignisse. " + vbCrLf &
          "Danach kann der Vorgang gelöscht werden!", "Vorgang löschen", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK)
 
             Exit Sub
         End If
-        If Not myGlobalz.sitzung.raumbezugsRec.dt.IsNothingOrEmpty Then
+        If Not myglobalz.sitzung.raumbezugsRec.dt.IsNothingOrEmpty Then
             MessageBox.Show("Dem Vorgang sind noch Raumbezüge zugeordnet. " + vbCrLf &
          "Bitte löschen Sie zuerst alle Raumbezüge. " + vbCrLf &
          "Danach kann der Vorgang gelöscht werden!", "Vorgang löschen", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK)
 
             Exit Sub
         End If
-        If myGlobalz.Arc.vorgangDocDt.IsNothingOrEmpty Then
+        If myglobalz.Arc.vorgangDocDt.IsNothingOrEmpty Then
             'löschenOK	 				  
         Else
             MessageBox.Show("Dem Vorgang sind noch Dokumente zugeordnet. " + vbCrLf &
@@ -1588,7 +1603,7 @@ Public Class WindetailNEU
             '"Danach kann der Vorgang gelöscht werden!", "Vorgang löschen", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK)
         End If
 
-        If Not myGlobalz.sitzung.beteiligteREC.dt.IsNothingOrEmpty Then
+        If Not myglobalz.sitzung.beteiligteREC.dt.IsNothingOrEmpty Then
             MessageBox.Show("Dem Vorgang sind noch Beteiligte zugeordnet. " + vbCrLf &
          "Bitte löschen Sie zuerst alle Beteiligten. " + vbCrLf &
          "Danach kann der Vorgang gelöscht werden!", "Vorgang löschen", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK)
@@ -1623,25 +1638,25 @@ Public Class WindetailNEU
         neuLInk.ShowDialog()
         If neuLInk.istConject Then
             cbIstConject.IsChecked = True
-            myGlobalz.sitzung.aktVorgang.istConjectVorgang = True
-            clsStammTools.saveIstConject(myGlobalz.sitzung.aktVorgangsID, 1)
+            myglobalz.sitzung.aktVorgang.istConjectVorgang = True
+            clsStammTools.saveIstConject(myglobalz.sitzung.aktVorgangsID, 1)
             zeigeIstConjectFarbe()
         End If
         If CBool(neuLInk.DialogResult) Then
-            refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+            refreshverwandte(myglobalz.sitzung.aktVorgangsID)
         End If
     End Sub
     Sub refreshverwandte(ByVal vid As Integer)
         Try
             Dim sql As String = "select * from  " & CLstart.myViewsNTabs.TABKOPPVORGANGFREMDVORGANG & "  where vorgangsid=" & vid
-            VerwandteTools.erzeugeVerwandtenlistezuVorgang.exe(sql, myGlobalz.sitzung.tempREC)
-            myGlobalz.sitzung.VerwandteDT.Clear()
-            myGlobalz.sitzung.VerwandteDT = myGlobalz.sitzung.tempREC.dt.Copy
-            dgVerwandte.DataContext = myGlobalz.sitzung.VerwandteDT
+            VerwandteTools.erzeugeVerwandtenlistezuVorgang.exe(sql, myglobalz.sitzung.tempREC)
+            myglobalz.sitzung.VerwandteDT.Clear()
+            myglobalz.sitzung.VerwandteDT = myglobalz.sitzung.tempREC.dt.Copy
+            dgVerwandte.DataContext = myglobalz.sitzung.VerwandteDT
             initCombosVerwandte()
-            If Not myGlobalz.sitzung.VerwandteDT.IsNothingOrEmpty Then
+            If Not myglobalz.sitzung.VerwandteDT.IsNothingOrEmpty Then
                 'tabheaderVerwandte.Header = "Verwandte " & myGlobalz.sitzung.VerwandteDT.Rows.Count
-                tabheaderVerwandte.Header = tabheaderVerwandte.Header.ToString & "/" & myGlobalz.sitzung.VerwandteDT.Rows.Count
+                tabheaderVerwandte.Header = tabheaderVerwandte.Header.ToString & "/" & myglobalz.sitzung.VerwandteDT.Rows.Count
                 VerwandteGroupboxenEnabled(True)
             Else
                 tabheaderVerwandte.Header = "Verwandte "
@@ -1669,28 +1684,45 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub displayBeteiligtenListe()
-        If myGlobalz.sitzung.beteiligteREC.dt.IsNothingOrEmpty Then
+        If myglobalz.sitzung.beteiligteREC.dt.IsNothingOrEmpty Then
             dgBeteiligte.DataContext = Nothing
             tabheaderBeteiligte.Header = "Beteiligte "
         Else
             'Dim BeteilitenObjListe As New List(Of Person)
             'BeteilitenObjListe = clsBeteiligteBUSI.ConvertDatatable2Personenliste(myGlobalz.sitzung.beteiligteREC.dt)
-            Psession.presBeteiligte = clsBeteiligteBUSI.ConvertDatatable2Personenliste(myGlobalz.sitzung.beteiligteREC.dt) 'detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
+            Psession.presBeteiligte = clsBeteiligteBUSI.ConvertDatatable2Personenliste(myglobalz.sitzung.beteiligteREC.dt) 'detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
             'dgBeteiligte.DataContext = myGlobalz.sitzung.beteiligteREC.dt         
             dgBeteiligte.DataContext = Psession.presBeteiligte
-            tabheaderBeteiligte.Header = "Beteiligte " & myGlobalz.sitzung.beteiligteREC.dt.Rows.Count
+
+            tabheaderBeteiligte.Header = "Beteiligte " & myglobalz.sitzung.beteiligteREC.dt.Rows.Count
         End If
     End Sub
 
+    Private Function beteiligteNachnamen(presBeteiligte As List(Of Person)) As String
+        Dim sb As New Text.StringBuilder
+        Try
+            If presBeteiligte.Count < 1 Then Return ""
+            For Each person As Person In presBeteiligte
+                If person.Name.Length > 3 Then
+                    If person.Name.ToLower.Contains("email") Then Continue For
+                    sb.Append(person.Name & ", ")
+                End If
+            Next
+            Return LIBgemeinsames.clsString.kuerzeTextauf(sb.ToString, sb.ToString.Length - 1)
+        Catch ex As Exception
+
+        End Try
+    End Function
+
     Private Sub Verwandte_refresh(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: verwandte refresh ")
-        refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+        refreshverwandte(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub dgVerwandte_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs)
         nachricht("USERAKTION: zu verwandtem wechslen ")
         dgVerwandte_SelectionChangedExtracted()
-        refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+        refreshverwandte(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -1725,12 +1757,12 @@ Public Class WindetailNEU
             Case "wechseln" '1
 
                 Me.Close()
-                glob2.editVorgang(CInt(myGlobalz.sitzung.aktVorgangsID))
+                glob2.editVorgang(CInt(myglobalz.sitzung.aktVorgangsID))
             Case "loeschen" '2
                 'löschen wurde schon im formular winVErwandte ausgeführt
                 'daher keine aktion
             Case "kopieren" '4
-                refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+                refreshverwandte(myglobalz.sitzung.aktVorgangsID)
             Case Else
                 'keine aktion
         End Select
@@ -1742,19 +1774,19 @@ Public Class WindetailNEU
         If cmbDokuverwandte.SelectedItem Is Nothing Then Exit Sub
         If cmbDokuverwandte.SelectedValue Is Nothing Then Exit Sub
         refreshDokumente(CInt(cmbDokuverwandte.SelectedValue.ToString))
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
     Private Sub resetDokuliste_ClickExtracted()
 
 
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
         'refreshDokumente(myglobalz.sitzung.aktVorgangsID)
         'refreshFotos(myglobalz.sitzung.aktVorgangsID)
 
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         cmbDokuverwandte.SelectedItem = Nothing
     End Sub
     Private Sub resetDokuliste_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
@@ -1763,7 +1795,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub resetVerlaufliste_ClickExtracted()
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
         cmbVerlaufVerwandte.SelectedItem = Nothing
     End Sub
     Private Sub resetVerlaufliste_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
@@ -1785,7 +1817,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub resetBeteiligteliste_ClickExtracted()
-        refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
         cmbBeteiligteVerwandte.SelectedItem = Nothing
     End Sub
 
@@ -1797,7 +1829,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub resetRBliste_ClickExtracted()
-        refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, True)
+        refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, True)
         cmbRBVerwandte.SelectedItem = Nothing
     End Sub
     Private Sub resetRBliste_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
@@ -1813,9 +1845,9 @@ Public Class WindetailNEU
             Exit Sub
         End If
         Dim quellVid% = CInt(cmbRBVerwandte.SelectedValue.ToString)
-        If RBtoolsns.KopierenVonRaumbezuegen_alleDB.exe(quellVid, myGlobalz.sitzung.aktVorgangsID) Then
+        If RBtoolsns.KopierenVonRaumbezuegen_alleDB.exe(quellVid, myglobalz.sitzung.aktVorgangsID) Then
         End If
-        refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, True)
+        refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, True)
         e.Handled = True
     End Sub
 
@@ -1877,8 +1909,8 @@ Public Class WindetailNEU
         End If
         Dim quellVid% = CInt(cmbBeteiligteVerwandte.SelectedValue.ToString)
         '  clsBeteiligteBUSI.verlinkenVonBeteiligten(quellVid, myGlobalz.sitzung.VorgangsID)
-        If vid_istOk(quellVid) Then detailsTools.AlleBeteiligtenKopieren(quellVid, myGlobalz.sitzung.aktVorgangsID) ' myGlobalz.sitzung.beteiligteREC.dt
-        refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+        If vid_istOk(quellVid) Then detailsTools.AlleBeteiligtenKopieren(quellVid, myglobalz.sitzung.aktVorgangsID) ' myGlobalz.sitzung.beteiligteREC.dt
+        refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -2546,14 +2578,14 @@ Public Class WindetailNEU
         Try
             l("geaenderteStammdatenSpeichern---------------------- anfang")
             If schlagworteWurdeGeaendert Then
-                detailsTools.Edit_singleUpdate_Stammdaten(myGlobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "BEMERKUNG")
+                detailsTools.Edit_singleUpdate_Stammdaten(myglobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "BEMERKUNG")
                 schlagworteWurdeGeaendert = False
             End If
             If detailsTools.letztesEreignisWurdeGeaendert Then
-                detailsTools.Edit_singleUpdate_Stammdaten(myGlobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "LETZTEBEARBEITUNG")
+                detailsTools.Edit_singleUpdate_Stammdaten(myglobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "LETZTEBEARBEITUNG")
             End If
             If detailsTools.stellungnahmeWurdeGeaendert Then
-                detailsTools.Edit_singleUpdate_Stammdaten(myGlobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "STELLUNGNAHME")
+                detailsTools.Edit_singleUpdate_Stammdaten(myglobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "STELLUNGNAHME")
             End If
             l("geaenderteStammdatenSpeichern---------------------- ende")
         Catch ex As Exception
@@ -2573,16 +2605,16 @@ Public Class WindetailNEU
         nachricht("sindDokumenteImZugriff " & dokusInArbeit)
         If dokusInArbeit Then
             mesres = detailsTools.schliessenAbbrechen1(mesres, dokInArbeit)
-            If Not myGlobalz.sitzung.wordDateiImEditModus.FullnameCheckout.IsNothingOrEmpty Then
-                Dim quell As New IO.FileInfo(myGlobalz.sitzung.wordDateiImEditModus.FullnameCheckout)
-                Dim backupdatei As String = detailsTools.BackupAnlegen(quell, myGlobalz.sitzung.wordDateiImEditModus.DocID)
+            If Not myglobalz.sitzung.wordDateiImEditModus.FullnameCheckout.IsNothingOrEmpty Then
+                Dim quell As New IO.FileInfo(myglobalz.sitzung.wordDateiImEditModus.FullnameCheckout)
+                Dim backupdatei As String = detailsTools.BackupAnlegen(quell, myglobalz.sitzung.wordDateiImEditModus.DocID)
             End If
-            If Not myGlobalz.sitzung.excelDateiImEditModus.FullnameCheckout.IsNothingOrEmpty Then
-                Dim quell As New IO.FileInfo(myGlobalz.sitzung.excelDateiImEditModus.FullnameCheckout)
-                Dim backupdatei As String = detailsTools.BackupAnlegen(quell, myGlobalz.sitzung.excelDateiImEditModus.DocID)
+            If Not myglobalz.sitzung.excelDateiImEditModus.FullnameCheckout.IsNothingOrEmpty Then
+                Dim quell As New IO.FileInfo(myglobalz.sitzung.excelDateiImEditModus.FullnameCheckout)
+                Dim backupdatei As String = detailsTools.BackupAnlegen(quell, myglobalz.sitzung.excelDateiImEditModus.DocID)
             End If
             If mesres = MessageBoxResult.Yes Then
-                l("fehler hier wurde was verworfen: " & dokInArbeit & ", " & myGlobalz.sitzung.aktVorgangsID)
+                l("fehler hier wurde was verworfen: " & dokInArbeit & ", " & myglobalz.sitzung.aktVorgangsID)
                 e.Cancel = False
             Else
                 e.Cancel = True
@@ -2595,8 +2627,8 @@ Public Class WindetailNEU
         setMitDokumenten()
         detailsTools.VorgangLocking("aus")
         clsVorgangLocking.LockingLoesen(initP.getValue("Haupt.LOCKINGFile"),
-                                    myGlobalz.sitzung.aktVorgangsID,
-                                    myGlobalz.sitzung.aktBearbeiter.Initiale)
+                                    myglobalz.sitzung.aktVorgangsID,
+                                    myglobalz.sitzung.aktBearbeiter.Initiale)
 
         'If myglobalz.didEverOpenAWordDocInSession Then
         '    l("didEverOpenAWordDocInSession=" & myglobalz.didEverOpenAWordDocInSession)
@@ -2610,14 +2642,14 @@ Public Class WindetailNEU
         '        End If
         '    End If
         'End If
-        myGlobalz.einVorgangistgeoeffnet = False
+        myglobalz.einVorgangistgeoeffnet = False
         nachricht("CLOSING Dokument wurde geändert?:   " & dokusInArbeit.ToString)
         detailsTools.VorgangLocking("aus")
-        CLstart.HistoryKookie.schreibeVerlaufsCookie.exe(myGlobalz.sitzung.aktVorgangsID.ToString,
-                                            myGlobalz.sitzung.aktVorgang.Stammdaten.Beschreibung,
-                                            myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt,
-                                            myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz,
-                                            myGlobalz.sitzung.aktVorgang.Stammdaten.GemKRZ)
+        CLstart.HistoryKookie.schreibeVerlaufsCookie.exe(myglobalz.sitzung.aktVorgangsID.ToString,
+                                            myglobalz.sitzung.aktVorgang.Stammdaten.Beschreibung,
+                                            myglobalz.sitzung.aktVorgang.Stammdaten.az.gesamt,
+                                            myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz,
+                                            myglobalz.sitzung.aktVorgang.Stammdaten.GemKRZ)
         'If Not useMapserverMapmode Then
         '    If gifKartenwatcher IsNot Nothing Then
         '        gifKartenwatcher.Dispose()
@@ -2629,18 +2661,18 @@ Public Class WindetailNEU
         savePosition()
 
         Try
-            CLstart.MeinLogging.LoggingEnde(logfile, myGlobalz.LOGFILEKOPIE)
+            CLstart.MeinLogging.LoggingEnde(logfile, myglobalz.LOGFILEKOPIE)
             CLstart.myc.aLog.endlog()
         Catch ex As Exception
             'tritt auf, wenn vorgangsnummer gar nicht existiert
         End Try
         clsVorgangLocking.LockingLoesen(initP.getValue("Haupt.LOCKINGFile"),
-                             myGlobalz.sitzung.aktVorgangsID,
-                             myGlobalz.sitzung.aktBearbeiter.Initiale)
-        CLstart.VIDuebergabe.erzeugeParameterDatei(CInt(myGlobalz.sitzung.aktVorgangsID), myGlobalz.sitzung.aktBearbeiter.username, CLstart.mycSimple.Paradigma_local_root, "vorherigerVorgang")
+                             myglobalz.sitzung.aktVorgangsID,
+                             myglobalz.sitzung.aktBearbeiter.Initiale)
+        CLstart.VIDuebergabe.erzeugeParameterDatei(CInt(myglobalz.sitzung.aktVorgangsID), myglobalz.sitzung.aktBearbeiter.username, CLstart.mycSimple.Paradigma_local_root, "vorherigerVorgang")
     End Sub
     Private Sub savePosition()
-        If myGlobalz.nureinbildschirm Then Exit Sub
+        If myglobalz.nureinbildschirm Then Exit Sub
         Try
             CLstart.myc.userIniProfile.WertSchreiben("diverse", "windetailformpositiontop", CType(Me.Top, String))
             CLstart.myc.userIniProfile.WertSchreiben("diverse", "windetailformpositionleft", CType(Me.Left, String))
@@ -2710,7 +2742,7 @@ Public Class WindetailNEU
                     " where s.vorgangsid=vf.vorgangsid" &
                     " and vf.fremdvorgangsid=" & vid
             Dim dientVorgangAlsServer As Boolean = detailsTools.fuelleVerwandteDT(sql)
-            dgVerwandteServer.DataContext = myGlobalz.sitzung.VerwandteDTServer
+            dgVerwandteServer.DataContext = myglobalz.sitzung.VerwandteDTServer
             '   initCombosVerwandte()
             If dientVorgangAlsServer Then
                 'tabheaderVerwandte.Header = "Verwandte " & myGlobalz.sitzung.VerwandteDT.Rows.Count
@@ -2719,8 +2751,8 @@ Public Class WindetailNEU
                 tabheaderVerwandte.SetValue(TextElement.ToolTipProperty, "Der aktuelle Vorgang wird von den aufgelisteten Vorgängen als <Verwandter Vorgang> verwendet")
                 '	tabheaderVorlagen.SetValue(TextElement.FontWeightProperty, FontWeights.Bold)
                 Dim VerwServerVorschau As String
-                VerwServerVorschau = VerwandteTools.divers.getVerwServerVorschau(myGlobalz.sitzung.VerwandteDTServer)
-                tabheaderVerwandte.Header = "Verwandte " & myGlobalz.sitzung.VerwandteDTServer.Rows.Count
+                VerwServerVorschau = VerwandteTools.divers.getVerwServerVorschau(myglobalz.sitzung.VerwandteDTServer)
+                tabheaderVerwandte.Header = "Verwandte " & myglobalz.sitzung.VerwandteDTServer.Rows.Count
                 tiVerwandteServer.Header = "Datenquelle von: " & VerwServerVorschau
             Else
                 tabheaderVerwandte.Header = "Verwandte "
@@ -2838,43 +2870,43 @@ Public Class WindetailNEU
             If filenames(0).ToLower.EndsWith(".eml") Then
                 'thunderbird mails
                 Dim problemMitanhang As Boolean = False
-                detailsTools.EMLemnailUebernehmen(filenames(0).ToLower, myGlobalz.sitzung.aktVorgangsID, problemMitanhang)
+                detailsTools.EMLemnailUebernehmen(filenames(0).ToLower, myglobalz.sitzung.aktVorgangsID, problemMitanhang)
                 If problemMitanhang Then
                     MessageBox.Show("Es gab ein Problem mit dem Anhang. Bitte prüfen ob der Anhang vollständig rüberkam!", "Problem")
                 End If
-                refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                refreshFotos(myGlobalz.sitzung.aktVorgangsID)
-                refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+                refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+                refreshFotos(myglobalz.sitzung.aktVorgangsID)
+                refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
             Else
                 If glob2.DokumentehinzuDragDrop(0, filenames, sollConject) Then
                     If sollConject Then
                         cbIstConject.IsChecked = True
-                        myGlobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(myGlobalz.sitzung.aktVorgangsID)
-                        If myGlobalz.sitzung.aktVorgang.istConjectVorgang Then
+                        myglobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(myglobalz.sitzung.aktVorgangsID)
+                        If myglobalz.sitzung.aktVorgang.istConjectVorgang Then
                         Else
-                            clsStammTools.saveIstConject(myGlobalz.sitzung.aktVorgangsID, 1)
-                            myGlobalz.sitzung.aktVorgang.istConjectVorgang = True
+                            clsStammTools.saveIstConject(myglobalz.sitzung.aktVorgangsID, 1)
+                            myglobalz.sitzung.aktVorgang.istConjectVorgang = True
                         End If
                         zeigeIstConjectFarbe()
                     End If
 
                 End If
-                refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                refreshFotos(myGlobalz.sitzung.aktVorgangsID)
-                refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+                refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+                refreshFotos(myglobalz.sitzung.aktVorgangsID)
+                refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
             End If
         ElseIf e.Data.GetDataPresent("FileGroupDescriptor") Then
-            detailsTools.outlookemnailUebernehmen(myGlobalz.sitzung.aktVorgangsID)
-            refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-            refreshFotos(myGlobalz.sitzung.aktVorgangsID)
-            refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+            detailsTools.outlookemnailUebernehmen(myglobalz.sitzung.aktVorgangsID)
+            refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+            refreshFotos(myglobalz.sitzung.aktVorgangsID)
+            refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
         End If
     End Sub
     Private Sub setWeitereBearbeiterListeDarstellen()
-        If String.IsNullOrEmpty(myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
+        If String.IsNullOrEmpty(myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
             tbWeitereBearbeiter.Visibility = Visibility.Collapsed
         Else
             tbWeitereBearbeiter.Visibility = Visibility.Visible
@@ -2887,36 +2919,39 @@ Public Class WindetailNEU
     End Sub
     Private Sub btnSTammChange_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: stammdaten ändern")
-        Dim alterErledigtWert As Boolean = myGlobalz.sitzung.aktVorgang.Stammdaten.erledigt
-        Dim neustamm As New Win_Stamm("edit", myGlobalz.sitzung.aktVorgang.Stammdaten, "", "", "")
+        Dim alterErledigtWert As Boolean = myglobalz.sitzung.aktVorgang.Stammdaten.erledigt
+        Dim neustamm As New Win_Stamm("edit", myglobalz.sitzung.aktVorgang.Stammdaten, "", "", "")
         neustamm.ShowDialog()
         StammDatenAnzeigeAktualisieren()
         setzeErledigtflagfarbe()
         SetzeStammdatenExplizitInsUI()
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.erledigt And
+        If myglobalz.sitzung.aktVorgang.Stammdaten.erledigt And
             alterErledigtWert = False Then
             If glob2.UserFragenObNach_PDFA_Kopieren() Then
                 alleWordDokusNachPdfaKopieren()
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
             End If
         End If
         genProbaugAZbutton()
     End Sub
 
     Private Sub StammDatenAnzeigeAktualisieren()
-        tbAltAz.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.AltAz
-        tbProbaugAZ.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz
-        tbBeschreibung2.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Beschreibung
-        tbWeitereBearbeiter.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter
-        tbGEMKRZ.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.GemKRZ
+        tbAltAz.Text = myglobalz.sitzung.aktVorgang.Stammdaten.AltAz
+        tbProbaugAZ.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz
+        tbBeschreibung2.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Beschreibung
+        tbBeschreibung3.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Beschreibung & " / " & myglobalz.sitzung.aktVorgang.Stammdaten.az.gesamt
+        tbWeitereBearbeiter.Text = myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter
+        tbGEMKRZ.Text = myglobalz.sitzung.aktVorgang.Stammdaten.GemKRZ
     End Sub
 
     Private Sub setzeErledigtflagfarbe()
         'Dim ffff As New Color
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.erledigt Then
+        If myglobalz.sitzung.aktVorgang.Stammdaten.erledigt Then
             lblVorgangsID.Background = New SolidColorBrush(Color.FromArgb(200, 0, 250, 0))
             Label16.Background = New SolidColorBrush(Color.FromArgb(200, 0, 250, 0))
+            tbBeschreibung3.Background = New SolidColorBrush(Color.FromArgb(200, 0, 250, 0))
         Else
+            tbBeschreibung3.Background = New SolidColorBrush(Color.FromArgb(0, 100, 100, 100))
             lblVorgangsID.Background = New SolidColorBrush(Color.FromArgb(0, 100, 100, 100))
             Label16.Background = New SolidColorBrush(Color.FromArgb(0, 100, 100, 100))
         End If
@@ -2928,27 +2963,27 @@ Public Class WindetailNEU
     Private Sub btnWiedervorlage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: wiedervorlage hinzufügen ")
         detailsTools.eEreignisstarten("wiedervorlage", CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
     Private Sub btnOutlookemailuebernehmen_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: outlookemail hinzufügen ")
         detailsTools.eEreignisstarten("outlookemail übernehmen", CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
     Private Sub btnStandardereignis_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: stdereignis hinzufügen ")
         detailsTools.eEreignisstarten("Notiz", CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -2956,7 +2991,7 @@ Public Class WindetailNEU
     Private Sub btnNachVorlage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         e.Handled = True
         nachricht("USERAKTION: vorlage hinzufügen ")
-        If myGlobalz.zuhause Or myGlobalz.PumuckelVersion = 2 Then
+        If myglobalz.zuhause Or myglobalz.PumuckelVersion = 2 Then
             '= 2 = kein pumuckel
             Dim wurzelverzeichnis As String = ""
             Dim zielverzeichnis As String = ""
@@ -2973,47 +3008,47 @@ Public Class WindetailNEU
             End If
 
             IO.Directory.CreateDirectory(zielverzeichnis)
-            Dim vorl As New winStatisch(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl,
-                                         myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header,
+            Dim vorl As New winStatisch(myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl,
+                                         myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header,
                                          ereignisid:=0, wurzelverzeichnis, zielverzeichnis)
             vorl.ShowDialog()
         Else
-            Dim vorl As New WinVorlagenListe(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl,
-                                         myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header,
+            Dim vorl As New WinVorlagenListe(myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl,
+                                         myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header,
                                          akteZiehenModus:=False, 0, "")
             vorl.ShowDialog()
         End If
 
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub btnAktennotiz_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         e.Handled = True
         nachricht("USERAKTION: aktennotiz hinzufügen ")
         detailsTools.eEreignisstarten("aktennotiz schreiben", CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
 
     Private Sub btnemailschreiben_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: emailschreiben ")
         detailsTools.eEreignisstarten("email schreiben", CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
     Private Sub btnZahlung_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         nachricht("USERAKTION: zahlung hinzufügen ")
         detailsTools.eEreignisstarten("zahlung", CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -3036,11 +3071,11 @@ Public Class WindetailNEU
     Private Sub aktprojektInit()
         CLstart.myc.aktprojekt = ProjektAufrufen(True)
         Projekt_RefreshDetailEintrag(CLstart.myc.aktprojekt)
-        refreshProjekt(myGlobalz.sitzung.aktVorgangsID)
+        refreshProjekt(myglobalz.sitzung.aktVorgangsID)
         Dim vorhanden As Boolean = NSprojekt.ladeProjekt.byProjektId(CLstart.myc.aktprojekt)
     End Sub
     Private Function ProjektAufrufen(ByVal anbieten As Boolean) As CLstart.clsProjektAllgemein
-        CLstart.myc.aktprojekt = New CLstart.clsProjektAllgemein(myGlobalz.sitzung.aktVorgangsID)
+        CLstart.myc.aktprojekt = New CLstart.clsProjektAllgemein(myglobalz.sitzung.aktVorgangsID)
         NSprojekt.Kopplung.byvorgangsidtId(CLstart.myc.aktprojekt)
         Dim vorhanden As Boolean = NSprojekt.ladeProjekt.byProjektId(CLstart.myc.aktprojekt)
         If Not vorhanden Then
@@ -3087,10 +3122,10 @@ Public Class WindetailNEU
         Dim zielid As String = ""
         If cmbBeteiligteFunktionen.SelectedValue.ToString.ToLower.Contains("alle beteiligten löschen") Then
             detailsTools.AlleBeteiligtenLoeschen()
-            refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+            refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
         End If
         If cmbBeteiligteFunktionen.SelectedValue.ToString.ToLower.Contains("alle beteiligten kopieren") Then
-            If detail_dokuauswahl.zielvorgangsidistOK(zielid$) Then detailsTools.AlleBeteiligtenKopieren(myGlobalz.sitzung.aktVorgangsID, CInt(zielid$)) ' myGlobalz.sitzung.beteiligteREC.dt
+            If detail_dokuauswahl.zielvorgangsidistOK(zielid$) Then detailsTools.AlleBeteiligtenKopieren(myglobalz.sitzung.aktVorgangsID, CInt(zielid$)) ' myGlobalz.sitzung.beteiligteREC.dt
         End If
         cmbBeteiligteFunktionen.SelectedIndex = 0
         e.Handled = True
@@ -3116,7 +3151,7 @@ Public Class WindetailNEU
             'dgEreignisse.ItemsSource=nothing
             dgEreignisse.DataContext = Nothing
             detailsTools.AlleEreignisseLoeschen(ereignisDokListe)
-            refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+            refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
         End If
         cmbVerlaufFunktionen.SelectedIndex = 0
         e.Handled = True
@@ -3128,7 +3163,7 @@ Public Class WindetailNEU
         'Dim zielid$
         If cmbRaumbezugsFunktionen.SelectedIndex = 0 Then Exit Sub
         If cmbRaumbezugsFunktionen.SelectedValue.ToString.ToLower.Contains("alle raumbezüge löschen") Then
-            detailsTools.AlleRaumbezuegeLoeschen(myGlobalz.sitzung.aktVorgangsID)
+            detailsTools.AlleRaumbezuegeLoeschen(myglobalz.sitzung.aktVorgangsID)
         End If
         'If cmbRaumbezugsFunktionen.SelectedValue.ToString.ToLower.Contains("kartenausschnitt einpassen") Then
         '    clsMiniMapTools.boundingboxComplettNeuErmitteln()
@@ -3137,7 +3172,7 @@ Public Class WindetailNEU
         'End If
 
         If cmbRaumbezugsFunktionen.SelectedValue.ToString.ToLower.Contains("eigentümerliste erstellen") Then
-            Dim erfolg As Boolean = detailsTools.erstelleCSVausgabeDerFlurstuecke(myGlobalz.sitzung.aktVorgangsID)
+            Dim erfolg As Boolean = detailsTools.erstelleCSVausgabeDerFlurstuecke(myglobalz.sitzung.aktVorgangsID)
             '"O:\UMWELT -PARADIGMA\div\deploy\paradigma\eigentuemerListe\multiFST2CSV.application"
             Process.Start(initP.getValue("ExterneAnwendungen.APPLICATION_MULTIFST2CSV"))
 
@@ -3149,7 +3184,7 @@ Public Class WindetailNEU
             Dim csvlisteerstellen As New WinCsvliste("")
             csvlisteerstellen.ShowDialog()
         End If
-        refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, True)
+        refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, True)
         e.Handled = True
     End Sub
 
@@ -3196,13 +3231,13 @@ Public Class WindetailNEU
             Exit Sub
         End Try
         If Not auswahlspalteFotos.Visibility = Windows.Visibility.Visible Then
-            myGlobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)
+            myglobalz.sitzung.aktDokument.clear(CLstart.mycSimple.MeinNULLDatumAlsDate)
             ' DokArc.  DokumentDatarowView2Obj(item, myGlobalz.sitzung.aktDokument)
-            myGlobalz.sitzung.aktDokument = CType(item.Clone, Dokument)
-            DokArc.setzeVerwandschaftsstatus(myGlobalz.sitzung.aktDokument, myGlobalz.sitzung.aktVorgangsID)
-            myGlobalz.sitzung.aktDokument.makeFullname_ImArchiv(myGlobalz.Arc.rootDir)
+            myglobalz.sitzung.aktDokument = CType(item.Clone, Dokument)
+            DokArc.setzeVerwandschaftsstatus(myglobalz.sitzung.aktDokument, myglobalz.sitzung.aktVorgangsID)
+            myglobalz.sitzung.aktDokument.makeFullname_ImArchiv(myglobalz.Arc.rootDir)
             Dim ausgabeVerzeichnis As String = ""
-            myGlobalz.sitzung.aktDokument.makeFullname_Checkout(myGlobalz.sitzung.aktVorgangsID, myGlobalz.Arc.lokalerCheckoutcache, myGlobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
+            myglobalz.sitzung.aktDokument.makeFullname_Checkout(myglobalz.sitzung.aktVorgangsID, myglobalz.Arc.lokalerCheckoutcache, myglobalz.sitzung.aktDokument.DocID, ausgabeVerzeichnis)
             dgVorgangDokumente_SelectionChanged_1Extracted("", True)
 
         End If
@@ -3226,7 +3261,7 @@ Public Class WindetailNEU
             MessageBox.Show("Es sind leider keine Fotos vorhanden! Abbruch.")
             Exit Sub
         End If
-        nsDivers.clsdivers.externerFotogugger(myGlobalz.sitzung.aktVorgangsID.ToString, 0, 0, 0)
+        nsDivers.clsdivers.externerFotogugger(myglobalz.sitzung.aktVorgangsID.ToString, 0, 0, 0)
 
         'dgVorgangFotos.DataContext = Psession.presFotos
         'mitMehrfachauswahlFotos.IsChecked = True
@@ -3289,9 +3324,9 @@ Public Class WindetailNEU
             Exit Sub
         End If
         Dim quellVid% = CInt(cmbDokuverwandte.SelectedValue.ToString)
-        detailsTools.AlleDokumentenKopieren(quellVid%, myGlobalz.sitzung.aktVorgangsID, False, allebilder:=True)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        detailsTools.AlleDokumentenKopieren(quellVid%, myglobalz.sitzung.aktVorgangsID, False, allebilder:=True)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         cmbDokuverwandte.SelectedItem = Nothing
         e.Handled = True
     End Sub
@@ -3333,10 +3368,10 @@ Public Class WindetailNEU
 
     Private Sub initTabcontrolsMaxheight()
         Dim maxheight As Integer = 500
-        If myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 0 Then 'kleine schriftart
+        If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 0 Then 'kleine schriftart
             maxheight = 800 '600
         End If
-        If myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 1 Then 'mittlere
+        If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 1 Then 'mittlere
             maxheight = 700 '500
             ' MaxWidth = 1500
             TabControl1.Width = 900
@@ -3360,11 +3395,11 @@ Public Class WindetailNEU
 
     Private Function OptionWindowsFont() As Boolean
         Try
-            If myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 0 Then 'kleine schriftart
+            If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 0 Then 'kleine schriftart
                 radWindowsSchriftKlein.IsChecked = True
                 radWindowsSchriftMittel.IsChecked = False
             End If
-            If myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 1 Then 'mittlere
+            If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 1 Then 'mittlere
                 radWindowsSchriftKlein.IsChecked = False
                 radWindowsSchriftMittel.IsChecked = True
             End If
@@ -3389,10 +3424,10 @@ Public Class WindetailNEU
             dgProjekt.SelectedItem = Nothing
             detailsTools.VorgangLocking("aus")
             geaenderteStammdatenSpeichern()
-            myGlobalz.sitzung.aktVorgangsID = CInt(vid)
+            myglobalz.sitzung.aktVorgangsID = CInt(vid)
 
             Me.Close()
-            glob2.editVorgang(CInt(myGlobalz.sitzung.aktVorgangsID))
+            glob2.editVorgang(CInt(myglobalz.sitzung.aktVorgangsID))
         Catch ex As Exception
             nachricht("Sie haben in eine leere Zeile geklickt. Bitte versuchen Sie es nochmal.", ex)
         End Try
@@ -3412,8 +3447,8 @@ Public Class WindetailNEU
 
     Private Sub setzeHeaderText()
         If CLstart.myc.aktprojekt.id > 0 Then
-            If Not myGlobalz.sitzung.VorgangREC.dt.IsNothingOrEmpty Then
-                tabheaderProjekt.Header = "Projekt " & myGlobalz.sitzung.VorgangREC.dt.Rows.Count
+            If Not myglobalz.sitzung.VorgangREC.dt.IsNothingOrEmpty Then
+                tabheaderProjekt.Header = "Projekt " & myglobalz.sitzung.VorgangREC.dt.Rows.Count
             Else
                 tabheaderProjekt.Header = "Projekt "
             End If
@@ -3459,7 +3494,7 @@ Public Class WindetailNEU
 
 
     Private Sub createPojekt_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
-        Dim aktprojekt = New CLstart.clsProjektAllgemein(myGlobalz.sitzung.aktVorgangsID)
+        Dim aktprojekt = New CLstart.clsProjektAllgemein(myglobalz.sitzung.aktVorgangsID)
         Dim prj As New WinProjekt("neu", aktprojekt)
         prj.ShowDialog()
         'DialogResult = False
@@ -3484,10 +3519,10 @@ Public Class WindetailNEU
         End Try
 
         Dim dummy = modstartup.Startroutine()
-        myGlobalz.zuhause = getZuhauseFromInifile()
-        myGlobalz.zuhause = False
+        myglobalz.zuhause = getZuhauseFromInifile()
+        myglobalz.zuhause = False
 
-        If myGlobalz.zuhause Then
+        If myglobalz.zuhause Then
             gigabyte = CLstart.clsPlattenplatz.clsPlattenplatz("z:")
         Else
             gigabyte = CLstart.clsPlattenplatz.clsPlattenplatz("j:")
@@ -3499,11 +3534,11 @@ Public Class WindetailNEU
         '   Environment.UserName.ToLower = "nhi" Then
         '    myGlobalz.zuhause = True
         'End If
-        If myGlobalz.zuhause Then
+        If myglobalz.zuhause Then
             suppressUmweltkram()
         End If
         initDarkTheme()
-        tbBemerkungReiter.DataContext = myGlobalz.sitzung.aktVorgang.Stammdaten
+        tbBemerkungReiter.DataContext = myglobalz.sitzung.aktVorgang.Stammdaten
         schlagworteWurdeGeaendert = False
         retcode = ""
         RubberbandStartpt = Nothing
@@ -3526,7 +3561,7 @@ Public Class WindetailNEU
         grpBoxKosten.Visibility = Visibility.Collapsed
         btnAkteziehen.Visibility = Visibility.Collapsed
         grpbauantrag.Visibility = Visibility.Collapsed
-        grpKontakte.Visibility = Visibility.Collapsed
+        'grpKontakte.Visibility = Visibility.Collapsed
         tabheaderProjekt.Visibility = Visibility.Collapsed
         btngooglestarten.Visibility = Visibility.Visible
         btngislayer.Visibility = Visibility.Collapsed
@@ -3540,7 +3575,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub schlagworteEinfaerben()
-        If String.IsNullOrEmpty(myGlobalz.sitzung.aktVorgang.Stammdaten.Bemerkung) Then
+        If String.IsNullOrEmpty(myglobalz.sitzung.aktVorgang.Stammdaten.Bemerkung) Then
             tabheaderSchlagworte.SetValue(TextElement.FontWeightProperty, FontWeights.Bold)
         Else
             tabheaderSchlagworte.SetValue(TextElement.FontWeightProperty, FontWeights.Normal)
@@ -3577,7 +3612,7 @@ Public Class WindetailNEU
     Private Sub Verteiler_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         e.Handled = True
         Dim verteiler As String
-        verteiler = mailTools.emailVerteilerBilden(myGlobalz.anhangtrenner)
+        verteiler = mailTools.emailVerteilerBilden(myglobalz.anhangtrenner)
         Clipboard.Clear()
         Clipboard.SetText(verteiler)
         MsgBox(glob2.getMsgboxText("Verteiler", New List(Of String)(New String() {})))
@@ -3615,24 +3650,24 @@ Public Class WindetailNEU
 
 
     Private Sub kostenggemeinsam()
-        myGlobalz.sitzung.aktVorgang.KostenStatus.QUELLE = myGlobalz.sitzung.aktBearbeiter.Initiale
-        Dim lKostenToolspeichern As Boolean = kostenTool.speichern(myGlobalz.sitzung.aktVorgang.KostenStatus,
-                                                               myGlobalz.sitzung.aktBearbeiter.Initiale,
-                                                               myGlobalz.sitzung.aktVorgangsID)
+        myglobalz.sitzung.aktVorgang.KostenStatus.QUELLE = myglobalz.sitzung.aktBearbeiter.Initiale
+        Dim lKostenToolspeichern As Boolean = kostenTool.speichern(myglobalz.sitzung.aktVorgang.KostenStatus,
+                                                               myglobalz.sitzung.aktBearbeiter.Initiale,
+                                                               myglobalz.sitzung.aktVorgangsID)
         If lKostenToolspeichern Then aktualisiereKostenTooltip()
     End Sub
 
 
     Private Sub chkboxInterneZahlungNEU(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.InterneZahlung = CBool(chkboxInterneZahlung.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.InterneZahlung = CBool(chkboxInterneZahlung.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub refreshKosten(vid As Integer)
         Try
-            myGlobalz.sitzung.aktVorgang.KostenStatus.clear()
-            myGlobalz.sitzung.aktVorgang.KostenStatus.vorgangsid = vid
+            myglobalz.sitzung.aktVorgang.KostenStatus.clear()
+            myglobalz.sitzung.aktVorgang.KostenStatus.vorgangsid = vid
             If kostenTool.getKostenOjbFromDb(vid) Then
                 kostenstatusDarstellen()
             Else
@@ -3644,32 +3679,32 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub aktualisiereKostenTooltip()
-        grpBoxKosten.ToolTip = "Letzte Änderung: " & myGlobalz.sitzung.aktVorgang.KostenStatus.QUELLE & ", am: " & myGlobalz.sitzung.aktVorgang.KostenStatus.timestamp
+        grpBoxKosten.ToolTip = "Letzte Änderung: " & myglobalz.sitzung.aktVorgang.KostenStatus.QUELLE & ", am: " & myglobalz.sitzung.aktVorgang.KostenStatus.timestamp
     End Sub
 
     Private Sub kostenstatusDarstellen()
         Try
             aktualisiereKostenTooltip()
-            chkboxInterneZahlung.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.InterneZahlung, True, False)
-            chkboxverwaltungsgebuehr.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehr, True, False)
-            verwaltungsgebuehrBezahlt.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehrBezahlt, True, False)
+            chkboxInterneZahlung.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.InterneZahlung, True, False)
+            chkboxverwaltungsgebuehr.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehr, True, False)
+            verwaltungsgebuehrBezahlt.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehrBezahlt, True, False)
 
-            ersatzgeld.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.ersatzgeld, True, False)
-            ersatzgeldBezahlt.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.ersatzgeldBezahlt, True, False)
-            sicherheit.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.sicherheit, True, False)
-            sicherheitBezahlt.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.sicherheitBezahlt, True, False)
+            ersatzgeld.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.ersatzgeld, True, False)
+            ersatzgeldBezahlt.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.ersatzgeldBezahlt, True, False)
+            sicherheit.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.sicherheit, True, False)
+            sicherheitBezahlt.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.sicherheitBezahlt, True, False)
 
-            VERWARNUNGSGELD.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.VERWARNUNGSGELD, True, False)
-            VerwarnungsgeldBezahlt.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.VerwarnungsgeldBezahlt, True, False)
+            VERWARNUNGSGELD.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.VERWARNUNGSGELD, True, False)
+            VerwarnungsgeldBezahlt.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.VerwarnungsgeldBezahlt, True, False)
 
-            BUSSGELD.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.BUSSGELD, True, False)
-            BUSSGELDBezahlt.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.BUSSGELDBezahlt, True, False)
+            BUSSGELD.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.BUSSGELD, True, False)
+            BUSSGELDBezahlt.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.BUSSGELDBezahlt, True, False)
 
-            Zwangsgeld.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELD, True, False)
-            ZwangsgeldBezahlt.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELDBezahlt, True, False)
+            Zwangsgeld.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELD, True, False)
+            ZwangsgeldBezahlt.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELDBezahlt, True, False)
 
-            beihilfe.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.BEIHILFE, True, False)
-            beihilfeBezahlt.IsChecked = If(myGlobalz.sitzung.aktVorgang.KostenStatus.BEIHILFEBezahlt, True, False)
+            beihilfe.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.BEIHILFE, True, False)
+            beihilfeBezahlt.IsChecked = If(myglobalz.sitzung.aktVorgang.KostenStatus.BEIHILFEBezahlt, True, False)
 
         Catch ex As Exception
             nachricht("fehler in kostenstatusDarstellen: ", ex)
@@ -3677,44 +3712,44 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub chkboxverwaltungsgebuehr_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehr = CBool(chkboxverwaltungsgebuehr.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehr = CBool(chkboxverwaltungsgebuehr.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub verwaltungsgebuehrBezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehrBezahlt = CBool(verwaltungsgebuehrBezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.verwaltungsgebuehrBezahlt = CBool(verwaltungsgebuehrBezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub ersatzgeld_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.ersatzgeld = CBool(ersatzgeld.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.ersatzgeld = CBool(ersatzgeld.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub ersatzgeldBezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.ersatzgeldBezahlt = CBool(ersatzgeldBezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.ersatzgeldBezahlt = CBool(ersatzgeldBezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub sicherheit_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.sicherheit = CBool(sicherheit.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.sicherheit = CBool(sicherheit.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub sicherheitBezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.sicherheitBezahlt = CBool(sicherheitBezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.sicherheitBezahlt = CBool(sicherheitBezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub initKostenFeld()
         Try
-            If myGlobalz.sitzung.aktBearbeiter.istUser_admin_oder_vorzimmer Then
+            If myglobalz.sitzung.aktBearbeiter.istUser_admin_oder_vorzimmer Then
                 grpBoxKosten.IsEnabled = True
             Else
                 grpBoxKosten.IsEnabled = False
@@ -3726,25 +3761,25 @@ Public Class WindetailNEU
 
 
     Private Sub BUSSGELDBezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.BUSSGELDBezahlt = CBool(BUSSGELDBezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.BUSSGELDBezahlt = CBool(BUSSGELDBezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub BUSSGELD_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.BUSSGELD = CBool(BUSSGELD.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.BUSSGELD = CBool(BUSSGELD.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub VERWARNUNGSGELD_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.VERWARNUNGSGELD = CBool(VERWARNUNGSGELD.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.VERWARNUNGSGELD = CBool(VERWARNUNGSGELD.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub VerwarnungsgeldBezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.VerwarnungsgeldBezahlt = CBool(VerwarnungsgeldBezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.VerwarnungsgeldBezahlt = CBool(VerwarnungsgeldBezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
@@ -3761,7 +3796,7 @@ Public Class WindetailNEU
 
     Private Sub btnExportClick(sender As Object, e As RoutedEventArgs)
         nachricht("USERAKTION: export ")
-        Dim export As New WinExport(myGlobalz.sitzung.aktVorgangsID)
+        Dim export As New WinExport(myglobalz.sitzung.aktVorgangsID)
         export.Show()
         GC.Collect()
         e.Handled = True
@@ -3786,7 +3821,7 @@ Public Class WindetailNEU
     End Sub
     Private Sub ckeckExpander(sender As Object, e As RoutedEventArgs)
         ' setMitDokumenten()
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -3802,7 +3837,7 @@ Public Class WindetailNEU
             clipper.ShowDialog()
             tbClipText.Text = clipper.grabtext
             'If meinClipboard.getContentFromZwischenablage Then
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
             'End If
         Catch ex As Exception
             nachricht("fehler in handleZwischenablage: ", ex)
@@ -3828,9 +3863,9 @@ Public Class WindetailNEU
 
     Private Sub chkRaumbezuegeObsolet_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         If chkRaumbezuegeObsolet.IsChecked Then
-            myGlobalz.sitzung.aktVorgang.Stammdaten.hatraumbezug = True
+            myglobalz.sitzung.aktVorgang.Stammdaten.hatraumbezug = True
         Else
-            myGlobalz.sitzung.aktVorgang.Stammdaten.hatraumbezug = False
+            myglobalz.sitzung.aktVorgang.Stammdaten.hatraumbezug = False
         End If
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "HATRAUMBEZUG")
         e.Handled = True
@@ -3840,8 +3875,8 @@ Public Class WindetailNEU
         If Not ladevorgangAbgeschlossen Then Exit Sub
         If cmbGemKRZ.SelectedItem Is Nothing Then Exit Sub
         Dim item As String = CType(cmbGemKRZ.SelectedValue, String)
-        myGlobalz.sitzung.aktVorgang.Stammdaten.GemKRZ = item.Trim
-        tbGEMKRZ.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.GemKRZ
+        myglobalz.sitzung.aktVorgang.Stammdaten.GemKRZ = item.Trim
+        tbGEMKRZ.Text = myglobalz.sitzung.aktVorgang.Stammdaten.GemKRZ
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "GEMKRZ")
         e.Handled = True
     End Sub
@@ -3860,7 +3895,7 @@ Public Class WindetailNEU
 
     Private Sub btnWeitereBearbeiterListen_Click(sender As Object, e As RoutedEventArgs)
         e.Handled = True
-        If Not myGlobalz.sitzung.aktBearbeiter.binEignerOderAdmin(myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter, myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
+        If Not myglobalz.sitzung.aktBearbeiter.binEignerOderAdmin(myglobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter, myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
             MsgBox("Diese Änderung darf nur vom Eigentümer, Admin oder einem bestehenden 'Weiteren Bearbeiter' durch geführt werden. ",
                MsgBoxStyle.OkOnly,
                "Keine Rechte: Abbruch")
@@ -3883,7 +3918,7 @@ Public Class WindetailNEU
         'If detailsTools.SollAlsStandardSetzen(CLstart.myc.AZauswahl.WeitereBearbeiter) Then
         '    detailsTools.WeitereBearbeiterImCookieSpeichern(CLstart.myc.AZauswahl.WeitereBearbeiter)
         'End If
-        myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = CLstart.myc.AZauswahl.WeitereBearbeiter
+        myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = CLstart.myc.AZauswahl.WeitereBearbeiter
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "WEITEREBEARB")
     End Sub
 
@@ -3909,7 +3944,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub btnConfirmBeschreibung2_Click(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.Stammdaten.Beschreibung = tbBeschreibung2.Text
+        myglobalz.sitzung.aktVorgang.Stammdaten.Beschreibung = tbBeschreibung2.Text
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "BESCHREIBUNG")
         tbBeschreibung2.Background = New SolidColorBrush(Colors.Silver)
         tbBeschreibung2.IsReadOnly = True
@@ -3918,31 +3953,31 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub beihilfeBezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.BEIHILFEBezahlt = CBool(beihilfeBezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.BEIHILFEBezahlt = CBool(beihilfeBezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub beihilfe_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.BEIHILFE = CBool(beihilfe.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.BEIHILFE = CBool(beihilfe.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub ersatzgeldausgezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.ersatzgeldAUSGEzahlt = CBool(ersatzgeldausgezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.ersatzgeldAUSGEzahlt = CBool(ersatzgeldausgezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub ZwangsgeldBezahlt_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELDBezahlt = CBool(ZwangsgeldBezahlt.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELDBezahlt = CBool(ZwangsgeldBezahlt.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
 
     Private Sub Zwangsgeld_Click_1(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELD = CBool(Zwangsgeld.IsChecked)
+        myglobalz.sitzung.aktVorgang.KostenStatus.ZWANGSGELD = CBool(Zwangsgeld.IsChecked)
         kostenggemeinsam()
         e.Handled = True
     End Sub
@@ -3972,7 +4007,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub btnConfirmBemerkung_Click(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.Stammdaten.Bemerkung = tbBemerkung.Text
+        myglobalz.sitzung.aktVorgang.Stammdaten.Bemerkung = tbBemerkung.Text
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "BEMERKUNG")
         tbBemerkung.Background = New SolidColorBrush(Colors.Silver)
         tbBemerkung.IsReadOnly = True
@@ -3994,7 +4029,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub btnConfirmtbProbaugAZ_Click(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz = tbProbaugAZ.Text
+        myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz = tbProbaugAZ.Text
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "PROBAUGAZ")
         tbProbaugAZ.Background = New SolidColorBrush(Colors.Silver)
         tbProbaugAZ.IsReadOnly = True
@@ -4019,7 +4054,7 @@ Public Class WindetailNEU
 
 
     Private Sub btnConfirmtbAltAz_Click(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.Stammdaten.AltAz = tbAltAz.Text
+        myglobalz.sitzung.aktVorgang.Stammdaten.AltAz = tbAltAz.Text
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "ALTAZ")
         tbAltAz.Background = New SolidColorBrush(Colors.Silver)
         tbAltAz.IsReadOnly = True
@@ -4028,7 +4063,7 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub btnConfirmtbInternenr_Click(sender As Object, e As RoutedEventArgs)
-        myGlobalz.sitzung.aktVorgang.Stammdaten.AltAz = tbAltAz.Text
+        myglobalz.sitzung.aktVorgang.Stammdaten.AltAz = tbAltAz.Text
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "INTERNENR")
         tbInternenr.Background = New SolidColorBrush(Colors.Silver)
         tbInternenr.IsReadOnly = True
@@ -4052,27 +4087,27 @@ Public Class WindetailNEU
         If cmbParagraf.SelectedItem Is Nothing Then Exit Sub
         Dim item As String = CType(cmbParagraf.SelectedValue, String)
         tbParagraph.Text = cmbParagraf.SelectedValue.ToString
-        myGlobalz.sitzung.aktVorgang.Stammdaten.Paragraf = cmbParagraf.SelectedValue.ToString
+        myglobalz.sitzung.aktVorgang.Stammdaten.Paragraf = cmbParagraf.SelectedValue.ToString
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "PARAGRAF")
-        tbParagraph.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Paragraf
+        tbParagraph.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Paragraf
         e.Handled = True
     End Sub
 
 
     Private Sub cmbRaumNr_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
         Dim item As String = CType(cmbRaumNr.SelectedValue, String)
-        myGlobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr = cmbRaumNr.SelectedValue.ToString
+        myglobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr = cmbRaumNr.SelectedValue.ToString
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "STORAUMNR")
-        tbStandort.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr
+        tbStandort.Text = myglobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr
         e.Handled = True
     End Sub
 
     Private Sub ckbGutachtenvorhanden_Checked(sender As Object, e As RoutedEventArgs) Handles ckbGutachtenvorhanden.Checked, ckbGutachtenvorhanden.Unchecked
         If ladevorgangAbgeschlossen = False Then Return
         If ckbGutachtenvorhanden.IsChecked Then
-            myGlobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.existiert = True
+            myglobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.existiert = True
         Else
-            myGlobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.existiert = False
+            myglobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.existiert = False
         End If
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "GUTACHTENMIT")
         e.Handled = True
@@ -4081,9 +4116,9 @@ Public Class WindetailNEU
     Private Sub ckbGutachtenInDokumente_Checked(sender As Object, e As RoutedEventArgs) Handles ckbGutachtenInDokumente.Checked, ckbGutachtenInDokumente.Unchecked
         If ladevorgangAbgeschlossen = False Then Return
         If ckbGutachtenInDokumente.IsChecked Then
-            myGlobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.UnterDokumente = True
+            myglobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.UnterDokumente = True
         Else
-            myGlobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.UnterDokumente = False
+            myglobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.UnterDokumente = False
         End If
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "GUTACHTENDRIN")
         e.Handled = True
@@ -4092,28 +4127,28 @@ Public Class WindetailNEU
     Private Sub chkdarfnichtvernichtetwerden_Checked(sender As Object, e As RoutedEventArgs) Handles chkdarfnichtvernichtetwerden.Checked, chkdarfnichtvernichtetwerden.Unchecked
         If ladevorgangAbgeschlossen = False Then Return
         If chkdarfnichtvernichtetwerden.IsChecked Then
-            myGlobalz.sitzung.aktVorgang.Stammdaten.darfNichtVernichtetWerden = True
+            myglobalz.sitzung.aktVorgang.Stammdaten.darfNichtVernichtetWerden = True
         Else
-            myGlobalz.sitzung.aktVorgang.Stammdaten.darfNichtVernichtetWerden = False
+            myglobalz.sitzung.aktVorgang.Stammdaten.darfNichtVernichtetWerden = False
         End If
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "DARFNICHTVERNICHTETWERDEN")
         e.Handled = True
     End Sub
 
     Private Sub initStammCheckBoxen()
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.darfNichtVernichtetWerden = True Then
+        If myglobalz.sitzung.aktVorgang.Stammdaten.darfNichtVernichtetWerden = True Then
             chkdarfnichtvernichtetwerden.IsChecked = True
         Else
             chkdarfnichtvernichtetwerden.IsChecked = False
         End If
 
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.UnterDokumente = True Then
+        If myglobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.UnterDokumente = True Then
             ckbGutachtenInDokumente.IsChecked = True
         Else
             ckbGutachtenInDokumente.IsChecked = False
         End If
 
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.existiert = True Then
+        If myglobalz.sitzung.aktVorgang.Stammdaten.meinGutachten.existiert = True Then
             ckbGutachtenvorhanden.IsChecked = True
         Else
             ckbGutachtenvorhanden.IsChecked = False
@@ -4122,17 +4157,17 @@ Public Class WindetailNEU
     Private Sub btnzuVorgang_Click(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         GC.Collect()
-        myGlobalz.einVorgangistgeoeffnet = False
+        myglobalz.einVorgangistgeoeffnet = False
         Dim az$ = "", header$ = ""
         Dim vorgangsid = clsStartup.suchenNachVorgaengen(az, header)
         e.Handled = True
         If IsNumeric(vorgangsid) Then
             If chkAktVorgangSchliessen.IsChecked Then
                 Close()
-                myGlobalz.sitzung.aktVorgangsID = CInt(vorgangsid)
+                myglobalz.sitzung.aktVorgangsID = CInt(vorgangsid)
                 LocalParameterFiles.erzeugeParameterDateiAktvorgang_txt(False, False)
-                myGlobalz.sitzung.modus = "edit"
-                CLstart.VIDuebergabe.holedetailVonVorgang(myGlobalz.sitzung.aktVorgangsID, myGlobalz.sitzung.aktBearbeiter.Initiale)
+                myglobalz.sitzung.modus = "edit"
+                CLstart.VIDuebergabe.holedetailVonVorgang(myglobalz.sitzung.aktVorgangsID, myglobalz.sitzung.aktBearbeiter.Initiale)
             Else
                 Dim cvt As New VerwandteTools.divers
                 cvt.startNewVorgang(CInt(vorgangsid))
@@ -4144,7 +4179,7 @@ Public Class WindetailNEU
     Private Sub btnNeuerVorgang_Click(sender As Object, e As RoutedEventArgs)
         'GC.Collect() 
         e.Handled = True
-        CLstart.VIDuebergabe.erzeugeParameterDatei(CInt(myGlobalz.sitzung.aktVorgangsID), myGlobalz.sitzung.aktBearbeiter.username, CLstart.mycSimple.Paradigma_local_root, "vorherigerVorgang")
+        CLstart.VIDuebergabe.erzeugeParameterDatei(CInt(myglobalz.sitzung.aktVorgangsID), myglobalz.sitzung.aktBearbeiter.username, CLstart.mycSimple.Paradigma_local_root, "vorherigerVorgang")
         'Close()
         CLstart.mycSimple.neuerVorgang3("normal")
         GC.Collect()
@@ -4159,18 +4194,22 @@ Public Class WindetailNEU
 
     Private Sub lblVorgangsID_MouseDown(sender As Object, e As MouseButtonEventArgs)
         e.Handled = True
-        If myGlobalz.sitzung.aktVorgang.Stammdaten.erledigt Then
-            myGlobalz.sitzung.aktVorgang.Stammdaten.erledigt = False
+        ErledigtSetzenDarstellen()
+    End Sub
+
+    Private Sub ErledigtSetzenDarstellen()
+        If myglobalz.sitzung.aktVorgang.Stammdaten.erledigt Then
+            myglobalz.sitzung.aktVorgang.Stammdaten.erledigt = False
             MsgBox("Der Status des Vorgangs wurde auf >UNERLEDIGT< geändert.")
         Else
-            myGlobalz.sitzung.aktVorgang.Stammdaten.erledigt = True
+            myglobalz.sitzung.aktVorgang.Stammdaten.erledigt = True
             'MsgBox("Der Status des Vorgangs wurde auf >ERLEDIGT< geändert.")
             If glob2.UserFragenObNach_PDFA_Kopieren() Then
                 alleWordDokusNachPdfaKopieren()
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
             End If
         End If
-        detailsTools.Edit_singleUpdate_Stammdaten(myGlobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "ERLEDIGT")
+        detailsTools.Edit_singleUpdate_Stammdaten(myglobalz.sitzung.aktVorgang.Stammdaten.LetzteBearbeitung, "ERLEDIGT")
         setzeErledigtflagfarbe()
     End Sub
 
@@ -4193,8 +4232,8 @@ Public Class WindetailNEU
 
             If icount > 0 Then
                 MessageBox.Show("Es wurden " & icount & " von " & Psession.presDokus.Count & " Dokumenten gelöscht.")
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+                refreshFotos(myglobalz.sitzung.aktVorgangsID)
             Else
                 MessageBox.Show("Es wurden " & icount & " Dokumente gelöscht.")
             End If
@@ -4226,7 +4265,7 @@ Public Class WindetailNEU
         'die mehrfachauswahl darf nur einmal benutzt werden, weil die cdokus in der collection nach dem ersten 
         'kopieren völlig falsche informationen enthalten, z.B. falsche dokid!!!!
         'mitMehrfachauswahl.IsChecked = False
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
     End Sub
     Private Sub btnMehrfachRevisionssichern_Click(sender As Object, e As RoutedEventArgs)
         If detail_dokuauswahl.anzahlAusgewaehlteDokumente(Psession.presDokus) > 0 Then
@@ -4241,8 +4280,8 @@ Public Class WindetailNEU
                     nachricht(icount & " Objekte revisionsgesichert")
                     nachricht("USERAKTION: " & icount & " dokus wurden revisionsgesichert")
 
-                    refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                    refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+                    refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+                    refreshFotos(myglobalz.sitzung.aktVorgangsID)
                 End If
             Else
                 MessageBox.Show("Es sind noch keine Dokumente erfasst worden!")
@@ -4295,8 +4334,8 @@ Public Class WindetailNEU
                 nachricht(icount & " Objekte gelöscht")
                 nachricht("USERAKTION: " & icount & " fotos wurden gelöscht")
 
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+                refreshFotos(myglobalz.sitzung.aktVorgangsID)
                 Return icount
             Else
                 Return 0
@@ -4331,8 +4370,8 @@ Public Class WindetailNEU
                     nachricht(icount & " Objekte revisionsgesichert")
                     nachricht("USERAKTION: " & icount & " fotos wurden revisionsgesichert")
 
-                    refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                    refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+                    refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+                    refreshFotos(myglobalz.sitzung.aktVorgangsID)
                 End If
             Else
                 MessageBox.Show("Es sind noch keine Dokumente erfasst worden!")
@@ -4369,7 +4408,7 @@ Public Class WindetailNEU
 
     Private Sub btnFotosRefresh2_Click(sender As Object, e As RoutedEventArgs) Handles btnFotosRefresh2.Click
         nachricht("USERAKTION:fotos refresh ")
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
         cmbDokuverwandte.SelectedItem = Nothing
         e.Handled = True
     End Sub
@@ -4390,8 +4429,8 @@ Public Class WindetailNEU
         pfadAllgemein = pfadAllgemein.Replace("\\", "\")
         'quelldatei = pfadAllgemein & "\" & "Bitte Akte ziehen.docx"
         quelldatei = "Bitte Akte ziehen.docx"
-        Dim vorl As New WinVorlagenListe(myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl,
-                                   myGlobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header,
+        Dim vorl As New WinVorlagenListe(myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Zahl,
+                                   myglobalz.sitzung.aktVorgang.Stammdaten.az.sachgebiet.Header,
                                    True, 0, quelldatei)
         vorl.ShowDialog()
         nachricht("WinVorlageSteuerung weiter: 7")
@@ -4400,7 +4439,7 @@ Public Class WindetailNEU
 
     Private Sub Protokollzugriffschalten()
         Try
-            If myGlobalz.sitzung.aktBearbeiter.istUser_admin_oder_vorzimmer Then
+            If myglobalz.sitzung.aktBearbeiter.istUser_admin_oder_vorzimmer Then
                 btnProtokkkoll.Visibility = Windows.Visibility.Visible
             Else
                 btnProtokkkoll.Visibility = Windows.Visibility.Collapsed
@@ -4448,15 +4487,15 @@ Public Class WindetailNEU
         e.Handled = True
         nachricht("USERAKTION: alles fotos zum PC ")
         'myGlobalz.Arc.AllesAuscheckenVorgang(True, True)
-        myGlobalz.Arc.AlleFotosAuscheckenVorgang(True, True)
+        myglobalz.Arc.AlleFotosAuscheckenVorgang(True, True)
 
     End Sub
 
     Private Sub altesRaumbezugsobjektLoeschen()
-        myGlobalz.sitzung.aktPolygon.ShapeSerial = ""
-        myGlobalz.sitzung.aktPolygon.GKstring = ""
+        myglobalz.sitzung.aktPolygon.ShapeSerial = ""
+        myglobalz.sitzung.aktPolygon.GKstring = ""
         'myGlobalz.sitzung.aktPolygon.shapefile = ""
-        myGlobalz.sitzung.aktPolygon.originalQuellString = ""
+        myglobalz.sitzung.aktPolygon.originalQuellString = ""
     End Sub
 
 
@@ -4520,7 +4559,7 @@ Public Class WindetailNEU
         GC.Collect()
         'dateiInsArchiv
         If dateiFromScanInsArchiv(PDF_TIFFdateiname) Then
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
         End If
     End Sub
 
@@ -4568,7 +4607,7 @@ Public Class WindetailNEU
     Private Sub btnIllegale_Click(sender As Object, e As RoutedEventArgs)
         Dim ill As New WinIllegaleDetail(CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked))
         ill.ShowDialog()
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -4650,7 +4689,7 @@ Public Class WindetailNEU
             If Not String.IsNullOrEmpty(wert) Then
                 Dim b As String
                 b = CLstart.myc.userIniProfile.WertLesen("NOMAP", "VID")
-                If LIBgemeinsames.clsString.isinarray(b, myGlobalz.sitzung.aktVorgangsID.ToString, ",") Then
+                If LIBgemeinsames.clsString.isinarray(b, myglobalz.sitzung.aktVorgangsID.ToString, ",") Then
                     chkMiniMapDarstellen.IsChecked = CType(0, Boolean?)
                 Else
                     chkMiniMapDarstellen.IsChecked = CType(1, Boolean?)
@@ -4669,7 +4708,7 @@ Public Class WindetailNEU
         If Not detailsTools.mitMiniMapDarstellen() Then
             Dim summe As String
             summe = CLstart.myc.userIniProfile.WertLesen("NOMAP", "VID")
-            summe = summe.Replace(myGlobalz.sitzung.aktVorgangsID.ToString, " ")
+            summe = summe.Replace(myglobalz.sitzung.aktVorgangsID.ToString, " ")
             summe = LIBgemeinsames.clsString.nodoubleStrings(summe, CChar(","))
             summe = summe.Replace(", ,", "")
             CLstart.myc.userIniProfile.WertSchreiben("NOMAP", "VID", summe)
@@ -4684,7 +4723,7 @@ Public Class WindetailNEU
         If ladevorgangAbgeschlossen = False Then Return
         If detailsTools.mitMiniMapDarstellen() Then
             Dim summe As String
-            summe = CLstart.myc.userIniProfile.WertLesen("NOMAP", "VID") & "," & myGlobalz.sitzung.aktVorgangsID
+            summe = CLstart.myc.userIniProfile.WertLesen("NOMAP", "VID") & "," & myglobalz.sitzung.aktVorgangsID
             summe = summe.Replace(", ,", "")
             CLstart.myc.userIniProfile.WertSchreiben("NOMAP", "VID", summe)
             'grpMinimapSteuerung.Visibility = Windows.Visibility.Collapsed
@@ -4699,21 +4738,21 @@ Public Class WindetailNEU
             Dim icount As Integer = alleDokusUndFotosLoeschen("nurfotos")
             If icount > 0 Then
                 'refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+                refreshFotos(myglobalz.sitzung.aktVorgangsID)
             End If
         End If
         If optAuswahl.Contains("alle dokumente löschen") Then
             Dim icount As Integer = alleDokusUndFotosLoeschen("keinefotos")
             If icount > 0 Then
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
                 'refreshFotos(myGlobalz.sitzung.aktVorgangsID)
             End If
         End If
         If optAuswahl.Contains("alle dokumente und fotos löschen") Then
             Dim icount As Integer = alleDokusUndFotosLoeschen("beides")
             If icount > 0 Then
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-                refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+                refreshFotos(myglobalz.sitzung.aktVorgangsID)
             End If
         End If
         If optAuswahl.Contains("alle dokumente und fotos zu anderem vorgang kopieren") Then
@@ -4721,11 +4760,11 @@ Public Class WindetailNEU
         End If
         If optAuswahl.Contains("alle dokumente und fotos revisionssicher speichern") Then
             alleDokusRevisionssicherMachen()
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
         End If
         If optAuswahl.Contains("alle worddokumente nach pdf/a kopieren") Then
             alleWordDokusNachPdfaKopieren()
-            refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+            refreshDokumente(myglobalz.sitzung.aktVorgangsID)
         End If
     End Sub
 
@@ -4739,7 +4778,7 @@ Public Class WindetailNEU
         'Dim winzu As New winEmailListe("weitereBearbeiterStandard")
         'winzu.ShowDialog()
 
-        If Not myGlobalz.sitzung.aktBearbeiter.binEignerOderAdmin(myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter, myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
+        If Not myglobalz.sitzung.aktBearbeiter.binEignerOderAdmin(myglobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter, myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter) Then
             MsgBox("Diese Änderung darf nur vom Eigentümer, Admin oder einem bestehenden 'Weiteren Bearbeiter' durch geführt werden. ",
                MsgBoxStyle.OkOnly,
                "Keine Rechte: Abbruch")
@@ -4762,7 +4801,7 @@ Public Class WindetailNEU
         'If detailsTools.SollAlsStandardSetzen(CLstart.myc.AZauswahl.WeitereBearbeiter) Then
         '    detailsTools.WeitereBearbeiterImCookieSpeichern(CLstart.myc.AZauswahl.WeitereBearbeiter)
         'End If
-        myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = CLstart.myc.AZauswahl.WeitereBearbeiter
+        myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = CLstart.myc.AZauswahl.WeitereBearbeiter
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "WEITEREBEARB")
 
 
@@ -4800,7 +4839,7 @@ Public Class WindetailNEU
     Private Sub btnFremdDokus_Click(sender As Object, e As RoutedEventArgs)
         Dim fremddokus As New winFremdDokus
         fremddokus.ShowDialog()
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -4822,19 +4861,19 @@ Public Class WindetailNEU
         txtDok.Checkindatum = Now
         txtDok.Beschreibung = "Notiz" ''Schlagworte
         txtDok.newSaveMode = True
-        txtDok.dokumentPfad = myGlobalz.sitzung.aktVorgang.Stammdaten.ArchivSubdir
+        txtDok.dokumentPfad = myglobalz.sitzung.aktVorgang.Stammdaten.ArchivSubdir
         Dim ausgabeVerzeichnis As String = ""
-        txtDok.makeFullname_Checkout(myGlobalz.sitzung.aktVorgangsID, myGlobalz.Arc.lokalerCheckoutcache, txtDok.DocID, ausgabeVerzeichnis)
+        txtDok.makeFullname_Checkout(myglobalz.sitzung.aktVorgangsID, myglobalz.Arc.lokalerCheckoutcache, txtDok.DocID, ausgabeVerzeichnis)
 
-        Dokument.createCheckoutDir(myGlobalz.Arc.lokalerCheckoutcache, txtDok.DocID, myGlobalz.sitzung.aktVorgangsID)
+        Dokument.createCheckoutDir(myglobalz.Arc.lokalerCheckoutcache, txtDok.DocID, myglobalz.sitzung.aktVorgangsID)
 
         If txtTools.leeresTextFileErzeugen(txtDok.FullnameCheckout) Then
             If txtTools.checkinausfuehren(txtDok) Then
-                refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
+                refreshDokumente(myglobalz.sitzung.aktVorgangsID)
                 DokArc.TXT_handeln(txtDok, "neu")
             End If
         End If
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
         e.Handled = True
     End Sub
 
@@ -4987,7 +5026,7 @@ Public Class WindetailNEU
 
     Private Sub btnaddSachgebiet_Click(sender As Object, e As RoutedEventArgs)
 
-        Dim nnn As New win_sgtree(myGlobalz.Paradigma_Sachgebietsdatei, "einstellig")
+        Dim nnn As New win_sgtree(myglobalz.Paradigma_Sachgebietsdatei, "einstellig")
         nnn.ShowDialog()
         If Not nnn.publicNR.IsNothingOrEmpty Then
             tbSuchSGnr.Text = nnn.publicNR
@@ -5289,19 +5328,19 @@ Public Class WindetailNEU
 
     Private Sub dgVorgangDokumente_SelectionChanged_1Extracted(aktThumbnailNotiz As String, allebilder As Boolean)
         l("dgVorgangDokumente_SelectionChanged_1Extracted")
-        If detailsTools.istDateiNameInordnung(myGlobalz.sitzung.aktDokument.DateinameMitExtension) Then
+        If detailsTools.istDateiNameInordnung(myglobalz.sitzung.aktDokument.DateinameMitExtension) Then
             Dim darst As Boolean = detailsTools.Archiv_aktiviere_Dokument(dokumenteRitemousekeypressed, CBool(cbreadOnlyDoxsInTxtCrtlOeffnen.IsChecked),
-                                                                          aktThumbnailNotiz, allebilder, myGlobalz.sitzung.aktDokument.EreignisID)
+                                                                          aktThumbnailNotiz, allebilder, myglobalz.sitzung.aktDokument.EreignisID)
             dokumenteRitemousekeypressed = False
             detailsTools.darstellen(darst)
-            detailsTools.FSW_instantiieren(darst, myGlobalz.PumuckelVersion)
+            detailsTools.FSW_instantiieren(darst, myglobalz.PumuckelVersion)
         Else
             MsgBox(glob2.getMsgboxText("DateiNameIstNichtInOrdnung",
-                                   New List(Of String)(New String() {myGlobalz.sitzung.aktDokument.DateinameMitExtension})
+                                   New List(Of String)(New String() {myglobalz.sitzung.aktDokument.DateinameMitExtension})
                                   ))
         End If
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshFotos(myGlobalz.sitzung.aktVorgangsID)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshFotos(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub btnStartBplan_Click(sender As Object, e As RoutedEventArgs)
@@ -5314,15 +5353,15 @@ Public Class WindetailNEU
         e.Handled = True
         If Not ladevorgangAbgeschlossen Then Exit Sub
         If rbpumuckelversion0.IsChecked Then
-            myGlobalz.PumuckelVersion = 0
+            myglobalz.PumuckelVersion = 0
             CLstart.myc.userIniProfile.WertSchreiben("PUMUCKEL", "interop", "0")
         End If
         If rbpumuckelversion1.IsChecked Then
-            myGlobalz.PumuckelVersion = 1
+            myglobalz.PumuckelVersion = 1
             CLstart.myc.userIniProfile.WertSchreiben("PUMUCKEL", "interop", "1")
         End If
         If rbpumuckelversion2.IsChecked Then
-            myGlobalz.PumuckelVersion = 2
+            myglobalz.PumuckelVersion = 2
             CLstart.myc.userIniProfile.WertSchreiben("PUMUCKEL", "interop", "2")
             MessageBox.Show("Ab sofort sind managen Sie ihre geänderten Dokumente eigenverantwortlich!", "Herzlichen Glückwunsch", MessageBoxButton.OK)
         End If
@@ -5414,11 +5453,11 @@ Public Class WindetailNEU
         auswahl = CType(sender, TextBlock)
         Dim userid As Integer = CInt(auswahl.Tag)
         Dim email As String
-        email = userTools.getEmailFromColBearbeiter(myGlobalz.colBearbeiterFDU, userid)
+        email = userTools.getEmailFromColBearbeiter(myglobalz.colBearbeiterFDU, userid)
         glob2.EmailFormOEffnen(email, "", "", "",
-                                   myGlobalz.sitzung.aktBearbeiter.Kontakt.elektr.Email, False)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+                                   myglobalz.sitzung.aktBearbeiter.Kontakt.elektr.Email, False)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub txtitel_MouseRightButtonDown(sender As Object, e As MouseButtonEventArgs)
@@ -5452,11 +5491,11 @@ Public Class WindetailNEU
         auswahl = CType(sender, TextBlock)
         Dim userid As Integer = CInt(auswahl.Tag)
         Dim email As String
-        email = userTools.getEmailFromColBearbeiter(myGlobalz.colBearbeiterBA, userid)
+        email = userTools.getEmailFromColBearbeiter(myglobalz.colBearbeiterBA, userid)
         glob2.EmailFormOEffnen(email, "", "", "",
-                                   myGlobalz.sitzung.aktBearbeiter.Kontakt.elektr.Email, False)
-        refreshDokumente(myGlobalz.sitzung.aktVorgangsID)
-        refreshEreignisseListe(myGlobalz.sitzung.aktVorgangsID)
+                                   myglobalz.sitzung.aktBearbeiter.Kontakt.elektr.Email, False)
+        refreshDokumente(myglobalz.sitzung.aktVorgangsID)
+        refreshEreignisseListe(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     'Private Sub TabItem_MouseDown(sender As Object, e As MouseButtonEventArgs)
@@ -5465,22 +5504,22 @@ Public Class WindetailNEU
 
     Private Sub TabItemFDU_MouseDown(sender As Object, e As MouseButtonEventArgs)
         e.Handled = True
-        userTools.getOnlineStatus(myGlobalz.colBearbeiterFDU)
-        userTools.MakeKapitelsKontakte(myGlobalz.colBearbeiterFDU)
-        MainListBox.ItemsSource = myGlobalz.colBearbeiterFDU
+        userTools.getOnlineStatus(myglobalz.colBearbeiterFDU)
+        userTools.MakeKapitelsKontakte(myglobalz.colBearbeiterFDU)
+        MainListBox.ItemsSource = myglobalz.colBearbeiterFDU
     End Sub
 
     Private Sub CbIstConject_Click(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         If Not ladevorgangAbgeschlossen Then Exit Sub
-        myGlobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(myGlobalz.sitzung.aktVorgangsID)
+        myglobalz.sitzung.aktVorgang.istConjectVorgang = clsStammTools.getIstConjectVorgang(myglobalz.sitzung.aktVorgangsID)
         If cbIstConject.IsChecked Then
-            myGlobalz.sitzung.aktVorgang.istConjectVorgang = True
-            clsStammTools.saveIstConject(myGlobalz.sitzung.aktVorgangsID, 1)
+            myglobalz.sitzung.aktVorgang.istConjectVorgang = True
+            clsStammTools.saveIstConject(myglobalz.sitzung.aktVorgangsID, 1)
             zeigeIstConjectFarbe()
         Else
-            myGlobalz.sitzung.aktVorgang.istConjectVorgang = False
-            clsStammTools.saveIstConject(myGlobalz.sitzung.aktVorgangsID, 0)
+            myglobalz.sitzung.aktVorgang.istConjectVorgang = False
+            clsStammTools.saveIstConject(myglobalz.sitzung.aktVorgangsID, 0)
             zeigeIstNichtConjectFarbe()
         End If
     End Sub
@@ -5525,7 +5564,7 @@ Public Class WindetailNEU
             icount = Beteiligte_MehrfachLoeschen()
             If icount > 0 Then
                 MessageBox.Show("Es wurden " & icount & " von " & Psession.presBeteiligte.Count & " Beteiligte gelöscht.")
-                refreshBeteiligteListe(myGlobalz.sitzung.aktVorgangsID)
+                refreshBeteiligteListe(myglobalz.sitzung.aktVorgangsID)
             Else
                 MessageBox.Show("Es wurden " & icount & " Beteiligte gelöscht.")
             End If
@@ -5550,7 +5589,7 @@ Public Class WindetailNEU
         e.Handled = True
         Dim frb As New winFremdRBs
         frb.ShowDialog()
-        refreshRaumbezugsListe(myGlobalz.sitzung.aktVorgangsID, False, False)
+        refreshRaumbezugsListe(myglobalz.sitzung.aktVorgangsID, False, False)
         'MsgBox("men at work")
     End Sub
 
@@ -5589,40 +5628,40 @@ Public Class WindetailNEU
     Private Sub VerwandteAdressen_hinzufuegen(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         nachricht("USERAKTION: verwandte adressen hinzu ")
-        AdressTools.Verwandte_Adressen_hinzufuegen(myGlobalz.sitzung.aktVorgangsID)
-        refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+        AdressTools.Verwandte_Adressen_hinzufuegen(myglobalz.sitzung.aktVorgangsID)
+        refreshverwandte(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub Verwandte_loeschen(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         nachricht("USERAKTION: verwandte adressen löschen ")
-        AdressTools.Verwandte_loeschen(myGlobalz.sitzung.aktVorgangsID)
-        refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+        AdressTools.Verwandte_loeschen(myglobalz.sitzung.aktVorgangsID)
+        refreshverwandte(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub Verwandte_FST_hinzufuegen(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         nachricht("USERAKTION: verwandte flurstuecke hinzu ")
         'AdressTools.Verwandte_Adressen_hinzufuegen(myGlobalz.sitzung.aktVorgangsID)
-        AdressTools.Verwandte_FST_hinzufuegen(myGlobalz.sitzung.aktVorgangsID)
-        refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+        AdressTools.Verwandte_FST_hinzufuegen(myglobalz.sitzung.aktVorgangsID)
+        refreshverwandte(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub Verwandte_alleRB_hinzufuegen(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         nachricht("USERAKTION: verwandte adressen hinzu ")
-        AdressTools.Verwandte_Adressen_hinzufuegen(myGlobalz.sitzung.aktVorgangsID)
+        AdressTools.Verwandte_Adressen_hinzufuegen(myglobalz.sitzung.aktVorgangsID)
         nachricht("USERAKTION: verwandte flurstuecke hinzu ")
 
-        AdressTools.Verwandte_FST_hinzufuegen(myGlobalz.sitzung.aktVorgangsID)
-        refreshverwandte(myGlobalz.sitzung.aktVorgangsID)
+        AdressTools.Verwandte_FST_hinzufuegen(myglobalz.sitzung.aktVorgangsID)
+        refreshverwandte(myglobalz.sitzung.aktVorgangsID)
     End Sub
 
     Private Sub btnChangeUserSetting_Click(sender As Object, e As RoutedEventArgs)
         e.Handled = True
         Dim aendern As New winUserEdit
         aendern.ShowDialog()
-        tbuserAbsteract.Text = myGlobalz.sitzung.aktBearbeiter.getString(Environment.NewLine)
+        tbuserAbsteract.Text = myglobalz.sitzung.aktBearbeiter.getString(Environment.NewLine)
     End Sub
 
     Private Sub btnMehrfachDrucken_Click(sender As Object, e As RoutedEventArgs)
@@ -5700,8 +5739,8 @@ Public Class WindetailNEU
         e.Handled = True
         nachricht("USERAKTION: fotoguggerverwandte ")
         'btnFotoGucker_ClickExtracted()
-        If myGlobalz.sitzung.VerwandteDTServer.Rows.Count < 1 And
-                    myGlobalz.sitzung.VerwandteDT.Rows.Count < 1 Then
+        If myglobalz.sitzung.VerwandteDTServer.Rows.Count < 1 And
+                    myglobalz.sitzung.VerwandteDT.Rows.Count < 1 Then
             MessageBox.Show("Es sind leider keine verwandten Vorgänge vorhanden! Abbruch.")
             Exit Sub
         End If
@@ -5711,7 +5750,7 @@ Public Class WindetailNEU
 
     Private Shared Async Sub verwFotosAnzeigen()
         Dim verwandteVorgaengeSumme As String = ""
-        verwandteVorgaengeSumme = nsDivers.clsdivers.getAlleVerwandtennummern(myGlobalz.sitzung.VerwandteDTServer, myGlobalz.sitzung.VerwandteDT, myGlobalz.sitzung.aktVorgangsID)
+        verwandteVorgaengeSumme = nsDivers.clsdivers.getAlleVerwandtennummern(myglobalz.sitzung.VerwandteDTServer, myglobalz.sitzung.VerwandteDT, myglobalz.sitzung.aktVorgangsID)
         'sind fotos enthalten?
         'Dim sql = "select * from dokumente where vid in (" & verwandteVorgaengeSumme & ") " &
         '    " and lower(typ)='jpg' or lower(typ)='jpeg' or lower(typ)='png' or lower(typ)='gif'  " &
@@ -5721,7 +5760,7 @@ Public Class WindetailNEU
         Dim bresult As Boolean = Await task
         Dim dummyListe As New List(Of clsPresDokumente)
         If bresult Then
-            dummyListe = detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
+            dummyListe = detail_dokuauswahl.dokuDTnachObj(myglobalz.Arc.ArcRec.dt.Copy)
         End If
         If dummyListe.Count > 0 Then
             nsDivers.clsdivers.externerFotogugger(verwandteVorgaengeSumme, 0, 0, 1)
@@ -5745,6 +5784,11 @@ Public Class WindetailNEU
     Private Sub btnZumGis_Click(sender As Object, e As RoutedEventArgs)
         mgisStarten(CBool(paradigmaKILLALLGIS.IsChecked))
         e.Handled = True
+    End Sub
+
+    Private Sub tbBeschreibung3_MouseDown(sender As Object, e As MouseButtonEventArgs)
+        e.Handled = True
+        ErledigtSetzenDarstellen()
     End Sub
 
     'Private Sub btnMehrfachDokumenteDrucken_Click(sender As Object, e As RoutedEventArgs)

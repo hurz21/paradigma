@@ -1314,7 +1314,7 @@
   <PropertyGroup>
     <PostBuildEvent>
 if $(ConfigurationName) == Release (
-  copy $(targetfilename) C:\KreisOffenbach\paradigmadetail\paradigmadetail.exe 
+  rem copy $(targetfilename) C:\KreisOffenbach\paradigmadetail\paradigmadetail.exe 
  rem copy $(targetfilename) Z:\paradigma\kreisOffenbach\paradigmadetail\paradigmadetail.exe
 rem
 )</PostBuildEvent>
