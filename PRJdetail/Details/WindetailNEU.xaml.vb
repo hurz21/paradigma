@@ -5791,6 +5791,10 @@ Public Class WindetailNEU
         ErledigtSetzenDarstellen()
     End Sub
 
+    Private Sub tbBeschreibung2_TextChanged(sender As Object, e As TextChangedEventArgs) Handles tbBeschreibung2.TextChanged
+
+    End Sub
+
     'Private Sub btnMehrfachDokumenteDrucken_Click(sender As Object, e As RoutedEventArgs)
     '    e.Handled = True
     '    If (detail_dokuauswahl.anzahlAusgewaehlteDokumente(Psession.presFotos) + detail_dokuauswahl.anzahlAusgewaehlteDokumente(Psession.presDokus)) > 0 Then

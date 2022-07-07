@@ -281,11 +281,11 @@
         <TextBlock Name="tbBeschreibung3" FontSize="16" Background="Black" Foreground="white" Margin="5,0,0,0" DockPanel.Dock="Top"
                  MouseDown="tbBeschreibung3_MouseDown">OOOOOOOOOOOOOOOOOOOOOOO</TextBlock>
         <TabControl Name="tbControl1"  Background="{StaticResource backg3}" >
-            
+
             <TabItem Header="Sachdaten" IsSelected="True" x:Name="tiSachdaten" Margin="-2,0,2,0"  
-                   Height="20" VerticalAlignment="Top"  >
+                   Height="20" VerticalAlignment="Top"   AllowDrop="True">
                 <DockPanel>
-                
+
                     <DockPanel x:Name="kopp" DockPanel.Dock="Top"     Height="150"   >
 
                         <StackPanel x:Name="stackp1" Height="150">
@@ -424,10 +424,10 @@
                                         <StackPanel Orientation="Horizontal"   VerticalAlignment="Top">
 
 
-                                        
-                                                <TabControl  >
-                                                    <TabItem Header="FD Umwelt" MouseDown="TabItemFDU_MouseDown" >
-                                                        <ListView    Height="100"  Width="385"   HorizontalAlignment="Left"
+
+                                            <TabControl  >
+                                                <TabItem Header="FD Umwelt" MouseDown="TabItemFDU_MouseDown" >
+                                                    <ListView    Height="100"  Width="385"   HorizontalAlignment="Left"
                                                     x:Name="MainListBox"
                                                           Background="{StaticResource backg3}" 
                                                     BorderBrush="#FFCCCCCC" 
@@ -438,18 +438,18 @@
                                                     SelectionChanged="MainListBox_SelectionChanged"
                                                     ItemTemplate="{StaticResource userListTemplateFDU}" 
                                               >
-                                                            <ListView.ItemsPanel>
-                                                                <ItemsPanelTemplate>
-                                                                    <WrapPanel Width="345"      >
-                                                                    </WrapPanel>
-                                                                </ItemsPanelTemplate>
-                                                            </ListView.ItemsPanel>
-                                                        </ListView>
-                                                    </TabItem>
-                                                    <TabItem Header="FD Bauaufsicht , Kommunen">
-                                                        <StackPanel Orientation="Horizontal" Background="{StaticResource backg3}" 
+                                                        <ListView.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel Width="345"      >
+                                                                </WrapPanel>
+                                                            </ItemsPanelTemplate>
+                                                        </ListView.ItemsPanel>
+                                                    </ListView>
+                                                </TabItem>
+                                                <TabItem Header="FD Bauaufsicht , Kommunen">
+                                                    <StackPanel Orientation="Horizontal" Background="{StaticResource backg3}" 
                                                         Name="stpBauaufischt">
-                                                            <ListView    Height="100"  Width="245"   HorizontalAlignment="Left"
+                                                        <ListView    Height="100"  Width="245"   HorizontalAlignment="Left"
                                                     x:Name="ListboxBauaufsicht"  
                                                               Background="{StaticResource backg3}" 
                                                     BorderBrush="#FFCCCCCC" 
@@ -460,22 +460,22 @@
                                                     SelectionChanged="ListboxBauaufsicht_SelectionChanged"
                                                     ItemTemplate="{StaticResource userListTemplateBA}" 
                                               >
-                                                                <ListView.ItemsPanel>
-                                                                    <ItemsPanelTemplate>
-                                                                        <WrapPanel Width="230"      >
-                                                                        </WrapPanel>
-                                                                    </ItemsPanelTemplate>
-                                                                </ListView.ItemsPanel>
-                                                            </ListView>
-                                                            <StackPanel >
-                                                                <Button Name="btnKurzeBAliste" Content="Bauaufsicht " Click="BtnKurzeBAliste_Click"  Style="{StaticResource lessButton}" Width="100" Margin="0,10,0,0"></Button>
-                                                                <Button Content="BA detailliert" Click="ButtonBALANG_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
-                                                                <Button Content="Kommunen" Click="Buttonkommunen_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
-                                                            </StackPanel>
+                                                            <ListView.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <WrapPanel Width="230"      >
+                                                                    </WrapPanel>
+                                                                </ItemsPanelTemplate>
+                                                            </ListView.ItemsPanel>
+                                                        </ListView>
+                                                        <StackPanel >
+                                                            <Button Name="btnKurzeBAliste" Content="Bauaufsicht " Click="BtnKurzeBAliste_Click"  Style="{StaticResource lessButton}" Width="100" Margin="0,10,0,0"></Button>
+                                                            <Button Content="BA detailliert" Click="ButtonBALANG_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
+                                                            <Button Content="Kommunen" Click="Buttonkommunen_Click" Width="100" Margin="1" Style="{StaticResource lessButton}" ></Button>
                                                         </StackPanel>
-                                                    </TabItem>
-                                                </TabControl>
-                                   
+                                                    </StackPanel>
+                                                </TabItem>
+                                            </TabControl>
+
                                         </StackPanel>
                                     </TabItem>
                                 </TabControl>
@@ -518,7 +518,7 @@
                                 </TabControl>
                             </StackPanel>
 
-                       
+
                         </StackPanel>
                     </DockPanel>
                     <TextBox  DockPanel.Dock="Bottom"  x:Name="tbNachricht"  MaxHeight="25"
@@ -1491,175 +1491,125 @@
                     <WebBrowser Name="wbSample"  Panel.ZIndex="100" ></WebBrowser>
                 </DockPanel >
             </TabItem>-->
-            <TabItem x:Name="tiStammdaten" Header="Stammdaten" Height="20" VerticalAlignment="Top">
-                <DockPanel>
+            <TabItem x:Name="tiStammdaten" Header="Stammdaten" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="83">
+                <DockPanel VerticalAlignment="Top">
                     <GroupBox DockPanel.Dock="Top" x:Name="grpStammdatenUebersicht" 
-                         Margin="50"        
+                         Margin="5" VerticalAlignment="Top"       
                       Header="Stammdaten"    >
-                        <Grid x:Name="grdKopf" 
+                        <StackPanel Orientation="Horizontal">
+
+                            <Grid x:Name="grdKopf" Width="550"  
                                 VerticalAlignment="Top" 
                                 Panel.ZIndex="90"  
                                 HorizontalAlignment="Left">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="36" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="23" />
-                                <RowDefinition Height="40" />
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="40" />
 
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7.333" />
-                                <ColumnDefinition Width="48.667"/>
-                                <ColumnDefinition Width="15"/>
-                                <ColumnDefinition Width="25" />
-                                <ColumnDefinition Width="25" />
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="70.5"/>
-                                <ColumnDefinition Width="123" />
-                                <ColumnDefinition Width="19*" />
-                                <ColumnDefinition Width="22*"/>
-                                <ColumnDefinition Width="21*"/>
-                                <ColumnDefinition Width="38*" />
-                                <ColumnDefinition Width="53"/>
-                                <ColumnDefinition Width="6"/>
-                                <ColumnDefinition Width="38*"/>
-                                <ColumnDefinition Width="2"/>
-                            </Grid.ColumnDefinitions>
-                            <CheckBox Grid.Column="7" x:Name="chkdarfnichtvernichtetwerden"   
-                              HorizontalContentAlignment="Left"  ToolTip="der Vorgang muss mehr als 10 Jahre bewahrt werden" 
-                                 Checked="chkdarfnichtvernichtetwerden_Checked"
-                              Content="> 10 Jahre "  >
-                            </CheckBox>
-
-                            <CheckBox x:Name="ckbGutachtenvorhanden"  Grid.Column="8" Grid.RowSpan="3" Grid.Row="1" 
-                                          Grid.ColumnSpan="8"   Content="Es gibt Gutachten " >
-                            </CheckBox>
-                            <CheckBox x:Name="ckbGutachtenInDokumente"    Checked="ckbGutachtenInDokumente_Checked"
-                                              Grid.Column="8" Grid.RowSpan="3"   Grid.ColumnSpan="8" 
-                                               Content="Gutachten unter 'Dokumente'" ToolTip="Das /die Gutachten liegen unter dem Reiter 'Dokumente' vor">
-
-
-                            </CheckBox>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7.333" />
+                                    <ColumnDefinition Width="22.767"/>
+                                    <ColumnDefinition Width="25.9"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="70.5"/>
+                                    <ColumnDefinition Width="123" />
+                                    <ColumnDefinition Width="19*" />
+                                    <ColumnDefinition Width="22*"/>
+                                    <ColumnDefinition Width="21*"/>
+                                    <ColumnDefinition Width="38*" />
+                                    <ColumnDefinition Width="53"/>
+                                    <ColumnDefinition Width="6"/>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="2"/>
+                                </Grid.ColumnDefinitions>
+                             
 
 
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" x:Name="Label16" Padding="5" Text="VorgangsNr:" HorizontalAlignment="Left" Width="85"
-                               Grid.ColumnSpan="4" Margin="0,0,0,22.667" Grid.RowSpan="2"  />
-                            <TextBlock Grid.Column="4" x:Name="lblVorgangsID" Width="50"  Padding="5" MouseDown="lblVorgangsID_MouseDown"
-                                           ToolTip="Durch Klicken auf die Vorgangsnummer können Sie den 'Erledigt'-Status ändern."
-                                         
-                                           IsEnabled="True"
-                                           HorizontalAlignment="Left" Grid.ColumnSpan="3"   Grid.RowSpan="2" Margin="0,0,0,22.667" />
 
+                              
+                                 <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Weitere:"  Grid.Column="6" Margin="3,0,123,39"
+                                             MouseMove="tbWeitereBearbeiter_Mousemove" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+                                <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Bearbeiter:"  Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,25,39" Grid.RowSpan="2" />
+                               
+                                <Button x:Name="btnConfirmBeschreibung2" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                                          Grid.Row="4" Grid.Column="15" Grid.ColumnSpan="2" Click="btnConfirmBeschreibung2_Click"
+                                        Height="Auto" Margin="0,0,1,23" Grid.RowSpan="2" />
 
-                            <TextBlock Grid.Row="3" Padding="5" x:Name="Label1" Text="Az.:" HorizontalAlignment="Left" Width="71" Grid.ColumnSpan="4" Margin="0,0,0,22.667" Grid.RowSpan="2" />
-                            <TextBox Padding="0" Grid.Row="3"   x:Name="lblAZ"   IsReadOnly="True"    
-                                        Grid.ColumnSpan="12"  Background="{StaticResource backg3}"  
-                         ToolTip="" Grid.Column="3" Height="23" VerticalAlignment="Top" Margin="0.333,0,36.333,0" />
-                            <TextBlock Padding="5" x:Name="Label13" Text="Sachgebiet:"
-                                           HorizontalAlignment="Left" Width="72" Grid.ColumnSpan="4" Margin="0,23" Grid.RowSpan="3" />
-                            <TextBlock Padding="5" x:Name="Label14"  
-                                        Grid.ColumnSpan="6" Grid.Column="3" Margin="2.333,23,27.667,23" Grid.RowSpan="3" />
+                                       <TextBlock Grid.Row="6" Padding="5"   Text="Standort:" ToolTip="Standort der Papierakte" Grid.ColumnSpan="5" Margin="0,0,25,22" Grid.RowSpan="2"/>
 
-
-                            <TextBlock Grid.Row="3" Padding="5" ToolTip="Ändern unter 'Stammdaten'" Text="Titel:" Grid.ColumnSpan="4" Margin="0,23,25,23" Grid.RowSpan="3" />
-                            <TextBlock Grid.Row="5" Padding="5" ToolTip="Ändern unter 'Stammdaten'" Text="Schlagworte:" Grid.ColumnSpan="4" Margin="0,0.333,25,21.667" Grid.RowSpan="2" />
-                            <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Weitere:"  Grid.Column="6" Margin="2.667,0.333,0,39.333"
-                                             MouseMove="tbWeitereBearbeiter_Mousemove" Grid.RowSpan="2" />
-                            <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Bearbeiter:"  Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0.333,25,39.333" Grid.RowSpan="2" />
-                            <TextBox   Padding="0" Grid.Row="3"   x:Name="tbBeschreibung2"   TextWrapping="NoWrap"  IsReadOnly="True"    
-                                            MouseDoubleClick="tbBeschreibung2_MouseDown" SelectionChanged="tbBeschreibung2_SelectionChanged"
-                                            Background="Silver"
-                                            Grid.ColumnSpan="12"
-                                            ToolTip="Anklicken um zu ändern"
-                                            Grid.Column="3" Margin="0.333,23,36.333,23" Grid.RowSpan="3" />
-
-                            <Button x:Name="btnConfirmBeschreibung2" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
-                                          Grid.Row="3" Grid.Column="14" Grid.ColumnSpan="2" Click="btnConfirmBeschreibung2_Click"
-                                        Height="Auto" Margin="0.333,23,1.333,23" Grid.RowSpan="3" />
-
-                            <TextBox   Padding="0" Grid.Row="5"   x:Name="tbBemerkung"   TextWrapping="WrapWithOverflow" IsReadOnly="True"  
-                                        Background="Silver"
-                                        SelectionChanged="tbBemerkung_SelectionChanged"
-                                        Grid.ColumnSpan="12"   MouseDoubleClick="tbBemerkung_MouseDown" ToolTip="Doppelklick um zu ändern" 
-                                        Grid.Column="3" Margin="0.333,0.333,36.333,21.667" Grid.RowSpan="2" 
-                               />
-                            <Button x:Name="btnConfirmBemerkung" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
-                            Grid.Row="5" Grid.Column="14" Grid.ColumnSpan="2" Click="btnConfirmBemerkung_Click" Height="Auto" Margin="0.333,0.333,1.333,0" />
-
-                            <TextBlock   Padding="5" Grid.Row="2"    Text="Projekt:" ToolTip="Projektzugehörigkeit" 
-                                             x:Name="btnProjekt2" 
-                                 Margin="0,0.333,25,22.333" Grid.ColumnSpan="4" Grid.RowSpan="2"  
-                           />
-                            <TextBlock Grid.Row="2" Grid.ColumnSpan="12" Padding="5"  x:Name="tbProjektAbstract"  Grid.Column="3" Margin="0.333,0.333,36.333,22.333" Grid.RowSpan="2" />
-                            <TextBlock Grid.Row="6" Padding="5"   Text="Standort:" ToolTip="Standort der Papierakte" Grid.ColumnSpan="4" Margin="0,0,25,22.333" Grid.RowSpan="2"/>
-
-                            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="4" Margin="0.333,0,29.667,22.333" Grid.RowSpan="2">
-                                <TextBlock   Padding="5"  Text="§:" ToolTip="Relevanter $"  HorizontalAlignment="Left" />
-                                <TextBlock   Padding="5"     x:Name="tbParagraph"  HorizontalAlignment="Left"
+                                <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="4" Margin="0,0,30,22" Grid.RowSpan="2">
+                                    <TextBlock   Padding="5"  Text="§:" ToolTip="Relevanter $"  HorizontalAlignment="Left" />
+                                    <TextBlock   Padding="5"     x:Name="tbParagraph"  HorizontalAlignment="Left"
                                                    
                              ToolTip=""/>
 
-                                <ComboBox   x:Name="cmbParagraf" ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
+                                    <ComboBox   x:Name="cmbParagraf" ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxParagraf}, XPath=/Variablen/Variable}"
                                                                 ItemsSource="{Binding}" 
                                                                 DisplayMemberPath="@Name" 
                                                                 SelectedValuePath="@ID"
                                                                 SelectedValue="{Binding Path=ID}" 
                                                               SelectionChanged="cmbParagraf_SelectionChanged"  />
-                            </StackPanel>
+                                </StackPanel>
 
 
 
-                            <TextBlock Grid.Row="7" Padding="5"   Text="Externes Az:" Grid.ColumnSpan="4" Margin="0,0.333,25,22" Grid.RowSpan="2" />
-                            <TextBlock Grid.Row="7" Padding="5"   Text="Altes Az:" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="4" Margin="0,0,25,0" Grid.RowSpan="2" />
-                            <TextBlock Grid.Row="9" Padding="5"  Text="Gem.Kürzel:" Grid.ColumnSpan="4"
-                           ToolTip="" Margin="0,0,25,22.333" Grid.RowSpan="2" />
-                            <TextBlock   Padding="5" Grid.Row="6"   x:Name="tbStandort"  
+                                <TextBlock Grid.Row="7" Padding="5"   Text="Externes Az:" Grid.ColumnSpan="5" Margin="0,0,25,22" Grid.RowSpan="2" />
+                                <TextBlock Grid.Row="8" Padding="5"   Text="Altes Az:" Height="23" VerticalAlignment="Center" Grid.ColumnSpan="5" Margin="0,0,25,0" />
+                                <TextBlock Grid.Row="9" Padding="5"  Text="Gem.Kürzel:" Grid.ColumnSpan="5"
+                           ToolTip="" Margin="0,0,25,22" Grid.RowSpan="2" />
+                                <TextBlock   Padding="5" Grid.Row="6"   x:Name="tbStandort"  
                                               
-                             ToolTip="" Grid.Column="3" Grid.ColumnSpan="4" Margin="0.333,0,70,22.333" Grid.RowSpan="2" />
-                            <ComboBox   x:Name="cmbRaumNr"   Grid.Row="6"  Grid.Column="6" ToolTip="Der Raum in dem die Akte steht." Width="25"
+                             ToolTip="" Grid.Column="4" Grid.ColumnSpan="4" Margin="0,0,70,22" Grid.RowSpan="2" />
+                                <ComboBox   x:Name="cmbRaumNr"   Grid.Row="6"  Grid.Column="6" ToolTip="Der Raum in dem die Akte steht." Width="25"
                                             MaxDropDownHeight="800"
                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxRaumNr}, XPath=/Variablen/Variable}"
                                                                 ItemsSource="{Binding}" 
                                                                 DisplayMemberPath="@Name" 
                                                                 SelectedValuePath="@ID"
                                                                 SelectedValue="{Binding Path=ID}" 
-                                                              SelectionChanged="cmbRaumNr_SelectionChanged" Margin="12.667,0,33,22.333" Grid.RowSpan="2"
+                                                              SelectionChanged="cmbRaumNr_SelectionChanged" Margin="13,0,33,22" Grid.RowSpan="2" Grid.ColumnSpan="2"
                                       />
 
 
-                            <TextBox     Grid.Row="7"   x:Name="tbProbaugAZ"  IsReadOnly="True" 
+                                <TextBox     Grid.Row="7"   x:Name="tbProbaugAZ"  IsReadOnly="True" 
                                  MouseDoubleClick="tbProbaugAZ_MouseDown"  
                                              ToolTip="ProbauG-AZ nach dem Schema: 63-04478-21-68 (63-Vorgangnr-Jahr-...)"  
                                  SelectionChanged="tbProbaugAZ_SelectionChanged" 
                                          Background="Silver"         
-                                 Grid.Column="3" Grid.ColumnSpan="6"  Width="200" HorizontalAlignment="Left" />
-                            <Button Grid.Row="7" Grid.Column="7" Width="50" Height="20"
+                                 Grid.Column="4" Grid.ColumnSpan="5"  Width="200" HorizontalAlignment="Left" />
+                                <Button Grid.Row="7" Grid.Column="8" Width="50" Height="20"
                                         ToolTip="startet das Probaug-Modul"
-                                        Name="btnZuProbauG" Content="ProBauG" Click="btnZuProbauG_Click" />
-                            <Button x:Name="btnConfirmtbProbaugAZ" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
-                            Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Click="btnConfirmtbProbaugAZ_Click" Height="Auto" Margin="0.333,0.333,29.667,0.333" />
+                                        Name="btnZuProbauG" Content="ProBauG" Click="btnZuProbauG_Click" Margin="36,2,37,1" />
+                                <Button x:Name="btnConfirmtbProbaugAZ" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Click="btnConfirmtbProbaugAZ_Click" Height="Auto" Margin="21,0,7,0" />
 
 
 
-                            <TextBox Grid.Row="7"   x:Name="tbAltAz"         IsReadOnly="True" 
+                                <TextBox Grid.Row="7"   x:Name="tbAltAz"         IsReadOnly="True" 
                           Background="Silver"
-                             Grid.Column="3" Grid.ColumnSpan="6"  MouseDoubleClick="tbAltAz_MouseDown"  ToolTip="Doppelklick um zu ändern"  
-                             SelectionChanged="tbAltAz_SelectionChanged" Margin="0.333,22.333,29.667,0" Grid.RowSpan="2" />
-                            <Button x:Name="btnConfirmtbAltAz" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
-                            Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Click="btnConfirmtbAltAz_Click" Height="Auto" Margin="0.333,22.333,29.667,0" Grid.RowSpan="2"  />
+                             Grid.Column="4" Grid.ColumnSpan="5"  MouseDoubleClick="tbAltAz_MouseDown"  ToolTip="Doppelklick um zu ändern"  
+                             SelectionChanged="tbAltAz_SelectionChanged" Margin="0,22,9,0" Grid.RowSpan="2" />
+                                <Button x:Name="btnConfirmtbAltAz" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Click="btnConfirmtbAltAz_Click" Height="Auto" Margin="21,22,7,0" Grid.RowSpan="2"  />
 
-                            <StackPanel Orientation="Horizontal"  Grid.Row="9"  Grid.Column="3" Grid.ColumnSpan="3" Margin="0.333,0,0.333,22.333" Grid.RowSpan="2">
-                                <ComboBox  x:Name="cmbGemKRZ"      ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
+                                <StackPanel Orientation="Horizontal"  Grid.Row="9"  Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,0,22" Grid.RowSpan="2">
+                                    <ComboBox  x:Name="cmbGemKRZ"      ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
                                MouseMove="cmbGemKRZ_MouseMove" MaxDropDownHeight="800"
                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxGemKRZ}, XPath=/GEMKRZen/GEMKRZ}"
                                                                 ItemsSource="{Binding}" 
@@ -1668,72 +1618,144 @@
                                                                 SelectedValue="{Binding Path=ID}" 
                                                               SelectionChanged="cmbGemKRZ_SelectionChanged"  
                                       />
-                                <TextBlock    x:Name="tbGEMKRZ"      Padding="5"   MouseEnter="tbGEMKRZ_MouseEnter" 
+                                    <TextBlock    x:Name="tbGEMKRZ"      Padding="5"   MouseEnter="tbGEMKRZ_MouseEnter" 
                              ToolTip="" 
                               
                     Margin="0,0,0,0" Width="46" />
-                            </StackPanel>
-                            <TextBlock Grid.Row="9" Grid.Column="6" Padding="5"  Text="Interne Nr:" 
-                           ToolTip="Access-Bezug herstellen" Margin="2.667,0,0,22.333" Grid.RowSpan="2" />
+                                </StackPanel>
+                                <TextBlock Grid.Row="9" Grid.Column="6" Padding="5"  Text="Interne Nr:" 
+                           ToolTip="Access-Bezug herstellen" Margin="3,0,123,22" Grid.RowSpan="2" Grid.ColumnSpan="3" />
 
-                            <TextBox Grid.Row="9"  Grid.Column="7" x:Name="tbInternenr"      IsReadOnly="True"  
+                                <TextBox Grid.Row="9"  Grid.Column="8" x:Name="tbInternenr"      IsReadOnly="True"  
                              ToolTip="Access-Bezug (Natureg...)"  TextWrapping="WrapWithOverflow"
                                 Background="Silver"
-                        Grid.ColumnSpan="3" 
-                              MouseDoubleClick="tbtbInternenr_MouseDown"  SelectionChanged="tbtbInternenr_SelectionChanged" Margin="0,0,29.667,22.333" Grid.RowSpan="2" />
-                            <Button x:Name="btnConfirmtbInternenr" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
-                            Grid.Row="9" Grid.Column="9"   Click="btnConfirmtbInternenr_Click" Height="Auto" Margin="0.333,0,29.667,22.333" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                        Grid.ColumnSpan="2" 
+                              MouseDoubleClick="tbtbInternenr_MouseDown"  SelectionChanged="tbtbInternenr_SelectionChanged" Margin="0,0,5,22" Grid.RowSpan="2" />
+                                <Button x:Name="btnConfirmtbInternenr" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                            Grid.Row="9" Grid.Column="9"   Click="btnConfirmtbInternenr_Click" Height="Auto" Margin="21,0,7,22" Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
 
-                            <StackPanel Orientation="Horizontal" Grid.Column="7" Grid.Row="10"  Grid.ColumnSpan="2" Margin="0,0.333,29.667,0.333" >
-                                <TextBlock 
+                                <StackPanel Orientation="Horizontal" Grid.Column="8" Grid.Row="10" Margin="0,0,9,0" >
+                                    <TextBlock 
                         x:Name="tbWeitereBearbeiter"   Padding="5"  IsEnabled="False" ToolTip="" 
                         MouseMove="tbWeitereBearbeiter_Mousemove" Width="90" MouseEnter="tbWeitereBearbeiter_Mousemove"
                    
                         />
 
-                                <Button    x:Name="btnWeitereBearbeiterListen"   Content="..." Style="{StaticResource lessButton}" Width="20" Height="18"
+                                    <Button    x:Name="btnWeitereBearbeiterListen"   Content="..." Style="{StaticResource lessButton}" Width="20" Height="18"
                                                HorizontalAlignment="Left"
                                     Click="btnWeitereBearbeiterListen_Click" />
 
 
-                            </StackPanel>
-                            <Button Grid.Row="11" Grid.Column="11" Visibility="Collapsed"   x:Name="btnDS_gruppen"   Content="Datenschutz"
-                                        Style="{StaticResource lessButton}"    Grid.ColumnSpan="4"                                        
+                                </StackPanel>
+                                <Button Grid.Row="11" Grid.Column="11" Visibility="Collapsed"   x:Name="btnDS_gruppen"   Content="Datenschutz"
+                                        Style="{StaticResource lessButton}"    Grid.ColumnSpan="5"                                        
                                            HorizontalAlignment="Left" ToolTip="Regeln welche Gruppen diesen Vorgang einsehen können"
-                                    Click="btnDS_gruppen_Click" Margin="0.333,7.667,0,7.333" Width="113"  Height="25" />
-                            <Button Grid.Row="10"  x:Name="btnSTammChange" Content="Stammdaten ändern" 
+                                    Click="btnDS_gruppen_Click" Margin="23,8,0,7" Width="113"  Height="25" />
+                                <Button Grid.Row="10"  x:Name="btnSTammChange" Content="Stammdaten ändern" 
                                         Click="btnSTammChange_Click"  
-                            Grid.Column="11" Grid.ColumnSpan="4" Margin="0.333,0.333,7.667,37.333" Height="25"
+                            Grid.Column="11" Grid.ColumnSpan="5" Margin="23,1,8,38" Height="25"
                                          Grid.RowSpan="2" />
 
 
-                            <StackPanel Grid.Row="9" Grid.Column="12" Grid.ColumnSpan="4" Orientation="Horizontal"   Visibility="Visible" Margin="0.333,0,1.333,22.333" Grid.RowSpan="2" >
-                                <Button   x:Name="btnNatureg" Content="N" Click="btnNatureg_Click_1"  Margin="5,0,5,0" ToolTip="Fachdatenbank: Natureg"                         
+                                <StackPanel Grid.Row="9" Grid.Column="13" Grid.ColumnSpan="4" Orientation="Horizontal"   Visibility="Visible" Margin="0,0,1,22" Grid.RowSpan="2" >
+                                    <Button   x:Name="btnNatureg" Content="N" Click="btnNatureg_Click_1"  Margin="5,0,5,0" ToolTip="Fachdatenbank: Natureg"                         
                                                      Grid.ColumnSpan="1"  Width="30"  Style="{StaticResource lessButton}" Height="22"
                                                   />
 
-                                <Image   Source="/paradigmaDetail;component/Details/icons/bagger.png" Margin="5,0,5,0" x:Name="btnIllegale"
+                                    <Image   Source="/paradigmaDetail;component/Details/icons/bagger.png" Margin="5,0,5,0" x:Name="btnIllegale"
                                              MouseDown="btnIllegale_Click" Width="29" Height="28" ></Image>
 
-                            </StackPanel>
+                                </StackPanel>
 
 
-                            <TextBlock
+                                <TextBlock
                         Grid.Row="10"   Padding="5"                         x:Name="tbBearbeiter"   
                       
-                        Grid.Column="3" Grid.ColumnSpan="3" Margin="0,0.333,4.333,39.333" HorizontalAlignment="Right" Width="66" Grid.RowSpan="2">
+                        Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,0,39" HorizontalAlignment="Left" Width="66" Grid.RowSpan="2">
 
-                            </TextBlock>
-                        </Grid>
+                                </TextBlock>
+                            </Grid>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock  x:Name="Label16" Text="VorgangsNr:"
+                                                HorizontalAlignment="Center" Width="85"  />
+                                    <TextBlock   x:Name="lblVorgangsID" Width="50"  Padding="5" MouseDown="lblVorgangsID_MouseDown"
+                                           ToolTip="Durch Klicken auf die Vorgangsnummer können Sie den 'Erledigt'-Status ändern." 
+                                           IsEnabled="True"
+                                           HorizontalAlignment="Left" Grid.ColumnSpan="4"  />
+                                    <CheckBox Grid.Column="8" x:Name="chkdarfnichtvernichtetwerden"   
+                              HorizontalContentAlignment="Left"  ToolTip="der Vorgang muss mehr als 10 Jahre bewahrt werden" 
+                                 Checked="chkdarfnichtvernichtetwerden_Checked"
+                              Content="> 10 Jahre " Grid.ColumnSpan="2" Margin="0,0,21,0"  >
+                                    </CheckBox>
+
+                                    <CheckBox x:Name="ckbGutachtenvorhanden"  Grid.Column="9" Grid.RowSpan="3" Grid.Row="1" 
+                                          Grid.ColumnSpan="8"   Content="Es gibt Gutachten " >
+                                    </CheckBox>
+                                    <CheckBox x:Name="ckbGutachtenInDokumente"    Checked="ckbGutachtenInDokumente_Checked" 
+                                               Content="Gutachten unter 'Dokumente'" ToolTip="Das /die Gutachten liegen unter dem Reiter 'Dokumente' vor">  
+                                    </CheckBox> 
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  x:Name="Label13" Text="Sachgebiet:"
+                                           HorizontalAlignment="Center"  Width="85"  />
+                                    <TextBlock  x:Name="Label14"                                        />
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock     Text="Projekt:" ToolTip="Projektzugehörigkeit" 
+                                             x:Name="btnProjekt2"   Width="85" 
+                           />
+                                    <TextBlock    x:Name="tbProjektAbstract"  Grid.Column="4"  />
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="Label1" Text="Az.:" HorizontalAlignment="Center"  Width="85"   />
+                                    <TextBox     x:Name="lblAZ"   IsReadOnly="True"    
+                                         Background="{StaticResource backg3}"  
+                                 ToolTip="" Height="23" VerticalAlignment="Center" 
+                                                 Width="200"/>
+
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  ToolTip="Ändern unter 'Stammdaten'" Text="Titel:"   Width="85" />
+
+                                    <TextBox      x:Name="tbBeschreibung2"   TextWrapping="NoWrap"  IsReadOnly="True"    
+                                            MouseDoubleClick="tbBeschreibung2_MouseDown" SelectionChanged="tbBeschreibung2_SelectionChanged"
+                                            Background="Silver" Width="300"
+                                            ToolTip="Anklicken um zu ändern"  />
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  ToolTip="Ändern unter 'Stammdaten'" Text="Schlagworte:"   Width="85"  />
+                                    <TextBox      x:Name="tbBemerkung"   TextWrapping="WrapWithOverflow" IsReadOnly="True"  
+                                        Background="Silver" Width="300"
+                                        SelectionChanged="tbBemerkung_SelectionChanged"
+                                     MouseDoubleClick="tbBemerkung_MouseDown" ToolTip="Doppelklick um zu ändern"  
+                               />
+                                    
+                                    <Button x:Name="btnConfirmBemerkung" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                         Click="btnConfirmBemerkung_Click" Height="Auto"  />
+
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+
+                                
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
                     </GroupBox>
 
                 </DockPanel>
             </TabItem>
             <TabItem x:Name="tiZahlungen" Header="Zahlungen" Height="20" VerticalAlignment="Top">
                 <DockPanel>
-                    <GroupBox DockPanel.Dock="Right" VerticalAlignment="Top" Margin="50"
-                        Header="Zahlungen"  FontSize="10" Height="154"  Padding="0,5,0,0" IsEnabled="True"
+                    <GroupBox DockPanel.Dock="Right" VerticalAlignment="Top" Margin="5"
+                        Header="Zahlungen"  FontSize="10"  Height="150" Padding="0,5,0,0" IsEnabled="True"
                                            x:Name="grpBoxKosten" >
 
                         <Grid >
@@ -1801,29 +1823,32 @@
             <TabItem x:Name="tiBAonline" Header="Bauantrag-Online"      AllowDrop="True">
                 <DockPanel>
                     <GroupBox VerticalAlignment="Top" HorizontalAlignment="Left" 
-                              
-                              Header="Bauantrag-Online" Width="200" Name="grpbauantrag" Height="154" Margin="50"  >
-                        <StackPanel Margin="5">
+                              Height="150"
+                              Header="Bauantrag-Online"  Name="grpbauantrag"  
+                              Margin="5"  >
+                        <StackPanel Margin="5" Orientation="Horizontal">
+                            <StackPanel Margin="5">
 
-                            <Button Name="btnZuConject" Click="BtnZuConject_Click"    VerticalAlignment="Center"   Width="170" Margin="5">
+                                <Button Name="btnZuConject" Click="BtnZuConject_Click"    VerticalAlignment="Center"   Width="170" Margin="5">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center">Übersicht öffnen</TextBlock>
+                                    </StackPanel>
+                                </Button>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center">Übersicht öffnen</TextBlock>
-                                </StackPanel>
-                            </Button>
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox Name="cbIstConject" Click="CbIstConject_Click"  
+                                    <CheckBox Name="cbIstConject" Click="CbIstConject_Click"  
                                                       Margin="0,9,0,5"
                                                       ToolTip="Aktivieren wenn dieser Vorgang mit Bauantrag Online bearbeitet wird.">
-                                    <StackPanel>
-                                        <TextBlock>Bauantrag-</TextBlock>
-                                        <TextBlock>Online</TextBlock>
-                                    </StackPanel>
-                                </CheckBox>
-                                <Button Name="btnDownloaddir" Click="BtnDownloaddir_Click" HorizontalAlignment="Right"
+                                        <StackPanel>
+                                            <TextBlock>Bauantrag-</TextBlock>
+                                            <TextBlock>Online</TextBlock>
+                                        </StackPanel>
+                                    </CheckBox>
+                                    <Button Name="btnDownloaddir" Click="BtnDownloaddir_Click" HorizontalAlignment="Right"
                                                 Content="Download" ToolTip="Download - Verzeichnis anzeigen lassen" Width=" 90" Margin="5"/>
-                            </StackPanel>
+                                </StackPanel>
 
-                            <StackPanel Background="NavajoWhite" Height="49">
+                            </StackPanel>
+                            <StackPanel Background="NavajoWhite" Height="49" Width="500">
                                 <TextBlock Name="tbConjectDropText" Text="ConjectPM.zip hier droppen" HorizontalAlignment="Center"  />
                             </StackPanel>
                         </StackPanel>
@@ -1833,166 +1858,170 @@
             </TabItem>
             <TabItem x:Name="tiGeoportal" Header="Geoportal Hessen">
                 <DockPanel>
-                    <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
-
-                        <GroupBox Name="gb01" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock Width="300" FontWeight="Black" Padding="5">Bodenviewer</TextBlock>
-                                        <Button Name="btnwrrl" Click="btnBoden_Click" Content=">"   ToolTip="Boden"
-                                      Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
-                                       Width="50"     />
-                                    </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>http://bodenviewer.hessen.de/mapapps/resources/apps/bodenviewer/index.html?lang=de</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
-                        <GroupBox Name="gb02" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">Wasserrahmenrichtlinie / Gewässerstrukturgüte</TextBlock>
-                                        <Button Name="btnBoden" Click="btnwrrl_Click"  Content=">"   ToolTip="Wasserrahmenrichtlinie"
-                                      Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
-                                       Width="50"     />
-                                    </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>http://wrrl.hessen.de/</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
-                        <GroupBox Name="gb03" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">HALM</TextBlock>
-                                        <Button Name="btnhalm" Click="btnhalm_Click"  Content=">"  ToolTip="Viewer zur räumlichen Darstellung der Fördermöglichkeiten über das Hessische Programm für Agrarumwelt- und Landschaftspflege-Maßnahmen (HALM)"
-                                      Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
-                                       Width="50"     />
-                                    </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>http://halm.hessen.de</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
+                    <ScrollViewer  Height="150" VerticalAlignment="Top">
 
 
-                        <!--<Button Name="btnhalm" Click="btnhalm_Click" Content="Halm" FontSize="16" ToolTip="Viewer zur räumlichen Darstellung der Fördermöglichkeiten über das Hessische Programm für Agrarumwelt- und Landschaftspflege-Maßnahmen (HALM)"
+                        <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top" 
+                                VerticalAlignment="Top">
+
+                            <GroupBox Name="gb01" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Width="300" FontWeight="Black" Padding="5">Bodenviewer</TextBlock>
+                                            <Button Name="btnwrrl" Click="btnBoden_Click" Content=">"   ToolTip="Boden"
+                                      Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                                       Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>http://bodenviewer.hessen.de/mapapps/resources/apps/bodenviewer/index.html?lang=de</TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </GroupBox>
+                            <GroupBox Name="gb02" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">Wasserrahmenrichtlinie / Gewässerstrukturgüte</TextBlock>
+                                            <Button Name="btnBoden" Click="btnwrrl_Click"  Content=">"   ToolTip="Wasserrahmenrichtlinie"
+                                      Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                                       Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>http://wrrl.hessen.de/</TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </GroupBox>
+                            <GroupBox Name="gb03" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">HALM</TextBlock>
+                                            <Button Name="btnhalm" Click="btnhalm_Click"  Content=">"  ToolTip="Viewer zur räumlichen Darstellung der Fördermöglichkeiten über das Hessische Programm für Agrarumwelt- und Landschaftspflege-Maßnahmen (HALM)"
+                                      Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                                       Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>http://halm.hessen.de</TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </GroupBox>
+
+
+                            <!--<Button Name="btnhalm" Click="btnhalm_Click" Content="Halm" FontSize="16" ToolTip="Viewer zur räumlichen Darstellung der Fördermöglichkeiten über das Hessische Programm für Agrarumwelt- und Landschaftspflege-Maßnahmen (HALM)"
                             Width="400" Height="60" Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Left" 
                                 Margin="20,5,5,5"/>-->
-                        <GroupBox Name="gb04" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">Hochwasserportal / Pegelstände</TextBlock>
-                                        <Button Name="btnhochw" Click="btnhochw_Click"  Content=">" ToolTip="Hochwasser Viewer"
+                            <GroupBox Name="gb04" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">Hochwasserportal / Pegelstände</TextBlock>
+                                            <Button Name="btnhochw" Click="btnhochw_Click"  Content=">" ToolTip="Hochwasser Viewer"
                                       Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
                                        Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>http://www.hlnug.de/static/pegel/wiskiweb2/</TextBlock>
                                     </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>http://www.hlnug.de/static/pegel/wiskiweb2/</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
+                                </Border>
+                            </GroupBox>
 
 
-                        <!--<Button Name="btnhochw" Click="btnhochw_Click" Content="Hochwasserportal / Pegelstände" FontSize="16" ToolTip="Hochwasser Viewer"
+                            <!--<Button Name="btnhochw" Click="btnhochw_Click" Content="Hochwasserportal / Pegelstände" FontSize="16" ToolTip="Hochwasser Viewer"
                             Width="400" Height="60" Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Left" 
                                 Margin="20,5,5,5"/>-->
-                        <GroupBox Name="gb05" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">Lärmkartierung</TextBlock>
-                                        <Button Name="btnlaerm" Click="btnlaerm_Click"  Content=">" ToolTip="Hochwasser Viewer"
+                            <GroupBox Name="gb05" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">Lärmkartierung</TextBlock>
+                                            <Button Name="btnlaerm" Click="btnlaerm_Click"  Content=">" ToolTip="Hochwasser Viewer"
                                       Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
                                        Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>http://laerm.hessen.de</TextBlock>
                                     </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>http://laerm.hessen.de</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
+                                </Border>
+                            </GroupBox>
 
-                        <!--<Button Name="btnlaerm" Click="btnlaerm_Click" Content="Lärmkartierung" FontSize="16" ToolTip="Hochwasser Viewer"
+                            <!--<Button Name="btnlaerm" Click="btnlaerm_Click" Content="Lärmkartierung" FontSize="16" ToolTip="Hochwasser Viewer"
                             Width="400" Height="60" Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Left" 
                                 Margin="20,5,5,5"/>-->
-                        <GroupBox Name="gb06" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">Lärmkartierung</TextBlock>
-                                        <Button Name="btnnatureg2" Click="btnnatureg2_Click"  Content=">" ToolTip="Informationen aus verschiedenen Naturschutz- und Natura 2000-Gebieten, Biotop- und Artenkartierungen sowie Gutachten und Roten Listenr"
+                            <GroupBox Name="gb06" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">Lärmkartierung</TextBlock>
+                                            <Button Name="btnnatureg2" Click="btnnatureg2_Click"  Content=">" ToolTip="Informationen aus verschiedenen Naturschutz- und Natura 2000-Gebieten, Biotop- und Artenkartierungen sowie Gutachten und Roten Listenr"
                                       Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
                                        Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>http://natureg.hessen.de</TextBlock>
                                     </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>http://natureg.hessen.de</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
+                                </Border>
+                            </GroupBox>
 
 
-                        <!--<Button Name="btnnatureg2" Click="btnnatureg2_Click" Content="Natureg" FontSize="16" ToolTip="Informationen aus verschiedenen Naturschutz- und Natura 2000-Gebieten, Biotop- und Artenkartierungen sowie Gutachten und Roten Listen"
+                            <!--<Button Name="btnnatureg2" Click="btnnatureg2_Click" Content="Natureg" FontSize="16" ToolTip="Informationen aus verschiedenen Naturschutz- und Natura 2000-Gebieten, Biotop- und Artenkartierungen sowie Gutachten und Roten Listen"
                             Width="400" Height="60" Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Left" 
                                 Margin="20,5,5,5"/>-->
-                        <GroupBox Name="gb07" >
+                            <GroupBox Name="gb07" >
 
-                            <Border Width="600" BorderThickness="2" >
-                                <StackPanel >
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">Überschwemmungsgebiete</TextBlock>
-                                        <Button Name="btnUeber" Click="btnUeber_Click"  Content=">"   ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
+                                <Border Width="600" BorderThickness="2" >
+                                    <StackPanel >
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">Überschwemmungsgebiete</TextBlock>
+                                            <Button Name="btnUeber" Click="btnUeber_Click"  Content=">"   ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
                                       Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
                                        Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>http://natureg.hessen.de</TextBlock>
                                     </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>http://natureg.hessen.de</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
+                                </Border>
+                            </GroupBox>
 
-                        <!--<Button Name="btnUeber" Click="btnUeber_Click" Content="Überschwemmungsgebiete" FontSize="16" ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
+                            <!--<Button Name="btnUeber" Click="btnUeber_Click" Content="Überschwemmungsgebiete" FontSize="16" ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
                             Width="400" Height="60" Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Left" 
                                 Margin="20,5,5,5"/>-->
-                        <GroupBox Name="gb08" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">Nitrat / UBA</TextBlock>
-                                        <Button Name="btnNitrat" Click="btnNitrat_Click_1"  Content=">"   ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
+                            <GroupBox Name="gb08" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">Nitrat / UBA</TextBlock>
+                                            <Button Name="btnNitrat" Click="btnNitrat_Click_1"  Content=">"   ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
                                       Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
                                        Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom Land Hessen:</TextBlock>
+                                        <TextBlock>https://gis.uba.de/maps/resources/apps/nitratbericht_eu_richtlinie/index.html?lang=de</TextBlock>
                                     </StackPanel>
-                                    <TextBlock>Betrieben vom Land Hessen:</TextBlock>
-                                    <TextBlock>https://gis.uba.de/maps/resources/apps/nitratbericht_eu_richtlinie/index.html?lang=de</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
+                                </Border>
+                            </GroupBox>
 
-                        <GroupBox Name="gb09" >
-                            <Border Width="600" BorderThickness="2">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock  Width="300" FontWeight="Black" Padding="5">Regionaler FNP (Regiomap und andere)</TextBlock>
-                                        <Button Name="btnRROP" Click="btnRROP_Click"      Content=">"   ToolTip="RegGFNP"
+                            <GroupBox Name="gb09" >
+                                <Border Width="600" BorderThickness="2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Width="300" FontWeight="Black" Padding="5">Regionaler FNP (Regiomap und andere)</TextBlock>
+                                            <Button Name="btnRROP" Click="btnRROP_Click"      Content=">"   ToolTip="RegGFNP"
                                       Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Right" 
                                        Width="50"     />
+                                        </StackPanel>
+                                        <TextBlock>Betrieben vom PVFRM:</TextBlock>
+                                        <TextBlock>https://www.region-frankfurt.de/Services/Geoportal/</TextBlock>
                                     </StackPanel>
-                                    <TextBlock>Betrieben vom PVFRM:</TextBlock>
-                                    <TextBlock>https://www.region-frankfurt.de/Services/Geoportal/</TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </GroupBox>
+                                </Border>
+                            </GroupBox>
 
-                        <!--<Button Name="btnNitrat" Click="btnNitrat_Click_1" Content="Nitrat / UBA" FontSize="16" ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
+                            <!--<Button Name="btnNitrat" Click="btnNitrat_Click_1" Content="Nitrat / UBA" FontSize="16" ToolTip="Kartenzusammenstellung zur Darstellung der Überschwemmungsgebiete an oberirdischen Gewässern [Bezeichnung nach WHG §76] für Hochwasserereignisse, welche statistisch einmal in 100 Jahren zu erwarten sind (Retentionskataster Hessen (RKH))."
                             Width="400" Height="60" Panel.ZIndex="20" VerticalAlignment="Top" HorizontalAlignment="Left" 
                                 Margin="20,5,5,5"/>-->
-                    </WrapPanel>
-                    <!--<WebBrowser Name="wbgeoportal"  Panel.ZIndex="100" ></WebBrowser>-->
-
+                        </WrapPanel>
+                        <!--<WebBrowser Name="wbgeoportal"  Panel.ZIndex="100" ></WebBrowser>-->
+                    </ScrollViewer>
                 </DockPanel >
             </TabItem>
             <!--<TabItem x:Name="tiGmap3d" Header="GoogleMaps: 3d (Test, alfa)" Visibility="Collapsed">
@@ -2006,20 +2035,20 @@
 
                 </DockPanel>
             </TabItem>-->
-            <TabItem x:Name="tiOptionen" Header="Optionen" Visibility="Visible" Margin="-0.333,0,-0.333,0.333"
+            <TabItem x:Name="tiOptionen" Header="Optionen" Visibility="Visible"  
                      >
 
                 <StackPanel Orientation="Horizontal">
 
                     <StackPanel>
-                        <GroupBox Header="Auf Windows Schriftgröße optimieren" Width="400" Height="90" HorizontalAlignment="Left"
+                        <GroupBox Header="Auf Windows Schriftgröße optimieren" Width="400"  HorizontalAlignment="Left"
                                   VerticalAlignment="Top" Margin="5"  Name="tb34">
                             <StackPanel Margin="5">
                                 <RadioButton x:Name="radWindowsSchriftKlein" GroupName="fontsise" Content="die Windows Schriftgröße ist auf 'klein' gestellt"/>
                                 <RadioButton x:Name="radWindowsSchriftMittel"  GroupName="fontsise" Content="die Windows Schriftgröße ist auf 'mittel' gestellt"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="GIS darstellen" Width="400" Height="100" HorizontalAlignment="Left" IsEnabled="True" 
+                        <GroupBox Header="GIS darstellen" Width="400"   HorizontalAlignment="Left" IsEnabled="True" 
                                   VerticalAlignment="Top" Margin="5"  Name="tb35" >
                             <StackPanel Margin="5">
                                 <CheckBox x:Name="chkMiniMapDarstellen"   Content="GIS für diesen Vorgang darstellen" IsChecked="True" Checked="chkMiniMapDarstellen_Checked"
@@ -2032,16 +2061,43 @@
                                       Unchecked="chkGISimmerbeenden_Checked"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Weitere Bearbeiter " Width="400" Height="80" HorizontalAlignment="Left" 
-                                  VerticalAlignment="Top" Margin="5"  Name="tb36">
+                      
+                      </StackPanel>
+                    <StackPanel>
+                        <GroupBox Header="Verschiedenes " Width="400"   HorizontalAlignment="Left" 
+                                  VerticalAlignment="Top" Margin="0"  Name="tb54">
+                            <StackPanel Margin="5"  >
+                                <CheckBox Name="cbzuhause" Content="Zuhause (Thunderbird, OpenOffice ...)" 
+                                      IsEnabled="true" IsChecked="True" Margin="5"
+                                      Click="cbzuhause_Click"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="150" Padding="5">Vorlagen-Quellverzeichnis:</TextBlock>
+                                    <TextBox Name="tbVorlagenRoot"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenRoot_TextChanged"/>
+                                    <Button Name="btnVorlagenRoot" IsEnabled="False" Click="btnVorlagenRoot_Click" >OK</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="150" Padding="5" 
+                                               ToolTip="Hierher werden die Vorlagen kopiert um sie zu bearbeiten."
+                                               >Vorlagen-Arbeitsverzeichnis:</TextBlock>
+                                    <TextBox Name="tbVorlagenWork"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenWork_TextChanged"/>
+                                    <Button Name="btnVorlagenWork" IsEnabled="False" Click="btnVorlagenWork_Click">OK</Button>
+
+                                </StackPanel>
+                                <!--<Button Name="btnGisStartInfoSpeichern" Click="btnGisStartInfoSpeichern_Click" Content="speichern" Width="200" Margin="5"/>-->
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Weitere Bearbeiter " Width="400"   HorizontalAlignment="Left" 
+                                  VerticalAlignment="Top" Margin="0"  Name="tb36">
                             <StackPanel Margin="5" Orientation="Horizontal">
                                 <TextBox x:Name="tbWeitereBearbeiterStandard" Width="100" HorizontalAlignment="Left" Height="25"/>
                                 <Button x:Name="btnWeitereBAuswahl"  Content="Auswahl" Click="btnWeitereBAuswahl_Click" Height="25"/>
                                 <TextBlock Name="tbhinewris23" FontSize="8" TextWrapping="Wrap" Width="200" Margin  ="5">Diese BearbeiterInnen werden in jeden neuen Vorgang als 'WeitereBearbeiter' eingetragen.</TextBlock>
                             </StackPanel>
                         </GroupBox>
+                    </StackPanel>
+                    <StackPanel >
                         <GroupBox Header="Verschiedenes " Width="400" Height="180" HorizontalAlignment="Left" 
-                                  VerticalAlignment="Top" Margin="5"  Name="tb37">
+                                  VerticalAlignment="Top"    Name="tb37">
                             <StackPanel Margin="5"  >
                                 <CheckBox Name="paradigmaKILLALLGIS" Content="beim Start alle alten GISse beeenden" 
                                       IsEnabled="True" IsChecked="True" Margin="5"
@@ -2066,35 +2122,15 @@
                                 <!--<Button Name="btnGisStartInfoSpeichern" Click="btnGisStartInfoSpeichern_Click" Content="speichern" Width="200" Margin="5"/>-->
                             </StackPanel>
                         </GroupBox>
-                    </StackPanel>
-                    <StackPanel>
-                        <GroupBox Header="Verschiedenes " Width="400" Height="180" HorizontalAlignment="Left" 
-                                  VerticalAlignment="Top" Margin="5"  Name="tb54">
-                            <StackPanel Margin="5"  >
-                                <CheckBox Name="cbzuhause" Content="Zuhause (Thunderbird, OpenOffice ...)" 
-                                      IsEnabled="true" IsChecked="True" Margin="5"
-                                      Click="cbzuhause_Click"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Width="150" Padding="5">Vorlagen-Quellverzeichnis:</TextBlock>
-                                    <TextBox Name="tbVorlagenRoot"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenRoot_TextChanged"/>
-                                    <Button Name="btnVorlagenRoot" IsEnabled="False" Click="btnVorlagenRoot_Click" >OK</Button>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Width="150" Padding="5" 
-                                               ToolTip="Hierher werden die Vorlagen kopiert um sie zu bearbeiten."
-                                               >Vorlagen-Arbeitsverzeichnis:</TextBlock>
-                                    <TextBox Name="tbVorlagenWork"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenWork_TextChanged"/>
-                                    <Button Name="btnVorlagenWork" IsEnabled="False" Click="btnVorlagenWork_Click">OK</Button>
 
-                                </StackPanel>
-                                <!--<Button Name="btnGisStartInfoSpeichern" Click="btnGisStartInfoSpeichern_Click" Content="speichern" Width="200" Margin="5"/>-->
-                            </StackPanel>
-                        </GroupBox>
                     </StackPanel>
                     <StackPanel>
                         <GroupBox Header="who am i ?"  Name="tb38" >
                             <StackPanel>
-                                <TextBlock Height="350" Width="200" TextWrapping="Wrap" Name="tbuserAbsteract"></TextBlock>
+                                <ScrollViewer>
+                                    
+                                <TextBlock Height="120" Width="200" TextWrapping="Wrap" Name="tbuserAbsteract"></TextBlock>
+                                </ScrollViewer>
                                 <Button Name="btnChangeUserSetting" Click="btnChangeUserSetting_Click">Ändern</Button>
                             </StackPanel>
                         </GroupBox>
