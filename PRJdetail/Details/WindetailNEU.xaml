@@ -1997,17 +1997,13 @@
                     </TabItem>
 
                 </TabControl>
-                <!--<Border  BorderBrush="Black"   BorderThickness="1" HorizontalAlignment="Right" ClipToBounds="True"
-                                 x:Name="canvasborder"  Background="White" Panel.ZIndex="50">
-                            <Canvas  x:Name="myCanvas"    AllowDrop="False" Cursor="Hand" ForceCursor="True" Panel.ZIndex="100" >
-                            </Canvas>
-                        </Border>-->
+           
                 <TabControl   x:Name="TabControl2"    Panel.ZIndex="10"   
                           
                           Background="{StaticResource backg3}" 
-                                      HorizontalAlignment="Left" Margin="0,8,0,0"
+                                      HorizontalAlignment="Left" 
                          Width="783"   >
-                    <TabItem x:Name="tabheaderFotos"  Header="Fotos" Visibility="Visible" Margin="0" IsSelected="True">
+                    <TabItem x:Name="tabheaderFotos"  Header="Fotos" Visibility="Visible" Margin="0"  >
                         <DockPanel >
                             <StackPanel  x:Name="Tab_Fotos"   DockPanel.Dock="Top" Height="50">
                                 <StackPanel Orientation="Horizontal"  >
@@ -2134,7 +2130,7 @@
                         </DockPanel>
                     </TabItem>
 
-                    <TextBox   x:Name="tbNachricht"  MaxHeight="25"
+                    <TextBox   x:Name="tbNachricht"  MaxHeight="25" Visibility="Collapsed"
                  Text="{Binding nachrichtenText,  UpdateSourceTrigger=PropertyChanged}"  
                  TextWrapping="Wrap" />
 
