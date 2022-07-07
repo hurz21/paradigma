@@ -3359,12 +3359,14 @@ Public Class WindetailNEU
         If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 0 Then 'kleine schriftart
             maxheight = 800 '600
             TabControl1.Height = ActualHeight - tiSachdaten.ActualHeight - tbBeschreibung3.ActualHeight - 200
+            TabControl2.Height = ActualHeight - tiSachdaten.ActualHeight - tbBeschreibung3.ActualHeight - 200
         End If
         If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 1 Then 'mittlere
             maxheight = 700 '500
             ' MaxWidth = 1500
             TabControl1.Width = 900
             TabControl1.Height = ActualHeight - tiSachdaten.ActualHeight - tbBeschreibung3.ActualHeight - 200
+            TabControl2.Height = ActualHeight - tiSachdaten.ActualHeight - tbBeschreibung3.ActualHeight - 200
             Top = 1
             'WindowState = WindowState.Maximized
         End If
