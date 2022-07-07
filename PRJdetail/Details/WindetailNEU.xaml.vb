@@ -444,19 +444,7 @@ Public Class WindetailNEU
         Return False
     End Function
 
-    'Private Sub setCanvasSize()
-    '    Try
-    '        myCanvas.Height = initcanvasHeight() ' TabControl1.Heightddd
-    '        myCanvas.Width = CLng(System.Windows.SystemParameters.PrimaryScreenWidth) - CLng(TabControl1.Width) - 15
-    '        myCanvas2.Height = CLng(System.Windows.SystemParameters.PrimaryScreenHeight) - CLng(stckGISKopf.Height) - 100
-    '        myCanvas2.Width = CLng(System.Windows.SystemParameters.PrimaryScreenWidth) - 20
-    '        '   grpMinimapSteuerung.Width = myCanvas.Width
-    '    Catch ex As Exception
-    '        nachricht_und_Mbox("Fehler bei der Berechung der MINIGIS-Zeichenfläche")
-    '        myCanvas.Height = 100
-    '        myCanvas.Width = 150
-    '    End Try
-    'End Sub
+
 
     Sub initCombosVerwandte()
         Try
@@ -3370,11 +3358,13 @@ Public Class WindetailNEU
         Dim maxheight As Integer = 500
         If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 0 Then 'kleine schriftart
             maxheight = 800 '600
+            TabControl1.Height = ActualHeight - tiSachdaten.ActualHeight - tbBeschreibung3.ActualHeight - 200
         End If
         If myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT = 1 Then 'mittlere
             maxheight = 700 '500
             ' MaxWidth = 1500
             TabControl1.Width = 900
+            TabControl1.Height = ActualHeight - tiSachdaten.ActualHeight - tbBeschreibung3.ActualHeight - 200
             Top = 1
             'WindowState = WindowState.Maximized
         End If
