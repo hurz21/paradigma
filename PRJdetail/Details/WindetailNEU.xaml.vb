@@ -1340,7 +1340,8 @@ Public Class WindetailNEU
         tabheaderVerlauf.Style = CType(Me.FindResource("TabNeu"), Style)
 
         tiGeoportal.Background = CType(Me.FindResource("SelectedTabTextBrush"), Brush)
-        grpStammdatenUebersicht.Background = dunkelHgrund : grpStammdatenUebersicht.Foreground = vorneGrund
+        grpStammdatenUebersicht.Background = dunkelHgrund
+        'grpStammdatenUebersicht.Foreground = vorneGrund
         tbControl1.Background = dunkelHgrund ': tbControl1.Foreground = vorneGrund tbControl1
 
         tiSachdaten.Background = dunkelHgrund
@@ -1477,7 +1478,7 @@ Public Class WindetailNEU
 
 
 
-        grpBoxKosten.Foreground = vorneGrund
+        'grpBoxKosten.Foreground = vorneGrund
 
         'optionen
         radWindowsSchriftKlein.Foreground = vorneGrund

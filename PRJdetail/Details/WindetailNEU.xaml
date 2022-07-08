@@ -300,13 +300,14 @@
                                             </TextBlock.LayoutTransform>
                                         </TextBlock>
                                     </Button>
-                                    <GroupBox Header="GIS" Width="90" Height="90" Name="grpGisstart"   >
-                                        <StackPanel>
+
+                                    <StackPanel Name="grpGisstart"  Margin="0,40,0,0" >
                                             <StackPanel Margin="10" Visibility="Collapsed">
                                                 <RadioButton Name="rbNeustartGIS" GroupName="gisstartmode" IsChecked="True" Content="Neustart"/>
                                                 <RadioButton Name="rbNeueGISInstanz" GroupName="gisstartmode"  Content="als weitere Instanz"/>
                                             </StackPanel>
                                             <Button    x:Name="btngislayer"   Click="btnZumGis_Click" Width="80"  
+                                                     
                                            ToolTip="Ausschnitt im DesktopGIS darstellen"  >GIS starten
                                             </Button>
                                             <Button Name="btnStartBplan" Click="btnStartBplan_Click" ToolTip="Das Bebauungsplanklataster wird gestartet. Dort können sie sich eine B-Plan aussuchen!"
@@ -314,7 +315,7 @@
                                             <Button Name="btngooglestarten" Click="btngooglestarten_Click" Content="Google-Maps" 
                                                 Visibility="Collapsed"  Margin="10" />
                                         </StackPanel>
-                                    </GroupBox>
+                                  
                                     <TabControl x:Name="Werkzeuge"  >
                                         <TabItem Header="Werkzeuge" Margin="3,0,-3,0" Name="tiWerkzeuge">
 
@@ -532,10 +533,8 @@
 
                 <TabItem x:Name="tiStammdaten" Header="Stammdaten" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="83">
                     <DockPanel VerticalAlignment="Top">
-                        <GroupBox DockPanel.Dock="Top" x:Name="grpStammdatenUebersicht" 
-                         Margin="5" VerticalAlignment="Top"       
-                      Header=""    >
-                            <StackPanel Orientation="Horizontal">
+                     
+                            <StackPanel Orientation="Horizontal" x:Name="grpStammdatenUebersicht" >
 
                                 <Grid x:Name="grdKopf" Width="550"  
                                 VerticalAlignment="Top" 
@@ -790,16 +789,14 @@
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                        </GroupBox>
+                         
 
                     </DockPanel>
                 </TabItem>
                 <TabItem x:Name="tiZahlungen" Header="Zahlungen" Height="20" VerticalAlignment="Top">
                     <DockPanel>
-                        <GroupBox DockPanel.Dock="Right" VerticalAlignment="Top" Margin="5"
-                          Height="150" Padding="0,5,0,0" IsEnabled="True"
-                                           x:Name="grpBoxKosten" >
-                            <StackPanel Orientation="Horizontal">
+                     
+                            <StackPanel Orientation="Horizontal" x:Name="grpBoxKosten">
 
                                 <StackPanel>
                                     <StackPanel>
@@ -882,17 +879,14 @@
                                             x:Name="beihilfeBezahlt" Click="beihilfeBezahlt_Click_1" Margin="0,3,0,00"/>
                                 </Grid>
                             </StackPanel>
-                        </GroupBox>
+                  
 
                     </DockPanel>
                 </TabItem>
                 <TabItem x:Name="tiBAonline" Header="Bauantrag-Online"      AllowDrop="True">
                     <DockPanel>
-                        <GroupBox VerticalAlignment="Top" HorizontalAlignment="Left" 
-                              Height="150"
-                              Header="Bauantrag-Online"  Name="grpbauantrag"  
-                              Margin="5"  >
-                            <StackPanel Margin="5" Orientation="Horizontal">
+                    
+                            <StackPanel Margin="5" Orientation="Horizontal" Name="grpbauantrag"  >
                                 <StackPanel Margin="5">
 
                                     <Button Name="btnZuConject" Click="BtnZuConject_Click"    VerticalAlignment="Center"   Width="170" Margin="5">
@@ -918,7 +912,7 @@
                                     <TextBlock Name="tbConjectDropText" Text="ConjectPM.zip hier droppen" HorizontalAlignment="Center"  />
                                 </StackPanel>
                             </StackPanel>
-                        </GroupBox>
+                        
 
                     </DockPanel>
                 </TabItem>
