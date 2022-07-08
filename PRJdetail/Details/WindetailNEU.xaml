@@ -534,7 +534,7 @@
                     <DockPanel VerticalAlignment="Top">
                         <GroupBox DockPanel.Dock="Top" x:Name="grpStammdatenUebersicht" 
                          Margin="5" VerticalAlignment="Top"       
-                      Header="Stammdaten"    >
+                      Header=""    >
                             <StackPanel Orientation="Horizontal">
 
                                 <Grid x:Name="grdKopf" Width="550"  
@@ -760,9 +760,10 @@
 
                                         <TextBox      x:Name="tbBeschreibung2"   TextWrapping="NoWrap"  IsReadOnly="True"    
                                             MouseDoubleClick="tbBeschreibung2_MouseDown" SelectionChanged="tbBeschreibung2_SelectionChanged"
-                                            Background="Silver" Width="300"
+                                            Background="Silver" Width="600"
                                             ToolTip="Anklicken um zu ändern"  />
-                                        <Button x:Name="btnConfirmBeschreibung2" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                                        <Button x:Name="btnConfirmBeschreibung2" Content="ok" FontSize="8" ToolTip="Änderung übernehmen"
+                                                Visibility="Visible" IsEnabled="False"
                                            Grid.ColumnSpan="2" Click="btnConfirmBeschreibung2_Click"
                                         Height="Auto" />
 
@@ -773,7 +774,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock  ToolTip="Ändern unter 'Stammdaten'" Text="Schlagworte:"   Width="85"  />
                                         <TextBox      x:Name="tbBemerkung"   TextWrapping="WrapWithOverflow" IsReadOnly="True"  
-                                        Background="Silver" Width="300"
+                                        Background="Silver" Width="600"
                                         SelectionChanged="tbBemerkung_SelectionChanged"
                                      MouseDoubleClick="tbBemerkung_MouseDown" ToolTip="Doppelklick um zu ändern"  
                                />
@@ -1997,7 +1998,7 @@
                     </TabItem>
 
                 </TabControl>
-           
+
                 <TabControl   x:Name="TabControl2"    Panel.ZIndex="10"   
                           
                           Background="{StaticResource backg3}" 
