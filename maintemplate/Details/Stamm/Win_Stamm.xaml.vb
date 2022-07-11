@@ -312,7 +312,7 @@ Public Class Win_Stamm
                                 "", "Paragraf fehlt", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK)
                 tbParagraf.Background = New SolidColorBrush(Colors.LightPink)
                 cmbParagraf.IsDropDownOpen = True
-                Return False
+                Return True
             End If
         End If
         Return True

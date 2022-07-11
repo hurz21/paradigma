@@ -305,21 +305,27 @@
     End Sub
 
     Function speichernStammdaten() As Boolean
-        If Not NEU_eingabenOk() Then Return False
+        Try
+
+            If Not NEU_eingabenOk() Then Return False
+
+        Catch ex As Exception
+            l(ex.ToString())
+        End Try
         If Not NEUform2objok() Then Return False
         l(myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale)
-        If Not persistiereVorgangStammdaten(myglobalz.sitzung.aktVorgang.Stammdaten) Then
+        If Not persistiereVorgangStammdaten(myGlobalz.sitzung.aktVorgang.Stammdaten) Then
             MsgBox("Problem beim Abspeichern der Stammdaten")
             DialogResult = False
             Return False
         End If
         If _modus = "neu" Then
             DialogResult = True 'regelt den direktaufruf des 
-            CLstart.HistoryKookie.schreibeVerlaufsCookie.exe(myglobalz.sitzung.aktVorgangsID.ToString,
-                                                   myglobalz.sitzung.aktVorgang.Stammdaten.Beschreibung,
-                                                   myglobalz.sitzung.aktVorgang.Stammdaten.az.gesamt,
-                                                   myglobalz.sitzung.aktVorgang.Stammdaten.Probaugaz,
-                                                   myglobalz.sitzung.aktVorgang.Stammdaten.GemKRZ)
+            CLstart.HistoryKookie.schreibeVerlaufsCookie.exe(myGlobalz.sitzung.aktVorgangsID.ToString,
+                                                   myGlobalz.sitzung.aktVorgang.Stammdaten.Beschreibung,
+                                                   myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt,
+                                                   myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz,
+                                                   myGlobalz.sitzung.aktVorgang.Stammdaten.GemKRZ)
             '     HistoryKookie.schreibeVerlaufsCookie.exe(auswahlid, beschreibung, az2,myGlobalz.sitzung.aktVorgang.Stammdaten.Probaugaz, myGlobalz.sitzung.aktVorgang.Stammdaten.GemKRZ)
 
         Else
@@ -336,16 +342,21 @@
             FocusManager.SetFocusedElement(Me, btnchangeAZneu)
             Return False
         End If
+        Try
 
-        If LokaleStamm.az.sachgebiet.Zahl = "3311" Then
-            If String.IsNullOrEmpty(LokaleStamm.Paragraf.Trim) Then
-                MessageBox.Show("Bei Vorgängen aus dem Sachgebiet '3311' MUSS ein relevanter Paragraf ($ 34,$ 35) angegeben werden!" &
-                                "", "Paragraf fehlt", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK)
-                tbParagraf.Background = New SolidColorBrush(Colors.LightPink)
-                cmbParagraf.IsDropDownOpen = True
-                Return False
-            End If
-        End If
+            'If LokaleStamm.az.sachgebiet.Zahl = "3311" Then
+            '    If String.IsNullOrEmpty(LokaleStamm.Paragraf.Trim) Then
+            '        MessageBox.Show("Bei Vorgängen aus dem Sachgebiet '3311' MUSS ein relevanter Paragraf ($ 34, $ 35) angegeben werden!" &
+            '                    "", "Paragraf fehlt", MessageBoxButton.OK, MessageBoxImage.Exclamation)
+            '        tbParagraf.Background = New SolidColorBrush(Colors.LightPink)
+            '        cmbParagraf.IsDropDownOpen = True
+            '        Return False
+            '    End If
+            'End If
+
+        Catch ex As Exception
+            l(ex.ToString())
+        End Try
         Return True
     End Function
 
