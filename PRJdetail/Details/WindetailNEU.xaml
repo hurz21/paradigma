@@ -1087,9 +1087,10 @@
 
                 <TabItem x:Name="tiOptionen" Header="Optionen" Visibility="Visible"  
                      >
-                    <ScrollViewer Height="90" HorizontalScrollBarVisibility="Auto">
+                    <ScrollViewer Height="90" HorizontalScrollBarVisibility="Auto" 
+                                  VerticalAlignment="Top">
 
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
 
                             <StackPanel>
                                 <GroupBox Header="Auf Windows Schriftgröße optimieren" Width="400"  HorizontalAlignment="Left"
