@@ -281,7 +281,7 @@
         <StackPanel>
 
 
-            <TextBlock Name="tbBeschreibung3" FontSize="16" Background="Black" Foreground="white" Margin="5,0,0,0" DockPanel.Dock="Top"
+            <TextBlock Name="tbBeschreibung3" FontSize="16" Background="Black" Foreground="Gold" Margin="5,0,0,0" DockPanel.Dock="Top"
                  MouseDown="tbBeschreibung3_MouseDown">OOOOOOOOOOOOOOOOOOOOOOO</TextBlock>
             <TabControl Name="tbControl1"  Background="{StaticResource backg3}" Height="150" VerticalAlignment="Top" >
 
@@ -302,20 +302,20 @@
                                     </Button>
 
                                     <StackPanel Name="grpGisstart"  Margin="0,40,0,0" >
-                                            <StackPanel Margin="10" Visibility="Collapsed">
-                                                <RadioButton Name="rbNeustartGIS" GroupName="gisstartmode" IsChecked="True" Content="Neustart"/>
-                                                <RadioButton Name="rbNeueGISInstanz" GroupName="gisstartmode"  Content="als weitere Instanz"/>
-                                            </StackPanel>
-                                            <Button    x:Name="btngislayer"   Click="btnZumGis_Click" Width="80"  
+                                        <StackPanel Margin="10" Visibility="Collapsed">
+                                            <RadioButton Name="rbNeustartGIS" GroupName="gisstartmode" IsChecked="True" Content="Neustart"/>
+                                            <RadioButton Name="rbNeueGISInstanz" GroupName="gisstartmode"  Content="als weitere Instanz"/>
+                                        </StackPanel>
+                                        <Button    x:Name="btngislayer"   Click="btnZumGis_Click" Width="80"  
                                                      
                                            ToolTip="Ausschnitt im DesktopGIS darstellen"  >GIS starten
-                                            </Button>
-                                            <Button Name="btnStartBplan" Click="btnStartBplan_Click" ToolTip="Das Bebauungsplanklataster wird gestartet. Dort können sie sich eine B-Plan aussuchen!"
+                                        </Button>
+                                        <Button Name="btnStartBplan" Click="btnStartBplan_Click" ToolTip="Das Bebauungsplanklataster wird gestartet. Dort können sie sich eine B-Plan aussuchen!"
                                                  Content="B-Pläne" Width="80" />
-                                            <Button Name="btngooglestarten" Click="btngooglestarten_Click" Content="Google-Maps" 
+                                        <Button Name="btngooglestarten" Click="btngooglestarten_Click" Content="Google-Maps" 
                                                 Visibility="Collapsed"  Margin="10" />
-                                        </StackPanel>
-                                  
+                                    </StackPanel>
+
                                     <TabControl x:Name="Werkzeuge"  >
                                         <TabItem Header="Werkzeuge" Margin="3,0,-3,0" Name="tiWerkzeuge">
 
@@ -533,85 +533,85 @@
 
                 <TabItem x:Name="tiStammdaten" Header="Stammdaten" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="83">
                     <DockPanel VerticalAlignment="Top">
-                     
-                            <StackPanel Orientation="Horizontal" x:Name="grpStammdatenUebersicht" >
 
-                                <Grid x:Name="grdKopf" Width="550"  
+                        <StackPanel Orientation="Horizontal" x:Name="grpStammdatenUebersicht" >
+
+                            <Grid x:Name="grdKopf" Width="550"  
                                 VerticalAlignment="Top" 
                                 Panel.ZIndex="90"  
                                 HorizontalAlignment="Left">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="0" />
-                                        <RowDefinition Height="0" />
-                                        <RowDefinition Height="0" />
-                                        <RowDefinition Height="0" />
-                                        <RowDefinition Height="0" />
-                                        <RowDefinition Height="0" />
-                                        <RowDefinition Height="23" />
-                                        <RowDefinition Height="23" />
-                                        <RowDefinition Height="23" />
-                                        <RowDefinition Height="23" />
-                                        <RowDefinition Height="23" />
-                                        <RowDefinition Height="40" />
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition Height="40" />
 
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="7.333" />
-                                        <ColumnDefinition Width="22.767"/>
-                                        <ColumnDefinition Width="25.9"/>
-                                        <ColumnDefinition Width="15"/>
-                                        <ColumnDefinition Width="25" />
-                                        <ColumnDefinition Width="25" />
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="70.5"/>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="24*" />
-                                        <ColumnDefinition Width="28*"/>
-                                        <ColumnDefinition Width="27*"/>
-                                        <ColumnDefinition Width="48*" />
-                                        <ColumnDefinition Width="53"/>
-                                        <ColumnDefinition Width="6"/>
-                                        <ColumnDefinition Width="48*"/>
-                                        <ColumnDefinition Width="2"/>
-                                    </Grid.ColumnDefinitions>
-
-
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7.333" />
+                                    <ColumnDefinition Width="22.767"/>
+                                    <ColumnDefinition Width="25.9"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="70.5"/>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="24*" />
+                                    <ColumnDefinition Width="28*"/>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="48*" />
+                                    <ColumnDefinition Width="53"/>
+                                    <ColumnDefinition Width="6"/>
+                                    <ColumnDefinition Width="48*"/>
+                                    <ColumnDefinition Width="2"/>
+                                </Grid.ColumnDefinitions>
 
 
 
 
-                                    <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Weitere:"  Grid.Column="6" Margin="3,0,123,39"
+
+
+                                <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Weitere:"  Grid.Column="6" Margin="3,0,123,39"
                                              MouseMove="tbWeitereBearbeiter_Mousemove" Grid.RowSpan="2" Grid.ColumnSpan="3" />
-                                    <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Bearbeiter:"  Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,25,39" Grid.RowSpan="2" />
+                                <TextBlock Grid.Row="10" Padding="5" ToolTip=" " Text="Bearbeiter:"  Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,25,39" Grid.RowSpan="2" />
 
 
-                                    <TextBlock Grid.Row="6" Padding="5"   Text="Standort:" ToolTip="Standort der Papierakte" Grid.ColumnSpan="5" Margin="0,0,25,22" Grid.RowSpan="2"/>
+                                <TextBlock Grid.Row="6" Padding="5"   Text="Standort:" ToolTip="Standort der Papierakte" Grid.ColumnSpan="5" Margin="0,0,25,22" Grid.RowSpan="2"/>
 
-                                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="4" Margin="0,0,30,22" Grid.RowSpan="2">
-                                        <TextBlock   Padding="5"  Text="§:" ToolTip="Relevanter $"  HorizontalAlignment="Left" />
-                                        <TextBlock   Padding="5"     x:Name="tbParagraph"  HorizontalAlignment="Left"
+                                <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="4" Margin="0,0,30,22" Grid.RowSpan="2">
+                                    <TextBlock   Padding="5"  Text="§:" ToolTip="Relevanter $"  HorizontalAlignment="Left" />
+                                    <TextBlock   Padding="5"     x:Name="tbParagraph"  HorizontalAlignment="Left"
                                                    
                              ToolTip=""/>
 
-                                        <ComboBox   x:Name="cmbParagraf" ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
+                                    <ComboBox   x:Name="cmbParagraf" ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxParagraf}, XPath=/Variablen/Variable}"
                                                                 ItemsSource="{Binding}" 
                                                                 DisplayMemberPath="@Name" 
                                                                 SelectedValuePath="@ID"
                                                                 SelectedValue="{Binding Path=ID}" 
                                                               SelectionChanged="cmbParagraf_SelectionChanged"  />
-                                    </StackPanel>
+                                </StackPanel>
 
 
 
-                                    <TextBlock Grid.Row="7" Padding="5"   Text="Externes Az:" Grid.ColumnSpan="5" Margin="0,0,25,22" Grid.RowSpan="2" />
-                                    <TextBlock Grid.Row="8" Padding="5"   Text="Altes Az:" Height="23" VerticalAlignment="Center" Grid.ColumnSpan="5" Margin="0,0,25,0" />
-                                    <TextBlock Grid.Row="9" Padding="5"  Text="Gem.Kürzel:" Grid.ColumnSpan="5"
+                                <TextBlock Grid.Row="7" Padding="5"   Text="Externes Az:" Grid.ColumnSpan="5" Margin="0,0,25,22" Grid.RowSpan="2" />
+                                <TextBlock Grid.Row="8" Padding="5"   Text="Altes Az:" Height="23" VerticalAlignment="Center" Grid.ColumnSpan="5" Margin="0,0,25,0" />
+                                <TextBlock Grid.Row="9" Padding="5"  Text="Gem.Kürzel:" Grid.ColumnSpan="5"
                            ToolTip="" Margin="0,0,25,22" Grid.RowSpan="2" />
-                                    <TextBlock   Padding="5" Grid.Row="6"   x:Name="tbStandort"  
+                                <TextBlock   Padding="5" Grid.Row="6"   x:Name="tbStandort"  
                                               
                              ToolTip="" Grid.Column="4" Grid.ColumnSpan="4" Margin="0,0,70,22" Grid.RowSpan="2" />
-                                    <ComboBox   x:Name="cmbRaumNr"   Grid.Row="6"  Grid.Column="6" ToolTip="Der Raum in dem die Akte steht." Width="25"
+                                <ComboBox   x:Name="cmbRaumNr"   Grid.Row="6"  Grid.Column="6" ToolTip="Der Raum in dem die Akte steht." Width="25"
                                             MaxDropDownHeight="800"
                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxRaumNr}, XPath=/Variablen/Variable}"
                                                                 ItemsSource="{Binding}" 
@@ -622,29 +622,29 @@
                                       />
 
 
-                                    <TextBox     Grid.Row="7"   x:Name="tbProbaugAZ"  IsReadOnly="True" 
+                                <TextBox     Grid.Row="7"   x:Name="tbProbaugAZ"  IsReadOnly="True" 
                                  MouseDoubleClick="tbProbaugAZ_MouseDown"  
                                              ToolTip="ProbauG-AZ nach dem Schema: 63-04478-21-68 (63-Vorgangnr-Jahr-...)"  
                                  SelectionChanged="tbProbaugAZ_SelectionChanged" 
                                          Background="Silver"         
                                  Grid.Column="4" Grid.ColumnSpan="5"  Width="200" HorizontalAlignment="Left" />
-                                    <Button Grid.Row="7" Grid.Column="8" Width="50" Height="20"
+                                <Button Grid.Row="7" Grid.Column="8" Width="50" Height="20"
                                         ToolTip="startet das Probaug-Modul"
                                         Name="btnZuProbauG" Content="ProBauG" Click="btnZuProbauG_Click" Margin="36,2,37,1" />
-                                    <Button x:Name="btnConfirmtbProbaugAZ" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                                <Button x:Name="btnConfirmtbProbaugAZ" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
                             Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Click="btnConfirmtbProbaugAZ_Click" Height="Auto" Margin="21,0,7,0" />
 
 
 
-                                    <TextBox Grid.Row="7"   x:Name="tbAltAz"         IsReadOnly="True" 
+                                <TextBox Grid.Row="7"   x:Name="tbAltAz"         IsReadOnly="True" 
                           Background="Silver"
                              Grid.Column="4" Grid.ColumnSpan="5"  MouseDoubleClick="tbAltAz_MouseDown"  ToolTip="Doppelklick um zu ändern"  
                              SelectionChanged="tbAltAz_SelectionChanged" Margin="0,22,9,0" Grid.RowSpan="2" />
-                                    <Button x:Name="btnConfirmtbAltAz" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                                <Button x:Name="btnConfirmtbAltAz" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
                             Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Click="btnConfirmtbAltAz_Click" Height="Auto" Margin="21,22,7,0" Grid.RowSpan="2"  />
 
-                                    <StackPanel Orientation="Horizontal"  Grid.Row="9"  Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,0,22" Grid.RowSpan="2">
-                                        <ComboBox  x:Name="cmbGemKRZ"      ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
+                                <StackPanel Orientation="Horizontal"  Grid.Row="9"  Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,0,22" Grid.RowSpan="2">
+                                    <ComboBox  x:Name="cmbGemKRZ"      ToolTip="Leer = Ganzer Kreis Offenbach" Width="18" Height="15"
                                MouseMove="cmbGemKRZ_MouseMove" MaxDropDownHeight="800"
                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxGemKRZ}, XPath=/GEMKRZen/GEMKRZ}"
                                                                 ItemsSource="{Binding}" 
@@ -653,266 +653,266 @@
                                                                 SelectedValue="{Binding Path=ID}" 
                                                               SelectionChanged="cmbGemKRZ_SelectionChanged"  
                                       />
-                                        <TextBlock    x:Name="tbGEMKRZ"      Padding="5"   MouseEnter="tbGEMKRZ_MouseEnter" 
+                                    <TextBlock    x:Name="tbGEMKRZ"      Padding="5"   MouseEnter="tbGEMKRZ_MouseEnter" 
                              ToolTip="" 
                               
                     Margin="0,0,0,0" Width="46" />
-                                    </StackPanel>
-                                    <TextBlock Grid.Row="9" Grid.Column="6" Padding="5"  Text="Interne Nr:" 
+                                </StackPanel>
+                                <TextBlock Grid.Row="9" Grid.Column="6" Padding="5"  Text="Interne Nr:" 
                            ToolTip="Access-Bezug herstellen" Margin="3,0,123,22" Grid.RowSpan="2" Grid.ColumnSpan="3" />
 
-                                    <TextBox Grid.Row="9"  Grid.Column="8" x:Name="tbInternenr"      IsReadOnly="True"  
+                                <TextBox Grid.Row="9"  Grid.Column="8" x:Name="tbInternenr"      IsReadOnly="True"  
                              ToolTip="Access-Bezug (Natureg...)"  TextWrapping="WrapWithOverflow"
                                 Background="Silver"
                         Grid.ColumnSpan="2" 
                               MouseDoubleClick="tbtbInternenr_MouseDown"  SelectionChanged="tbtbInternenr_SelectionChanged" Margin="0,0,5,22" Grid.RowSpan="2" />
-                                    <Button x:Name="btnConfirmtbInternenr" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                                <Button x:Name="btnConfirmtbInternenr" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
                             Grid.Row="9" Grid.Column="9"   Click="btnConfirmtbInternenr_Click" Height="Auto" Margin="21,0,7,22" Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
 
-                                    <StackPanel Orientation="Horizontal" Grid.Column="8" Grid.Row="10" Margin="0,0,9,0" >
-                                        <TextBlock 
+                                <StackPanel Orientation="Horizontal" Grid.Column="8" Grid.Row="10" Margin="0,0,9,0" >
+                                    <TextBlock 
                         x:Name="tbWeitereBearbeiter"   Padding="5"  IsEnabled="False" ToolTip="" 
                         MouseMove="tbWeitereBearbeiter_Mousemove" Width="90" MouseEnter="tbWeitereBearbeiter_Mousemove"
                    
                         />
 
-                                        <Button    x:Name="btnWeitereBearbeiterListen"   Content="..." Style="{StaticResource lessButton}" Width="20" Height="18"
+                                    <Button    x:Name="btnWeitereBearbeiterListen"   Content="..." Style="{StaticResource lessButton}" Width="20" Height="18"
                                                HorizontalAlignment="Left"
                                     Click="btnWeitereBearbeiterListen_Click" />
 
 
-                                    </StackPanel>
-                                    <Button Grid.Row="11" Grid.Column="11" Visibility="Collapsed"   x:Name="btnDS_gruppen"   Content="Datenschutz"
+                                </StackPanel>
+                                <Button Grid.Row="11" Grid.Column="11" Visibility="Collapsed"   x:Name="btnDS_gruppen"   Content="Datenschutz"
                                         Style="{StaticResource lessButton}"    Grid.ColumnSpan="5"                                        
                                            HorizontalAlignment="Left" ToolTip="Regeln welche Gruppen diesen Vorgang einsehen können"
                                     Click="btnDS_gruppen_Click" Margin="23,8,0,7" Width="113"  Height="25" />
-                                    <Button Grid.Row="10"  x:Name="btnSTammChange" Content="Stammdaten ändern" 
+                                <Button Grid.Row="10"  x:Name="btnSTammChange" Content="Stammdaten ändern" 
                                         Click="btnSTammChange_Click"  
                             Grid.Column="11" Grid.ColumnSpan="5" Margin="23,1,8,38" Height="25"
                                          Grid.RowSpan="2" />
 
 
-                                    <StackPanel Grid.Row="9" Grid.Column="13" Grid.ColumnSpan="4" Orientation="Horizontal"   Visibility="Visible" Margin="0,0,1,22" Grid.RowSpan="2" >
-                                        <Button   x:Name="btnNatureg" Content="N" Click="btnNatureg_Click_1"  Margin="5,0,5,0" ToolTip="Fachdatenbank: Natureg"                         
+                                <StackPanel Grid.Row="9" Grid.Column="13" Grid.ColumnSpan="4" Orientation="Horizontal"   Visibility="Visible" Margin="0,0,1,22" Grid.RowSpan="2" >
+                                    <Button   x:Name="btnNatureg" Content="N" Click="btnNatureg_Click_1"  Margin="5,0,5,0" ToolTip="Fachdatenbank: Natureg"                         
                                                      Grid.ColumnSpan="1"  Width="30"  Style="{StaticResource lessButton}" Height="22"
                                                   />
 
-                                        <Image   Source="/paradigmaDetail;component/Details/icons/bagger.png" Margin="5,0,5,0" x:Name="btnIllegale"
+                                    <Image   Source="/paradigmaDetail;component/Details/icons/bagger.png" Margin="5,0,5,0" x:Name="btnIllegale"
                                              MouseDown="btnIllegale_Click" Width="29" Height="28" ></Image>
 
-                                    </StackPanel>
+                                </StackPanel>
 
 
-                                    <TextBlock
+                                <TextBlock
                         Grid.Row="10"   Padding="5"                         x:Name="tbBearbeiter"   
                       
                         Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,0,39" HorizontalAlignment="Left" Width="66" Grid.RowSpan="2">
 
-                                    </TextBlock>
-                                </Grid>
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                </TextBlock>
+                            </Grid>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
 
-                                        <TextBlock  x:Name="Label16" Text="VorgangsNr:"
+                                    <TextBlock  x:Name="Label16" Text="VorgangsNr:"
                                                 HorizontalAlignment="Center" Width="85"  />
-                                        <TextBlock   x:Name="lblVorgangsID" Width="50"  Padding="5" MouseDown="lblVorgangsID_MouseDown"
+                                    <TextBlock   x:Name="lblVorgangsID" Width="50"  Padding="5" MouseDown="lblVorgangsID_MouseDown"
                                            ToolTip="Durch Klicken auf die Vorgangsnummer können Sie den 'Erledigt'-Status ändern." 
                                            IsEnabled="True"
                                            HorizontalAlignment="Left" Grid.ColumnSpan="4"  />
-                                        <CheckBox Grid.Column="8" x:Name="chkdarfnichtvernichtetwerden"   
+                                    <CheckBox Grid.Column="8" x:Name="chkdarfnichtvernichtetwerden"   
                               HorizontalContentAlignment="Left"  ToolTip="der Vorgang muss mehr als 10 Jahre bewahrt werden" 
                                  Checked="chkdarfnichtvernichtetwerden_Checked"
                               Content="> 10 Jahre " Grid.ColumnSpan="2" Margin="0,0,21,0"  >
-                                        </CheckBox>
+                                    </CheckBox>
 
-                                        <CheckBox x:Name="ckbGutachtenvorhanden"  Grid.Column="9" Grid.RowSpan="3" Grid.Row="1" 
+                                    <CheckBox x:Name="ckbGutachtenvorhanden"  Grid.Column="9" Grid.RowSpan="3" Grid.Row="1" 
                                           Grid.ColumnSpan="8"   Content="Es gibt Gutachten " >
-                                        </CheckBox>
-                                        <CheckBox x:Name="ckbGutachtenInDokumente"    Checked="ckbGutachtenInDokumente_Checked" 
+                                    </CheckBox>
+                                    <CheckBox x:Name="ckbGutachtenInDokumente"    Checked="ckbGutachtenInDokumente_Checked" 
                                                Content="Gutachten unter 'Dokumente'" ToolTip="Das /die Gutachten liegen unter dem Reiter 'Dokumente' vor">
-                                        </CheckBox>
-                                        <TextBlock  x:Name="Label13" Text="Sachgebiet:"
+                                    </CheckBox>
+                                    <TextBlock  x:Name="Label13" Text="Sachgebiet:"
                                            HorizontalAlignment="Center"  Width="85"  />
-                                        <TextBlock  x:Name="Label14"  />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <TextBlock  x:Name="Label14"  />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
 
 
-                                    </StackPanel>
+                                </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock x:Name="Label1" Text="Az.:" HorizontalAlignment="Center"  Width="85"   />
-                                        <TextBox     x:Name="lblAZ"   IsReadOnly="True"    
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="Label1" Text="Az.:" HorizontalAlignment="Center"  Width="85"   />
+                                    <TextBox     x:Name="lblAZ"   IsReadOnly="True"    
                                          Background="{StaticResource backg3}"  
                                  ToolTip="" Height="23" VerticalAlignment="Center" 
                                                  Width="200"/>
 
-                                        <TextBlock     Text="Projekt:" ToolTip="Projektzugehörigkeit" 
+                                    <TextBlock     Text="Projekt:" ToolTip="Projektzugehörigkeit" 
                                              x:Name="btnProjekt2"   Width="85" 
                            />
-                                        <TextBlock    x:Name="tbProjektAbstract"  Grid.Column="4"  />
+                                    <TextBlock    x:Name="tbProjektAbstract"  Grid.Column="4"  />
 
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock  ToolTip="Ändern unter 'Stammdaten'" Text="Titel:"   Width="85" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  ToolTip="Ändern unter 'Stammdaten'" Text="Titel:"   Width="85" />
 
-                                        <TextBox      x:Name="tbBeschreibung2"   TextWrapping="NoWrap"  IsReadOnly="True"    
+                                    <TextBox      x:Name="tbBeschreibung2"   TextWrapping="NoWrap"  IsReadOnly="True"    
                                             MouseDoubleClick="tbBeschreibung2_MouseDown" SelectionChanged="tbBeschreibung2_SelectionChanged"
                                             Background="Silver" Width="600"
                                             ToolTip="Anklicken um zu ändern"  />
-                                        <Button x:Name="btnConfirmBeschreibung2" Content="ok" FontSize="8" ToolTip="Änderung übernehmen"
+                                    <Button x:Name="btnConfirmBeschreibung2" Content="ok" FontSize="8" ToolTip="Änderung übernehmen"
                                                 Visibility="Visible" IsEnabled="False"
                                            Grid.ColumnSpan="2" Click="btnConfirmBeschreibung2_Click"
                                         Height="Auto" />
 
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
 
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock  ToolTip="Ändern unter 'Stammdaten'" Text="Schlagworte:"   Width="85"  />
-                                        <TextBox      x:Name="tbBemerkung"   TextWrapping="WrapWithOverflow" IsReadOnly="True"  
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  ToolTip="Ändern unter 'Stammdaten'" Text="Schlagworte:"   Width="85"  />
+                                    <TextBox      x:Name="tbBemerkung"   TextWrapping="WrapWithOverflow" IsReadOnly="True"  
                                         Background="Silver" Width="600"
                                         SelectionChanged="tbBemerkung_SelectionChanged"
                                      MouseDoubleClick="tbBemerkung_MouseDown" ToolTip="Doppelklick um zu ändern"  
                                />
 
-                                        <Button x:Name="btnConfirmBemerkung" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
+                                    <Button x:Name="btnConfirmBemerkung" Content="ok" FontSize="8" ToolTip="Änderung übernehmen" Visibility="Visible" IsEnabled="False"
                          Click="btnConfirmBemerkung_Click" Height="Auto"  />
 
 
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
 
 
-                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                         
+                        </StackPanel>
+
 
                     </DockPanel>
                 </TabItem>
                 <TabItem x:Name="tiZahlungen" Header="Zahlungen" Height="20" VerticalAlignment="Top">
                     <DockPanel>
-                     
-                            <StackPanel Orientation="Horizontal" x:Name="grpBoxKosten">
 
+                        <StackPanel Orientation="Horizontal" x:Name="grpBoxKosten">
+
+                            <StackPanel>
                                 <StackPanel>
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <CheckBox Grid.Column="0" Content="Interne Leistungsverrechnung"  
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Grid.Column="0" Content="Interne Leistungsverrechnung"  
                                      Click="chkboxInterneZahlungNEU" x:Name="chkboxInterneZahlung" Margin="5"  />
 
 
-                                        </StackPanel>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox Grid.Column="0" Grid.Row="1" Content="Verwaltungsgebühr"
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Grid.Column="0" Grid.Row="1" Content="Verwaltungsgebühr"
                                           x:Name="chkboxverwaltungsgebuehr" Click="chkboxverwaltungsgebuehr_Click_1" Margin="0,1,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-                                        <CheckBox Grid.Column="2"  Grid.Row="1" Content="bezahlt"
+                                    <CheckBox Grid.Column="2"  Grid.Row="1" Content="bezahlt"
                                             x:Name="verwaltungsgebuehrBezahlt" Click="verwaltungsgebuehrBezahlt_Click_1" Margin="0,1,0,13" Grid.RowSpan="2"/>
 
-                                    </StackPanel>
                                 </StackPanel>
+                            </StackPanel>
 
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
 
-                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                            </StackPanel>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
 
-                                    </StackPanel>
                                 </StackPanel>
-                                <Grid >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="90" />
-                                        <ColumnDefinition Width="90"/>
-                                        <ColumnDefinition Width="90" />
+                            </StackPanel>
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90" />
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="90" />
 
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="0"/>
-                                        <RowDefinition Height="0"/>
-                                        <RowDefinition Height="15"/>
-                                        <RowDefinition Height="15"/>
-                                        <RowDefinition Height="15"/>
-                                        <RowDefinition Height="15"/>
-                                        <RowDefinition Height="15"/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0"/>
+                                    <RowDefinition Height="0"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
 
-                                    <CheckBox Grid.Column="0" Grid.Row="2" Content="Verwarnungsgeld"
+                                <CheckBox Grid.Column="0" Grid.Row="2" Content="Verwarnungsgeld"
                                             x:Name="VERWARNUNGSGELD" Click="VERWARNUNGSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                    <CheckBox Grid.Column="2"  Grid.Row="2" Content="bezahlt"
+                                <CheckBox Grid.Column="2"  Grid.Row="2" Content="bezahlt"
                                             x:Name="VerwarnungsgeldBezahlt" Click="VerwarnungsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
 
-                                    <CheckBox Grid.Column="0" Grid.Row="3" Content="Bußgeld"
+                                <CheckBox Grid.Column="0" Grid.Row="3" Content="Bußgeld"
                                             x:Name="BUSSGELD" Click="BUSSGELD_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                    <CheckBox Grid.Column="2"  Grid.Row="3" Content="bezahlt"
+                                <CheckBox Grid.Column="2"  Grid.Row="3" Content="bezahlt"
                                             x:Name="BUSSGELDBezahlt" Click="BUSSGELDBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,11"/>
 
 
-                                    <CheckBox Grid.Column="0" Grid.Row="4" Content="Zwangsgeld"
+                                <CheckBox Grid.Column="0" Grid.Row="4" Content="Zwangsgeld"
                                             x:Name="Zwangsgeld" Click="Zwangsgeld_Click_1" Grid.RowSpan="3" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                    <CheckBox Grid.Column="2"  Grid.Row="4" Content="bezahlt"
+                                <CheckBox Grid.Column="2"  Grid.Row="4" Content="bezahlt"
                                             x:Name="ZwangsgeldBezahlt" Click="ZwangsgeldBezahlt_Click_1" Grid.RowSpan="3" Margin="0,3,0,00"/>
 
-                                    <CheckBox Grid.Column="0" Grid.Row="5" Content="Ersatzgeld"
+                                <CheckBox Grid.Column="0" Grid.Row="5" Content="Ersatzgeld"
                                             x:Name="ersatzgeld" Click="ersatzgeld_Click_1" Margin="0,2,0,13" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-                                    <CheckBox Grid.Column="1"  Grid.Row="5" Content="be-"
+                                <CheckBox Grid.Column="1"  Grid.Row="5" Content="be-"
                                             x:Name="ersatzgeldBezahlt" Click="ersatzgeldBezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="1"/>
 
-                                    <CheckBox Grid.Column="2"  Grid.Row="5" Content="ausgezahlt"
+                                <CheckBox Grid.Column="2"  Grid.Row="5" Content="ausgezahlt"
                                             x:Name="ersatzgeldausgezahlt" Click="ersatzgeldausgezahlt_Click_1" Margin="0,2,0,0" Grid.RowSpan="2"/>
 
-                                    <CheckBox Grid.Column="0" Grid.Row="6" Content="Sicherheitsleistung"
+                                <CheckBox Grid.Column="0" Grid.Row="6" Content="Sicherheitsleistung"
                                             x:Name="sicherheit" Click="sicherheit_Click_1" Grid.RowSpan="2" Margin="0,3,0,11" Grid.ColumnSpan="2"/>
-                                    <CheckBox Grid.Column="2"  Grid.Row="6" Content="hinterlegt"
+                                <CheckBox Grid.Column="2"  Grid.Row="6" Content="hinterlegt"
                                             x:Name="sicherheitBezahlt" Click="sicherheitBezahlt_Click_1" Grid.RowSpan="2" Margin="0,3,0,11"/>
 
-                                    <CheckBox Grid.Column="0" Grid.Row="7" Content="Beihilfe/Zuschuss"
+                                <CheckBox Grid.Column="0" Grid.Row="7" Content="Beihilfe/Zuschuss"
                                             x:Name="beihilfe" Click="beihilfe_Click_1" Margin="0,3,0,0" Grid.ColumnSpan="2"/>
-                                    <CheckBox Grid.Column="2"  Grid.Row="7" Content="gezahlt"
+                                <CheckBox Grid.Column="2"  Grid.Row="7" Content="gezahlt"
                                             x:Name="beihilfeBezahlt" Click="beihilfeBezahlt_Click_1" Margin="0,3,0,00"/>
-                                </Grid>
-                            </StackPanel>
-                  
+                            </Grid>
+                        </StackPanel>
+
 
                     </DockPanel>
                 </TabItem>
                 <TabItem x:Name="tiBAonline" Header="Bauantrag-Online"      AllowDrop="True">
                     <DockPanel>
-                    
-                            <StackPanel Margin="5" Orientation="Horizontal" Name="grpbauantrag"  >
-                                <StackPanel Margin="5">
 
-                                    <Button Name="btnZuConject" Click="BtnZuConject_Click"    VerticalAlignment="Center"   Width="170" Margin="5">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock VerticalAlignment="Center">Übersicht öffnen</TextBlock>
-                                        </StackPanel>
-                                    </Button>
+                        <StackPanel Margin="5" Orientation="Horizontal" Name="grpbauantrag"  >
+                            <StackPanel Margin="5">
+
+                                <Button Name="btnZuConject" Click="BtnZuConject_Click"    VerticalAlignment="Center"   Width="170" Margin="5">
                                     <StackPanel Orientation="Horizontal">
-                                        <CheckBox Name="cbIstConject" Click="CbIstConject_Click"  
+                                        <TextBlock VerticalAlignment="Center">Übersicht öffnen</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="cbIstConject" Click="CbIstConject_Click"  
                                                       Margin="0,9,0,5"
                                                       ToolTip="Aktivieren wenn dieser Vorgang mit Bauantrag Online bearbeitet wird.">
-                                            <StackPanel>
-                                                <TextBlock>Bauantrag-</TextBlock>
-                                                <TextBlock>Online</TextBlock>
-                                            </StackPanel>
-                                        </CheckBox>
-                                        <Button Name="btnDownloaddir" Click="BtnDownloaddir_Click" HorizontalAlignment="Right"
+                                        <StackPanel>
+                                            <TextBlock>Bauantrag-</TextBlock>
+                                            <TextBlock>Online</TextBlock>
+                                        </StackPanel>
+                                    </CheckBox>
+                                    <Button Name="btnDownloaddir" Click="BtnDownloaddir_Click" HorizontalAlignment="Right"
                                                 Content="Download" ToolTip="Download - Verzeichnis anzeigen lassen" Width=" 90" Margin="5"/>
-                                    </StackPanel>
+                                </StackPanel>
 
-                                </StackPanel>
-                                <StackPanel Background="NavajoWhite" Height="49" Width="500">
-                                    <TextBlock Name="tbConjectDropText" Text="ConjectPM.zip hier droppen" HorizontalAlignment="Center"  />
-                                </StackPanel>
                             </StackPanel>
-                        
+                            <StackPanel Background="NavajoWhite" Height="49" Width="500">
+                                <TextBlock Name="tbConjectDropText" Text="ConjectPM.zip hier droppen" HorizontalAlignment="Center"  />
+                            </StackPanel>
+                        </StackPanel>
+
 
                     </DockPanel>
                 </TabItem>
@@ -1087,106 +1087,108 @@
 
                 <TabItem x:Name="tiOptionen" Header="Optionen" Visibility="Visible"  
                      >
+                    <ScrollViewer Height="90" HorizontalScrollBarVisibility="Auto">
 
-                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
 
-                        <StackPanel>
-                            <GroupBox Header="Auf Windows Schriftgröße optimieren" Width="400"  HorizontalAlignment="Left"
-                                  VerticalAlignment="Top" Margin="5"  Name="tb34">
-                                <StackPanel Margin="5">
-                                    <RadioButton x:Name="radWindowsSchriftKlein" GroupName="fontsise" Content="die Windows Schriftgröße ist auf 'klein' gestellt"/>
-                                    <RadioButton x:Name="radWindowsSchriftMittel"  GroupName="fontsise" Content="die Windows Schriftgröße ist auf 'mittel' gestellt"/>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Header="GIS darstellen" Width="400"   HorizontalAlignment="Left" IsEnabled="True" 
-                                  VerticalAlignment="Top" Margin="5"  Name="tb35" >
-                                <StackPanel Margin="5">
-                                    <CheckBox x:Name="chkMiniMapDarstellen"   Content="GIS für diesen Vorgang darstellen" IsChecked="True" Checked="chkMiniMapDarstellen_Checked"
+                            <StackPanel>
+                                <GroupBox Header="Auf Windows Schriftgröße optimieren" Width="400"  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top" Margin="0"  Name="tb34">
+                                    <StackPanel Margin="0">
+                                        <RadioButton x:Name="radWindowsSchriftKlein" GroupName="fontsise" Content="die Windows Schriftgröße ist auf 'klein' gestellt"/>
+                                        <RadioButton x:Name="radWindowsSchriftMittel"  GroupName="fontsise" Content="die Windows Schriftgröße ist auf 'mittel' gestellt"/>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="GIS darstellen" Width="400"   HorizontalAlignment="Left" IsEnabled="True" 
+                                  VerticalAlignment="Top" Margin="0"  Name="tb35" >
+                                    <StackPanel Margin="0">
+                                        <CheckBox x:Name="chkMiniMapDarstellen"   Content="GIS für diesen Vorgang darstellen" IsChecked="True" Checked="chkMiniMapDarstellen_Checked"
                                       Unchecked="chkMiniMapDarstellen_Unchecked"/>
-                                    <CheckBox x:Name="chkNoGISever"   Content="GIS niemals beim Start darstellen" IsChecked="True"
+                                        <CheckBox x:Name="chkNoGISever"   Content="GIS niemals beim Start darstellen" IsChecked="True"
                                       Checked="chkNoGISever_Checked"
                                       Unchecked="chkNoGISever_Checked"/>
-                                    <CheckBox x:Name="chkGISimmerbeenden"   Content="GIS beim Beenden des Vorgangs schliessen" IsChecked="True"
+                                        <CheckBox x:Name="chkGISimmerbeenden"   Content="GIS beim Beenden des Vorgangs schliessen" IsChecked="True"
                                       Checked="chkGISimmerbeenden_Checked"
                                       Unchecked="chkGISimmerbeenden_Checked"/>
-                                </StackPanel>
-                            </GroupBox>
+                                    </StackPanel>
+                                </GroupBox>
 
-                        </StackPanel>
-                        <StackPanel>
-                            <GroupBox Header="Verschiedenes " Width="400"   HorizontalAlignment="Left" 
+                            </StackPanel>
+                            <StackPanel>
+                                <GroupBox Header="Verschiedenes " Width="400"   HorizontalAlignment="Left" 
                                   VerticalAlignment="Top" Margin="0"  Name="tb54">
-                                <StackPanel Margin="5"  >
-                                    <CheckBox Name="cbzuhause" Content="Zuhause (Thunderbird, OpenOffice ...)" 
+                                    <StackPanel Margin="0"  >
+                                        <CheckBox Name="cbzuhause" Content="Zuhause (Thunderbird, OpenOffice ...)" 
                                       IsEnabled="true" IsChecked="True" Margin="5"
                                       Click="cbzuhause_Click"/>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Width="150" Padding="5">Vorlagen-Quellverzeichnis:</TextBlock>
-                                        <TextBox Name="tbVorlagenRoot"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenRoot_TextChanged"/>
-                                        <Button Name="btnVorlagenRoot" IsEnabled="False" Click="btnVorlagenRoot_Click" >OK</Button>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Width="150" Padding="5" 
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="150" Padding="5">Vorlagen-Quellverzeichnis:</TextBlock>
+                                            <TextBox Name="tbVorlagenRoot"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenRoot_TextChanged"/>
+                                            <Button Name="btnVorlagenRoot" IsEnabled="False" Click="btnVorlagenRoot_Click" >OK</Button>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="150" Padding="5" 
                                                ToolTip="Hierher werden die Vorlagen kopiert um sie zu bearbeiten."
                                                >Vorlagen-Arbeitsverzeichnis:</TextBlock>
-                                        <TextBox Name="tbVorlagenWork"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenWork_TextChanged"/>
-                                        <Button Name="btnVorlagenWork" IsEnabled="False" Click="btnVorlagenWork_Click">OK</Button>
+                                            <TextBox Name="tbVorlagenWork"   Visibility="Visible"   Margin="5" Width="200" TextChanged="tbVorlagenWork_TextChanged"/>
+                                            <Button Name="btnVorlagenWork" IsEnabled="False" Click="btnVorlagenWork_Click">OK</Button>
 
+                                        </StackPanel>
+                                        <!--<Button Name="btnGisStartInfoSpeichern" Click="btnGisStartInfoSpeichern_Click" Content="speichern" Width="200" Margin="5"/>-->
                                     </StackPanel>
-                                    <!--<Button Name="btnGisStartInfoSpeichern" Click="btnGisStartInfoSpeichern_Click" Content="speichern" Width="200" Margin="5"/>-->
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Header="Weitere Bearbeiter " Width="400"   HorizontalAlignment="Left" 
+                                </GroupBox>
+                                <GroupBox Header="Weitere Bearbeiter " Width="400"   HorizontalAlignment="Left" 
                                   VerticalAlignment="Top" Margin="0"  Name="tb36">
-                                <StackPanel Margin="5" Orientation="Horizontal">
-                                    <TextBox x:Name="tbWeitereBearbeiterStandard" Width="100" HorizontalAlignment="Left" Height="25"/>
-                                    <Button x:Name="btnWeitereBAuswahl"  Content="Auswahl" Click="btnWeitereBAuswahl_Click" Height="25"/>
-                                    <TextBlock Name="tbhinewris23" FontSize="8" TextWrapping="Wrap" Width="200" Margin  ="5">Diese BearbeiterInnen werden in jeden neuen Vorgang als 'WeitereBearbeiter' eingetragen.</TextBlock>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel >
-                            <GroupBox Header="Verschiedenes " Width="400" Height="180" HorizontalAlignment="Left" 
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <TextBox x:Name="tbWeitereBearbeiterStandard" Width="100" HorizontalAlignment="Left" Height="25"/>
+                                        <Button x:Name="btnWeitereBAuswahl"  Content="Auswahl" Click="btnWeitereBAuswahl_Click" Height="25"/>
+                                        <TextBlock Name="tbhinewris23" FontSize="8" TextWrapping="Wrap" Width="200" Margin  ="5">Diese BearbeiterInnen werden in jeden neuen Vorgang als 'WeitereBearbeiter' eingetragen.</TextBlock>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <StackPanel >
+                                <GroupBox Header="Verschiedenes " Width="400" Height="180" HorizontalAlignment="Left" 
                                   VerticalAlignment="Top"    Name="tb37">
-                                <StackPanel Margin="5"  >
-                                    <CheckBox Name="paradigmaKILLALLGIS" Content="beim Start alle alten GISse beeenden" 
+                                    <StackPanel Margin="5"  >
+                                        <CheckBox Name="paradigmaKILLALLGIS" Content="beim Start alle alten GISse beeenden" 
                                       IsEnabled="True" IsChecked="True" Margin="5"
                                       Click="paradigmaKILLALLGIS_Click"/>
 
-                                    <StackPanel Margin="5">
-                                        <RadioButton Name="rbpumuckelversion0" GroupName="rbgPumuckelversion" IsChecked="True" Click="rbpumuckelversion_Click" Content="Alter Pumuckel (Super-Bequem)"/>
-                                        <RadioButton Name="rbpumuckelversion1" GroupName="rbgPumuckelversion" IsChecked="False" Click="rbpumuckelversion_Click" Content="Interrop Pumuckel (sicherer)"/>
-                                        <RadioButton Name="rbpumuckelversion2" GroupName="rbgPumuckelversion" IsChecked="False" Click="rbpumuckelversion_Click" Content="Kein Pumuckel (Super-Unbequem, indiv. Sicherheit)"/>
-                                    </StackPanel>
-                                    <CheckBox Name="cbtimetool" Click="Cbtimetool_Click" Visibility="Collapsed" Content="Timetool aktivieren" Margin="5"/>
-                                    <CheckBox Name="cbreadOnlyDoxsInTxtCrtlOeffnen" Click="CbreadOnlyDoxsInTxtCrtlOeffnen_Click"  IsChecked="False" Margin="5">
-                                        <TextBlock TextWrapping="Wrap">
+                                        <StackPanel Margin="5">
+                                            <RadioButton Name="rbpumuckelversion0" GroupName="rbgPumuckelversion" IsChecked="True" Click="rbpumuckelversion_Click" Content="Alter Pumuckel (Super-Bequem)"/>
+                                            <RadioButton Name="rbpumuckelversion1" GroupName="rbgPumuckelversion" IsChecked="False" Click="rbpumuckelversion_Click" Content="Interrop Pumuckel (sicherer)"/>
+                                            <RadioButton Name="rbpumuckelversion2" GroupName="rbgPumuckelversion" IsChecked="False" Click="rbpumuckelversion_Click" Content="Kein Pumuckel (Super-Unbequem, indiv. Sicherheit)"/>
+                                        </StackPanel>
+                                        <CheckBox Name="cbtimetool" Click="Cbtimetool_Click" Visibility="Collapsed" Content="Timetool aktivieren" Margin="5"/>
+                                        <CheckBox Name="cbreadOnlyDoxsInTxtCrtlOeffnen" Click="CbreadOnlyDoxsInTxtCrtlOeffnen_Click"  IsChecked="False" Margin="5">
+                                            <TextBlock TextWrapping="Wrap">
                                     Nur-Lese-Word-Dokumente in Textcontrol anzeigen (sonst Umwandlung nach PDF)
-                                        </TextBlock>
-                                    </CheckBox>
-                                    <CheckBox Name="cbDarkTheme" Click="cbDarkTheme_Click"  IsChecked="False" Margin="5">
-                                        <TextBlock TextWrapping="Wrap">
+                                            </TextBlock>
+                                        </CheckBox>
+                                        <CheckBox Name="cbDarkTheme" Click="cbDarkTheme_Click"  IsChecked="False" Margin="5">
+                                            <TextBlock TextWrapping="Wrap">
                                     Dark Theme
-                                        </TextBlock>
-                                    </CheckBox>
-                                    <!--<Button Name="btnGisStartInfoSpeichern" Click="btnGisStartInfoSpeichern_Click" Content="speichern" Width="200" Margin="5"/>-->
-                                </StackPanel>
-                            </GroupBox>
+                                            </TextBlock>
+                                        </CheckBox>
+                                        <!--<Button Name="btnGisStartInfoSpeichern" Click="btnGisStartInfoSpeichern_Click" Content="speichern" Width="200" Margin="5"/>-->
+                                    </StackPanel>
+                                </GroupBox>
 
+                            </StackPanel>
+                            <StackPanel>
+                                <GroupBox Header="who am i ?"  Name="tb38" >
+                                    <StackPanel>
+                                        <ScrollViewer>
+
+                                            <TextBlock Height="120" Width="200" TextWrapping="Wrap" Name="tbuserAbsteract"></TextBlock>
+                                        </ScrollViewer>
+                                        <Button Name="btnChangeUserSetting" Click="btnChangeUserSetting_Click">Ändern</Button>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel>
-                            <GroupBox Header="who am i ?"  Name="tb38" >
-                                <StackPanel>
-                                    <ScrollViewer>
 
-                                        <TextBlock Height="120" Width="200" TextWrapping="Wrap" Name="tbuserAbsteract"></TextBlock>
-                                    </ScrollViewer>
-                                    <Button Name="btnChangeUserSetting" Click="btnChangeUserSetting_Click">Ändern</Button>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                    </StackPanel>
-
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem x:Name="tiRechtsdb" Header="Rechtsgrundlagen" Visibility="Collapsed">
                     <DockPanel>
