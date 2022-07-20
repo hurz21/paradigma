@@ -283,7 +283,7 @@
 
             <TextBlock Name="tbBeschreibung3" FontSize="16" Background="Black" Foreground="Gold" Margin="5,0,0,0" DockPanel.Dock="Top"
                  MouseDown="tbBeschreibung3_MouseDown">OOOOOOOOOOOOOOOOOOOOOOO</TextBlock>
-            <TabControl Name="tbControl1"  Background="{StaticResource backg3}" Height="150" VerticalAlignment="Top" >
+            <TabControl Name="tbControl1"  Background="{StaticResource backg3}" Height="200" VerticalAlignment="Top" >
 
                 <TabItem Header="Sachdaten" IsSelected="True" x:Name="tiSachdaten" 
                    Height="20" VerticalAlignment="Top"   AllowDrop="True">
@@ -291,7 +291,7 @@
 
                         <DockPanel x:Name="kopp" DockPanel.Dock="Top"     Height="150"   >
 
-                            <StackPanel x:Name="stackp1" Height="150">
+                            <StackPanel x:Name="stackp1" Height="200">
                                 <StackPanel Orientation="Horizontal">
                                     <Button Height="100" Margin="5,25,5,5" Width="30" x:Name="btnAkteziehen" Click="btnAkteziehen_Click">
                                         <TextBlock Text="Akte ziehen">
@@ -1087,7 +1087,7 @@
 
                 <TabItem x:Name="tiOptionen" Header="Optionen" Visibility="Visible"  
                      >
-                    <ScrollViewer Height="90" HorizontalScrollBarVisibility="Auto" 
+                    <ScrollViewer Height="170" HorizontalScrollBarVisibility="Auto" 
                                   VerticalAlignment="Top">
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
@@ -1304,7 +1304,7 @@
                     DockPanel.Dock="Bottom"
                     MinWidth="1920">
                 <TabControl   x:Name="TabControl1"    Panel.ZIndex="10"      HorizontalAlignment="Left"
-                  Width="883" VerticalAlignment="Top"  MinHeight="500" >
+                  Width="883" VerticalAlignment="Top"  MinHeight="450" >
                     <TabItem Header="Verlauf" x:Name="tabheaderVerlauf" Height="29" VerticalAlignment="Top" >
                         <DockPanel  x:Name="StackPanelVerlauf" VerticalAlignment="Top"   Background="{StaticResource backg3}"  >
                             <StackPanel  DockPanel.Dock="Top" >
