@@ -37,9 +37,10 @@ Namespace VerwandteTools
             End If
             Return erfolg
         End Function
-        Friend Shared Function getReferenzvorgangsId(vorgangsID As Integer) As Integer
+        Friend Shared Function getReferenzvorgangsId(vorgangsID As Integer) As List(Of Integer)
             Dim sql As String '= "select * from  " & CLstart.myViewsNTabs.TABKOPPVORGANGFREMDVORGANG & "  where vorgangsid=" & vorgangsID
             Dim vid, sachgebietnr As Integer
+            Dim vidlist As New List(Of Integer)
             Try
                 l(" MOD getReferenzvorgangsId anfang")
                 sql = "select vorgangsid,sachgebietnr  FROM " & CLstart.myViewsNTabs.TABVORGANG &
@@ -59,14 +60,14 @@ Namespace VerwandteTools
                         sachgebietnr = 0
                     End If
                     If sachgebietnr = 1020 Then
-                        Return vid
+                        vidlist.Add(vid)
                     End If
                 Next
                 l(" MOD getReferenzvorgangsId ende")
-                Return 0
+                Return vidlist
             Catch ex As Exception
                 l("Fehler in getReferenzvorgangsId: ", ex)
-                Return -1
+                Return vidlist
             End Try
         End Function
 

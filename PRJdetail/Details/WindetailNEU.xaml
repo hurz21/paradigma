@@ -1300,11 +1300,11 @@
 
             </TabControl>
             <StackPanel Panel.ZIndex="10"  Orientation="Horizontal" x:Name="stckUnten"
-                                HorizontalAlignment="Left"   
+                                HorizontalAlignment="Left"     AllowDrop="True"
                     DockPanel.Dock="Bottom"
                     MinWidth="1920">
                 <TabControl   x:Name="TabControl1"    Panel.ZIndex="10"      HorizontalAlignment="Left"
-                  Width="883" VerticalAlignment="Top"   >
+                  Width="883" VerticalAlignment="Top"  AllowDrop="True"  >
                     <TabItem Header="Verlauf" x:Name="tabheaderVerlauf" Height="29" VerticalAlignment="Top" >
                         <DockPanel  x:Name="StackPanelVerlauf" VerticalAlignment="Top"   Background="{StaticResource backg3}"  >
                             <StackPanel  DockPanel.Dock="Top" >

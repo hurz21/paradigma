@@ -666,7 +666,7 @@ Partial Public Class Window_Detail
     ''' <param name="VorgangsID"></param>
     ''' <remarks></remarks>
     Private Async Sub refreshDokumente(ByVal VorgangsID As Integer)
-        Dim referenzvorgangsID As Integer = 0
+        Dim vidlist As List(Of Integer)
         Dim anzahlEigeneDokumente As Integer = 0
         Dim anzahlReferenzDokumente As Integer = 0
         Try
@@ -681,19 +681,23 @@ Partial Public Class Window_Detail
                 dgVorgangDokumente.DataContext = Nothing
                 myGlobalz.Arc.vorgangDocDt = Nothing
             End If
-            referenzvorgangsID = VerwandteTools.divers.getReferenzvorgangsId(VorgangsID)
+            vidlist = VerwandteTools.divers.getReferenzvorgangsId(VorgangsID)
 
-            If referenzvorgangsID > 0 Then
-                Dim task2 As System.Threading.Tasks.Task(Of Boolean) = DokArcTools.dokusVonVorgangHolen.executeAsync(CStr(referenzvorgangsID), "keinefotos", alleBilder:=True, 0)
-                Dim bresult2 As Boolean = Await task2
-                Dim presdokVerwandte As New List(Of clsPresDokumente)
-                presdokVerwandte = detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
-                'Psession.presDokus = New List(Of clsPresDokumente)
-                For Each dok As clsPresDokumente In presdokVerwandte
-                    dok.istNurVerwandt = True
-                    Psession.presDokus.Add(dok)
+            If vidlist.Count > 0 Then
+                For Each intt As Integer In vidlist
 
-                    anzahlReferenzDokumente = myGlobalz.Arc.ArcRec.dt.Rows.Count
+
+                    Dim task2 As System.Threading.Tasks.Task(Of Boolean) = DokArcTools.dokusVonVorgangHolen.executeAsync(CStr(intt), "keinefotos", alleBilder:=True, 0)
+                    Dim bresult2 As Boolean = Await task2
+                    Dim presdokVerwandte As New List(Of clsPresDokumente)
+                    presdokVerwandte = detail_dokuauswahl.dokuDTnachObj(myGlobalz.Arc.ArcRec.dt.Copy)
+                    'Psession.presDokus = New List(Of clsPresDokumente)
+                    For Each dok As clsPresDokumente In presdokVerwandte
+                        dok.istNurVerwandt = True
+                        Psession.presDokus.Add(dok)
+
+                        anzahlReferenzDokumente = myGlobalz.Arc.ArcRec.dt.Rows.Count
+                    Next
                 Next
             End If
 
