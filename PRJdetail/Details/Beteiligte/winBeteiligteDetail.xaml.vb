@@ -69,6 +69,7 @@ Partial Public Class winBeteiligteDetail
 
     Private Sub setcmbAnrede()
         cmbAnrede.Items.Add("Herr")
+        cmbAnrede.Items.Add("Herrn")
         cmbAnrede.Items.Add("Frau")
         cmbAnrede.Items.Add("Frau und Herrn")
         cmbAnrede.Items.Add("Eheleute")
