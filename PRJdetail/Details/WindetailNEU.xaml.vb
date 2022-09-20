@@ -519,7 +519,10 @@ Public Class WindetailNEU
 
     Private Sub cmbVerlaufAuswahl_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles cmbVerlaufAuswahl.SelectionChanged
         Try
-            If cmbVerlaufAuswahl.SelectedValue Is Nothing Then Exit Sub
+            e.Handled = True
+            'detailsTools.initErgeinistypCombo(Me, "detail_ereignisseKURZ.xml", "XMLSourceComboBoxEreignisse")
+            'If cmbVerlaufAuswahl.SelectedValue Is Nothing Then Exit Sub
+            If cmbVerlaufAuswahl.SelectedIndex < 1 Then Exit Sub
             If cmbVerlaufAuswahl.SelectedValue.ToString.ToLower = "hinzufügen" Or
             cmbVerlaufAuswahl.SelectedValue.ToString.ToLower = "" Then Exit Sub
             Dim item As String = CType(cmbVerlaufAuswahl.SelectedValue, String)
@@ -530,7 +533,7 @@ Public Class WindetailNEU
             refreshFotos(myGlobalz.sitzung.aktVorgangsID)
             '     cmbStatus.SelectedValue = myGlobalz.sitzung.aktVorgang.Stammdaten.status ihah
             setzeErledigtflagfarbe()
-            e.Handled = True
+
         Catch ex As Exception
             nachricht("cmbVerlaufAuswahl_SelectionChanged", ex)
         End Try
@@ -5790,6 +5793,10 @@ Public Class WindetailNEU
     End Sub
 
     Private Sub tbBeschreibung2_TextChanged(sender As Object, e As TextChangedEventArgs) Handles tbBeschreibung2.TextChanged
+
+    End Sub
+
+    Private Sub cmbVerlaufAuswahl_SelectionChanged_1(sender As Object, e As SelectionChangedEventArgs)
 
     End Sub
 

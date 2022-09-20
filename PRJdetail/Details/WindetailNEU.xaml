@@ -322,7 +322,8 @@
                                             <StackPanel Orientation="Horizontal" Name="stackDokuhinzu" Background="{StaticResource backg3}" >
                                                 <GroupBox Header="+ Ereignis hinzufügen"  Name="grpEreignishinzu"    >
                                                     <StackPanel    Orientation="Horizontal" VerticalAlignment="Center">
-                                                        <Button Height="60" Margin="5" x:Name="btnStandardereignis" Click="btnStandardereignis_Click"   >Standard</Button>
+                                                        <Button Height="60" Margin="5" x:Name="btnStandardereignis" 
+                                                                Click="btnStandardereignis_Click"   >Standard</Button>
                                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
                                                             <Button Height="30" Margin="2" x:Name="btnWiedervorlage" Click="btnWiedervorlage_Click"  >Wiedervorlage</Button>
                                                             <Button Click="btnOutlookemailuebernehmen_Click"  Height="30" Margin="2" x:Name="btnOutlookemailuebernehmen" >Outlookemail</Button>
@@ -1311,10 +1312,12 @@
                             <StackPanel  DockPanel.Dock="Top" >
                                 <StackPanel  Orientation="Horizontal" VerticalAlignment="Top"  Height="50"  >
                                     <StackPanel Orientation="Vertical" Visibility="Visible"  >
-                                        <TextBlock Margin="0" Text="Hinzufügen" Name="tbVerlaugf01"/>
-                                        <ComboBox   Height="23" x:Name="cmbVerlaufAuswahl"           
+                                        <!--<TextBlock Margin="0" Text="Hinzufügen" Name="tbVerlaugf01"/>-->
+                                        <Button   Margin="0,15,5,5" x:Name="btnStandardereignis2" 
+                                                                Click="btnStandardereignis_Click"  Height="20" Width="40">Hinz.</Button>
+                                        <ComboBox   Height="23" x:Name="cmbVerlaufAuswahl"   Visibility="Collapsed"        
                                                             HorizontalAlignment="Left" VerticalAlignment="Top" 
-                                            Width="30" 
+                                            Width="30"  
                                             ToolTip="Hiermit können Sie dem Vorgang Ereignisse hinzufügen!"
                                         SelectedIndex="1"
                                          DataContext="{Binding Source={StaticResource XMLSourceComboBoxEreignisse}, XPath=/Variablen/Variable}" IsSynchronizedWithCurrentItem="True" 

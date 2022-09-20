@@ -46,7 +46,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Paradigma</ProductName>
+    <PublisherName>Kreis Offenbach</PublisherName>
+    <SuiteName>Paradigma</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <TrustUrlParameters>true</TrustUrlParameters>
     <ApplicationRevision>828</ApplicationRevision>
     <ApplicationVersion>3.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
