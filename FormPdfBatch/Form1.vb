@@ -2034,7 +2034,7 @@ Public Class Form1
 
         If vid = "fehler" Then End
         Dim Sql As String
-        Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0  " &
+        Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0   " &
                   "  order by dokumentid desc "
         DT = alleDokumentDatenHolen(Sql)
         'teil1 = pdf -----------------------------------------------
