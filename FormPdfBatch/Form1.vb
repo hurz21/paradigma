@@ -54,7 +54,7 @@ Public Class Form1
         Try
 
             'MsgBox(Sql)
-            dt = getDT(Sql)
+            dt = getDT(sql)
             'MsgBox(dt.Rows.Count)
             l("nach getDT")
             Return dt
@@ -77,14 +77,13 @@ Public Class Form1
             Return Nothing
         End Try
     End Function
-    Private Shared Function alleDokumentDatenHolen() As DataTable
-        Dim Sql As String
+    Private Shared Function alleDokumentDatenHolen(sql As String) As DataTable
+
         Dim dt As New DataTable
         Try
-            Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0  " &
-                  "  order by dokumentid desc "
+
             'MsgBox(Sql)
-            dt = getDT(Sql)
+            dt = getDT(sql)
             'MsgBox(dt.Rows.Count)
             l("nach getDT")
             Return dt
@@ -185,7 +184,10 @@ Public Class Form1
         sw.AutoFlush = True
         sw.WriteLine(Now)
         If vid = "fehler" Then End
-        DT = ALLEdokumentDatenHolen()
+        Dim Sql As String
+        Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0  " &
+                  "  order by dokumentid desc "
+        DT = alleDokumentDatenHolen(Sql)
         l("vor prüfung")
         inndir = "\\file-paradigma\paradigma\test\paradigmaArchiv\backup\archiv"
         Dim ic As Integer = 0
@@ -1658,7 +1660,10 @@ Public Class Form1
 
 
         If vid = "fehler" Then End
-        DT = alleDokumentDatenHolen()
+        Dim Sql As String
+        Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0  " &
+                  "  order by dokumentid desc "
+        DT = alleDokumentDatenHolen(Sql)
         'teil1 = pdf -----------------------------------------------
 
         l("vor pdfverarbeiten")
@@ -1670,6 +1675,8 @@ Public Class Form1
         Dim dbdatum As Date
         Dim initial As String
         Dim eid As Integer = 0
+        Dim myoracle As SqlClient.SqlConnection
+        myoracle = getMSSQLCon()
 
         l("PDFumwandeln 2 ")
         l("PDFumwandeln 2 ")
@@ -1685,6 +1692,7 @@ Public Class Form1
                 Else
                     inputfile = GetInputfile1Name(inndir, relativpfad, dateinameext)
                 End If
+                'clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile)
                 TextBox3.Text = igesamt & " von " & DT.Rows.Count
                 Application.DoEvents()
                 Dim fi As New IO.FileInfo(inputfile.Replace(Chr(34), ""))
@@ -2007,6 +2015,91 @@ Public Class Form1
             Return "0 bytes"
         End Try
     End Function
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+
+        'alle dokus auf vorhandensein prüfen
+        Dim DT As DataTable
+        l("PDFumwandeln ")
+        'Dim logfile As String = "\\file-paradigma\paradigma\test\thumbnails\PDFlog" & Format(Now, "ddhhmmss") & ".txt"
+
+        Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\dateifehlt_alle1" & Environment.UserName & ".txt"
+        swfehlt = New IO.StreamWriter(dateifehlt)
+        swfehlt.AutoFlush = True
+        swfehlt.WriteLine(Now)
+
+        inndir = "\\file-paradigma\paradigma\test\paradigmaArchiv\backup\archiv"
+        '  vid = modPrep.getVid()
+
+
+        If vid = "fehler" Then End
+        Dim Sql As String
+        Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0  " &
+                  "  order by dokumentid desc "
+        DT = alleDokumentDatenHolen(Sql)
+        'teil1 = pdf -----------------------------------------------
+
+        l("vor pdfverarbeiten")
+        Dim ic As Integer = 0
+        Dim igesamt As Integer = 0
+        Dim relativpfad, dateinameext, typ, dokumentid, inputfile, outfile As String
+        Dim newsavemode As Boolean
+        Dim istRevisionssicher As Boolean
+        Dim dbdatum As Date
+        Dim initial As String
+        Dim eid As Integer = 0
+        Dim myoracle As SqlClient.SqlConnection
+        myoracle = getMSSQLCon()
+
+        l("PDFumwandeln 2 ")
+        l("PDFumwandeln 2 ")
+        '  Using sw As New IO.StreamWriter(logfile)
+        For Each drr As DataRow In DT.Rows
+            Try
+                igesamt += 1
+                DbMetaDatenHolen(vid, relativpfad, dateinameext, typ, newsavemode, dokumentid, drr, dbdatum, istRevisionssicher, initial, eid)
+                l(vid & " " & CStr(dokumentid) & " " & ic & " (" & DT.Rows.Count & ")")
+
+                If newsavemode Then
+                    inputfile = GetInputfilename(inndir, relativpfad, CInt(dokumentid))
+                Else
+                    inputfile = GetInputfile1Name(inndir, relativpfad, dateinameext)
+                End If
+                If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile) <> 0 Then
+                    MsgBox("Fehler")
+                End If
+                TextBox3.Text = igesamt & " von " & DT.Rows.Count
+                Application.DoEvents()
+                Dim fi As New IO.FileInfo(inputfile.Replace(Chr(34), ""))
+                If Not fi.Exists Then
+                    swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
+                    Continue For
+                Else
+
+                End If
+            Catch ex As Exception
+                l("fehler2: " & ex.ToString)
+                TextBox2.Text = ic.ToString & Environment.NewLine & " " &
+                       inputfile & Environment.NewLine &
+                       vid & "/" & dokumentid & " " & igesamt & "(" & DT.Rows.Count.ToString & ")" & Environment.NewLine &
+                       TextBox2.Text
+                Application.DoEvents()
+            End Try
+            GC.Collect()
+            GC.WaitForFullGCComplete()
+        Next
+        If batchmode = True Then
+
+        End If
+        swfehlt.Close()
+        l("dateifehlt  " & dateifehlt)
+        Process.Start(dateifehlt)
+    End Sub
+
+    'Private Sub Button16_Click_1(sender As Object, e As EventArgs) Handles Button16.Click
+
+    'End Sub
+
     Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
         ' BLOB als Datei speichern
         Dim DT As DataTable

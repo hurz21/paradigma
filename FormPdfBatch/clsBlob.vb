@@ -62,6 +62,48 @@ Public Class clsBlob
             con.Close()
         End Try
     End Function
+    Shared Function dokufull_speichern(dokid As Integer, con As SqlConnection,
+                                 fullpath As String) As Long
+
+        l("db_speichern  0")
+        Dim aFS As New System.IO.FileStream(fullpath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+        'Dim aData(Convert.ToInt32(aFS.Length )) As Byte  musste -1 ergänzen weil vb immer eins zu hoch init. dann ist word und excel kaputt
+        Dim aData(Convert.ToInt32(aFS.Length - 1)) As Byte
+        Dim newid As Long
+        l("db_speichern  a")
+        'Try
+        '    aFS.Read(aData, 0, Convert.ToInt32(aFS.Length))
+        'Finally
+        '    aFS.Close()
+        'End Try
+        Dim aBLObInsertCmd As New SqlClient.SqlCommand()
+        l("db_speichern  1")
+        With aBLObInsertCmd
+            .CommandText = "INSERT INTO DOKUFULLNAME(DOKUMENTID,FULLNAME) VALUES (@DOKUMENTID,@FULLNAME)"
+            '.CommandText = .CommandText & ";SELECT CAST(scope_identity() AS int);"
+            .Connection = con
+            .Parameters.AddWithValue("DOKUMENTID", dokid)
+            .Parameters.AddWithValue("FULLNAME", fullpath)
+        End With
+        l("db_speichern  2")
+        Try
+            ' Schritt 3: Datensatz einfügen
+            con.Open()
+            l("db_speichern  3")
+            Dim kobjssss = aBLObInsertCmd.ExecuteScalar
+            l("db_speichern  4")
+            If kobjssss Is Nothing Then
+                newid = 0
+            Else
+                newid = CLng(kobjssss.ToString)
+            End If
+
+            l("db_speichern  5")
+            Return newid
+        Finally
+            con.Close()
+        End Try
+    End Function
 
 
 

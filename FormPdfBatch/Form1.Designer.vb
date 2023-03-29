@@ -42,6 +42,7 @@ Partial Class Form1
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Button15 = New System.Windows.Forms.Button()
         Me.Button17 = New System.Windows.Forms.Button()
+        Me.Button16 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -236,11 +237,21 @@ Partial Class Form1
         Me.Button17.Text = "blob2revision"
         Me.Button17.UseVisualStyleBackColor = True
         '
+        'Button16
+        '
+        Me.Button16.Location = New System.Drawing.Point(249, 105)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(136, 41)
+        Me.Button16.TabIndex = 21
+        Me.Button16.Text = "fullpath"
+        Me.Button16.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1876, 702)
+        Me.Controls.Add(Me.Button16)
         Me.Controls.Add(Me.Button17)
         Me.Controls.Add(Me.Button15)
         Me.Controls.Add(Me.Button14)
@@ -289,4 +300,5 @@ End Sub
     Friend WithEvents Button14 As Button
     Friend WithEvents Button15 As Button
     Friend WithEvents Button17 As Button
+    Friend WithEvents Button16 As Button
 End Class
