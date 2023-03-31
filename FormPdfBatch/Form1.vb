@@ -2034,7 +2034,7 @@ Public Class Form1
 
         If vid = "fehler" Then End
         Dim Sql As String
-        Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0   " &
+        Sql = "SELECT * FROM dokumentefull where   dokumentid<2000000 and dokumentid>0  and fullname is null " &
                   "  order by dokumentid desc "
         DT = alleDokumentDatenHolen(Sql)
         'teil1 = pdf -----------------------------------------------
@@ -2065,9 +2065,7 @@ Public Class Form1
                 Else
                     inputfile = GetInputfile1Name(inndir, relativpfad, dateinameext)
                 End If
-                If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile) <> 0 Then
-                    MsgBox("Fehler")
-                End If
+
                 TextBox3.Text = igesamt & " von " & DT.Rows.Count
                 Application.DoEvents()
                 Dim fi As New IO.FileInfo(inputfile.Replace(Chr(34), ""))
@@ -2075,7 +2073,9 @@ Public Class Form1
                     swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
                     Continue For
                 Else
-
+                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile) <> 0 Then
+                        MsgBox("Fehler")
+                    End If
                 End If
             Catch ex As Exception
                 l("fehler2: " & ex.ToString)
