@@ -236,8 +236,10 @@
 
                 Else
                     If undMitarbeit Then
-                        bearbeiterString = String.Format(" and (bearbeiterid={2} or lower(weiterebearb) like '%{0};%'  or lower(weiterebearb) like '%{1};%') ",
+                        bearbeiterString = String.Format(" and (bearbeiterid={2} or lower(weiterebearb) like '%{0};%'  ) ",
                                                          fuerBearbeiterInitiale.ToLower, fuerBearbeiterKuerzel.ToLower, fuerBearbeiterID)
+                        'bearbeiterString = String.Format(" and (bearbeiterid={2} or lower(weiterebearb) like '%{0};%'  or lower(weiterebearb) like '%{1};%') ",
+                        '                             fuerBearbeiterInitiale.ToLower, fuerBearbeiterKuerzel.ToLower, fuerBearbeiterID)
                     Else
                         bearbeiterString = String.Format(" and (bearbeiterid={0}) ",
                                                          fuerBearbeiterID)
