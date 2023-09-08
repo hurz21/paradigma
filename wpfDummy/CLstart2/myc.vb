@@ -17,7 +17,7 @@
         Public Shared ReadOnly tabDS_USER2GRUPPE As String = "DS_USER2GRUPPE" ' "t14"
         Public Shared ReadOnly tabDS_Vid2Gruppentext As String = "DS_VID2GRUPPENTEXT" '"t15"
         Public Shared ReadOnly tabEreignis As String = "T16" 'DB "ereignis" '"t16" 'tab16
-        Public Shared ReadOnly tabIllegbau As String = "ILLEGBAU" '"t17"
+        Public Shared ReadOnly tabIllegbau As String = "t17" '"ILLEGBAU" '"t17"
         Public Shared ReadOnly tabKosten As String = "KOSTEN" ' "t18"
         'Public Shared ReadOnly tabMapcookie As String = "t19"
         Public Shared ReadOnly tabNatureg As String = "NATUREG" '"t20"
