@@ -2037,15 +2037,28 @@ Public Class Form1
 
         If vid = "fehler" Then End
 
+        Dim Sql As String
+
         ' 'alle vorgänge mit referenzfällen
         ' proVorgang:  referenzverwandte zum vorgang
         ' proVorgang:  alle referenzdokus zu einem vorgang
+        Dim alleVorgaengeMitReferenzen As DataTable
+        Sql = "SELECT  [VORGANGSID]" &
+                 " FROM [Paradigma].[dbo].[t44]" &
+                 " where FREMDVORGANGSID in" &
+                  "(" &
+                 " SELECT   VORGANGSID" &
+                 " FROM [Paradigma].[dbo].[VORGANG_T43] a, DOKUMENTE b" &
+                 " where a.SACHGEBIETNR='1020'" &
+                 " and a.VORGANGSID=b.VID" &
+                 " )"
+        alleVorgaengeMitReferenzen = alleDokumentDatenHolen(Sql)
+        ' proVorgang:  referenzverwandte zum vorgang
+        ' proVorgang:  alle referenzdokus zu einem vorgang
 
-
-        Dim Sql As String
-        Sql = "SELECT * FROM dokumentefull where   dokumentid<2000000 and dokumentid>0  and fullname is null " &
-                  "  order by dokumentid desc "
-        DT = alleDokumentDatenHolen(Sql)
+        'Sql = "SELECT * FROM dokumentefull where   dokumentid<2000000 and dokumentid>0  and fullname is null " &
+        '          "  order by dokumentid desc "
+        'DT = alleDokumentDatenHolen(Sql)
         'teil1 = pdf -----------------------------------------------
 
         l("vor pdfverarbeiten")
@@ -2059,7 +2072,29 @@ Public Class Form1
         Dim eid As Integer = 0
         Dim myoracle As SqlClient.SqlConnection
         myoracle = getMSSQLCon()
+        For Each drr As DataRow In alleVorgaengeMitReferenzen.Rows
+            Try
+                igesamt += 1
+            Catch ex As Exception
+                Sql = "  SELECT   FREMDVORGANGSID  FROM [Paradigma].[dbo].t44 a" &
+                     " where     VORGANGSID= " & vid = CStr(drr.Item("vid")) & "" &
+                     " and FREMDVORGANGSID in (" &
+                    "	 SELECT  VORGANGSID" &
+                    "	  FROM [Paradigma].[dbo].[VORGANG_T43] b" &
+                    "	  where  b.SACHGEBIETNR='1020' " &
+                     " )"
 
+
+
+
+
+
+
+
+            End Try
+
+
+        Next
         l("PDFumwandeln 2 ")
         l("PDFumwandeln 2 ")
         '  Using sw As New IO.StreamWriter(logfile)
