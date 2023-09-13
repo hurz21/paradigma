@@ -2072,6 +2072,7 @@ Public Class Form1
         Dim eid As Integer = 0
         Dim myoracle As SqlClient.SqlConnection
         myoracle = getMSSQLCon()
+        '
         For Each drr As DataRow In alleVorgaengeMitReferenzen.Rows
             Try
                 igesamt += 1
