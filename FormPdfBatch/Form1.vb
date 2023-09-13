@@ -2043,6 +2043,8 @@ Public Class Form1
         ' proVorgang:  referenzverwandte zum vorgang
         ' proVorgang:  alle referenzdokus zu einem vorgang
         Dim alleVorgaengeMitReferenzen As DataTable
+        Dim tempReferenzVorgaenge As DataTable
+        Dim tempREfDokumente As DataTable
         Sql = "SELECT  [VORGANGSID]" &
                  " FROM [Paradigma].[dbo].[t44]" &
                  " where FREMDVORGANGSID in" &
@@ -2073,22 +2075,46 @@ Public Class Form1
         Dim myoracle As SqlClient.SqlConnection
         myoracle = getMSSQLCon()
         '
+        Dim fremdcorgangsid As Integer = 0
+        Dim fremddokumentid As Integer = 0
+
         For Each drr As DataRow In alleVorgaengeMitReferenzen.Rows
             Try
                 igesamt += 1
-            Catch ex As Exception
+
                 Sql = "  SELECT   FREMDVORGANGSID  FROM [Paradigma].[dbo].t44 a" &
-                     " where     VORGANGSID= " & vid = CStr(drr.Item("vid")) & "" &
+                     " where     VORGANGSID= " & CStr(drr.Item("VORGANGSID")) & "" &
                      " and FREMDVORGANGSID in (" &
                     "	 SELECT  VORGANGSID" &
                     "	  FROM [Paradigma].[dbo].[VORGANG_T43] b" &
                     "	  where  b.SACHGEBIETNR='1020' " &
                      " )"
+                tempReferenzVorgaenge = alleDokumentDatenHolen(Sql)
+                For Each fremdv As DataRow In tempReferenzVorgaenge.Rows
+                    Try
+                        '   igesamt += 1
+                        fremdcorgangsid = CStr(fremdv.Item("FREMDVORGANGSID"))
+                        Debug.Print(CStr(fremdv.Item("FREMDVORGANGSID")))
 
+                        Sql = " SELECT distinct  b.*  " &
+                                "   FROM [Paradigma].[dbo].[VORGANG_T43] a, DOKUMENTE b" &
+                                "   where a.SACHGEBIETNR='1020'" &
+                                "   and b.vid=" & fremdcorgangsid & " "
+                        tempREfDokumente = alleDokumentDatenHolen(Sql)
+                        For Each fremddokus As DataRow In tempREfDokumente.Rows
+                            Try
+                                fremddokumentid = CStr(fremdv.Item("DOKUMENTID"))
+                                Debug.Print(CStr(fremddokumentid))
+                            Catch ex3 As Exception
+                                Debug.Print(ex3.ToString)
+                            End Try
 
-
-
-
+                        Next
+                    Catch ex2 As Exception
+                        Debug.Print(ex2.ToString)
+                    End Try
+                Next
+            Catch ex As Exception
 
 
 

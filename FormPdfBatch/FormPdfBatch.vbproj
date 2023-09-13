@@ -220,6 +220,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Mono.Security.dll" />
+    <Content Include="bin\Npgsql.dll" />
     <Content Include="bin\x64\Debug\Mono.Security.dll" />
     <Content Include="bin\x64\Debug\Npgsql.dll" />
     <Content Include="bin\x64\Mono.Security.dll" />
