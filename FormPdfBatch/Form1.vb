@@ -2107,13 +2107,13 @@ Public Class Form1
                         tempREfDokumente = alleDokumentDatenHolen(Sql)
                         For Each fremddokus As DataRow In tempREfDokumente.Rows
                             Try
-                                fremddokumentid = CStr(fremdv.Item("DOKUMENTID"))
+                                fremddokumentid = CStr(fremddokus.Item("DOKUMENTID"))
                                 Debug.Print(CStr(fremddokumentid))
 
 
-                                DbMetaDatenHolen(vid, relativpfad, dateinameext, typ, newsavemode, dokumentid, drr, dbdatum, istRevisionssicher, initial, eid)
+                                DbMetaDatenHolen(vid, relativpfad, dateinameext, typ, newsavemode, dokumentid, fremddokus, dbdatum, istRevisionssicher, initial, eid)
                                 vid = aktVID
-                                l(vid & " " & CStr(dokumentid) & " " & ic & " (" & DT.Rows.Count & ")")
+                                'l(vid & " " & CStr(dokumentid) & " " & ic & " (" & DT.Rows.Count & ")")
 
                                 If newsavemode Then
                                     inputfile = GetInputfilename(inndir, relativpfad, CInt(dokumentid))
