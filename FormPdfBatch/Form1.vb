@@ -2075,15 +2075,19 @@ Public Class Form1
         Dim myoracle As SqlClient.SqlConnection
         myoracle = getMSSQLCon()
         '
-        Dim fremdcorgangsid As Integer = 0
+
+        Dim aktVID As Integer = 0
+        Dim fremdvorgangsid As Integer = 0
         Dim fremddokumentid As Integer = 0
+
+
 
         For Each drr As DataRow In alleVorgaengeMitReferenzen.Rows
             Try
                 igesamt += 1
-
+                aktVID = CStr(drr.Item("VORGANGSID"))
                 Sql = "  SELECT   FREMDVORGANGSID  FROM [Paradigma].[dbo].t44 a" &
-                     " where     VORGANGSID= " & CStr(drr.Item("VORGANGSID")) & "" &
+                     " where     VORGANGSID= " & aktVID & "" &
                      " and FREMDVORGANGSID in (" &
                     "	 SELECT  VORGANGSID" &
                     "	  FROM [Paradigma].[dbo].[VORGANG_T43] b" &
@@ -2093,18 +2097,41 @@ Public Class Form1
                 For Each fremdv As DataRow In tempReferenzVorgaenge.Rows
                     Try
                         '   igesamt += 1
-                        fremdcorgangsid = CStr(fremdv.Item("FREMDVORGANGSID"))
+                        fremdvorgangsid = CStr(fremdv.Item("FREMDVORGANGSID"))
                         Debug.Print(CStr(fremdv.Item("FREMDVORGANGSID")))
 
                         Sql = " SELECT distinct  b.*  " &
                                 "   FROM [Paradigma].[dbo].[VORGANG_T43] a, DOKUMENTE b" &
                                 "   where a.SACHGEBIETNR='1020'" &
-                                "   and b.vid=" & fremdcorgangsid & " "
+                                "   and b.vid=" & fremdvorgangsid & " "
                         tempREfDokumente = alleDokumentDatenHolen(Sql)
                         For Each fremddokus As DataRow In tempREfDokumente.Rows
                             Try
                                 fremddokumentid = CStr(fremdv.Item("DOKUMENTID"))
                                 Debug.Print(CStr(fremddokumentid))
+
+
+                                DbMetaDatenHolen(vid, relativpfad, dateinameext, typ, newsavemode, dokumentid, drr, dbdatum, istRevisionssicher, initial, eid)
+                                vid = aktVID
+                                l(vid & " " & CStr(dokumentid) & " " & ic & " (" & DT.Rows.Count & ")")
+
+                                If newsavemode Then
+                                    inputfile = GetInputfilename(inndir, relativpfad, CInt(dokumentid))
+                                Else
+                                    inputfile = GetInputfile1Name(inndir, relativpfad, dateinameext)
+                                End If
+
+                                Application.DoEvents()
+                                Dim fi As New IO.FileInfo(inputfile.Replace(Chr(34), ""))
+                                If Not fi.Exists Then
+                                    swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
+                                    Continue For
+                                Else
+                                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile) <> 0 Then
+                                        MsgBox("Fehler")
+                                    End If
+                                End If
+
                             Catch ex3 As Exception
                                 Debug.Print(ex3.ToString)
                             End Try
