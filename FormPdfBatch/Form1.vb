@@ -2135,7 +2135,7 @@ Public Class Form1
                             Catch ex3 As Exception
                                 Debug.Print(ex3.ToString)
                             End Try
-
+                            l(" aktvid: " & aktVID & " docid" & CStr(dokumentid) & " " & igesamt & " (" & alleVorgaengeMitReferenzen.Rows.Count & ")")
                         Next
                     Catch ex2 As Exception
                         Debug.Print(ex2.ToString)
@@ -2146,46 +2146,47 @@ Public Class Form1
 
 
             End Try
-
+            GC.Collect()
+            GC.WaitForFullGCComplete()
 
         Next
         l("PDFumwandeln 2 ")
         l("PDFumwandeln 2 ")
         '  Using sw As New IO.StreamWriter(logfile)
-        For Each drr As DataRow In DT.Rows
-            Try
-                igesamt += 1
-                DbMetaDatenHolen(vid, relativpfad, dateinameext, typ, newsavemode, dokumentid, drr, dbdatum, istRevisionssicher, initial, eid)
-                l(vid & " " & CStr(dokumentid) & " " & ic & " (" & DT.Rows.Count & ")")
+        'For Each drr As DataRow In DT.Rows
+        '    Try
+        '        igesamt += 1
+        '        DbMetaDatenHolen(vid, relativpfad, dateinameext, typ, newsavemode, dokumentid, drr, dbdatum, istRevisionssicher, initial, eid)
+        '        l(vid & " " & CStr(dokumentid) & " " & ic & " (" & DT.Rows.Count & ")")
 
-                If newsavemode Then
-                    inputfile = GetInputfilename(inndir, relativpfad, CInt(dokumentid))
-                Else
-                    inputfile = GetInputfile1Name(inndir, relativpfad, dateinameext)
-                End If
+        '        If newsavemode Then
+        '            inputfile = GetInputfilename(inndir, relativpfad, CInt(dokumentid))
+        '        Else
+        '            inputfile = GetInputfile1Name(inndir, relativpfad, dateinameext)
+        '        End If
 
-                TextBox3.Text = igesamt & " von " & DT.Rows.Count
-                Application.DoEvents()
-                Dim fi As New IO.FileInfo(inputfile.Replace(Chr(34), ""))
-                If Not fi.Exists Then
-                    swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
-                    Continue For
-                Else
-                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
-                        MsgBox("Fehler")
-                    End If
-                End If
-            Catch ex As Exception
-                l("fehler2: " & ex.ToString)
-                TextBox2.Text = ic.ToString & Environment.NewLine & " " &
-                       inputfile & Environment.NewLine &
-                       vid & "/" & dokumentid & " " & igesamt & "(" & DT.Rows.Count.ToString & ")" & Environment.NewLine &
-                       TextBox2.Text
-                Application.DoEvents()
-            End Try
-            GC.Collect()
-            GC.WaitForFullGCComplete()
-        Next
+        '        TextBox3.Text = igesamt & " von " & DT.Rows.Count
+        '        Application.DoEvents()
+        '        Dim fi As New IO.FileInfo(inputfile.Replace(Chr(34), ""))
+        '        If Not fi.Exists Then
+        '            swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
+        '            Continue For
+        '        Else
+        '            If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
+        '                MsgBox("Fehler")
+        '            End If
+        '        End If
+        '    Catch ex As Exception
+        '        l("fehler2: " & ex.ToString)
+        '        TextBox2.Text = ic.ToString & Environment.NewLine & " " &
+        '               inputfile & Environment.NewLine &
+        '               vid & "/" & dokumentid & " " & igesamt & "(" & DT.Rows.Count.ToString & ")" & Environment.NewLine &
+        '               TextBox2.Text
+        '        Application.DoEvents()
+        '    End Try
+        '    GC.Collect()
+        '    GC.WaitForFullGCComplete()
+        'Next
         If batchmode = True Then
 
         End If
