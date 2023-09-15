@@ -2127,7 +2127,7 @@ Public Class Form1
                                     swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
                                     Continue For
                                 Else
-                                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile) <> 0 Then
+                                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
                                         MsgBox("Fehler")
                                     End If
                                 End If
@@ -2171,7 +2171,7 @@ Public Class Form1
                     swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
                     Continue For
                 Else
-                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile) <> 0 Then
+                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
                         MsgBox("Fehler")
                     End If
                 End If
@@ -2249,7 +2249,7 @@ Public Class Form1
                     swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
                     Continue For
                 Else
-                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile) <> 0 Then
+                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
                         MsgBox("Fehler")
                     End If
                 End If

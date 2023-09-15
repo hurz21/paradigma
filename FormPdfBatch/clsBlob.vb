@@ -63,7 +63,7 @@ Public Class clsBlob
         End Try
     End Function
     Shared Function dokufull_speichern(dokid As Integer, con As SqlConnection,
-                                 fullpath As String) As Long
+                                 fullpath As String, vid As Integer) As Long
 
         l("db_speichern  0")
         Dim aFS As New System.IO.FileStream(fullpath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
@@ -79,11 +79,12 @@ Public Class clsBlob
         Dim aBLObInsertCmd As New SqlClient.SqlCommand()
         l("db_speichern  1")
         With aBLObInsertCmd
-            .CommandText = "INSERT INTO DOKUFULLNAME(DOKUMENTID,FULLNAME) VALUES (@DOKUMENTID,@FULLNAME)"
+            .CommandText = "INSERT INTO DOKUFULLNAME(DOKUMENTID,FULLNAME,VID) VALUES (@DOKUMENTID,@FULLNAME,@VID)"
             '.CommandText = .CommandText & ";SELECT CAST(scope_identity() AS int);"
             .Connection = con
             .Parameters.AddWithValue("DOKUMENTID", dokid)
             .Parameters.AddWithValue("FULLNAME", fullpath)
+            .Parameters.AddWithValue("VID", vid)
         End With
         l("db_speichern  2")
         Try
