@@ -2018,7 +2018,7 @@ Public Class Form1
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
         S1020dokumenteMitFullpathTabelleErstellen() 'referenzfälleNeuZuweisen
-        ' dokumenteMitFullpathTabelleErstellen()
+        dokumenteMitFullpathTabelleErstellen()
     End Sub
     Private Sub S1020dokumenteMitFullpathTabelleErstellen()
         'alle dokus auf vorhandensein prüfen
@@ -2135,7 +2135,8 @@ Public Class Form1
                             Catch ex3 As Exception
                                 Debug.Print(ex3.ToString)
                             End Try
-                            l(" aktvid: " & aktVID & " docid" & CStr(dokumentid) & " " & igesamt & " (" & alleVorgaengeMitReferenzen.Rows.Count & ")")
+                            l(igesamt & " (" & alleVorgaengeMitReferenzen.Rows.Count & ") " & " aktvid: " & aktVID & " docid" & CStr(dokumentid) & " ")
+                            Debug.Print(igesamt & " (" & alleVorgaengeMitReferenzen.Rows.Count & ") " & " aktvid: " & aktVID & " docid" & CStr(dokumentid) & " ")
                         Next
                     Catch ex2 As Exception
                         Debug.Print(ex2.ToString)
@@ -2143,7 +2144,7 @@ Public Class Form1
                 Next
             Catch ex As Exception
 
-
+                Debug.Print(ex.ToString)
 
             End Try
             GC.Collect()
