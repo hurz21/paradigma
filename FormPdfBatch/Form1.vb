@@ -1829,7 +1829,7 @@ Public Class Form1
     Shared Function getMSSQLCon() As SqlClient.SqlConnection
         Dim myoracle As SqlClient.SqlConnection
         Dim host, datenbank, schema, tabelle, dbuser, dbpw, dbport As String
-        host = "msql01" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
+        host = "kh-w-sql02" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
         Dim conbuil As New SqlClient.SqlConnectionStringBuilder
         Dim v = "Data Source=" & host & ";User ID=" & dbuser & ";Password=" & dbpw & ";" +
                 "Initial Catalog=" & schema & ";"
@@ -2328,7 +2328,7 @@ Public Class Form1
     Private Shared Function getSQLConnection() As SqlClient.SqlConnection
         Dim myoracle As SqlClient.SqlConnection
         Dim host, datenbank, schema, tabelle, dbuser, dbpw, dbport As String
-        host = "msql01" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
+        host = "kh-w-sql02" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
         'Dim conbuil As New SqlClient.SqlConnectionStringBuilder
         Dim v = "Data Source=" & host & ";User ID=" & dbuser & ";Password=" & dbpw & ";" +
                 "Initial Catalog=" & schema & ";"

@@ -42,7 +42,7 @@ Public Class clsDBspecMSSQL
 
     Public Sub l(ByVal text As String, ByVal ex As System.Exception)
         Dim anhang As String = ""
-        text = text & ToLogString(ex, text)
+        '  text = text & ToLogString(ex, text)
         'myGlobalz.sitzung.nachrichtenText = text
         My.Log.WriteEntry(text)
         'mitFehlerMail(text, anhang)

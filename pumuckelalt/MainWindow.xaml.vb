@@ -414,11 +414,11 @@ Class MainWindow
 
     Private Function kopieErfolgreich(cHeckOut_test As FileInfo, fullname As String) As Boolean
         Try
-            If kompressed And Environment.UserName.ToLower = "feinen_j" Then
-                CLstart.AesCrypt.FileEncrypt(cHeckOut_test.FullName, fullname, CLstart.AesCrypt.normpw)
-            Else
-                cHeckOut_test.CopyTo(fullname, True)
-            End If
+            'If kompressed And Environment.UserName.ToLower = "feinen_j" Then
+            '    CLstart.AesCrypt.FileEncrypt(cHeckOut_test.FullName, fullname, CLstart.AesCrypt.normpw)
+            'Else
+            cHeckOut_test.CopyTo(fullname, True)
+            'End If
             'cHeckOut_test.CopyTo(fullname, True)
             nachricht("kopieErfolgreich: " & fullname)
             Return True

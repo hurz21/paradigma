@@ -8,7 +8,7 @@ Public Class clsSQLS
 
     Sub oeffneConnectionSQLS()
         Try
-            EigentuemerSchnellDB = New SqlConnection("Server=msql01;Database=Paradigma;User=sgis;Pwd=WinterErschranzt.74;")
+            EigentuemerSchnellDB = New SqlConnection("Server=kh-w-sql02;Database=Paradigma;User=sgis;Pwd=WinterErschranzt.74;")
             EigentuemerSchnellDB.Open()
         Catch ex As Exception
             l("Fehler in oeffneConnectionEigentuemer: " & ex.ToString)

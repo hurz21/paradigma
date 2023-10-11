@@ -9,7 +9,7 @@ Module modOracle
         Dim host, datenbank, schema, tabelle, dbuser, dbpw, dbport As String
         Dim dt As New DataTable
         Dim myoracle As SqlClient.SqlConnection
-        host = "msql01" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
+        host = "kh-w-sql02" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
         Dim conbuil As New SqlClient.SqlConnectionStringBuilder
         Dim v = "Data Source=" & host & ";User ID=" & dbuser & ";Password=" & dbpw & ";" +
                 "Initial Catalog=" & schema & ";"
@@ -57,7 +57,7 @@ Module modOracle
         Dim host, datenbank, schema, tabelle, dbuser, dbpw, dbport As String
         Dim dt As New DataTable
         Dim myoracle As SqlClient.SqlConnection
-        host = "msql01" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
+        host = "kh-w-sql02" : schema = "Paradigma" : dbuser = "sgis" : dbpw = " WinterErschranzt.74"
         Dim conbuil As New SqlClient.SqlConnectionStringBuilder
         Dim v = "Data Source=" & host & ";User ID=" & dbuser & ";Password=" & dbpw & ";" +
                 "Initial Catalog=" & schema & ";"
