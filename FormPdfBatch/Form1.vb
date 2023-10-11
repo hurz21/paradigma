@@ -508,15 +508,15 @@ Public Class Form1
                     thumbnailHeight = 900
                     thumbnailWidth = 3700
                     thumbnailHeight = 5800
-                    thumbnailWidth = pdfRectTemp.x * 3
-                    thumbnailHeight = pdfRectTemp.y * 3
+                    thumbnailWidth = pdfRectTemp.x * 1
+                    thumbnailHeight = pdfRectTemp.y * 1
                 Else
                     thumbnailWidth = 900
                     thumbnailHeight = 600
                     thumbnailWidth = 5800
                     thumbnailHeight = 3700
-                    thumbnailWidth = pdfRectTemp.y * 3
-                    thumbnailHeight = pdfRectTemp.x * 3
+                    thumbnailWidth = pdfRectTemp.y * 1
+                    thumbnailHeight = pdfRectTemp.x * 1
                 End If
 
 
