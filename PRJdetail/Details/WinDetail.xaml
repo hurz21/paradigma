@@ -856,7 +856,7 @@
                                             Width="30" 
                                             ToolTip="Hiermit können Sie dem Vorgang Ereignisse hinzufügen!"
                                         SelectedIndex="1"
-                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxEreignisse}, XPath=/Variablen/Variable}" IsSynchronizedWithCurrentItem="True" 
+                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxEreignisse}, XPath=/Variablen/Variable}"  
                                                                 ItemsSource="{Binding}" 
                                                                 DisplayMemberPath="@Name" 
                                                                 SelectedValuePath="@ID"
@@ -1681,7 +1681,7 @@
                         <TextBlock x:Name="tbHGRUND2"  Text="Stadtplan" Padding="5,7,5,0" Width="95"   Height="30"  Background="White" Margin="5,5,0,0"/>
                         <ComboBox x:Name="cmbGISHintergrund2" Height="20" Width="19" Margin="0,12,0,8" BorderBrush="Black"
                                      ToolTip="Hier können Sie die Hintergrundkarte wechseln!"
-                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxGISHintergrund}, XPath=/Variablen/Variable}" IsSynchronizedWithCurrentItem="True" 
+                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxGISHintergrund}, XPath=/Variablen/Variable}"  
                                                                 ItemsSource="{Binding}" 
                                                                 DisplayMemberPath="@Name" 
                                                                 SelectedValuePath="@ID"

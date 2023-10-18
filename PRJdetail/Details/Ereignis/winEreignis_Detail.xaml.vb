@@ -679,7 +679,7 @@ Partial Public Class Window_Ereignis_Detail
             If item.ToLower = "ortstermin" Then ckbistortstermin.IsChecked = True
             If item.ToLower.StartsWith("stellung") Then ckbiststellungnahme.IsChecked = True
             If item.ToLower.StartsWith("vorgang erledigt") Then ckberledigt.IsChecked = True
-            cmbVerlaufAuswahl.SelectedValue = ""
+            'cmbVerlaufAuswahl.SelectedValue = ""
             e.Handled = True
         Catch ex As Exception
             nachricht("cmbVerlaufAuswahl_SelectionChanged" ,ex)
