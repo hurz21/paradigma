@@ -2017,24 +2017,29 @@ Public Class Form1
     End Function
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
-        S1020dokumenteMitFullpathTabelleErstellen() 'referenzfälleNeuZuweisen
-        dokumenteMitFullpathTabelleErstellen()
-    End Sub
-    Private Sub S1020dokumenteMitFullpathTabelleErstellen()
-        'alle dokus auf vorhandensein prüfen
-        Dim DT As DataTable
-        l("PDFumwandeln ")
-        'Dim logfile As String = "\\file-paradigma\paradigma\test\thumbnails\PDFlog" & Format(Now, "ddhhmmss") & ".txt"
 
         Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\dateifehlt_alle1" & Environment.UserName & ".txt"
         swfehlt = New IO.StreamWriter(dateifehlt)
         swfehlt.AutoFlush = True
         swfehlt.WriteLine(Now)
+        S1020dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt) 'referenzfälleNeuZuweisen
+        dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt)
+
+        swfehlt.Close()
+        l("fertig  " & dateifehlt)
+        Process.Start(dateifehlt)
+    End Sub
+    Private Sub S1020dokumenteMitFullpathTabelleErstellen(zieltabelle As String, swfehlt As IO.StreamWriter)
+        'alle dokus auf vorhandensein prüfen
+        Dim DT As DataTable
+        l("PDFumwandeln ")
+        'Dim logfile As String = "\\file-paradigma\paradigma\test\thumbnails\PDFlog" & Format(Now, "ddhhmmss") & ".txt"
+
 
         inndir = "\\file-paradigma\paradigma\test\paradigmaArchiv\backup\archiv"
         '  vid = modPrep.getVid()
 
-
+        swfehlt.WriteLine("Teil1 referenz  Dokumente ausschreiben ---------------------")
         If vid = "fehler" Then End
 
         Dim Sql As String
@@ -2127,7 +2132,7 @@ Public Class Form1
                                     swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
                                     Continue For
                                 Else
-                                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
+                                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid, zieltabelle) <> 0 Then
                                         MsgBox("Fehler")
                                     End If
                                 End If
@@ -2191,20 +2196,18 @@ Public Class Form1
         If batchmode = True Then
 
         End If
-        swfehlt.Close()
-        l("dateifehlt  " & dateifehlt)
-        Process.Start(dateifehlt)
+        swfehlt.WriteLine("Teil1 fertig  --------------------- " & igesamt)
     End Sub
-    Private Sub dokumenteMitFullpathTabelleErstellen()
+    Private Sub dokumenteMitFullpathTabelleErstellen(zieltabelle As String, swfehlt As IO.StreamWriter)
         'alle dokus auf vorhandensein prüfen
         Dim DT As DataTable
         l("PDFumwandeln ")
         'Dim logfile As String = "\\file-paradigma\paradigma\test\thumbnails\PDFlog" & Format(Now, "ddhhmmss") & ".txt"
 
-        Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\dateifehlt_alle1" & Environment.UserName & ".txt"
-        swfehlt = New IO.StreamWriter(dateifehlt)
-        swfehlt.AutoFlush = True
-        swfehlt.WriteLine(Now)
+        'Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\dateifehlt_alle1" & Environment.UserName & ".txt"
+        'swfehlt = New IO.StreamWriter(dateifehlt)
+        'swfehlt.AutoFlush = True
+        swfehlt.WriteLine("Teil2 normale Dokumente ausschreiben ---------------------")
 
         inndir = "\\file-paradigma\paradigma\test\paradigmaArchiv\backup\archiv"
         '  vid = modPrep.getVid()
@@ -2251,7 +2254,7 @@ Public Class Form1
                     swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
                     Continue For
                 Else
-                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
+                    If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid, zieltabelle) <> 0 Then
                         MsgBox("Fehler")
                     End If
                 End If
@@ -2269,9 +2272,7 @@ Public Class Form1
         If batchmode = True Then
 
         End If
-        swfehlt.Close()
-        l("dateifehlt  " & dateifehlt)
-        Process.Start(dateifehlt)
+        swfehlt.WriteLine("Teil2 fertig  --------------------- " & igesamt)
     End Sub
 
     'Private Sub Button16_Click_1(sender As Object, e As EventArgs) Handles Button16.Click
