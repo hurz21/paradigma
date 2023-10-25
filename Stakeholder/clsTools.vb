@@ -7,7 +7,7 @@ Public Class clsTools
         'ParaRec wird in module 1  als sqls definiert
         ParaRec.mydb = New clsDatenbankZugriff
 #If DEBUG Then
-        ParaRec.mydb.Host = "msql01"
+        ParaRec.mydb.Host = "kh-w-sql02"
         ParaRec.mydb.Schema = "Paradigma"
         ParaRec.mydb.ServiceName = ""
         ParaRec.mydb.Tabelle = "stakeholder"
@@ -15,7 +15,7 @@ Public Class clsTools
         ParaRec.mydb.password = "WinterErschranzt.74"
         ParaRec.mydb.dbtyp = "sqls"
 #Else
-        ParaRec.mydb.Host = "msql01"
+        ParaRec.mydb.Host = "kh-w-sql02"
         ParaRec.mydb.Schema = "Paradigma"
         ParaRec.mydb.ServiceName = ""
         ParaRec.mydb.Tabelle = "stakeholder"
