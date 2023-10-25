@@ -92,7 +92,7 @@
                                             
                                             ToolTip="Hiermit können Sie dem Vorgang Ereignisse hinzufügen!"
                                         SelectedIndex="1"
-                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxdokumentschlagworte}, XPath=/Variablen/Variable}" IsSynchronizedWithCurrentItem="True" 
+                                         DataContext="{Binding Source={StaticResource XMLSourceComboBoxdokumentschlagworte}, XPath=/Variablen/Variable}"  
                                                                 ItemsSource="{Binding}" 
                                                                 DisplayMemberPath="@Name" 
                                                                 SelectedValuePath="@ID"
