@@ -65,19 +65,19 @@ Public Class clsBlob
     Shared Function dokufull_speichern(dokid As Integer, con As SqlConnection,
                                  fullpath As String, vid As Integer, tabname As String) As Long
 
-        l("db_speichern  0")
+        'l("db_speichern  0")
         Dim aFS As New System.IO.FileStream(fullpath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
         'Dim aData(Convert.ToInt32(aFS.Length )) As Byte  musste -1 ergänzen weil vb immer eins zu hoch init. dann ist word und excel kaputt
         Dim aData(Convert.ToInt32(aFS.Length - 1)) As Byte
         Dim newid As Long
-        l("db_speichern  a")
+        'l("db_speichern  a")
         'Try
         '    aFS.Read(aData, 0, Convert.ToInt32(aFS.Length))
         'Finally
         '    aFS.Close()
         'End Try
         Dim aBLObInsertCmd As New SqlClient.SqlCommand()
-        l("db_speichern  1")
+        'l("db_speichern  1")
         With aBLObInsertCmd
             .CommandText = "INSERT INTO " & tabname & "(DOKUMENTID,FULLNAME,VID) VALUES (@DOKUMENTID,@FULLNAME,@VID)"
             '.CommandText = .CommandText & ";SELECT CAST(scope_identity() AS int);"
@@ -86,20 +86,22 @@ Public Class clsBlob
             .Parameters.AddWithValue("FULLNAME", fullpath)
             .Parameters.AddWithValue("VID", vid)
         End With
-        l("db_speichern  2")
+        'l("db_speichern  2")
         Try
             ' Schritt 3: Datensatz einfügen
             con.Open()
-            l("db_speichern  3")
+            'l("db_speichern  3")
             Dim kobjssss = aBLObInsertCmd.ExecuteScalar
-            l("db_speichern  4")
+            'l("db_speichern  4")
             If kobjssss Is Nothing Then
                 newid = 0
+                'l("Nciht gespeichert ")
             Else
                 newid = CLng(kobjssss.ToString)
+                'l("gespeichert ")
             End If
 
-            l("db_speichern  5")
+
             Return newid
         Finally
             con.Close()

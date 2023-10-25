@@ -56,7 +56,7 @@ Public Class Form1
             'MsgBox(Sql)
             dt = getDT(sql)
             'MsgBox(dt.Rows.Count)
-            l("nach getDT")
+            'l("nach getDT")
             Return dt
         Catch ex As Exception
             Return Nothing
@@ -71,7 +71,7 @@ Public Class Form1
             'MsgBox(Sql)
             dt = getDT(Sql)
             'MsgBox(dt.Rows.Count)
-            l("nach getDT")
+            'l("nach getDT")
             Return dt
         Catch ex As Exception
             Return Nothing
@@ -85,7 +85,7 @@ Public Class Form1
             'MsgBox(Sql)
             dt = getDT(sql)
             'MsgBox(dt.Rows.Count)
-            l("nach getDT")
+            'l("nach getDT")
             Return dt
         Catch ex As Exception
             Return Nothing
@@ -101,7 +101,7 @@ Public Class Form1
             'MsgBox(Sql)
             dt = getDT(Sql)
             'MsgBox(dt.Rows.Count)
-            l("nach getDT")
+            'l("nach getDT")
             Return dt
         Catch ex As Exception
             Return Nothing
@@ -2018,11 +2018,13 @@ Public Class Form1
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
 
-        Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\dateifehlt_alle1" & Environment.UserName & ".txt"
+        Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\auffueller" & Environment.UserName & ".txt"
+        dateifehlt = "L:\system\batch\margit\auffueller" & Environment.UserName & ".txt"
         swfehlt = New IO.StreamWriter(dateifehlt)
         swfehlt.AutoFlush = True
         swfehlt.WriteLine(Now)
         S1020dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt) 'referenzfälleNeuZuweisen
+        swfehlt.WriteLine("wechsel")
         dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt)
 
         swfehlt.Close()
@@ -2085,8 +2087,12 @@ Public Class Form1
         Dim fremdvorgangsid As Integer = 0
         Dim fremddokumentid As Integer = 0
 
-
-
+        swfehlt.WriteLine("Teil1 alleVorgaengeMitReferenzen.Rows: " & alleVorgaengeMitReferenzen.Rows.Count.ToString)
+        'Dim max As Integer
+        'max = alleVorgaengeMitReferenzen.Rows.Count
+        'max = 1000
+        'swfehlt.WriteLine("Teit masx:" & max)
+        Dim idok As Integer = 0
         For Each drr As DataRow In alleVorgaengeMitReferenzen.Rows
             Try
                 igesamt += 1
@@ -2103,9 +2109,11 @@ Public Class Form1
                     Try
                         '   igesamt += 1
                         fremdvorgangsid = CStr(fremdv.Item("FREMDVORGANGSID"))
-                        Debug.Print(CStr(fremdv.Item("FREMDVORGANGSID")))
+                        Debug.Print(igesamt & ", " &
+                                    alleVorgaengeMitReferenzen.Rows.Count.ToString & "/" &
+                                    CStr(fremdv.Item("FREMDVORGANGSID")))
 
-                        Sql = " SELECT distinct  b.*  " &
+                        Sql = " Select distinct  b.*  " &
                                 "   FROM [Paradigma].[dbo].[VORGANG_T43] a, DOKUMENTE b" &
                                 "   where a.SACHGEBIETNR='1020'" &
                                 "   and b.vid=" & fremdvorgangsid & " "
@@ -2134,9 +2142,12 @@ Public Class Form1
                                 Else
                                     If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid, zieltabelle) <> 0 Then
                                         MsgBox("Fehler")
+                                    Else
+
                                     End If
                                 End If
-
+                                idok += 1
+                                swfehlt.WriteLine(idok & " eingefügt/ref")
                             Catch ex3 As Exception
                                 Debug.Print(ex3.ToString)
                             End Try
@@ -2157,42 +2168,7 @@ Public Class Form1
 
         Next
         l("PDFumwandeln 2 ")
-        l("PDFumwandeln 2 ")
-        '  Using sw As New IO.StreamWriter(logfile)
-        'For Each drr As DataRow In DT.Rows
-        '    Try
-        '        igesamt += 1
-        '        DbMetaDatenHolen(vid, relativpfad, dateinameext, typ, newsavemode, dokumentid, drr, dbdatum, istRevisionssicher, initial, eid)
-        '        l(vid & " " & CStr(dokumentid) & " " & ic & " (" & DT.Rows.Count & ")")
 
-        '        If newsavemode Then
-        '            inputfile = GetInputfilename(inndir, relativpfad, CInt(dokumentid))
-        '        Else
-        '            inputfile = GetInputfile1Name(inndir, relativpfad, dateinameext)
-        '        End If
-
-        '        TextBox3.Text = igesamt & " von " & DT.Rows.Count
-        '        Application.DoEvents()
-        '        Dim fi As New IO.FileInfo(inputfile.Replace(Chr(34), ""))
-        '        If Not fi.Exists Then
-        '            swfehlt.WriteLine(vid & "," & dokumentid & ", " & dbdatum & "," & initial & "," & dateinameext & ", " & inputfile & "")
-        '            Continue For
-        '        Else
-        '            If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid) <> 0 Then
-        '                MsgBox("Fehler")
-        '            End If
-        '        End If
-        '    Catch ex As Exception
-        '        l("fehler2: " & ex.ToString)
-        '        TextBox2.Text = ic.ToString & Environment.NewLine & " " &
-        '               inputfile & Environment.NewLine &
-        '               vid & "/" & dokumentid & " " & igesamt & "(" & DT.Rows.Count.ToString & ")" & Environment.NewLine &
-        '               TextBox2.Text
-        '        Application.DoEvents()
-        '    End Try
-        '    GC.Collect()
-        '    GC.WaitForFullGCComplete()
-        'Next
         If batchmode = True Then
 
         End If
@@ -2201,6 +2177,7 @@ Public Class Form1
     Private Sub dokumenteMitFullpathTabelleErstellen(zieltabelle As String, swfehlt As IO.StreamWriter)
         'alle dokus auf vorhandensein prüfen
         Dim DT As DataTable
+        Dim idok As Integer = 0
         l("PDFumwandeln ")
         'Dim logfile As String = "\\file-paradigma\paradigma\test\thumbnails\PDFlog" & Format(Now, "ddhhmmss") & ".txt"
 
@@ -2256,7 +2233,11 @@ Public Class Form1
                 Else
                     If clsBlob.dokufull_speichern(dokumentid, myoracle, inputfile, vid, zieltabelle) <> 0 Then
                         MsgBox("Fehler")
+                    Else
+
                     End If
+                    idok += 1
+                    swfehlt.WriteLine(idok & " eingefügt/norm")
                 End If
             Catch ex As Exception
                 l("fehler2: " & ex.ToString)
