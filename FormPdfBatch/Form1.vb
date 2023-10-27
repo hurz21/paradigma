@@ -2026,7 +2026,7 @@ Public Class Form1
         swfehlt = New IO.StreamWriter(dateifehlt)
         swfehlt.AutoFlush = True
         swfehlt.WriteLine(Now)
-        '    S1020dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt) 'referenzfälleNeuZuweisen
+        S1020dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt) 'referenzfälleNeuZuweisen
         swfehlt.WriteLine("wechsel")
         dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt)
 
@@ -2176,24 +2176,16 @@ Public Class Form1
         If batchmode = True Then
 
         End If
-        swfehlt.WriteLine("Teil1 fertig  --------------------- " & igesamt)
+        swfehlt.WriteLine(idok & " Teil1 fertig  --------------------- " & igesamt)
     End Sub
     Private Sub dokumenteMitFullpathTabelleErstellen(zieltabelle As String, swfehlt As IO.StreamWriter)
-        'alle dokus auf vorhandensein prüfen
+
         Dim DT As DataTable
         Dim idok As Integer = 0
         l("PDFumwandeln ")
-        'Dim logfile As String = "\\file-paradigma\paradigma\test\thumbnails\PDFlog" & Format(Now, "ddhhmmss") & ".txt"
-
-        'Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\dateifehlt_alle1" & Environment.UserName & ".txt"
-        'swfehlt = New IO.StreamWriter(dateifehlt)
-        'swfehlt.AutoFlush = True
         swfehlt.WriteLine("Teil2 normale Dokumente ausschreiben ---------------------")
 
         inndir = "\\file-paradigma\paradigma\test\paradigmaArchiv\backup\archiv"
-        '  vid = modPrep.getVid()
-
-
         If vid = "fehler" Then End
         Dim Sql As String
         Sql = "SELECT * FROM dokumentefull where   dokumentid<2000000 and dokumentid>0  and fullname is null " &
@@ -2259,7 +2251,7 @@ Public Class Form1
         If batchmode = True Then
 
         End If
-        swfehlt.WriteLine("Teil2 fertig  --------------------- " & igesamt)
+        swfehlt.WriteLine(idok & "Teil2 fertig  --------------------- " & igesamt)
     End Sub
 
     'Private Sub Button16_Click_1(sender As Object, e As EventArgs) Handles Button16.Click

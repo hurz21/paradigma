@@ -100,8 +100,6 @@ Public Class clsBlob
                 newid = CLng(kobjssss.ToString)
                 'l("gespeichert ")
             End If
-
-
             Return newid
         Finally
             con.Close()
