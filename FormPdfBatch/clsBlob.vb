@@ -66,9 +66,9 @@ Public Class clsBlob
                                  fullpath As String, vid As Integer, tabname As String) As Long
 
         'l("db_speichern  0")
-        Dim aFS As New System.IO.FileStream(fullpath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
-        'Dim aData(Convert.ToInt32(aFS.Length )) As Byte  musste -1 ergänzen weil vb immer eins zu hoch init. dann ist word und excel kaputt
-        Dim aData(Convert.ToInt32(aFS.Length - 1)) As Byte
+        'Dim aFS As New System.IO.FileStream(fullpath, System.IO.FileMode.Open, System.IO.FileAccess.Read)
+        ''Dim aData(Convert.ToInt32(aFS.Length )) As Byte  musste -1 ergänzen weil vb immer eins zu hoch init. dann ist word und excel kaputt
+        'Dim aData(Convert.ToInt32(aFS.Length - 1)) As Byte
         Dim newid As Long
         'l("db_speichern  a")
         'Try

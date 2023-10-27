@@ -20,7 +20,7 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.WindowState = FormWindowState.Minimized
         protokoll()
-
+        fullpathdokumenteErzeugen()
         'PDFumwandeln()
         'DOCXumwandeln(2113, False)
     End Sub
@@ -2017,13 +2017,16 @@ Public Class Form1
     End Function
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        fullpathdokumenteErzeugen()
+    End Sub
 
+    Private Sub fullpathdokumenteErzeugen()
         Dim dateifehlt As String = "\\file-paradigma\paradigma\test\thumbnails\auffueller" & Environment.UserName & ".txt"
         dateifehlt = "L:\system\batch\margit\auffueller" & Environment.UserName & ".txt"
         swfehlt = New IO.StreamWriter(dateifehlt)
         swfehlt.AutoFlush = True
         swfehlt.WriteLine(Now)
-        S1020dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt) 'referenzfälleNeuZuweisen
+        '    S1020dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt) 'referenzfälleNeuZuweisen
         swfehlt.WriteLine("wechsel")
         dokumenteMitFullpathTabelleErstellen("DOKUFULLNAME", swfehlt)
 
@@ -2031,6 +2034,7 @@ Public Class Form1
         l("fertig  " & dateifehlt)
         Process.Start(dateifehlt)
     End Sub
+
     Private Sub S1020dokumenteMitFullpathTabelleErstellen(zieltabelle As String, swfehlt As IO.StreamWriter)
         'alle dokus auf vorhandensein prüfen
         Dim DT As DataTable
@@ -2193,6 +2197,8 @@ Public Class Form1
         If vid = "fehler" Then End
         Dim Sql As String
         Sql = "SELECT * FROM dokumentefull where   dokumentid<2000000 and dokumentid>0  and fullname is null " &
+                  "  order by dokumentid desc "
+        Sql = "SELECT * FROM dokumente where   dokumentid<2000000 and dokumentid>0   " &
                   "  order by dokumentid desc "
         DT = alleDokumentDatenHolen(Sql)
         'teil1 = pdf -----------------------------------------------
