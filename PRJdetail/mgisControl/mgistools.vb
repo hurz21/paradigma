@@ -258,14 +258,14 @@ Module mgistools
     End Sub
 
     Friend Sub mgisAktualisieren()
-        Dim batch As String = "\\gis\gdvell\apps\mgisupdate.bat"
-        Try
-            l(" mgisAktualisieren ---------------------- anfang" & batch)
-            If myGlobalz.zuhause Then Exit Sub
-            Process.Start(batch)
-            l(" mgisAktualisieren ---------------------- ende")
-        Catch ex As Exception
-            l("Fehler in mgisAktualisieren: " ,ex)
-        End Try
+        'Dim batch As String = "\\gis\gdvell\apps\mgisupdate.bat"
+        'Try
+        '    l(" mgisAktualisieren ---------------------- anfang" & batch)
+        '    If myGlobalz.zuhause Then Exit Sub
+        '    Process.Start(batch)
+        '    l(" mgisAktualisieren ---------------------- ende")
+        'Catch ex As Exception
+        '    l("Fehler in mgisAktualisieren: " ,ex)
+        'End Try
     End Sub
 End Module
