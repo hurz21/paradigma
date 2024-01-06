@@ -18,7 +18,8 @@
     Public Shared Function XMLiniReader(ByVal xml_inifile_fullpath As String,
                                         ByVal tv As System.Windows.Controls.TreeView) As Dictionary(Of String, String)
         Dim iniDict As New Dictionary(Of String, String)
-        Dim header As String = "", tabsumme As String = "", tiefe As Integer = 0, meintipp As String = ""
+        'Dim sr As New IO.StreamWriter("c:\a2\sg.txt")
+        Dim header As String = "", tabsumme As String = "", meintipp As String = ""
         Using XMLReader As XmlReader = New XmlTextReader(xml_inifile_fullpath$)
             Do While XMLReader.Read ' Es sind noch Daten vorhanden          
                 Select Case XMLReader.NodeType
@@ -50,30 +51,34 @@
                             End If
 
                             newChild.Tag = sgsumme
+                            'If sgsumme = "1630" Then
+                            '    Debug.Print("stop")
+                            'End If
                             If Not String.IsNullOrEmpty(meintipp$) Then
-                                newChild.ToolTip = "Alte Nr.: " & meintipp$
-                            End If
+                                    newChild.ToolTip = "Alte Nr.: " & meintipp$
+                                End If
 
-                            tiefe% = XMLReader.Depth
 
-                            If itemsArray(XMLReader.Depth - 1) Is Nothing Then
-                                tv.Items.Add(newChild)
-                                itemsArray(XMLReader.Depth) = newChild
-                            Else
-                                itemsArray(XMLReader.Depth - 1).Items.Add(newChild)
-                                itemsArray(XMLReader.Depth) = newChild
-                            End If
-                            If XMLReader.Depth = olddepth Then
-                                itemsArray(XMLReader.Depth - 2) = newChild
-                            End If
-                            If XMLReader.Depth < olddepth Then
-                                itemsArray(XMLReader.Depth - 3) = newChild
-                            End If
+                                If itemsArray(XMLReader.Depth - 1) Is Nothing Then
+                                    tv.Items.Add(newChild)
+                                    itemsArray(XMLReader.Depth) = newChild
+                                Else
+                                    itemsArray(XMLReader.Depth - 1).Items.Add(newChild)
+                                    itemsArray(XMLReader.Depth) = newChild
+                                End If
+                                If XMLReader.Depth = olddepth Then
+                                    itemsArray(XMLReader.Depth - 2) = newChild
+                                End If
+                                If XMLReader.Depth < olddepth Then
+                                    itemsArray(XMLReader.Depth - 3) = newChild
+                                End If
+                            'sr.WriteLine(newChild.Tag.ToString & "," & newChild.Header.ToString) '& "," & clsDBtools.fieldvalue(newChild.ToolTip))
+
                             tabsumme = ""
-                            meintipp$ = ""
-                        End If
+                                meintipp$ = ""
+                            End If
                         ' Ein Text 
-                    Case XmlNodeType.Text
+                            Case XmlNodeType.Text
                         '  Console.WriteLine("Es folgt ein Text: " & .Value)
                         ' Ein Kommentar 
                     Case XmlNodeType.Comment
@@ -86,6 +91,7 @@
             'XMLReader.Close()
             ' XMLTextReader schließen 
         End Using
+        'sr.Close()
         Return iniDict
     End Function
 
