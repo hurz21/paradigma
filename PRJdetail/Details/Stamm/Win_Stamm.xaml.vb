@@ -277,6 +277,7 @@
 
     Private Sub cmbRaumNr_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs)
         e.Handled = True
+        If cmbRaumNr.SelectedValue Is Nothing Then Exit Sub
         Dim item As String = CType(cmbRaumNr.SelectedValue, String)
         LokaleStamm.Standort.RaumNr = cmbRaumNr.SelectedValue.ToString
         anyChange = True ': glob2.schliessenButton_einschalten(btnSpeichern)
