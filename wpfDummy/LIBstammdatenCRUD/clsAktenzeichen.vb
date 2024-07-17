@@ -36,8 +36,9 @@ Public Class clsAktenzeichen
             End Set
         End Property
 
-        Private _stamm$ = "II-67"
-        Public Property stamm() As String
+    'Private _stamm$ = "II-67"
+    Private _stamm$ = "67"
+    Public Property stamm() As String
             Get
                 Return _stamm
             End Get

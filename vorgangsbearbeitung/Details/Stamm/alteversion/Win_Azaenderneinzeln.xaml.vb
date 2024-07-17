@@ -7,8 +7,10 @@
 
     Private Sub tbstamm_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles tbstamm.Loaded
         'btnSpeichern.IsEnabled = False
-        tbstamm.Text = "II-67"
-        myGlobalz.sitzung.aktVorgang.Stammdaten.az.stamm = "II-67"
+        'tbstamm.Text = "II-67"
+        'myglobalz.sitzung.aktVorgang.Stammdaten.az.stamm = "II-67"       'btnSpeichern.IsEnabled = False
+        tbstamm.Text = "7"
+        myglobalz.sitzung.aktVorgang.Stammdaten.az.stamm = "67"
         If myGlobalz.zuhause Then
             tbstamm.Text = ""
             myGlobalz.sitzung.aktVorgang.Stammdaten.az.stamm = ""

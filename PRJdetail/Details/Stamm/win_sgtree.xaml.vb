@@ -167,7 +167,7 @@
             MessageBox.Show("Die Sachgebietsnummer <" & tbsgNr.Text & "> ist nicht gültig!!!")
             tbsgNr.Background = Brushes.Red
         Else
-            If sgtext = "II-67" Then
+            If sgtext = "II-67" Or sgtext = "67" Then
                 sgtext = tbsgtext.Text
             End If
             tbsgtext.Text = sgtext

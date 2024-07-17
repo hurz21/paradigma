@@ -1306,7 +1306,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PreBuildEvent>echo %25date%25 %25time%25 &gt; "$(ProjectDir)\resouirces\BuildDate.txt"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Magick.NET-Q16-x64.7.22.0\build\net40\Magick.NET-Q16-x64.targets" Condition="Exists('..\packages\Magick.NET-Q16-x64.7.22.0\build\net40\Magick.NET-Q16-x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -1317,11 +1318,6 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>
-if $(ConfigurationName) == Release (
-copy $(targetfilename)  O:\UMWELT\B\GISDatenEkom\div\deploy\paradigma\detail\paradigmadetail.exe 
- rem  copy $(targetfilename) C:\KreisOffenbach\paradigmadetail\paradigmadetail.exe 
-  rem copy $(targetfilename) Z:\paradigma\kreisOffenbach\paradigmadetail\paradigmadetail.exe
-rem
-)</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

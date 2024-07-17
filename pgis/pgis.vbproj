@@ -13,7 +13,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>pgis</RootNamespace>
     <AssemblyName>pgis</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />

@@ -100,7 +100,8 @@
     End Sub
     Private Sub getstamm67Text()
         If String.IsNullOrEmpty(_meinStamm.az.stamm) Then
-            _meinStamm.az.stamm = "II-67"
+            '_meinStamm.az.stamm = "II-67"
+            _meinStamm.az.stamm = "67"
         End If
         tbstamm.Text = _meinStamm.az.stamm
     End Sub

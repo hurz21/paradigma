@@ -37,7 +37,7 @@
                     ToolTip="Änderungen können nur über den Knopf rechts durchgeführt werden"/>
         <TextBlock Grid.Row="5" Text="Aktenzeichen:"  FontWeight="Bold"   Padding="5" Margin="0,9,0,2" />
         <TextBlock Name="tbstamm"  VerticalAlignment="Top" Margin="5,5,5,0"
-                Grid.Column="1" IsEnabled="False" Height="16" >II-67</TextBlock>
+                Grid.Column="1" IsEnabled="False" Height="16" >67</TextBlock>
         <Border  Grid.Row="1" Grid.Column="1" BorderBrush="LightGreen" BorderThickness="2">
             <StackPanel Orientation="Horizontal"    >
                 <TextBlock  Name="tbSachgebietZahl"  VerticalAlignment="Top"  Margin="5" Width="90"

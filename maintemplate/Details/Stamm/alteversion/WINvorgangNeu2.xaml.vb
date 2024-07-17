@@ -11,7 +11,8 @@
         tbBeschreibung_nummer.Text = ""
         tbSachgebiet.IsReadOnly = False
         tbBeschreibung_nummer.IsReadOnly = False
-        myGlobalz.sitzung.aktVorgang.Stammdaten.az.stamm = "II-67"
+        'myGlobalz.sitzung.aktVorgang.Stammdaten.az.stamm = "II-67"
+        myGlobalz.sitzung.aktVorgang.Stammdaten.az.stamm = "67"
         If myGlobalz.zuhause Then myGlobalz.sitzung.aktVorgang.Stammdaten.az.stamm = ""
         clsBaumbilden.ladeXML(myGlobalz.Paradigma_Sachgebietsdatei$, TreeView1)
         btnWeiter.IsEnabled = False
