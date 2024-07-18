@@ -50,9 +50,11 @@ Public Class Win_Stamm
             'MerkerStamm.WeitereBearbeiter = CLstart.myc.userIniProfile.WertLesen("Stammdaten", "weiterebearbeiter")
             'LokaleStamm.WeitereBearbeiter = MerkerStamm.WeitereBearbeiter
             'myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = MerkerStamm.WeitereBearbeiter
+            Dim tempuserIniProfile = New clsINIDatei(IO.Path.Combine(System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments),
+                                       myglobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
 
-            Dim tempuserIniProfile = New clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
-            myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = tempuserIniProfile.WertLesen("Stammdaten", "weiterebearbeiter")
+            'Dim tempuserIniProfile = New clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
+            myglobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = tempuserIniProfile.WertLesen("Stammdaten", "weiterebearbeiter")
             MerkerStamm.WeitereBearbeiter = myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter
             LokaleStamm.WeitereBearbeiter = myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter
             'myGlobalz.sitzung.aktVorgangsID = LokaleStamm.

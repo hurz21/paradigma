@@ -1126,6 +1126,7 @@
     <Content Include="bin\Debug\Interop.ADODB.dll" />
     <Content Include="bin\Debug\Interop.CDO.dll" />
     <Resource Include="Resources\Kreis_gruen.ico" />
+    <Resource Include="resouirces\BuildDate.txt" />
     <Content Include="Xceed.Wpf.Toolkit.dll" />
     <EmbeddedResource Include="teamdev.licenses" />
     <Resource Include="Icons\Outlook.png" />
@@ -1253,8 +1254,8 @@
     <Folder Include="classen\" />
     <Folder Include="Details\Stamm\alteversion\" />
     <Folder Include="linx\LIBmailmensch\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="RechtsDBMan\" />
-    <Folder Include="resouirces\" />
     <Folder Include="Window1\HISTORIE\" />
   </ItemGroup>
   <ItemGroup>

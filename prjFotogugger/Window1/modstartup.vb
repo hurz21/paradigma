@@ -38,7 +38,7 @@
     End Sub
     Public Function Startroutine() As String
         Try
-            CLstart.mycSimple.ParadigmaVersion = My.Resources.BuildDate.Trim.Replace(vbCrLf, "")
+            CLstart.mycSimple.ParadigmaVersion = "hurz" ' My.Application.BuildDate.Trim.Replace(vbCrLf, "")
             Dim userid As String = ""
             CLstart.wintools2.umgebungstest()
             ' MsgBox(Application.givenVID)
@@ -113,8 +113,17 @@
             My.Log.WriteEntry("in Startroutine: vor init_archiv ")
             Paradigma_start.Win1Tools.init_archiv()
 
+            Dim HauptUserInis = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments)
+            l("HauptUserInis anlegen " & HauptUserInis)
+
+            'CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+            '                                       initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale)
+
             CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
-                                                   initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale)
+                                                   HauptUserInis, myGlobalz.sitzung.aktBearbeiter.Initiale)
+
+            'CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+            '                                       initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale)
 
 
 

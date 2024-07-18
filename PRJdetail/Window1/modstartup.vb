@@ -120,10 +120,14 @@
             End If
             My.Log.WriteEntry("in Startroutine: vor init_archiv ")
             Paradigma_start.Win1Tools.init_archiv()
+            Dim HauptUserInis = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments)
+            l("HauptUserInis anlegen " & HauptUserInis)
+
+            'CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+            '                                       initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale)
 
             CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
-                                                   initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale)
-
+                                                   HauptUserInis, myGlobalz.sitzung.aktBearbeiter.Initiale)
             getvidFromCommandLine(userid)
             If userid <> myGlobalz.sitzung.aktBearbeiter.Initiale And
                 Not myGlobalz.sitzung.aktBearbeiter.Initiale.IsNothingOrEmpty Then

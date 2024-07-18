@@ -4074,6 +4074,7 @@ Partial Public Class Window_Detail
 
 
     Private Sub cmbRaumNr_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
+        If cmbRaumNr.SelectedValue Is Nothing Then Exit Sub
         Dim item As String = CType(cmbRaumNr.SelectedValue, String)
         myGlobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr = cmbRaumNr.SelectedValue.ToString
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "STORAUMNR")

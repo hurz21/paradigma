@@ -268,9 +268,18 @@ Class Window1
                 btnZahlungen.Visibility = Visibility.Collapsed
                 btnHandbuch.Visibility = Visibility.Collapsed
             End If
+            Dim HauptUserInis = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments)
+            l("HauptUserInis anlegen " & HauptUserInis)
+
+            'CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+            '                                       initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale)
+
             CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
-                                                   IO.Path.Combine(initP.getValue("Haupt.UserInis")),
-                                                                   myGlobalz.sitzung.aktBearbeiter.Initiale)
+                                                   HauptUserInis, myGlobalz.sitzung.aktBearbeiter.Initiale)
+
+            'CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+            '                                       IO.Path.Combine(initP.getValue("Haupt.UserInis")),
+            '                                                       myGlobalz.sitzung.aktBearbeiter.Initiale)
             If akuteWV > 0 Then
                 WVbuttonHntergrundAufRot()
                 wiedervorlagepoppen()

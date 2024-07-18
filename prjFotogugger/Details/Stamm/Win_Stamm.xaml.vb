@@ -51,7 +51,10 @@
             'MerkerStamm.WeitereBearbeiter = CLstart.myc.userIniProfile.WertLesen("Stammdaten", "weiterebearbeiter")
             'LokaleStamm.WeitereBearbeiter = MerkerStamm.WeitereBearbeiter
             'myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = MerkerStamm.WeitereBearbeiter
-            Dim tempuserIniProfile = New CLstart.clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
+            Dim tempuserIniProfile = New CLstart.clsINIDatei(IO.Path.Combine(System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments),
+     myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
+
+            'Dim tempuserIniProfile = New CLstart.clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
             myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = tempuserIniProfile.WertLesen("Stammdaten", "weiterebearbeiter")
 
             Debug.Print(myGlobalz.sitzung.aktBearbeiter.Initiale)
@@ -68,7 +71,11 @@
             btnchangeAZneu.Content = "bearbeiten"
             'changeAZ.Visibility = Windows.Visibility.Visible
             ' clsParadigmaRechte.buttons_schalten(btnSpeichern, btnSpeichern)
-            Dim tempuserIniProfile = New CLstart.clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
+            Dim tempuserIniProfile = New CLstart.clsINIDatei(IO.Path.Combine(System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments),
+     myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
+
+            'Dim tempuserIniProfile = New CLstart.clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktVorgang.Stammdaten.hauptBearbeiter.Initiale & ".ini"))
+
             If myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter.IsNothingOrEmpty Then
                 myGlobalz.sitzung.aktVorgang.Stammdaten.WeitereBearbeiter = tempuserIniProfile.WertLesen("Stammdaten", "weiterebearbeiter")
             End If

@@ -263,10 +263,17 @@ Class Window1
             'End If
             'Paradigma_start.Win1Tools.UserinifileAnlegen()
             'myc.userIniProfile = New clsINIDatei(IO.Path.Combine(initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale & ".ini"))
+            Dim HauptUserInis = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments)
+            l("HauptUserInis anlegen " & HauptUserInis)
 
-            CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
-                                                   IO.Path.Combine(initP.getValue("Haupt.UserInis")),
-                                                                   myGlobalz.sitzung.aktBearbeiter.Initiale)
+            'CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+            '                                       initP.getValue("Haupt.UserInis"), myGlobalz.sitzung.aktBearbeiter.Initiale)
+
+            CLstart.clsINIDatei.UserinifileAnlegen(myglobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+                                                   HauptUserInis, myglobalz.sitzung.aktBearbeiter.Initiale)
+            'CLstart.clsINIDatei.UserinifileAnlegen(myGlobalz.WINDOWS_SYSTEM_ANZEIGE_FONT,
+            '                                       IO.Path.Combine(initP.getValue("Haupt.UserInis")),
+            '                                                       myGlobalz.sitzung.aktBearbeiter.Initiale)
             If akuteWV > 0 Then
                 WVbuttonHntergrundAufRot()
                 wiedervorlagepoppen()
