@@ -1,4 +1,5 @@
-﻿Imports paradigma.CLstart
+﻿Imports System.Runtime.CompilerServices
+Imports paradigma.CLstart
 
 Public Class Win_Stamm
     Private Property LokaleStamm As New Stamm(CLstart.mycSimple.MeinNULLDatumAlsDate)
@@ -272,9 +273,11 @@ Public Class Win_Stamm
     End Sub
 
     Private Sub cmbRaumNr_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs)
+        If cmbRaumNr Is Nothing Then Exit Sub
         Dim item As String = CType(cmbRaumNr.SelectedValue, String)
+        If item Is Nothing Then Exit Sub
         LokaleStamm.Standort.RaumNr = cmbRaumNr.SelectedValue.ToString
-        anyChange = True ': glob2.schliessenButton_einschalten(btnSpeichern)
+            anyChange = True ': glob2.schliessenButton_einschalten(btnSpeichern)
         e.Handled = True
     End Sub
 
