@@ -725,11 +725,20 @@ Public Class clsVorlagedokumente
             Dim eins$ = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt
             Dim a$() = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt.Split("-"c)
             Dim summe As String = ""
-            For i = 0 To 5
-                summe = summe & a$(i) & "-"
-            Next
-            summe = summe.Substring(0, summe.Length - 1)
-            Return summe
+            If eins$.Contains("II-67") Then
+                For i = 0 To 5
+                    summe = summe & a$(i) & "-"
+                Next
+                summe = summe.Substring(0, summe.Length - 1)
+                Return summe
+            Else
+                For i = 0 To 4
+                    summe = summe & a$(i) & "-"
+                Next
+                summe = summe.Substring(0, summe.Length - 1)
+                Return summe
+            End If
+
 
         Catch ex As Exception
             nachricht("getAktenzeichen: " & ex.ToString)
@@ -737,19 +746,29 @@ Public Class clsVorlagedokumente
         End Try
     End Function
     Private Shared Function getAktenzeichenKurz() As String
-        Dim az$ = ""
+        Dim az$ = ""  '67-5890-74627-24-pl
         Try
             Dim eins$ = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt
             Dim a$() = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt.Split("-"c)
             Dim summe As String = ""
-
-            If a.Length > 3 Then
-                For i = 2 To 4
-                    summe = summe & a$(i) & "-"
-                Next
+            If eins$.Contains("II-67") Then
+                If a.Length > 3 Then
+                    For i = 2 To 4
+                        summe = summe & a$(i) & "-"
+                    Next
+                End If
+                summe = summe.Substring(0, summe.Length - 1)
+                Return summe
+            Else
+                If a.Length > 2 Then
+                    For i = 2 To 3
+                        summe = summe & a$(i) & "-"
+                    Next
+                End If
+                summe = summe.Substring(0, summe.Length - 1)
+                Return summe
             End If
-            summe = summe.Substring(0, summe.Length - 1)
-            Return summe
+
         Catch ex As Exception
             nachricht("getAktenzeichen: " & ex.ToString)
             Return "3Fehler- an admin wenden"
@@ -761,17 +780,20 @@ Public Class clsVorlagedokumente
             Dim eins$ = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt
             Dim a$() = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt.Split("-"c)
             Dim summe As String = ""
-
-            If a.Length > 6 Then
-                For i = 6 To a.Length - 1
-                    summe = summe & a$(i) & "-"
-                Next
-                summe = summe.Substring(0, summe.Length - 1)
+            If eins$.Contains("II-67") Then
+                If a.Length > 6 Then
+                    For i = 6 To a.Length - 1
+                        summe = summe & a$(i) & "-"
+                    Next
+                    summe = summe.Substring(0, summe.Length - 1)
+                Else
+                    summe = ""
+                End If
+                Return summe
             Else
-                summe = ""
+                '
+                Return eins
             End If
-
-            Return summe
         Catch ex As Exception
             nachricht("4Fehler- an admin wenden  getAktenzeichen: " & ex.ToString)
             Return "4Fehler- an admin wenden"
