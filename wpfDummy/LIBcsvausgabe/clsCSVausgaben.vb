@@ -148,6 +148,7 @@ Namespace LIBcsvAusgabe
                         "BEARBEITER" & delim &
                         "PARAGRAF" & delim &
                         "PROBAUGAZ" & delim &
+                        "StandortWeyers" & delim &
                         "ABGABEBA" & delim
                )
                 For Each p As DataRow In tab.AsEnumerable
@@ -166,6 +167,7 @@ Namespace LIBcsvAusgabe
                             ohneSemikolon(p.Item("BEARBEITER").ToString) & delim &
                             ohneSemikolon(p.Item("PARAGRAF").ToString) & delim &
                             ohneSemikolon(p.Item("PROBAUGAZ").ToString) & delim &
+                            ohneSemikolon(p.Item("STORAUMNR").ToString) & delim &
                             ohneSemikolon(p.Item("ABGABEBA").ToString) & delim)
                 Next
             Catch ex As Exception

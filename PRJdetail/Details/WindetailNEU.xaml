@@ -786,9 +786,18 @@
 
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-
-
+                                    <Button  Margin="1,4" HorizontalAlignment="Center"  Width="100"  Height="23"  
+  x:Name="btnNeuerVorgang2" Click="btnNeuerVorgang2_Click"   >
+                                        <TextBlock Text="Neu " ToolTip="Neuen Vorgang anlegen">
+                                        </TextBlock>
+                                    </Button>
+                                    <Button   Margin="0"  Width="100"  Height="23"
+x:Name="btnzuVorgang2" Click="btnzuVorgang2_Click"   >
+                                        <TextBlock Text="Zu Vorgang: " ToolTip="Zu anderem Vorgang">
+                                        </TextBlock>
+                                    </Button>
                                 </StackPanel>
+                                
                             </StackPanel>
                         </StackPanel>
 

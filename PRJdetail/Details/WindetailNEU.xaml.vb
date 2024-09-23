@@ -4098,7 +4098,7 @@ Public Class WindetailNEU
     Private Sub cmbRaumNr_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
         If (cmbRaumNr.SelectedValue) Is Nothing Then Exit Sub
         Dim item As String = CType(cmbRaumNr.SelectedValue, String)
-        myglobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr = cmbRaumNr.SelectedValue.ToString
+        myGlobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr = cmbRaumNr.SelectedValue.ToString
         detailsTools.Edit_singleUpdate_Stammdaten(Now, "STORAUMNR")
         tbStandort.Text = myGlobalz.sitzung.aktVorgang.Stammdaten.Standort.RaumNr
         e.Handled = True
@@ -4158,6 +4158,10 @@ Public Class WindetailNEU
     End Sub
     Private Sub btnzuVorgang_Click(sender As Object, e As RoutedEventArgs)
         e.Handled = True
+        e = zuVorgangKern(e)
+    End Sub
+
+    Private Function zuVorgangKern(e As RoutedEventArgs) As RoutedEventArgs
         GC.Collect()
         myGlobalz.einVorgangistgeoeffnet = False
         Dim az$ = "", header$ = ""
@@ -4176,7 +4180,9 @@ Public Class WindetailNEU
                 cvt = Nothing
             End If
         End If
-    End Sub
+
+        Return e
+    End Function
 
     Private Sub btnNeuerVorgang_Click(sender As Object, e As RoutedEventArgs)
         'GC.Collect() 
@@ -5799,6 +5805,20 @@ Public Class WindetailNEU
 
     Private Sub cmbVerlaufAuswahl_SelectionChanged_1(sender As Object, e As SelectionChangedEventArgs)
 
+    End Sub
+
+    Private Sub btnNeuerVorgang2_Click(sender As Object, e As RoutedEventArgs)
+        e.Handled = True
+
+        CLstart.VIDuebergabe.erzeugeParameterDatei(CInt(myGlobalz.sitzung.aktVorgangsID), myGlobalz.sitzung.aktBearbeiter.username, CLstart.mycSimple.Paradigma_local_root, "vorherigerVorgang")
+        'Close()
+        CLstart.mycSimple.neuerVorgang3("normal")
+        GC.Collect()
+    End Sub
+
+    Private Sub btnzuVorgang2_Click(sender As Object, e As RoutedEventArgs)
+        e.Handled = True
+        e = zuVorgangKern(e)
     End Sub
 
     'Private Sub btnMehrfachDokumenteDrucken_Click(sender As Object, e As RoutedEventArgs)

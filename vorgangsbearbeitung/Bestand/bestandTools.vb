@@ -122,7 +122,8 @@ Namespace bestandTools
 
     Public Class btnBestandtoExcel_ClickExtracted
         Public Shared Sub exe()
-            Dim handcsv As New LIBcsvAusgabe.clsCSVausgaben("Vorgaenge", myGlobalz.sitzung.VorgangREC.dt, myGlobalz.sitzung.aktVorgangsID, "", CLstart.mycSimple.Paradigma_local_root, CLstart.mycSimple.enc)
+            Dim handcsv As New LIBcsvAusgabe.clsCSVausgaben("Vorgaenge", myglobalz.sitzung.VorgangREC.dt, myglobalz.sitzung.aktVorgangsID, "",
+                                                            CLstart.mycSimple.Paradigma_local_root, CLstart.mycSimple.enc)
             nachricht(" exportfile$ = " & handcsv.CscDateiAusgeben())
             handcsv.start()
             handcsv.Dispose()

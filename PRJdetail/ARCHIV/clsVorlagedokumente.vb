@@ -895,7 +895,7 @@ Public Class clsVorlagedokumente
         End Try
     End Function
     Private Shared Function getAktenzeichenKurz() As String
-        'korrekier
+        'korrekiertrtttt
         Dim az$ = ""
         Try
             Dim eins$ = myGlobalz.sitzung.aktVorgang.Stammdaten.az.gesamt
@@ -910,8 +910,14 @@ Public Class clsVorlagedokumente
                 summe = summe.Substring(0, summe.Length - 1)
                 Return summe
             Else
-                '???
-                Return eins
+                If a.Length > 3 Then
+                    For i = 1 To 3
+                        summe = summe & a$(i) & "-"
+                    Next
+                End If
+                'summe = summe.Substring(0, summe.Length - 1)
+                summe = summe.Trim("-"c)
+                Return summe
             End If
 
         Catch ex As Exception
@@ -936,16 +942,16 @@ Public Class clsVorlagedokumente
                 End If
                 Return summe
             Else
-                Return eins
-                'If a.Length > 6 Then
-                '    For i = 6 To a.Length - 1
-                '        summe = summe & a$(i) & "-"
-                '    Next
-                '    summe = summe.Substring(0, summe.Length - 1)
-                'Else
-                '    summe = ""
-                'End If
-                'Return summe
+
+                If a.Length > 6 Then
+                    'For i = 6 To a.Length - 1
+                    '    summe = summe & a$(i) & "-"
+                    'Next
+                    'summe = summe.Substring(0, summe.Length - 1)
+                Else
+                    summe = a(5)
+                End If
+                Return summe
             End If
         Catch ex As Exception
             nachricht("4Fehler- an admin wenden  getAktenzeichen: ", ex)
