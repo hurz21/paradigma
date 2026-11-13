@@ -145,30 +145,30 @@ Public Class clsWindokueincheckenTOOL
         End Try
     End Function
     Function conv2jpg(inn As String, out As String, maxPixels As Integer) As Boolean
-        Dim myImage As MagickImage
-        Try
-            l(" MOD conv2jpg anfang")
-            l(" MOD conv2jpg inn " & inn)
-            l(" MOD conv2jpg out " & out)
-            myImage = New MagickImage(inn)
-            If maxPixels > 0 Then
-                If myImage.Width > maxPixels Then
-                    myImage.Resize(maxPixels, 0)
-                End If
-                If myImage.Height > maxPixels Then
-                    myImage.Resize(0, maxPixels)
-                End If
-            End If
-            'abstract = getAbstract(myImage)
-            myImage.Write(out)
-            myImage.Dispose()
-            myImage = Nothing
-            l(" MOD conv2jpg ende")
-            Return True
-        Catch ex As Exception
-            l("Fehler in conv2jpg: ", ex)
-            Return False
-        End Try
+        'Dim myImage As MagickImage
+        'Try
+        '    l(" MOD conv2jpg anfang")
+        '    l(" MOD conv2jpg inn " & inn)
+        '    l(" MOD conv2jpg out " & out)
+        '    myImage = New MagickImage(inn)
+        '    If maxPixels > 0 Then
+        '        If myImage.Width > maxPixels Then
+        '            myImage.Resize(maxPixels, 0)
+        '        End If
+        '        If myImage.Height > maxPixels Then
+        '            myImage.Resize(0, maxPixels)
+        '        End If
+        '    End If
+        '    'abstract = getAbstract(myImage)
+        '    myImage.Write(out)
+        '    myImage.Dispose()
+        '    myImage = Nothing
+        '    l(" MOD conv2jpg ende")
+        Return True
+        'Catch ex As Exception
+        '    l("Fehler in conv2jpg: ", ex)
+        '    Return False
+        'End Try
     End Function
 
     Private Function getNeuerNameFotoJPG(ele As String, tempverzeichnis As String) As String
